@@ -4,7 +4,7 @@
 #define index linux_bsd_index
 
 
-#include <features.h>
+//#include <features.h>
 
 
 #include <strings.h>
@@ -64,9 +64,9 @@ typedef struct oswindow_data *   oswindow;
 
 #include <pthread.h>
 
-typedef pthread_t pthread;
+//typedef pthread_t pthread;
 
-typedef pthread HTHREAD;
+typedef pthread_t HTHREAD;
 
 //#ifdef __cplusplus
 //struct pthread

@@ -5,12 +5,12 @@
 
 #define ENABLE_BINRELOC
 
-#ifndef LINUX
-#define LINUX
+#ifndef FREEBSD
+#define FREEBSD
 #endif
 
-#ifndef _LINUX
-#define _LINUX
+#ifndef _FREEBSD
+#define _FREEBSD
 #endif
 
 #define BROAD_PRECOMPILED_HEADER 0
