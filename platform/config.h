@@ -15,10 +15,6 @@
 
 #define BROAD_PRECOMPILED_HEADER 0
 
-#ifndef __linux__
-#define __linux__
-#endif
-
 #define _OPENGL 1
 
 #define BSD_STYLE_SOCKETS
