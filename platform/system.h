@@ -328,9 +328,9 @@ typedef void * PVOID;
 #define WINBOOL int
 
 
-
+#ifndef FREEBSD
 #define offsetof(type, member)  __builtin_offsetof (type, member)
-
+#endif
 
 
 
