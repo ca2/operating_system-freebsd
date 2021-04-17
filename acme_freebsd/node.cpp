@@ -1,45 +1,45 @@
 #include "framework.h"
-#include "acme/platform/node.h"
-#include "acme/node/windows/registry.h"
-#include "acme.h"
-#include "acme/filesystem/filesystem/acme_dir.h"
 
 
-namespace windows
+namespace linux
 {
 
 
-   acme::acme()
+   namespace acme
    {
 
 
-   }
-
-
-   acme::~acme()
-   {
-
-
-   }
-
-
-   ::e_status acme::initialize_matter(::matter* pmatter)
-   {
-
-      auto estatus = ::matter::initialize_matter(pmatter);
-
-      if (!estatus)
+      node::node()
       {
+
+
+      }
+
+
+      node::~node()
+      {
+
+
+      }
+
+
+      ::e_status node::initialize_matter(::matter * pmatter)
+      {
+
+         auto estatus = ::matter::initialize_matter(pmatter);
+
+         if (!estatus)
+         {
+
+            return estatus;
+
+         }
 
          return estatus;
 
       }
 
-      return estatus;
-
-   }
-
-//   string acme::get_user_name()
+//   string node::get_user_name()
 //   {
 //
 //      WCHAR wsz[1024];
@@ -51,16 +51,16 @@ namespace windows
 //      return string(wsz);
 //
 //   }
-//#include "aura/os/windows/_c.h"
+//#include "aura/os/linux/_c.h"
 //
 //
-//   bool acme::_os_calc_app_dark_mode()
+//   bool node::_os_calc_app_dark_mode()
 //   {
 //
 //      try
 //      {
 //
-//         ::windows::registry::key key;
+//         ::linux::registry::key key;
 //
 //         key.open(HKEY_CURRENT_USER, "Software\\Microsoft\\Windows\\CurrentVersion\\Themes\\Personalize");
 //
@@ -95,13 +95,13 @@ namespace windows
 //   }
 //
 //
-//   bool acme::_os_calc_system_dark_mode()
+//   bool node::_os_calc_system_dark_mode()
 //   {
 //
 //      try
 //      {
 //
-//         ::windows::registry::key key;
+//         ::linux::registry::key key;
 //
 //         key.open(HKEY_CURRENT_USER, "Software\\Microsoft\\Windows\\CurrentVersion\\Themes\\Personalize");
 //
@@ -136,7 +136,7 @@ namespace windows
 //   }
 //
 //
-//   ::color::color acme::get_default_color(::u64 u)
+//   ::color::color node::get_default_color(::u64 u)
 //   {
 //
 //      switch (u)
@@ -162,10 +162,10 @@ namespace windows
 //   }
 //
 //   
-//   void acme::set_console_colors(::u32 dwScreenColors, ::u32 dwPopupColors, ::u32 dwWindowAlpha)
+//   void node::set_console_colors(::u32 dwScreenColors, ::u32 dwPopupColors, ::u32 dwWindowAlpha)
 //   {
 //
-//      ::windows::registry::key key(HKEY_CURRENT_USER, "Console", true);
+//      ::linux::registry::key key(HKEY_CURRENT_USER, "Console", true);
 //
 //      key._set("ScreenColors", dwScreenColors);
 //      key._set("PopupColors", dwPopupColors);
@@ -175,10 +175,10 @@ namespace windows
 //
 //
 //
-//   ::e_status acme::set_system_dark_mode1(bool bSet)
+//   ::e_status node::set_system_dark_mode1(bool bSet)
 //   {
 //
-//      ::windows::registry::key key(HKEY_CURRENT_USER, "Software\\Microsoft\\Windows\\CurrentVersion\\Themes\\Personalize", true);
+//      ::linux::registry::key key(HKEY_CURRENT_USER, "Software\\Microsoft\\Windows\\CurrentVersion\\Themes\\Personalize", true);
 //
 //      ::u32 dwSystemUseLightTheme;
 //      if (bSet)
@@ -196,10 +196,10 @@ namespace windows
 //   }
 //
 //
-//   ::e_status acme::set_app_dark_mode1(bool bSet)
+//   ::e_status node::set_app_dark_mode1(bool bSet)
 //   {
 //
-//      ::windows::registry::key key(HKEY_CURRENT_USER, "Software\\Microsoft\\Windows\\CurrentVersion\\Themes\\Personalize", true);
+//      ::linux::registry::key key(HKEY_CURRENT_USER, "Software\\Microsoft\\Windows\\CurrentVersion\\Themes\\Personalize", true);
 //
 //      ::u32 dwAppsUseLightTheme;
 //      if (bSet)
@@ -218,12 +218,12 @@ namespace windows
 //   }
 //
 //   
-//   double acme::get_time_zone()
+//   double node::get_time_zone()
 //   {
 //
 //      double dTimeZone = 0.;
 //
-//#ifdef WINDOWS
+//#ifdef LINUX
 //      {
 //         //time_t t = time(nullptr);
 //
@@ -276,7 +276,7 @@ namespace windows
 //   }
 //
 //
-//   ::e_status acme::open_folder(::file::path & pathFolder)
+//   ::e_status node::open_folder(::file::path & pathFolder)
 //   {
 //
 //      wstring wstrFolder(pathFolder);
@@ -334,7 +334,7 @@ namespace windows
 //   }
 //
 //
-//   ::e_status acme::register_dll(const ::file::path & pathDll)
+//   ::e_status node::register_dll(const ::file::path & pathDll)
 //   {
 //
 //
@@ -346,7 +346,7 @@ namespace windows
 //         
 //      //#else
 //      //
-//      //   strPathDll = m_psystem->m_pacmedir->matter() / "time" / process_platform_dir_name() /"stage/_desk_tb.dll";
+//      //   strPathDll = m_psystem->m_pnodedir->matter() / "time" / process_platform_dir_name() /"stage/_desk_tb.dll";
 //      //
 //      //#endif
 //         
@@ -400,14 +400,14 @@ namespace windows
 //         
 //      //CloseHandle(pi.hProcess);
 //         
-//      //CloseHandle(pi.hthread);
+//      //CloseHandle(pi.htask);
 //         
 //      return true;
 //         
 //   }
 //
 //
-//   ::e_status acme::start()
+//   ::e_status node::start()
 //   {
 //
 //      auto estatus = m_psystem->m_papexsystem->m_papex->thread_initialize(m_psystem->m_papexsystem);
@@ -452,15 +452,15 @@ namespace windows
 //   }
 //
 //
-//   ::e_status acme::get_firefox_installation_info(string& strPathToExe, string& strInstallDirectory)
+//   ::e_status node::get_firefox_installation_info(string& strPathToExe, string& strInstallDirectory)
 //   {
 //
-//#ifdef WINDOWS_DESKTOP
+//#ifdef LINUX_DESKTOP
 //
 //      try
 //      {
 //
-//         ::windows::registry::key key(HKEY_LOCAL_MACHINE, "SOFTWARE\\Mozilla\\Mozilla Firefox");
+//         ::linux::registry::key key(HKEY_LOCAL_MACHINE, "SOFTWARE\\Mozilla\\Mozilla Firefox");
 //
 //         string strCurrentVersion;
 //
@@ -491,7 +491,7 @@ namespace windows
 //   }
 //
 //
-//   ::e_status acme::_001InitializeShellOpen()
+//   ::e_status node::_001InitializeShellOpen()
 //   {
 //
 //      //ASSERT(m_atomApp == nullptr && m_atomSystemTopic == nullptr); // do once
@@ -505,7 +505,7 @@ namespace windows
 //   }
 //
 //
-//   ::e_status acme::process_init()
+//   ::e_status node::process_init()
 //   {
 //
 //      
@@ -516,7 +516,7 @@ namespace windows
 //   }
 //
 //
-//   string acme::veriwell_multimedia_music_midi_get_default_library_name()
+//   string node::veriwell_multimedia_music_midi_get_default_library_name()
 //   {
 //
 //      return "music_midi_mmsystem";
@@ -524,7 +524,7 @@ namespace windows
 //   }
 //
 //
-//   string acme::multimedia_audio_mixer_get_default_library_name()
+//   string node::multimedia_audio_mixer_get_default_library_name()
 //   {
 //
 //      return "audio_mixer_mmsystem";
@@ -532,15 +532,15 @@ namespace windows
 //   }
 //
 //
-//   string acme::multimedia_audio_get_default_library_name()
+//   string node::multimedia_audio_get_default_library_name()
 //   {
 //
 //      string str;
 //
-//      if (file_exists(m_psystem->m_pacmedir->system() / "config\\system\\audio.txt"))
+//      if (file_exists(m_psystem->m_pnodedir->system() / "config\\system\\audio.txt"))
 //      {
 //
-//         str = file_as_string(m_psystem->m_pacmedir->system() / "config\\system\\audio.txt");
+//         str = file_as_string(m_psystem->m_pnodedir->system() / "config\\system\\audio.txt");
 //
 //      }
 //      else
@@ -548,7 +548,7 @@ namespace windows
 //
 //         ::file::path strPath;
 //
-//         strPath = m_psystem->m_pacmedir->appdata() / "audio.txt";
+//         strPath = m_psystem->m_pnodedir->appdata() / "audio.txt";
 //
 //         str = file_as_string(strPath);
 //
@@ -562,43 +562,43 @@ namespace windows
 //   }
 //
 //
-   // Twitter Automator and Denis Lakic and UpWork contribution
+      // Twitter Automator and Denis Lakic and UpWork contribution
 // enzymes: Liveedu.tv, Twitch.tv and Mixer.com streamers and viewers
 // Mummi and bilbo!!
 // create call to :
-   void acme::install_crash_dump_reporting(const string& strModuleNameWithTheExeExtension)
-   {
-
-      ::windows::registry::key k;
-
-      string strKey = "SOFTWARE\\Microsoft\\Windows\\Windows Error Reporting\\LocalDumps\\" + strModuleNameWithTheExeExtension;
-
-      if (k._open(HKEY_LOCAL_MACHINE, strKey, true))
+      void node::install_crash_dump_reporting(const string & strModuleNameWithTheExeExtension)
       {
-         ::file::path str = m_psystem->m_pacmedir->system() / "CrashDumps" / strModuleNameWithTheExeExtension;
-         wstring wstr = str;
-         RegSetValueExW(k.m_hkey, L"DumpFolder", 0, REG_EXPAND_SZ, (byte*)wstr.c_str(), ::u32((wcslen(wstr) + 1) * sizeof(wchar_t)));
-         ::u32 dw = 10;
-         RegSetValueExW(k.m_hkey, L"DumpCount", 0, REG_DWORD, (byte*)&dw, sizeof(dw));
-         dw = 2;
-         RegSetValueExW(k.m_hkey, L"DumpType", 0, REG_DWORD, (byte*)&dw, sizeof(dw));
+
+//      ::linux::registry::key k;
+//
+//      string strKey = "SOFTWARE\\Microsoft\\Windows\\Windows Error Reporting\\LocalDumps\\" + strModuleNameWithTheExeExtension;
+//
+//      if (k._open(HKEY_LOCAL_MACHINE, strKey, true))
+//      {
+//         ::file::path str = m_psystem->m_pnodedir->system() / "CrashDumps" / strModuleNameWithTheExeExtension;
+//         wstring wstr = str;
+//         RegSetValueExW(k.m_hkey, L"DumpFolder", 0, REG_EXPAND_SZ, (byte*)wstr.c_str(), ::u32((wcslen(wstr) + 1) * sizeof(wchar_t)));
+//         ::u32 dw = 10;
+//         RegSetValueExW(k.m_hkey, L"DumpCount", 0, REG_DWORD, (byte*)&dw, sizeof(dw));
+//         dw = 2;
+//         RegSetValueExW(k.m_hkey, L"DumpType", 0, REG_DWORD, (byte*)&dw, sizeof(dw));
+//
+//      }
+//
+//      output_debug_string("test01");
 
       }
-
-      output_debug_string("test01");
-
-   }
 //
 //
 //   int g_iMemoryCountersStartable = 0;
 //
-//   bool acme::memcnts()
+//   bool node::memcnts()
 //   {
 //
 //      if (g_iMemoryCountersStartable && g_iMemoryCounters < 0)
 //      {
 //
-//         g_iMemoryCounters = file_exists(m_psystem->m_pacmedir->config() / "system/memory_counters.txt") ? 1 : 0;
+//         g_iMemoryCounters = file_exists(m_psystem->m_pnodedir->config() / "system/memory_counters.txt") ? 1 : 0;
 //
 //         if (g_iMemoryCounters)
 //         {
@@ -617,7 +617,7 @@ namespace windows
 //   ::file::path* g_pMemoryCounters = nullptr;
 //
 //
-//   CLASS_DCL_ACME::file::path acme::memcnts_base_path()
+//   CLASS_DCL_ACME::file::path node::memcnts_base_path()
 //   {
 //
 //      if (g_iMemoryCountersStartable && g_pMemoryCounters == nullptr)
@@ -627,13 +627,13 @@ namespace windows
 //
 //#if defined(_UWP)
 //
-//         string strBasePath = m_psystem->m_pacmedir->system() / "memory_counters";
+//         string strBasePath = m_psystem->m_pnodedir->system() / "memory_counters";
 //
 //#else
 //
 //         ::file::path strModule = module_path_from_pid(getpid());
 //
-//         string strBasePath = m_psystem->m_pacmedir->system() / "memory_counters" / strModule.title() / __str(getpid());
+//         string strBasePath = m_psystem->m_pnodedir->system() / "memory_counters" / strModule.title() / __str(getpid());
 //
 //#endif
 //
@@ -648,81 +648,80 @@ namespace windows
 //
 
 
-   ::e_status acme::datetime_to_filetime(::filetime_t * pfiletime, const ::datetime::time& time)
-   {
+//   ::e_status node::datetime_to_filetime(::filetime_t * pfiletime, const ::datetime::time& time)
+//   {
+//
+//      SYSTEMTIME sysTime;
+//
+//      sysTime.wYear = (::u16)time.GetYear();
+//      sysTime.wMonth = (::u16)time.GetMonth();
+//      sysTime.wDay = (::u16)time.GetDay();
+//      sysTime.wHour = (::u16)time.GetHour();
+//      sysTime.wMinute = (::u16)time.GetMinute();
+//      sysTime.wSecond = (::u16)time.GetSecond();
+//      sysTime.wMilliseconds = 0;
+//
+//      // convert system time to local file time
+//      FILETIME localTime;
+//
+//      DWORD dwLastError = ::GetLastError();
+//
+//      if (!SystemTimeToFileTime((LPSYSTEMTIME)&sysTime, &localTime))
+//      {
+//
+//         DWORD dwLastError = ::GetLastError();
+//
+//         return last_error_to_status(dwLastError);
+//
+//      }
+//
+//      // convert local file time to UTC file time
+//      if (!LocalFileTimeToFileTime(&localTime, (FILETIME*)pfiletime))
+//      {
+//
+//         DWORD dwLastError = ::GetLastError();
+//
+//         return last_error_to_status(dwLastError);
+//
+//      }
+//
+//      return ::success;
+//
+//   }
 
-      SYSTEMTIME sysTime;
 
-      sysTime.wYear = (::u16)time.GetYear();
-      sysTime.wMonth = (::u16)time.GetMonth();
-      sysTime.wDay = (::u16)time.GetDay();
-      sysTime.wHour = (::u16)time.GetHour();
-      sysTime.wMinute = (::u16)time.GetMinute();
-      sysTime.wSecond = (::u16)time.GetSecond();
-      sysTime.wMilliseconds = 0;
+//   ::e_status node::last_error_to_status(DWORD dwLastError)
+//   {
+//
+//      if (dwLastError == 0)
+//      {
+//
+//         return ::success;
+//
+//      }
+//      else
+//      {
+//
+//         return error_failed;
+//
+//      }
+//
+//
+//   }
 
-      // convert system time to local file time
-      FILETIME localTime;
 
-      DWORD dwLastError = ::GetLastError();
-
-      if (!SystemTimeToFileTime((LPSYSTEMTIME)&sysTime, &localTime))
+      string node::audio_get_default_library_name()
       {
 
-         DWORD dwLastError = ::GetLastError();
-
-         return last_error_to_status(dwLastError);
+         return "audio_mmsystem";
 
       }
 
-      // convert local file time to UTC file time
-      if (!LocalFileTimeToFileTime(&localTime, (FILETIME*)pfiletime))
-      {
 
-         DWORD dwLastError = ::GetLastError();
-
-         return last_error_to_status(dwLastError);
-
-      }
-
-      return ::success;
-
-   }
-
-   
-   ::e_status acme::last_error_to_status(DWORD dwLastError)
-   {
-
-      if (dwLastError == 0)
-      {
-
-         return ::success;
-
-      }
-      else
-      {
-
-         return error_failed;
-
-      }
+   } // namespace acme
 
 
-   }
-
-
-   string acme::audio_get_default_library_name()
-   {
-
-      return "audio_mmsystem";
-
-   }
-
-
-
-} // namespace node_windows
-
-
-
+} // namespace node_linux
 
 
 //
@@ -744,3 +743,6 @@ namespace windows
 //
 //
 //
+
+
+
