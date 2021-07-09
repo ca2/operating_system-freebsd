@@ -24,7 +24,7 @@
 #include <unistd.h>
 #undef sync
 
-
+#include <ctype.h>
 #include <wchar.h>
 #include <wctype.h>
 
