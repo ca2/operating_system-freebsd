@@ -1,11 +1,11 @@
 #include "framework.h"
 
 
-namespace freebsd
+namespace acme
 {
 
 
-   namespace acme
+   namespace freebsd
    {
 
 
@@ -718,31 +718,9 @@ namespace freebsd
       }
 
 
-   } // namespace acme
+   } // namespace node_linux
 
 
-} // namespace node_linux
-
-
-//
-//int _os_message_box(const char * pszMessage, const char * pszTitle, const ::e_message_box & emessagebox)
-//{
-//
-//   int iMessageBox = emessagebox.m_eenum & 0x7f;
-//
-//   wstring wstrText(pszMessage);
-//
-//   wstring wstrTitle(pszTitle);
-//
-//   int iResult = ::MessageBox(nullptr, wstrText, wstrTitle, iMessageBox);
-//
-//   return iResult;
-//
-//}
-//
-//
-//
-//
-
+} // namespace acme
 
 

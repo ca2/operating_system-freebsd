@@ -28,6 +28,7 @@
 #define CLASS_DECL_EXPORT
 #define CLASS_DECL_IMPORT
 #define CLASS_DECL_THREAD __thread
+#define __FACTORY_EXPORT
 
 
 #define __PLATFORM   		"freebsd"
@@ -35,8 +36,7 @@
 #define PLATFORM_NAME	"freebsd"
 
 
-
-
+#define INFINITE_TIMEOUT ((::u32)0xffffffff)
 
 
 #ifdef cplus

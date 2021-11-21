@@ -125,17 +125,9 @@ namespace freebsd
    string acme_dir::system_short_name()
    {
 
-   #ifdef _UWP
-
-      return "metro";
-
-   #else
-
       ::file::path pathSystemShortName = localconfig() / "system_short_name.txt";
 
-      return file_as_string(pathSystemShortName).trimmed();
-
-   #endif
+      return m_pacmefile->as_string(pathSystemShortName).trimmed();
 
    }
 
@@ -168,9 +160,9 @@ namespace freebsd
    ::file::path acme_dir::app_relative()
    {
 
-      ::file::path path = m_psystem->m_pacmepath->app_module();
+      ::file::path path = m_pacmefile->module();
 
-      path = relative(path);
+      path = file_path_folder(path);
 
       return path;
 
