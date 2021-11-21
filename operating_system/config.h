@@ -5,21 +5,18 @@
 
 #define ENABLE_BINRELOC
 
-#ifndef FREEBSD
-#define FREEBSD
-#endif
 
-#ifndef _FREEBSD
-#define _FREEBSD
-#endif
-
-#define BROAD_PRECOMPILED_HEADER 0
+#define BROAD_PRECOMPILED_HEADER 1
 
 #define _OPENGL 1
 
 #define BSD_STYLE_SOCKETS
 #define HAVE_MYSQL 1
 #define HAVE_OPENSSL 1
+#define HAVE_TERMIOS_H 1
+
+
+#define PARALLELIZATION_PTHREAD 1
 
 #define VARIADIC_TEMPLATE_FORMAT2
 
@@ -33,8 +30,9 @@
 #define CLASS_DECL_THREAD __thread
 
 
-#define __PLATFORM   		"linux"
-#define PLATFORM_NAMESPACE	linux
+#define __PLATFORM   		"freebsd"
+#define PLATFORM_NAMESPACE	freebsd
+#define PLATFORM_NAME	"freebsd"
 
 
 

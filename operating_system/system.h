@@ -3,9 +3,13 @@
 
 #define index linux_bsd_index
 
+#ifndef FREEBSD
+#define FREEBSD 1
+#endif
 
-//#include <features.h>
-
+#ifndef _FREEBSD
+#define _FREEBSD 1
+#endif
 
 #include <strings.h>
 #include <string.h>
@@ -29,19 +33,6 @@
 #include <wctype.h>
 
 #include "__standard_type.h"
-
-
-/*
-#ifndef _XSERVER64
-#ifndef _XTYPEDEF_XID
-#define _XTYPEDEF_XID
-typedef unsigned long XID;
-#endif
-#endif
-*/
-
-//#pragma once
-
 
 
 #define __cdecl
