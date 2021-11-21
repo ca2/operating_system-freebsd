@@ -1,4 +1,4 @@
-#define LINUX_COMMAND_LINE
+#define FREEBSD_COMMAND_LINE
 #include "aura/application.h"
 
 //

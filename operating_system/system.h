@@ -68,9 +68,14 @@ typedef iptr                 LRESULT;
 
 typedef pthread_t HTHREAD;
 
+using platform_char = char;
+
 #define DEBUG_BREAK __builtin_debugtrap()
 
 #include <concepts>
+
+
+#define MAX_PATH 321
 
 //#ifdef __cplusplus
 //struct pthread

@@ -7,15 +7,16 @@
 #pragma once
 
 
-namespace linux
+namespace acme
 {
 
 
-   namespace acme
-   {
+   namespace freebsd
+{
 
 
-      class CLASS_DECL_ACME_LINUX node :
+
+      class CLASS_DECL_ACME_FREEBSD node :
          virtual public ::acme::node,
          virtual public ::acme::posix::node
       {
@@ -68,10 +69,11 @@ namespace linux
       };
 
 
-   } // namespace acme
+   } // namespace node_linux
 
 
-} // namespace node_linux
 
 
+
+} // namespace acme
 

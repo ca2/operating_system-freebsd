@@ -1,11 +1,11 @@
 #pragma once
 
 
-namespace linux
+namespace freebsd
 {
 
 
-   class CLASS_DECL_APEX_LINUX shell_launcher :
+   class CLASS_DECL_APEX_FREEBSD shell_launcher :
       virtual public ::apex::shell_launcher
    {
    public:

@@ -2,7 +2,7 @@
 #include "framework.h"
 
 
-namespace linux
+namespace freebsd
 {
 
    
@@ -104,7 +104,7 @@ namespace linux
    ::file::path acme_dir::sensitive()
    {
 
-   #ifdef LINUX
+   #ifdef FREEBSD
 
       return "C:\\sensitive\\sensitive";
 
@@ -184,7 +184,7 @@ namespace linux
    ::file::path acme_dir::inplace_install(string strAppId, string strPlatform, string strConfiguration)
    {
 
-   #ifdef LINUX_DESKTOP
+   #ifdef FREEBSD_DESKTOP
 
       ::file::path path;
 
@@ -241,7 +241,7 @@ namespace linux
    ::file::path acme_dir::inplace_matter_install(string strAppId, string strPlatform, string strConfiguration)
    {
 
-   #ifdef LINUX_DESKTOP
+   #ifdef FREEBSD_DESKTOP
 
       ::file::path path;
 
@@ -316,7 +316,7 @@ namespace linux
 
 
 
-   #ifdef LINUX_DESKTOP
+   #ifdef FREEBSD_DESKTOP
 
 
    #include <Shlobj.h>
@@ -408,7 +408,7 @@ namespace linux
    }
 
 
-//   #ifdef LINUX
+//   #ifdef FREEBSD
 
 
    ::file::path acme_dir::home()
@@ -422,7 +422,7 @@ namespace linux
 //   #endif
 
 
-   #if defined(_UWP) || defined(__APPLE__) || defined(LINUX) || defined(ANDROID)
+   #if defined(_UWP) || defined(__APPLE__) || defined(FREEBSD) || defined(ANDROID)
 
 
 //   ::file::path acme_dir::bookmark()
@@ -634,7 +634,7 @@ namespace linux
    }
 
 
-} // namespace linux
+} // namespace freebsd
 
 
 

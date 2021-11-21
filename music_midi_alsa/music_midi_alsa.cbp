@@ -70,7 +70,7 @@
 			<Add option="-Wno-attributes" />
 			<Add option="-Winvalid-pch" />
 			<Add option="-Wno-conversion-null" />
-			<Add option="-DLINUX" />
+			<Add option="-DFREEBSD" />
 			<Add option="-D_AUDIO_ALSA_LIBRARY" />
 			<Add directory="." />
 			<Add directory="$(PROJECT_DIR)" />

@@ -236,7 +236,7 @@ return 0;
 return 1;
 }*/
 
-namespace linux
+namespace freebsd
 {
 
    shell shell::theWindowsShell;
@@ -807,6 +807,6 @@ namespace linux
    //}
    //*/
 
-} // namespace linux
+} // namespace freebsd
 
 

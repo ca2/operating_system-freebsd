@@ -5,7 +5,7 @@
 
 
 //
-//namespace linux
+//namespace freebsd
 //{
 //
 //
@@ -16,7 +16,7 @@
 //
 //   }
 //
-//} // namespace linux
+//} // namespace freebsd
 
 namespace os
 {

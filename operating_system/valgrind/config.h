@@ -312,7 +312,7 @@
 #define HAVE_UNISTD_H 1
 
 /* Define to 1 if you have a usable <linux/futex.h> header file. */
-#define HAVE_USABLE_LINUX_FUTEX_H 1
+#define HAVE_USABLE_FREEBSD_FUTEX_H 1
 
 /* Define to 1 if you have the `utimensat' function. */
 #define HAVE_UTIMENSAT 1

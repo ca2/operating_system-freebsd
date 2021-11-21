@@ -13,7 +13,7 @@ struct PROCESS_INFO_t
 };
 
 
-namespace linux
+namespace freebsd
 {
 
 
@@ -112,7 +112,7 @@ namespace linux
    }
 
 
-} // namespace linux
+} // namespace freebsd
 
 
 

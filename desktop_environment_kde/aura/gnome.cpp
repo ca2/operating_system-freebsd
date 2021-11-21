@@ -61,7 +61,7 @@ namespace node_kde{
 
    }
 
-} // namespace linux
+} // namespace freebsd
 
 
 #endif

@@ -201,7 +201,7 @@ void gnome_appindicator::close()
 
 }
 
-namespace linux
+namespace freebsd
 {
 
 
@@ -216,7 +216,7 @@ namespace linux
    }
 
 
-} // namespace linux
+} // namespace freebsd
 
 
 bool gnome_appindicator::create(const char * pszId, const char * pszIcon, const char * pszFolder, user_notify_icon_bridge * pbridge)

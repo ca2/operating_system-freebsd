@@ -5,11 +5,11 @@
 //{
 //
 //
-//   namespace linux
+//   namespace freebsd
 //   {
 //
 //
-//      class CLASS_DECL_APEX_LINUX factory_exchange:
+//      class CLASS_DECL_APEX_FREEBSD factory_exchange:
 //         virtual public ::object
 //      {
 //      public:
@@ -22,7 +22,7 @@
 //      };
 //
 //
-//   } // namespace linux
+//   } // namespace freebsd
 //
 //
 //} // namespace apex

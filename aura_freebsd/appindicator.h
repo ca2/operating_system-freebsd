@@ -7,7 +7,7 @@
 class user_notify_icon_bridge;
 
 
-namespace linux
+namespace freebsd
 {
 
 
@@ -15,7 +15,7 @@ namespace linux
    {
 
 
-      class CLASS_DECL_AURA_LINUX appindicator :
+      class CLASS_DECL_AURA_FREEBSD appindicator :
          virtual public ::matter
       {
          public:

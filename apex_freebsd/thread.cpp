@@ -2,7 +2,7 @@
 #include "apex/operating_system.h"
 
 
-//void CLASS_DECL_APEX_LINUX __init_thread()
+//void CLASS_DECL_APEX_FREEBSD __init_thread()
 //{
 //
 //   //if(t_hHookOldMsgFilter == nullptr)
@@ -15,14 +15,14 @@
 //}
 //
 //
-//void CLASS_DECL_APEX_LINUX __term_thread()
+//void CLASS_DECL_APEX_FREEBSD __term_thread()
 //{
 //
 //
 //}
 
 
-//namespace linux
+//namespace freebsd
 //{
 //
 
@@ -49,7 +49,7 @@
 //}
 
 
-__STATIC bool CLASS_DECL_APEX_LINUX IsHelpKey(LPMSG pMsg)
+__STATIC bool CLASS_DECL_APEX_FREEBSD IsHelpKey(LPMSG pMsg)
 
 // return true only for non-repeat F1 keydowns.
 {

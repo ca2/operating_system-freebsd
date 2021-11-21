@@ -37,7 +37,7 @@ string empty_get_file_content_type(string)
 //}
 
 
-namespace linux
+namespace freebsd
 {
 
 
@@ -847,7 +847,7 @@ namespace linux
    }
 
 
-   //#elif defined(LINUX)
+   //#elif defined(FREEBSD)
    //            }
    //
    //#elif defined(MACos_context)
@@ -1154,7 +1154,7 @@ namespace linux
    }
 
 
-} // namespace linux
+} // namespace freebsd
 
 
 

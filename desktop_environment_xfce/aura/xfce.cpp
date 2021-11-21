@@ -62,7 +62,7 @@ namespace node_xfce
 
    }
 
-} // namespace linux
+} // namespace freebsd
 
 
 #endif

@@ -8,7 +8,7 @@
 #pragma once
 
 
-namespace linux
+namespace freebsd
 {
 
 
@@ -16,7 +16,7 @@ namespace linux
    {
 
 
-      class CLASS_DECL_APEX_LINUX node :
+      class CLASS_DECL_APEX_FREEBSD node :
          virtual public ::linux::acme::node,
          virtual public ::apex::node
       {
@@ -110,7 +110,7 @@ namespace linux
    } // namespace apex
 
 
-} // namespace linux
+} // namespace freebsd
 
 
 

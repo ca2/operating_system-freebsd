@@ -10,7 +10,7 @@
 static ::user::notify_icon * g_pnotifyiconLast = nullptr;
 
 
-#ifdef LINUX
+#ifdef FREEBSD
 
 #include "aura/os/linux/appindicator.h"
 
@@ -30,7 +30,7 @@ namespace node_xfce
 
       //m_nid.cbSize = sizeof(m_nid);
 
-#elif defined(LINUX)
+#elif defined(FREEBSD)
 
       m_pindicator = nullptr;
 
@@ -106,7 +106,7 @@ namespace node_xfce
       //m_nid.uFlags               = NIF_ICON | NIF_MESSAGE;
       //m_nid.uCallbackMessage     = MessageNotifyIcon;
 
-#elif defined(LINUX)
+#elif defined(FREEBSD)
 
 #elif defined(MACOS)
 
@@ -136,7 +136,7 @@ namespace node_xfce
 
       //}
 
-#elif defined(LINUX) && !defined(RASPBIAN)
+#elif defined(FREEBSD) && !defined(RASPBIAN)
 
       {
 
@@ -374,7 +374,7 @@ namespace node_xfce
 //      return true;
 //
 //
-//#elif defined(LINUX) && !defined(RASPBIAN)
+//#elif defined(FREEBSD) && !defined(RASPBIAN)
 //
 //      if(m_pindicator)
 //      {
@@ -471,7 +471,7 @@ namespace node_xfce
    ::e_status notify_icon::step()
    {
 
-#if defined(LINUX)
+#if defined(FREEBSD)
 
 //      main_async([&]
 //      {
@@ -487,7 +487,7 @@ namespace node_xfce
    }
 
 
-//#if defined(LINUX) || defined(MACOS)
+//#if defined(FREEBSD) || defined(MACOS)
 
 
    int notify_icon::_get_notification_area_action_count()

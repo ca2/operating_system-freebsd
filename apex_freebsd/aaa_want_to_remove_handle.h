@@ -75,7 +75,7 @@ inline ::u32 HashKey < HIMAGELIST >(HIMAGELIST key)
 }
 
 
-namespace linux
+namespace freebsd
 {
 
    class window;
@@ -119,7 +119,7 @@ namespace linux
    typedef handle1 < HGDIOBJ > hgdiobj_handle;
    typedef handle1 < HIMAGELIST > himagelist_handle;
 
-} // namespace linux
+} // namespace freebsd
 
 
 template<class TYPE>

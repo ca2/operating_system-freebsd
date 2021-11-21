@@ -4,7 +4,7 @@
 #include "framework.h"
 
 
-namespace linux
+namespace freebsd
 {
 
 
@@ -29,7 +29,7 @@ namespace linux
    } // namespace aura
 
 
-} // namespace linux
+} // namespace freebsd
 
 
 

@@ -49,7 +49,7 @@ if (MSVC)
     target_link_options(apex_freebsd PRIVATE "/IMPLIB:${LIBRARY_OUTPUT_PATH}/apex_freebsd.lib")
     target_link_options(apex_freebsd PRIVATE "/DEF:${CMAKE_CURRENT_SOURCE_DIR}/apex_freebsd.def")
     target_link_libraries(apex_freebsd PRIVATE acme apex aqua aura Gdiplus)
-elseif(LINUX)
+elseif(FREEBSD)
     #pkg_check_modules(PKGCONFIG glib-2.0 gtk+-3.0 gdk-3.0 appindicator-0.1)
     pkg_check_modules(PKGCONFIG glib-2.0 freetype2 gtk+-3.0 gdk-3.0)
     target_compile_options(apex_freebsd PRIVATE ${PKGCONFIG_CFLAGS})
@@ -68,7 +68,7 @@ target_include_directories(apex_freebsd PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/..)
 target_include_directories(apex_freebsd PRIVATE ${CMAKE_CURRENT_SOURCE_DIR})
 
 
-target_compile_definitions(apex_freebsd PRIVATE _APEX_LINUX_LIBRARY)
+target_compile_definitions(apex_freebsd PRIVATE _APEX_FREEBSD_LIBRARY)
 
 
 

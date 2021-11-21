@@ -3,12 +3,12 @@
 #include "service_handler.h"
 
 
-//#ifdef LINUX
+//#ifdef FREEBSD
 //u32 Win32FromHResult(HRESULT value);
 //#endif
 //
 //
-namespace linux
+namespace freebsd
 {
 
 
@@ -22,7 +22,7 @@ namespace linux
 
       m_dwStopTimeout = 30 * 1000; // 30 seconds
 
-   #ifdef LINUX_DESKTOP
+   #ifdef FREEBSD_DESKTOP
       m_status.dwServiceType = SERVICE_WIN32_OWN_PROCESS;
       m_status.dwCurrentState = SERVICE_START_PENDING;
       m_status.dwControlsAccepted = controlsAccepted;
@@ -48,7 +48,7 @@ namespace linux
    void service_handler::_server()
    {
 
-#ifdef LINUX_DESKTOP
+#ifdef FREEBSD_DESKTOP
 
       SERVICE_TABLE_ENTRYW serviceTable[] =
       {
@@ -93,7 +93,7 @@ namespace linux
 
       }
 
-#ifdef LINUX_DESKTOP
+#ifdef FREEBSD_DESKTOP
 
       if (!::SetServiceStatus(m_handle, &m_status))
       {
@@ -363,13 +363,13 @@ namespace linux
    }
 
 
-} // namespace linux
+} // namespace freebsd
 
 
 
 
 
-//#ifdef LINUX
+//#ifdef FREEBSD
 //
 //
 //u32 Win32FromHResult(HRESULT value)

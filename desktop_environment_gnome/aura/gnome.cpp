@@ -62,7 +62,7 @@ namespace node_gnome
 
    }
 
-} // namespace linux
+} // namespace freebsd
 
 
 #endif

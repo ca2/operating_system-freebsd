@@ -1,7 +1,7 @@
 #include "framework.h"
 
 
-namespace linux
+namespace freebsd
 {
 
 
@@ -223,7 +223,7 @@ namespace linux
 //
 //      double dTimeZone = 0.;
 //
-//#ifdef LINUX
+//#ifdef FREEBSD
 //      {
 //         //time_t t = time(nullptr);
 //
@@ -455,7 +455,7 @@ namespace linux
 //   ::e_status node::get_firefox_installation_info(string& strPathToExe, string& strInstallDirectory)
 //   {
 //
-//#ifdef LINUX_DESKTOP
+//#ifdef FREEBSD_DESKTOP
 //
 //      try
 //      {

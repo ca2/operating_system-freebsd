@@ -17,7 +17,7 @@
 i32 crypto_encrypt(memory & storageEncrypt, const memory & storageDecrypt, memory & key);
 i32 crypto_decrypt(memory & storageDecrypt, const memory & storageEncrypt, memory & key);
 
-namespace linux
+namespace freebsd
 {
 
 
@@ -206,7 +206,7 @@ namespace linux
    }
 
 
-} // namespace linux
+} // namespace freebsd
 
 
 

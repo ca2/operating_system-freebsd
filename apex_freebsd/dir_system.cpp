@@ -6,7 +6,7 @@
 #include <link.h>
 
 
-namespace linux
+namespace freebsd
 {
 
 
@@ -69,7 +69,7 @@ namespace linux
     }
 
 
-} // namespace linux
+} // namespace freebsd
 
 
 

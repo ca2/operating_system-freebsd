@@ -2,11 +2,11 @@
 #pragma once
 
 
-namespace linux
+namespace freebsd
 {
 
 
-   class CLASS_DECL_APEX_LINUX launcher :
+   class CLASS_DECL_APEX_FREEBSD launcher :
       virtual public ::launcher
    {
    public:
@@ -18,7 +18,7 @@ namespace linux
    };
 
 
-} // namespace linux
+} // namespace freebsd
 
 
 

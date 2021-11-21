@@ -62,7 +62,7 @@ inline bool linux_dir_myspace(char ch)
 }
 
 
-namespace linux
+namespace freebsd
 {
 
 
@@ -132,7 +132,7 @@ namespace linux
 //
 //      }
 
-#ifdef LINUX
+#ifdef FREEBSD
 
       m_pdirsystem->m_pathTimeFolder = "/var/tmp/ca2/time";
 
@@ -857,7 +857,7 @@ namespace linux
    }
 
 
-} // namespace linux
+} // namespace freebsd
 
 
 

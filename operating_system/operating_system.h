@@ -42,9 +42,9 @@ typedef ::windowing::window *    oswindow;
 
 //#include <pthread.h>
 
-typedef pthread_t pthread;
+//typedef pthread_t pthread;
 
-typedef pthread HTHREAD;
+//typedef pthread HTHREAD;
 
 //#ifdef __cplusplus
 //struct pthread

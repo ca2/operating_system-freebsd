@@ -9,7 +9,7 @@
 string get_error_message(::u32 dwError);
 
 
-//CLASS_DECL_APEX_LINUX bool __initialize();
+//CLASS_DECL_APEX_FREEBSD bool __initialize();
 
 
 //#include "system_dir.h"
@@ -32,10 +32,10 @@ string get_error_message(::u32 dwError);
 
 
 
-//void CLASS_DECL_APEX_LINUX __cdecl _ca2_purecall();
-//void CLASS_DECL_APEX_LINUX __cdecl _null_se_translator(u32 uiCode, EXCEPTION_POINTERS * ppointers);
-//bool CLASS_DECL_APEX_LINUX __linux_init();
-i32 CLASS_DECL_APEX_LINUX __linux_main(::apex::system * psystem, ::create * pmaininitdata);
+//void CLASS_DECL_APEX_FREEBSD __cdecl _ca2_purecall();
+//void CLASS_DECL_APEX_FREEBSD __cdecl _null_se_translator(u32 uiCode, EXCEPTION_POINTERS * ppointers);
+//bool CLASS_DECL_APEX_FREEBSD __linux_init();
+i32 CLASS_DECL_APEX_FREEBSD __linux_main(::apex::system * psystem, ::create * pmaininitdata);
 
 
 
@@ -51,16 +51,16 @@ i32 CLASS_DECL_APEX_LINUX __linux_main(::apex::system * psystem, ::create * pmai
 
 //
 //// Sanity checks for ATOMs
-//CLASS_DECL_APEX_LINUX bool __is_valid_atom(ATOM nAtom);
-////CLASS_DECL_APEX_LINUX bool __is_valid_atom(const char * psz);
-//CLASS_DECL_APEX_LINUX bool __is_valid_atom(const wchar_t * psz);
+//CLASS_DECL_APEX_FREEBSD bool __is_valid_atom(ATOM nAtom);
+////CLASS_DECL_APEX_FREEBSD bool __is_valid_atom(const char * psz);
+//CLASS_DECL_APEX_FREEBSD bool __is_valid_atom(const wchar_t * psz);
 //
 
 ///////////////////////////////////////////////////////////////////////////////
 //// locale-invariant comparison helpers till CRT gets that support
 //inline i32 __invariant_stricmp(const char *pszLeft,const char *pszRight)
 //{
-//#ifdef LINUX_DESKTOP
+//#ifdef FREEBSD_DESKTOP
 //   return ::CompareStringA(MAKELCID(MAKELANGID(LANG_ENGLISH,SUBLANG_ENGLISH_US),SORT_DEFAULT),
 //                           NORM_IGNORECASE,
 //                           pszLeft,
@@ -74,7 +74,7 @@ i32 CLASS_DECL_APEX_LINUX __linux_main(::apex::system * psystem, ::create * pmai
 //
 //inline i32 __invariant_stricmp(const unichar *pwszLeft,const unichar *pwszRight)
 //{
-//#ifdef LINUX_DESKTOP
+//#ifdef FREEBSD_DESKTOP
 //   return ::CompareStringW(MAKELCID(MAKELANGID(LANG_ENGLISH,SUBLANG_ENGLISH_US),SORT_DEFAULT),
 //                           NORM_IGNORECASE,
 //                           pwszLeft,
@@ -107,7 +107,7 @@ i32 CLASS_DECL_APEX_LINUX __linux_main(::apex::system * psystem, ::create * pmai
 
 //
 //
-//namespace linux
+//namespace freebsd
 //{
 //
 //
@@ -118,43 +118,43 @@ i32 CLASS_DECL_APEX_LINUX __linux_main(::apex::system * psystem, ::create * pmai
 //      i32 function();
 //   };
 //
-//   CLASS_DECL_APEX_LINUX HINSTANCE   load_library(const char * psz);
+//   CLASS_DECL_APEX_FREEBSD HINSTANCE   load_library(const char * psz);
 //
-//   CLASS_DECL_APEX_LINUX bool        shell_get_special_folder_path(::windowing::window * pwindow,::file::path &str,i32 csidl,bool fCreate);
-//   CLASS_DECL_APEX_LINUX ::file::path  shell_get_special_folder_path(i32 csidl, bool fCreate = true, ::windowing::window * pwindow = nullptr);
-//   CLASS_DECL_APEX_LINUX ::u32       get_file_attributes(const char * pFileName);
+//   CLASS_DECL_APEX_FREEBSD bool        shell_get_special_folder_path(::windowing::window * pwindow,::file::path &str,i32 csidl,bool fCreate);
+//   CLASS_DECL_APEX_FREEBSD ::file::path  shell_get_special_folder_path(i32 csidl, bool fCreate = true, ::windowing::window * pwindow = nullptr);
+//   CLASS_DECL_APEX_FREEBSD ::u32       get_file_attributes(const char * pFileName);
 //
-//   CLASS_DECL_APEX_LINUX ::u32       get_current_directory(string & str);
-//   CLASS_DECL_APEX_LINUX ::u32       get_temp_path(string & str);
-//   CLASS_DECL_APEX_LINUX ::i32        reg_query_value(HKEY hkey,const char * pszSubKey,string & str);
+//   CLASS_DECL_APEX_FREEBSD ::u32       get_current_directory(string & str);
+//   CLASS_DECL_APEX_FREEBSD ::u32       get_temp_path(string & str);
+//   CLASS_DECL_APEX_FREEBSD ::i32        reg_query_value(HKEY hkey,const char * pszSubKey,string & str);
 //
-//   CLASS_DECL_APEX_LINUX HICON       extract_icon(HINSTANCE hInst,const char * pszExeFileName,::u32 nIconIndex);
+//   CLASS_DECL_APEX_FREEBSD HICON       extract_icon(HINSTANCE hInst,const char * pszExeFileName,::u32 nIconIndex);
 //
-//   CLASS_DECL_APEX_LINUX bool        delete_file(const char * pFileName);
+//   CLASS_DECL_APEX_FREEBSD bool        delete_file(const char * pFileName);
 //
-//   CLASS_DECL_APEX_LINUX i32     get_menu_string(HMENU hMenu,::u32 uDItem,string & str,::u32 flags);
-//   CLASS_DECL_APEX_LINUX void        time_to_filetime(::object * pobject,const ::datetime::time& time,LPFILETIME pFileTime);
-//
-//
-//} // namespace linux
+//   CLASS_DECL_APEX_FREEBSD i32     get_menu_string(HMENU hMenu,::u32 uDItem,string & str,::u32 flags);
+//   CLASS_DECL_APEX_FREEBSD void        time_to_filetime(::object * pobject,const ::datetime::time& time,LPFILETIME pFileTime);
 //
 //
+//} // namespace freebsd
 //
 //
 //
-//CLASS_DECL_APEX_LINUX ::i32 delete_registry_tree_helper(HKEY hParentKey,const string & strKeyName);
 //
 //
-//CLASS_DECL_APEX_LINUX HINSTANCE __get_resource_handle();
-//CLASS_DECL_APEX_LINUX void __set_resource_handle(HINSTANCE hInstResource);
+//CLASS_DECL_APEX_FREEBSD ::i32 delete_registry_tree_helper(HKEY hParentKey,const string & strKeyName);
 //
-//CLASS_DECL_APEX_LINUX HINSTANCE __get_resource_handle();
-//CLASS_DECL_APEX_LINUX HINSTANCE __find_string_resource_handle(::u32 nID);
+//
+//CLASS_DECL_APEX_FREEBSD HINSTANCE __get_resource_handle();
+//CLASS_DECL_APEX_FREEBSD void __set_resource_handle(HINSTANCE hInstResource);
+//
+//CLASS_DECL_APEX_FREEBSD HINSTANCE __get_resource_handle();
+//CLASS_DECL_APEX_FREEBSD HINSTANCE __find_string_resource_handle(::u32 nID);
 //
 
-CLASS_DECL_APEX_LINUX __pointer(::apex::application) __get_app();
+CLASS_DECL_APEX_FREEBSD __pointer(::apex::application) __get_app();
 
-CLASS_DECL_APEX_LINUX i32 app_main(::apex::system * psystem, HINSTANCE hInstance, HINSTANCE hPrevInstance, char * pCmdLine, ::e_display edisplay);
+CLASS_DECL_APEX_FREEBSD i32 app_main(::apex::system * psystem, HINSTANCE hInstance, HINSTANCE hPrevInstance, char * pCmdLine, ::e_display edisplay);
 
 
 

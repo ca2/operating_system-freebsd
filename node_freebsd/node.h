@@ -12,11 +12,11 @@ namespace aura
 {
 
 
-   namespace linux
+   namespace freebsd
    {
 
 
-      class CLASS_DECL_AURA_LINUX node :
+      class CLASS_DECL_AURA_FREEBSD node :
          virtual public ::apex::linux::node,
          virtual public ::aura::posix::node
       {
@@ -60,7 +60,7 @@ namespace aura
       };
 
 
-   } // namespace linux
+   } // namespace freebsd
 
 
 } // namespace aura

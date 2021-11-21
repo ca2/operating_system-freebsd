@@ -8,7 +8,7 @@
 #pragma once
 
 
-namespace linux
+namespace freebsd
 {
 
 
@@ -16,7 +16,7 @@ namespace linux
    {
 
 
-      class CLASS_DECL_AURA_LINUX node :
+      class CLASS_DECL_AURA_FREEBSD node :
          virtual public ::linux::apex::node,
          virtual public ::aura::node
       {
@@ -60,7 +60,7 @@ namespace linux
    } // namespace aura
 
 
-} // namespace linux
+} // namespace freebsd
 
 
 

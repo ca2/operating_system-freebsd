@@ -6,7 +6,7 @@
 //#include "node/os/linux/_c.h"
 
 
-namespace linux
+namespace freebsd
 {
 
 
@@ -447,7 +447,7 @@ namespace linux
    } // namespace node
 
 
-} // namespace linux
+} // namespace freebsd
 
 
 

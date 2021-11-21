@@ -6,7 +6,7 @@ namespace aura
 {
 
 
-   namespace linux
+   namespace freebsd
    {
 
 
@@ -477,7 +477,7 @@ namespace aura
 //      }
 
 
-   } // namespace linux
+   } // namespace freebsd
 
 
 } // namespace aura

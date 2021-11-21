@@ -1,11 +1,11 @@
 #pragma once
 
 
-namespace linux
+namespace freebsd
 {
 
 
-   class CLASS_DECL_APEX_LINUX service_handler :
+   class CLASS_DECL_APEX_FREEBSD service_handler :
       virtual public ::service_handler
    {
    public:
@@ -61,7 +61,7 @@ namespace linux
    };
 
 
-} // namespace linux
+} // namespace freebsd
 
 
 
