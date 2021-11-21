@@ -60,13 +60,17 @@ typedef unsigned long XID;
 typedef uptr                 WPARAM;
 typedef iptr                 LPARAM;
 typedef iptr                 LRESULT;
-typedef struct oswindow_data *   oswindow;
+//typedef struct oswindow_data *   oswindow;
 
 #include <pthread.h>
 
 //typedef pthread_t pthread;
 
 typedef pthread_t HTHREAD;
+
+#define DEBUG_BREAK __builtin_debugtrap()
+
+#include <concepts>
 
 //#ifdef __cplusplus
 //struct pthread
