@@ -101,7 +101,7 @@ namespace freebsd
 
          memory m;
 
-         int iLen = ansi_length(pszMessage);
+         int iLen = strMessage.length();
 
          m.set_size(sizeof(data_struct) + iLen);
 
