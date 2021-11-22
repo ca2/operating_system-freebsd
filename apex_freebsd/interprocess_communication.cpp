@@ -50,7 +50,7 @@ namespace freebsd
          if(!file_exists(strChannel))
          {
 
-            file_put_contents(strChannel, strChannel);
+            m_pacmefile->put_contents(strChannel, strChannel);
 
          }
 
