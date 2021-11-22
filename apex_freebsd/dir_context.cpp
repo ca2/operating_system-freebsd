@@ -598,7 +598,7 @@ namespace freebsd
          string strFormat;
          ::datetime::time time;
          time.Now();
-         strFormat.Format("%04d-%02d-%02d %02d-%02d-%02d\\", time.GetYear(), time.GetMonth(), time.GetDay(), time.GetHour(), time.GetMinute(), time.GetSecond());
+         strFormat.format("%04d-%02d-%02d %02d-%02d-%02d\\", time.year(), time.month(), time.day(), time.hour(), time.minute(), time.second());
          str += strFormat;
          if(strDir[2] == '\\')
          {
@@ -615,13 +615,13 @@ namespace freebsd
 
    }
 
-
-   ::file::path dir_context::appdata()
-   {
-
-      return ::dir_context::appdata();
-
-   }
+//
+//   ::file::path dir_context::appdata()
+//   {
+//
+//      return ::dir_context::appdata();
+//
+//   }
 
 
    ::file::path dir_context::commonappdata()
@@ -707,7 +707,7 @@ namespace freebsd
    ::file::path dir_context::music()
    {
 
-      ::file::path path = xdg_get_dir("XDG_MUSIC_DIR");
+      ::file::path path = _xdg_get_dir("XDG_MUSIC_DIR");
 
       if(path.has_char())
       {
@@ -728,7 +728,7 @@ namespace freebsd
    ::file::path dir_context::video()
    {
 
-      ::file::path path = xdg_get_dir("XDG_VIDEOS_DIR");
+      ::file::path path = _xdg_get_dir("XDG_VIDEOS_DIR");
 
       if(path.has_char())
       {
@@ -749,7 +749,7 @@ namespace freebsd
    ::file::path dir_context::image()
    {
 
-      ::file::path path = xdg_get_dir("XDG_PICTURES_DIR");
+      ::file::path path = _xdg_get_dir("XDG_PICTURES_DIR");
 
       if(path.has_char())
       {
@@ -770,7 +770,7 @@ namespace freebsd
    ::file::path dir_context::document()
    {
 
-      ::file::path path = xdg_get_dir("XDG_DOCUMENTS_DIR");
+      ::file::path path = _xdg_get_dir("XDG_DOCUMENTS_DIR");
 
       if(path.has_char())
       {
@@ -791,7 +791,7 @@ namespace freebsd
    ::file::path dir_context::download()
    {
 
-      ::file::path path = xdg_get_dir("XDG_DOWNLOAD_DIR");
+      ::file::path path = _xdg_get_dir("XDG_DOWNLOAD_DIR");
 
       if(path.has_char())
       {
@@ -820,7 +820,7 @@ namespace freebsd
 
       path = pathHome / ".config/user-dirs.dirs";
 
-      string strDirs = m_pacmefile->as_string(path);
+      string strDirs = m_psystem->m_pacmefile->as_string(path);
 
       string_array stra;
 

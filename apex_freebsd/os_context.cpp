@@ -156,7 +156,7 @@ namespace freebsd
       return;
 
       /*      ::u32 dwPid;
-            while(get_pid_by_title(lpszName, dwPid))
+            while(get_pid_by_title(strName, dwPid))
             {
                HANDLE hProcess = OpenProcess( PROCESS_QUERY_INFORMATION |
                   PROCESS_VM_READ,
@@ -187,7 +187,7 @@ namespace freebsd
       get_all_processes(dwa);
       for(i32 i = 0; i < dwa.get_count(); i++)
       {
-         if(get_process_path(dwa[i]).compare_ci(lpszName) == 0)
+         if(get_process_path(dwa[i]).compare_ci(strName) == 0)
          {
             dwPid = dwa[i];
             return true;
@@ -207,7 +207,7 @@ namespace freebsd
       for(i32 i = 0; i < dwa.get_count(); i++)
       {
 
-         if(get_process_path(dwa[i]).title().compare_ci(lpszName) == 0)
+         if(get_process_path(dwa[i]).title().compare_ci(strName) == 0)
          {
 
             dwPid = dwa[i];
@@ -429,7 +429,7 @@ namespace freebsd
             string strExt;
 
             strExt = ".";
-            strExt += pszExtension;
+            strExt += strExtension;
 
             string strOpenWithKey;
             strOpenWithKey = strExt + "\\OpenWithList";
@@ -450,7 +450,7 @@ namespace freebsd
 
       string_array straKey;
 
-      if(!file_extension_get_open_with_list_keys(straKey, pszExtension))
+      if(!file_extension_get_open_with_list_keys(straKey, strExtension))
          return false;
 
 
@@ -489,7 +489,7 @@ namespace freebsd
             string strExt;
 
             strExt = ".";
-            strExt += pszExtension;
+            strExt += strExtension;
 
             string strExtensionNamingClass(pszExtensionNamingClass);
 
@@ -521,7 +521,7 @@ namespace freebsd
             string strExt;
 
             strExt = ".";
-            strExt += pszExtension;
+            strExt += strExtension;
 
             registry::Key key(HKEY_CLASSES_ROOT, strExt, false);
             if(!key.QueryValue(nullptr, strExtensionNamingClass))
@@ -936,7 +936,7 @@ namespace freebsd
 
          // 2018-01-29 call_async("/bin/bash", "-c \"" + strTarget + "\"", strFolder, SW_SHOWDEFAULT, false);
 
-         call_async(strTarget, strParams, strFolder, e_display_default, false);
+         m_psystem->node()->call_async(strTarget, strParams, strFolder, e_display_default, false);
 
 //         char * pszCommandLine = strdup(strTarget + " " + strParams);
 
@@ -1006,7 +1006,7 @@ namespace freebsd
             if(!iBool)
             {
 
-               _S_TRACE("Error launching file : \"%s\" , %s", strUri.c_str(), strError.c_str());
+               FORMATTED_TRACE("Error launching file : \"%s\" , %s", strUri.c_str(), strError.c_str());
 
             }
 
@@ -1026,7 +1026,11 @@ namespace freebsd
 
       ::file::patha stra;
 
-      ::dir::ls_dir(stra, "/proc/");
+      m_psystem->m_pacmedir->ls_dir(stra, "/proc/");
+
+      auto psystem = m_psystem;
+
+      auto pnode = psystem->node();
 
       for(auto & strPid : stra)
       {
@@ -1036,7 +1040,7 @@ namespace freebsd
          if(iPid > 0)
          {
 
-            ::file::path path = module_path_from_pid(iPid);
+            ::file::path path = pnode->module_path_from_pid(iPid);
 
             if(path.has_char())
             {
