@@ -441,18 +441,18 @@ namespace freebsd
             fork([this, mem, lRequest]()
             {
 
-               class ::memory m2(mem);
+               auto memoryCopy = mem;
 
                if(lRequest == 1024)
                {
 
-                  on_interprocess_receive(__string(m2));
+                  on_interprocess_receive(__string(memoryCopy));
 
                }
                else
                {
 
-                  on_interprocess_receive(lRequest, m2);
+                  on_interprocess_receive(lRequest, memoryCopy);
 
                }
 

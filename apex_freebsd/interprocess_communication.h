@@ -107,7 +107,7 @@ namespace freebsd
 
 
       virtual void on_interprocess_receive(::string && strMessage) override;
-      virtual void on_interprocess_receive(int message, class ::memory && memory) override;
+      virtual void on_interprocess_receive(int message, memory && memory) override;
       virtual void on_interprocess_post(i64 a, i64 b) override;
 
 
