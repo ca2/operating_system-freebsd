@@ -3,35 +3,34 @@ project(apex_freebsd CXX)
 
 
 list(APPEND library_source
-    _.cpp
-    _.h
-    crypto.cpp
-    crypto.h
-    dir_context.cpp
-    dir_context.h
-    dir_system.cpp
-    dir_system.h
-    _factory.cpp
-
-    file_context.cpp
-    file_context.h
-    file_system.cpp
-    file_system.h
-    framework.cpp
-    framework.h
-    interprocess_communication.cpp
-    interprocess_communication.h
-    ip_enum.cpp
-    ip_enum.h
-    launcher.cpp
-    launcher.h
-    node.cpp
-    node.h
-    os_context.cpp
-    os_context.h
-    service_handler.cpp
-    service_handler.h
-    )
+   _.cpp
+   _.h
+   _factory.cpp
+   crypto.cpp
+   crypto.h
+   dir_context.cpp
+   dir_context.h
+   dir_system.cpp
+   dir_system.h
+   file_context.cpp
+   file_context.h
+   file_system.cpp
+   file_system.h
+   framework.cpp
+   framework.h
+   interprocess_communication.cpp
+   interprocess_communication.h
+   ip_enum.cpp
+   ip_enum.h
+   launcher.cpp
+   launcher.h
+   node.cpp
+   node.h
+   os_context.cpp
+   os_context.h
+   service_handler.cpp
+   service_handler.h
+   )
 
 
 list(APPEND library_references acme acme_posix acme_freebsd apex apex_posix)
