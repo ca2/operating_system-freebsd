@@ -3,19 +3,20 @@ project(acme_freebsd CXX)
 
 
 list(APPEND library_source
-        _.cpp
-        _.h
-        acme_dir.cpp
-        acme_dir.h
-        acme_path.cpp
-        acme_path.h
-        _factory.cpp
-
-        framework.cpp
-        framework.h
-        node.cpp
-        node.h
-    )
+   _.cpp
+   _.h
+   acme_dir.cpp
+   acme_dir.h
+   acme_file.cpp
+   acme_file.h
+   acme_path.cpp
+   acme_path.h
+   _factory.cpp
+   framework.cpp
+   framework.h
+   node.cpp
+   node.h
+   )
 
 
 
