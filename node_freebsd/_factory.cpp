@@ -4,7 +4,7 @@
 
 
 extern "C"
-void node_linux_factory(::factory::factory * pfactory)
+void node_freebsd_factory(::factory::factory * pfactory)
 {
 
    auto edesktop = get_edesktop();
@@ -50,7 +50,7 @@ void node_linux_factory(::factory::factory * pfactory)
 //#endif
 
 
-//      apex_linux_factory_exchange( pfactory);
+//      apex_freebsd_factory_exchange( pfactory);
 //
 //   aura_posix_factory_exchange( pfactory);
 //

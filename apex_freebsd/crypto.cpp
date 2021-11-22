@@ -5,14 +5,14 @@
 //#include <shlobj.h>
 
 
-//#include "linux_dir.h"
-//#include "linux_factory_exchange.h"
-//#include "linux_port_forward.h"
-//#include "linux_dir.h"
-//#include "linux_file_system.h"
-//#include "linux_file_set.h"
+//#include "freebsd_dir.h"
+//#include "freebsd_factory_exchange.h"
+//#include "freebsd_port_forward.h"
+//#include "freebsd_dir.h"
+//#include "freebsd_file_system.h"
+//#include "freebsd_file_set.h"
 #include "crypto.h"
-//#include "linux_ip_enum.h"
+//#include "freebsd_ip_enum.h"
 
 i32 crypto_encrypt(memory & storageEncrypt, const memory & storageDecrypt, memory & key);
 i32 crypto_decrypt(memory & storageDecrypt, const memory & storageEncrypt, memory & key);

@@ -1,7 +1,7 @@
 #include "framework.h"
 //#include "apex/xml/_.h"
 #include "acme/id.h"
-//#include "_linux.h"
+//#include "_freebsd.h"
 #undef USE_MISC
 
 #ifdef RASPBIAN
@@ -10,7 +10,7 @@
 #endif
 
 
-inline bool linux_dir_myspace(char ch)
+inline bool freebsd_dir_myspace(char ch)
 {
 
    return ch == ' ' ||

@@ -1,5 +1,5 @@
-LIBRARY "apex_linux"
+LIBRARY "apex_freebsd"
 
 EXPORTS
-apex_linux_factory_exchange
+apex_freebsd_factory_exchange
 

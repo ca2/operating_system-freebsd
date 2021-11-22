@@ -30,10 +30,10 @@
 //}
 
 
-//const char * linux_g_direct_get_file_icon_path(const char * pszPath, int iSize);
+//const char * freebsd_g_direct_get_file_icon_path(const char * pszPath, int iSize);
 //
 //
-//const char * linux_g_direct_get_file_content_type(const char * pszPath);
+//const char * freebsd_g_direct_get_file_content_type(const char * pszPath);
 //
 //
 //void x11_add_idle_source();
@@ -201,7 +201,7 @@ namespace desktop_environment_kde
 //         ////
 //         ////      //auto idle_source = g_idle_source_new();
 //         ////
-//         ////      //g_source_set_callback(idle_source, &linux_start_system, (::apex::system *) m_psystem, nullptr);
+//         ////      //g_source_set_callback(idle_source, &freebsd_start_system, (::apex::system *) m_psystem, nullptr);
 //         ////
 //         ////      //g_source_attach(idle_source, g_main_context_default());
 //         ////
@@ -505,7 +505,7 @@ namespace desktop_environment_kde
 //   string node::get_file_icon_path(const char *pszPath, int iSize)
 //   {
 //
-//      return ::linux_g_direct_get_file_icon_path(pszPath, iSize);
+//      return ::freebsd_g_direct_get_file_icon_path(pszPath, iSize);
 //
 //   }
 
@@ -513,7 +513,7 @@ namespace desktop_environment_kde
 //   string node::get_file_content_type(const char *pszPath)
 //   {
 //
-//      return ::linux_g_direct_get_file_content_type(pszPath);
+//      return ::freebsd_g_direct_get_file_content_type(pszPath);
 //
 //   }
 //
@@ -542,7 +542,7 @@ namespace desktop_environment_kde
 //   }
 //
 
-//   ::node_linux::appindicator *node::appindicator_allocate()
+//   ::node_freebsd::appindicator *node::appindicator_allocate()
 //   {
 //
 //      return new ::node_kde::appindicator();

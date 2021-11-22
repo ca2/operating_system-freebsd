@@ -102,7 +102,7 @@ typedef  Word                 PtrdiffT;   // 32             64
 // used in those cases.
 // Nb: on Linux, off_t is a signed word-sized int.  On Darwin it's
 // always a signed 64-bit int.  So we defined our own Off64T as well.
-#if defined(VGO_linux) || defined(VGO_solaris)
+#if defined(VGO_freebsd) || defined(VGO_solaris)
 typedef Word                   OffT;      // 32             64
 #elif defined(VGO_darwin)
 typedef Long                   OffT;      // 64             64
@@ -175,7 +175,7 @@ typedef void  (*Free_Fn_t)        ( void* p );
       When _isError == True,
          _val holds the error code.
 */
-#if defined(VGP_mips32_linux) || defined(VGP_mips64_linux)
+#if defined(VGP_mips32_freebsd) || defined(VGP_mips64_freebsd)
 typedef
    struct {
       Bool  _isError;
@@ -184,8 +184,8 @@ typedef
    }
    SysRes;
 
-#elif defined(VGO_linux) \
-      && !defined(VGP_mips32_linux) && !defined(VGP_mips64_linux)
+#elif defined(VGO_freebsd) \
+      && !defined(VGP_mips32_freebsd) && !defined(VGP_mips64_freebsd)
 typedef
    struct {
       Bool  _isError;
@@ -226,7 +226,7 @@ typedef
 
 /* ---- And now some basic accessor functions for it. ---- */
 
-#if defined(VGP_mips32_linux) || defined(VGP_mips64_linux)
+#if defined(VGP_mips32_freebsd) || defined(VGP_mips64_freebsd)
 
 static inline Bool sr_isError ( SysRes sr ) {
    return sr._isError;
@@ -249,7 +249,7 @@ static inline Bool sr_EQ ( UInt sysno, SysRes sr1, SysRes sr2 ) {
       really safe, coregrind/m_vkiscnums.c static-asserts that these
       syscall numbers haven't changed, so that the build wil simply
       fail if they ever do. */
-#  if defined(VGP_mips32_linux)
+#  if defined(VGP_mips32_freebsd)
    const UInt __nr_Linux = 4000;
    const UInt __nr_pipe  = __nr_Linux + 42;
    const UInt __nr_pipe2 = __nr_Linux + 328;
@@ -264,8 +264,8 @@ static inline Bool sr_EQ ( UInt sysno, SysRes sr1, SysRes sr2 ) {
           && sr1._isError == sr2._isError;
 }
 
-#elif defined(VGO_linux) \
-      && !defined(VGP_mips32_linux) && !defined(VGP_mips64_linux)
+#elif defined(VGO_freebsd) \
+      && !defined(VGP_mips32_freebsd) && !defined(VGP_mips64_freebsd)
 
 static inline Bool sr_isError ( SysRes sr ) {
    return sr._isError;

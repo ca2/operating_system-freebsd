@@ -79,7 +79,7 @@ namespace desktop_environment_gnome
 
       //virtual void _os_process_user_theme_color(string strTheme);
 
-      //virtual ::node_linux::appindicator * appindicator_allocate() override;
+      //virtual ::node_freebsd::appindicator * appindicator_allocate() override;
 
       //virtual void appindicator_destroy(::freebsd::appindicator * pappindicator) override;
 

@@ -34,7 +34,7 @@ namespace freebsd
    } // namespace aura
 
 
-} // namespace_linux
+} // namespace_freebsd
 
 
 

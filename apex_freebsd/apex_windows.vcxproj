@@ -1178,9 +1178,9 @@
     <ClInclude Include="tts_speaker.h" />
     <ClInclude Include="_.h" />
     <ClInclude Include="framework.h" />
-    <ClInclude Include="aaa_node_linux.h" />
-    <ClInclude Include="aaa_node_linux_private.h" />
-    <ClInclude Include="aaa_linux.h" />
+    <ClInclude Include="aaa_node_freebsd.h" />
+    <ClInclude Include="aaa_node_freebsd_private.h" />
+    <ClInclude Include="aaa_freebsd.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="application.cpp" />
@@ -1228,12 +1228,12 @@
     <ProjectReference Include="..\..\..\source\app\apex\apex.vcxproj">
       <Project>{e000ffaf-392f-4e32-bf51-777ca238991f}</Project>
     </ProjectReference>
-    <ProjectReference Include="..\acme_linux\acme_linux.vcxproj">
+    <ProjectReference Include="..\acme_freebsd\acme_freebsd.vcxproj">
       <Project>{cc8e8200-00a9-414e-9829-7ca3f1091add}</Project>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <None Include="apex_linux.def" />
+    <None Include="apex_freebsd.def" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

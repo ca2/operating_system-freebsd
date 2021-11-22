@@ -1,7 +1,7 @@
 #pragma once
 
 
-#include "acme/node/freebsd/_node_linux.h"
+#include "acme/node/freebsd/_node_freebsd.h"
 
 
 //#include "exception.h"
@@ -34,8 +34,8 @@ string get_error_message(::u32 dwError);
 
 //void CLASS_DECL_APEX_FREEBSD __cdecl _ca2_purecall();
 //void CLASS_DECL_APEX_FREEBSD __cdecl _null_se_translator(u32 uiCode, EXCEPTION_POINTERS * ppointers);
-//bool CLASS_DECL_APEX_FREEBSD __linux_init();
-i32 CLASS_DECL_APEX_FREEBSD __linux_main(::apex::system * psystem, ::create * pmaininitdata);
+//bool CLASS_DECL_APEX_FREEBSD __freebsd_init();
+i32 CLASS_DECL_APEX_FREEBSD __freebsd_main(::apex::system * psystem, ::create * pmaininitdata);
 
 
 

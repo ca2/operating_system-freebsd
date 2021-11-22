@@ -73,7 +73,7 @@
    a zero/non-zero determination.
 */
 
-#if defined(VGP_ppc32_linux)
+#if defined(VGP_ppc32_freebsd)
 
 #define VG_MINIMAL_JMP_BUF(_name)        UInt _name [32+1+1]
 __attribute__((returns_twice))
@@ -82,7 +82,7 @@ __attribute__((noreturn))
 void  VG_MINIMAL_LONGJMP(VG_MINIMAL_JMP_BUF(_env));
 
 
-#elif defined(VGP_ppc64be_linux) || defined(VGP_ppc64le_linux)
+#elif defined(VGP_ppc64be_freebsd) || defined(VGP_ppc64le_freebsd)
 
 #define VG_MINIMAL_JMP_BUF(_name)        ULong _name [32+1+1]
 __attribute__((returns_twice))
@@ -91,7 +91,7 @@ __attribute__((noreturn))
 void  VG_MINIMAL_LONGJMP(VG_MINIMAL_JMP_BUF(_env));
 
 
-#elif defined(VGP_amd64_linux) || defined(VGP_amd64_darwin) || \
+#elif defined(VGP_amd64_freebsd) || defined(VGP_amd64_darwin) || \
       defined(VGP_amd64_solaris)
 
 #define VG_MINIMAL_JMP_BUF(_name)        ULong _name [16+1]
@@ -101,7 +101,7 @@ __attribute__((noreturn))
 void  VG_MINIMAL_LONGJMP(VG_MINIMAL_JMP_BUF(_env));
 
 
-#elif defined(VGP_x86_linux) || defined(VGP_x86_darwin) || \
+#elif defined(VGP_x86_freebsd) || defined(VGP_x86_darwin) || \
       defined(VGP_x86_solaris)
 
 #define VG_MINIMAL_JMP_BUF(_name)        UInt _name [8+1]
@@ -112,7 +112,7 @@ __attribute__((noreturn))
 __attribute__((regparm(1))) // ditto
 void  VG_MINIMAL_LONGJMP(VG_MINIMAL_JMP_BUF(_env));
 
-#elif defined(VGP_mips32_linux)
+#elif defined(VGP_mips32_freebsd)
 
 #define VG_MINIMAL_JMP_BUF(_name)        ULong _name [104 / sizeof(ULong)]
 __attribute__((returns_twice))
@@ -120,7 +120,7 @@ UWord VG_MINIMAL_SETJMP(VG_MINIMAL_JMP_BUF(_env));
 __attribute__((noreturn))
 void  VG_MINIMAL_LONGJMP(VG_MINIMAL_JMP_BUF(_env));
 
-#elif defined(VGP_mips64_linux)
+#elif defined(VGP_mips64_freebsd)
 
 #define VG_MINIMAL_JMP_BUF(_name)        ULong _name [168 / sizeof(ULong)]
 __attribute__((returns_twice))

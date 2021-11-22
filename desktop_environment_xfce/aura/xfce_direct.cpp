@@ -46,9 +46,9 @@
 //
 //#endif
 
-//bool linux_g_direct_app_indicator_new(const char * pszId, const char * pszIcon, const char * pszFolder, user_notify_icon_bridge * pbridge);
-// /void linux_g_direct_app_indicator_term(AppIndicator * pindicator);
-//void linux_g_direct_app_indicator_step(void * pvoidInd);
+//bool freebsd_g_direct_app_indicator_new(const char * pszId, const char * pszIcon, const char * pszFolder, user_notify_icon_bridge * pbridge);
+// /void freebsd_g_direct_app_indicator_term(AppIndicator * pindicator);
+//void freebsd_g_direct_app_indicator_step(void * pvoidInd);
 
 
 
@@ -106,7 +106,7 @@ void os_post_quit();
 
 #ifndef RASPBIAN
 
-GtkWidget * linux_g_direct_app_indicator_init(AppIndicator * pindicator, user_notify_icon_bridge * pbridge);
+GtkWidget * freebsd_g_direct_app_indicator_init(AppIndicator * pindicator, user_notify_icon_bridge * pbridge);
 
 
 static void ___extra_action(GtkAction * action, void * data)
@@ -639,7 +639,7 @@ namespace node_xfce
 } // namespace node_xfce
 
 
-const char * linux_g_direct_get_file_icon_path(const char * pszPath, int iSize)
+const char * freebsd_g_direct_get_file_icon_path(const char * pszPath, int iSize)
 {
 
    GFile * pfile = g_file_new_for_path (pszPath);
@@ -741,7 +741,7 @@ const char * linux_g_direct_get_file_icon_path(const char * pszPath, int iSize)
 }
 
 
-const char * linux_g_direct_get_file_content_type(const char * pszPath)
+const char * freebsd_g_direct_get_file_content_type(const char * pszPath)
 {
 
    GFile * pfile = g_file_new_for_path (pszPath);

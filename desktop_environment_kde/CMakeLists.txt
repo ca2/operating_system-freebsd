@@ -34,14 +34,14 @@ list(APPEND library_source
 list(APPEND library_references
    acme
    acme_posix
-   acme_linux
+   acme_freebsd
    apex
    apex_posix
-   apex_linux
+   apex_freebsd
    aqua
    aura
    aura_posix
-   aura_linux
+   aura_freebsd
    windowing_xcb
    node_kde
    )

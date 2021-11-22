@@ -4,7 +4,7 @@
 __FACTORY_EXPORT void acme_posix_factory(::factory::factory * pfactory);
 
 
-__FACTORY_EXPORT void acme_linux_factory(::factory::factory * pfactory)
+__FACTORY_EXPORT void acme_freebsd_factory(::factory::factory * pfactory)
 {
 
    acme_posix_factory(pfactory);

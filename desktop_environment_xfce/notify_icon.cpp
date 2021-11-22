@@ -476,7 +476,7 @@ namespace node_xfce
 //      main_async([&]
 //      {
 //
-//         linux_g_direct_app_indicator_step(m_pindicator);
+//         freebsd_g_direct_app_indicator_step(m_pindicator);
 //
 //      });
 

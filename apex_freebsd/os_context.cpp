@@ -1,6 +1,6 @@
 #include "framework.h"
 #include "apex/platform/app_core.h"
-//#include "_linux.h"
+//#include "_freebsd.h"
 //#include "apex/os/freebsd/gnome_gnome.h"
 #include <unistd.h>
 
@@ -22,7 +22,7 @@ string empty_get_file_content_type(string)
 
 //PFN_GET_FILE_CONTENT_TYPE g_pfnGetFileContentType = &empty_get_file_content_type;
 //
-//string linux_get_file_content_type(string strPath)
+//string freebsd_get_file_content_type(string strPath)
 //{
 //
 //   return (*g_pfnGetFileContentType)(strPath);
@@ -923,7 +923,7 @@ namespace freebsd
 
       strTarget = get_context()->m_papexcontext->defer_process_path(strTarget);
 
-      if(linux_can_exec(strTarget))
+      if(freebsd_can_exec(strTarget))
       {
 
          //int iPid;
@@ -1054,7 +1054,7 @@ namespace freebsd
    }
 
 
-   bool os_context::linux_can_exec(const char *file)
+   bool os_context::freebsd_can_exec(const char *file)
    {
 
       struct stat st;

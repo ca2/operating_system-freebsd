@@ -112,16 +112,16 @@
 #undef PLAT_amd64_darwin
 #undef PLAT_x86_win32
 #undef PLAT_amd64_win64
-#undef PLAT_x86_linux
-#undef PLAT_amd64_linux
-#undef PLAT_ppc32_linux
-#undef PLAT_ppc64be_linux
-#undef PLAT_ppc64le_linux
-#undef PLAT_arm_linux
-#undef PLAT_arm64_linux
-#undef PLAT_s390x_linux
-#undef PLAT_mips32_linux
-#undef PLAT_mips64_linux
+#undef PLAT_x86_freebsd
+#undef PLAT_amd64_freebsd
+#undef PLAT_ppc32_freebsd
+#undef PLAT_ppc64be_freebsd
+#undef PLAT_ppc64le_freebsd
+#undef PLAT_arm_freebsd
+#undef PLAT_arm64_freebsd
+#undef PLAT_s390x_freebsd
+#undef PLAT_mips32_freebsd
+#undef PLAT_mips64_freebsd
 #undef PLAT_x86_solaris
 #undef PLAT_amd64_solaris
 
@@ -137,28 +137,28 @@
 #elif defined(__MINGW64__) \
       || (defined(_WIN64) && defined(_M_X64))
 #  define PLAT_amd64_win64 1
-#elif defined(__linux__) && defined(__i386__)
-#  define PLAT_x86_linux 1
-#elif defined(__linux__) && defined(__x86_64__) && !defined(__ILP32__)
-#  define PLAT_amd64_linux 1
-#elif defined(__linux__) && defined(__powerpc__) && !defined(__powerpc64__)
-#  define PLAT_ppc32_linux 1
-#elif defined(__linux__) && defined(__powerpc__) && defined(__powerpc64__) && _CALL_ELF != 2
+#elif defined(__freebsd__) && defined(__i386__)
+#  define PLAT_x86_freebsd 1
+#elif defined(__freebsd__) && defined(__x86_64__) && !defined(__ILP32__)
+#  define PLAT_amd64_freebsd 1
+#elif defined(__freebsd__) && defined(__powerpc__) && !defined(__powerpc64__)
+#  define PLAT_ppc32_freebsd 1
+#elif defined(__freebsd__) && defined(__powerpc__) && defined(__powerpc64__) && _CALL_ELF != 2
 /* Big Endian uses ELF version 1 */
-#  define PLAT_ppc64be_linux 1
-#elif defined(__linux__) && defined(__powerpc__) && defined(__powerpc64__) && _CALL_ELF == 2
+#  define PLAT_ppc64be_freebsd 1
+#elif defined(__freebsd__) && defined(__powerpc__) && defined(__powerpc64__) && _CALL_ELF == 2
 /* Little Endian uses ELF version 2 */
-#  define PLAT_ppc64le_linux 1
-#elif defined(__linux__) && defined(__arm__) && !defined(__aarch64__)
-#  define PLAT_arm_linux 1
-#elif defined(__linux__) && defined(__aarch64__) && !defined(__arm__)
-#  define PLAT_arm64_linux 1
-#elif defined(__linux__) && defined(__s390__) && defined(__s390x__)
-#  define PLAT_s390x_linux 1
-#elif defined(__linux__) && defined(__mips__) && (__mips==64)
-#  define PLAT_mips64_linux 1
-#elif defined(__linux__) && defined(__mips__) && (__mips!=64)
-#  define PLAT_mips32_linux 1
+#  define PLAT_ppc64le_freebsd 1
+#elif defined(__freebsd__) && defined(__arm__) && !defined(__aarch64__)
+#  define PLAT_arm_freebsd 1
+#elif defined(__freebsd__) && defined(__aarch64__) && !defined(__arm__)
+#  define PLAT_arm64_freebsd 1
+#elif defined(__freebsd__) && defined(__s390__) && defined(__s390x__)
+#  define PLAT_s390x_freebsd 1
+#elif defined(__freebsd__) && defined(__mips__) && (__mips==64)
+#  define PLAT_mips64_freebsd 1
+#elif defined(__freebsd__) && defined(__mips__) && (__mips!=64)
+#  define PLAT_mips32_freebsd 1
 #elif defined(__sun) && defined(__i386__)
 #  define PLAT_x86_solaris 1
 #elif defined(__sun) && defined(__x86_64__)
@@ -252,7 +252,7 @@
 
 /* ----------------- x86-{freebsd,darwin,solaris} ---------------- */
 
-#if defined(PLAT_x86_linux)  ||  defined(PLAT_x86_darwin)  \
+#if defined(PLAT_x86_freebsd)  ||  defined(PLAT_x86_darwin)  \
     ||  (defined(PLAT_x86_win32) && defined(__GNUC__)) \
     ||  defined(PLAT_x86_solaris)
 
@@ -314,7 +314,7 @@ typedef
                     );                                           \
  } while (0)
 
-#endif /* PLAT_x86_linux || PLAT_x86_darwin || (PLAT_x86_win32 && __GNUC__)
+#endif /* PLAT_x86_freebsd || PLAT_x86_darwin || (PLAT_x86_win32 && __GNUC__)
           || PLAT_x86_solaris */
 
 /* ------------------------- x86-Win32 ------------------------- */
@@ -392,7 +392,7 @@ valgrind_do_client_request_expr(uintptr_t _zzq_default, uintptr_t _zzq_request,
 
 /* ----------------- amd64-{freebsd,darwin,solaris} --------------- */
 
-#if defined(PLAT_amd64_linux)  ||  defined(PLAT_amd64_darwin) \
+#if defined(PLAT_amd64_freebsd)  ||  defined(PLAT_amd64_darwin) \
     ||  defined(PLAT_amd64_solaris) \
     ||  (defined(PLAT_amd64_win64) && defined(__GNUC__))
 
@@ -454,7 +454,7 @@ typedef
                     );                                           \
  } while (0)
 
-#endif /* PLAT_amd64_linux || PLAT_amd64_darwin || PLAT_amd64_solaris */
+#endif /* PLAT_amd64_freebsd || PLAT_amd64_darwin || PLAT_amd64_solaris */
 
 /* ------------------------- amd64-Win64 ------------------------- */
 
@@ -466,7 +466,7 @@ typedef
 
 /* ------------------------ ppc32-freebsd ------------------------ */
 
-#if defined(PLAT_ppc32_linux)
+#if defined(PLAT_ppc32_freebsd)
 
 typedef
    struct { 
@@ -531,11 +531,11 @@ typedef
                     );                                           \
  } while (0)
 
-#endif /* PLAT_ppc32_linux */
+#endif /* PLAT_ppc32_freebsd */
 
 /* ------------------------ ppc64-freebsd ------------------------ */
 
-#if defined(PLAT_ppc64be_linux)
+#if defined(PLAT_ppc64be_freebsd)
 
 typedef
    struct { 
@@ -610,9 +610,9 @@ typedef
                     );                                           \
  } while (0)
 
-#endif /* PLAT_ppc64be_linux */
+#endif /* PLAT_ppc64be_freebsd */
 
-#if defined(PLAT_ppc64le_linux)
+#if defined(PLAT_ppc64le_freebsd)
 
 typedef
    struct {
@@ -687,11 +687,11 @@ typedef
                     );                                           \
  } while (0)
 
-#endif /* PLAT_ppc64le_linux */
+#endif /* PLAT_ppc64le_freebsd */
 
 /* ------------------------- arm-freebsd ------------------------- */
 
-#if defined(PLAT_arm_linux)
+#if defined(PLAT_arm_freebsd)
 
 typedef
    struct { 
@@ -755,11 +755,11 @@ typedef
                     );                                           \
  } while (0)
 
-#endif /* PLAT_arm_linux */
+#endif /* PLAT_arm_freebsd */
 
 /* ------------------------ arm64-freebsd ------------------------- */
 
-#if defined(PLAT_arm64_linux)
+#if defined(PLAT_arm64_freebsd)
 
 typedef
    struct { 
@@ -824,11 +824,11 @@ typedef
                     );                                           \
  } while (0)
 
-#endif /* PLAT_arm64_linux */
+#endif /* PLAT_arm64_freebsd */
 
 /* ------------------------ s390x-freebsd ------------------------ */
 
-#if defined(PLAT_s390x_linux)
+#if defined(PLAT_s390x_freebsd)
 
 typedef
   struct {
@@ -901,11 +901,11 @@ typedef
                      __VEX_INJECT_IR_CODE);                      \
  } while (0)
 
-#endif /* PLAT_s390x_linux */
+#endif /* PLAT_s390x_freebsd */
 
 /* ------------------------- mips32-freebsd ---------------- */
 
-#if defined(PLAT_mips32_linux)
+#if defined(PLAT_mips32_freebsd)
 
 typedef
    struct { 
@@ -974,11 +974,11 @@ typedef
  } while (0)
 
 
-#endif /* PLAT_mips32_linux */
+#endif /* PLAT_mips32_freebsd */
 
 /* ------------------------- mips64-freebsd ---------------- */
 
-#if defined(PLAT_mips64_linux)
+#if defined(PLAT_mips64_freebsd)
 
 typedef
    struct {
@@ -1043,7 +1043,7 @@ typedef
                     );                                              \
  } while (0)
 
-#endif /* PLAT_mips64_linux */
+#endif /* PLAT_mips64_freebsd */
 
 /* Insert assembly code for other platforms here... */
 
@@ -1144,7 +1144,7 @@ typedef
 
 /* ----------------- x86-{freebsd,darwin,solaris} ---------------- */
 
-#if defined(PLAT_x86_linux)  ||  defined(PLAT_x86_darwin) \
+#if defined(PLAT_x86_freebsd)  ||  defined(PLAT_x86_darwin) \
     ||  defined(PLAT_x86_solaris)
 
 /* These regs are trashed by the hidden call.  No need to mention eax
@@ -1572,11 +1572,11 @@ typedef
       lval = (__typeof__(lval)) _res;                             \
    } while (0)
 
-#endif /* PLAT_x86_linux || PLAT_x86_darwin || PLAT_x86_solaris */
+#endif /* PLAT_x86_freebsd || PLAT_x86_darwin || PLAT_x86_solaris */
 
 /* ---------------- amd64-{freebsd,darwin,solaris} --------------- */
 
-#if defined(PLAT_amd64_linux)  ||  defined(PLAT_amd64_darwin) \
+#if defined(PLAT_amd64_freebsd)  ||  defined(PLAT_amd64_darwin) \
     ||  defined(PLAT_amd64_solaris)
 
 /* ARGREGS: rdi rsi rdx rcx r8 r9 (the rest on stack in R-to-L order) */
@@ -2126,11 +2126,11 @@ typedef
       lval = (__typeof__(lval)) _res;                                  \
    } while (0)
 
-#endif /* PLAT_amd64_linux || PLAT_amd64_darwin || PLAT_amd64_solaris */
+#endif /* PLAT_amd64_freebsd || PLAT_amd64_darwin || PLAT_amd64_solaris */
 
 /* ------------------------ ppc32-freebsd ------------------------ */
 
-#if defined(PLAT_ppc32_linux)
+#if defined(PLAT_ppc32_freebsd)
 
 /* This is useful for finding out about the on-stack stuff:
 
@@ -2626,11 +2626,11 @@ typedef
       lval = (__typeof__(lval)) _res;                             \
    } while (0)
 
-#endif /* PLAT_ppc32_linux */
+#endif /* PLAT_ppc32_freebsd */
 
 /* ------------------------ ppc64-freebsd ------------------------ */
 
-#if defined(PLAT_ppc64be_linux)
+#if defined(PLAT_ppc64be_freebsd)
 
 /* ARGREGS: r3 r4 r5 r6 r7 r8 r9 r10 (the rest on stack somewhere) */
 
@@ -3183,10 +3183,10 @@ typedef
       lval = (__typeof__(lval)) _res;                             \
    } while (0)
 
-#endif /* PLAT_ppc64be_linux */
+#endif /* PLAT_ppc64be_freebsd */
 
 /* ------------------------- ppc64le-freebsd ----------------------- */
-#if defined(PLAT_ppc64le_linux)
+#if defined(PLAT_ppc64le_freebsd)
 
 /* ARGREGS: r3 r4 r5 r6 r7 r8 r9 r10 (the rest on stack somewhere) */
 
@@ -3739,11 +3739,11 @@ typedef
       lval = (__typeof__(lval)) _res;                             \
    } while (0)
 
-#endif /* PLAT_ppc64le_linux */
+#endif /* PLAT_ppc64le_freebsd */
 
 /* ------------------------- arm-freebsd ------------------------- */
 
-#if defined(PLAT_arm_linux)
+#if defined(PLAT_arm_freebsd)
 
 /* These regs are trashed by the hidden call. */
 #define __CALLER_SAVED_REGS "r0", "r1", "r2", "r3","r4", "r12", "r14"
@@ -4198,11 +4198,11 @@ typedef
       lval = (__typeof__(lval)) _res;                             \
    } while (0)
 
-#endif /* PLAT_arm_linux */
+#endif /* PLAT_arm_freebsd */
 
 /* ------------------------ arm64-freebsd ------------------------ */
 
-#if defined(PLAT_arm64_linux)
+#if defined(PLAT_arm64_freebsd)
 
 /* These regs are trashed by the hidden call. */
 #define __CALLER_SAVED_REGS \
@@ -4649,11 +4649,11 @@ typedef
       lval = (__typeof__(lval)) _res;                             \
    } while (0)
 
-#endif /* PLAT_arm64_linux */
+#endif /* PLAT_arm64_freebsd */
 
 /* ------------------------- s390x-freebsd ------------------------- */
 
-#if defined(PLAT_s390x_linux)
+#if defined(PLAT_s390x_freebsd)
 
 /* Similar workaround as amd64 (see above), but we use r11 as frame
    pointer and save the old r11 in r7. r11 might be used for
@@ -5137,11 +5137,11 @@ typedef
    } while (0)
 
 
-#endif /* PLAT_s390x_linux */
+#endif /* PLAT_s390x_freebsd */
 
 /* ------------------------- mips32-freebsd ----------------------- */
  
-#if defined(PLAT_mips32_linux)
+#if defined(PLAT_mips32_freebsd)
 
 /* These regs are trashed by the hidden call. */
 #define __CALLER_SAVED_REGS "$2", "$3", "$4", "$5", "$6",       \
@@ -5676,11 +5676,11 @@ typedef
       lval = (__typeof__(lval)) _res;                             \
    } while (0)
 
-#endif /* PLAT_mips32_linux */
+#endif /* PLAT_mips32_freebsd */
 
 /* ------------------------- mips64-freebsd ------------------------- */
 
-#if defined(PLAT_mips64_linux)
+#if defined(PLAT_mips64_freebsd)
 
 /* These regs are trashed by the hidden call. */
 #define __CALLER_SAVED_REGS "$2", "$3", "$4", "$5", "$6",       \
@@ -6093,7 +6093,7 @@ typedef
       lval = (__typeof__(lval)) _res;                             \
    } while (0)
 
-#endif /* PLAT_mips64_linux */
+#endif /* PLAT_mips64_freebsd */
 
 /* ------------------------------------------------------------------ */
 /* ARCHITECTURE INDEPENDENT MACROS for CLIENT REQUESTS.               */
@@ -6629,15 +6629,15 @@ VALGRIND_PRINTF_BACKTRACE(const char *format, ...)
 #undef PLAT_amd64_darwin
 #undef PLAT_x86_win32
 #undef PLAT_amd64_win64
-#undef PLAT_x86_linux
-#undef PLAT_amd64_linux
-#undef PLAT_ppc32_linux
-#undef PLAT_ppc64be_linux
-#undef PLAT_ppc64le_linux
-#undef PLAT_arm_linux
-#undef PLAT_s390x_linux
-#undef PLAT_mips32_linux
-#undef PLAT_mips64_linux
+#undef PLAT_x86_freebsd
+#undef PLAT_amd64_freebsd
+#undef PLAT_ppc32_freebsd
+#undef PLAT_ppc64be_freebsd
+#undef PLAT_ppc64le_freebsd
+#undef PLAT_arm_freebsd
+#undef PLAT_s390x_freebsd
+#undef PLAT_mips32_freebsd
+#undef PLAT_mips64_freebsd
 #undef PLAT_x86_solaris
 #undef PLAT_amd64_solaris
 

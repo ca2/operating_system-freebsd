@@ -33,7 +33,7 @@ namespace freebsd
       //      wstring(m_strFile),
       //      wstring(m_strParameters),
       //      wstring(m_strDirectory),
-      //      linux_show_window(m_edisplay, m_eactivation));
+      //      freebsd_show_window(m_edisplay, m_eactivation));
 
       //}
 

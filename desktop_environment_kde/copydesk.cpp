@@ -1,8 +1,8 @@
 #include "framework.h"
 #include "_.h"
-#include "aura/os/freebsd/_linux.h"
+#include "aura/os/freebsd/_freebsd.h"
 //#include "apex/os/freebsd/gnome_gnome.h"
-#include "aura/node/freebsd/_linux.h"
+#include "aura/node/freebsd/_freebsd.h"
 #include "clipboard_data.h"
 //#include <gtk/gtk.h>
 

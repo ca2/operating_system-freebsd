@@ -1,17 +1,17 @@
 #include "framework.h"
 //#include "acme/node/windows/registry.h"
-//#include "acme_linux/acme.h"
+//#include "acme_freebsd/acme.h"
 //#include "apex_windows/apex.h"
 //#include "aura.h"
 
 
-__FACTORY_EXPORT void apex_linux_factory(::factory::factory * pfactory);
+__FACTORY_EXPORT void apex_freebsd_factory(::factory::factory * pfactory);
 
 
-__FACTORY_EXPORT void aura_linux_factory(::factory::factory * pfactory)
+__FACTORY_EXPORT void aura_freebsd_factory(::factory::factory * pfactory)
 {
 
-   apex_linux_factory( pfactory);
+   apex_freebsd_factory( pfactory);
 
    pfactory->add_factory_item < ::freebsd::aura::node, ::acme::node >();
 

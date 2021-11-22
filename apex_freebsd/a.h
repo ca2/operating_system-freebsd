@@ -1,4 +1,4 @@
-_linux.h
+_freebsd.h
 buffer.h
 command.h
 console.h

@@ -34,26 +34,26 @@
 #include "pub_tool_basics.h"           // ThreadID
 #include "libvex.h"                    // VexArchInfo
 
-#if defined(VGP_x86_linux) || defined(VGP_x86_solaris)
+#if defined(VGP_x86_freebsd) || defined(VGP_x86_solaris)
 #  define VG_MIN_INSTR_SZB          1  // min length of native instruction
 #  define VG_MAX_INSTR_SZB         16  // max length of native instruction
 #  define VG_CLREQ_SZB             14  // length of a client request, may
                                        //   be larger than VG_MAX_INSTR_SZB
 #  define VG_STACK_REDZONE_SZB      0  // number of addressable bytes below %RSP
 
-#elif defined(VGP_amd64_linux) || defined(VGP_amd64_solaris)
+#elif defined(VGP_amd64_freebsd) || defined(VGP_amd64_solaris)
 #  define VG_MIN_INSTR_SZB          1
 #  define VG_MAX_INSTR_SZB         16
 #  define VG_CLREQ_SZB             19
 #  define VG_STACK_REDZONE_SZB    128
 
-#elif defined(VGP_ppc32_linux)
+#elif defined(VGP_ppc32_freebsd)
 #  define VG_MIN_INSTR_SZB          4
 #  define VG_MAX_INSTR_SZB          4 
 #  define VG_CLREQ_SZB             20
 #  define VG_STACK_REDZONE_SZB      0
 
-#elif defined(VGP_ppc64be_linux)  || defined(VGP_ppc64le_linux)
+#elif defined(VGP_ppc64be_freebsd)  || defined(VGP_ppc64le_freebsd)
 #  define VG_MIN_INSTR_SZB          4
 #  define VG_MAX_INSTR_SZB          4 
 #  define VG_CLREQ_SZB             20
@@ -61,19 +61,19 @@
                                        // from 64-bit PowerPC ELF ABI 
                                        // Supplement 1.7
 
-#elif defined(VGP_arm_linux)
+#elif defined(VGP_arm_freebsd)
 #  define VG_MIN_INSTR_SZB          2
 #  define VG_MAX_INSTR_SZB          4 
 #  define VG_CLREQ_SZB             20
 #  define VG_STACK_REDZONE_SZB      0
 
-#elif defined(VGP_arm64_linux)
+#elif defined(VGP_arm64_freebsd)
 #  define VG_MIN_INSTR_SZB          4
 #  define VG_MAX_INSTR_SZB          4 
 #  define VG_CLREQ_SZB             20
 #  define VG_STACK_REDZONE_SZB      0
 
-#elif defined(VGP_s390x_linux)
+#elif defined(VGP_s390x_freebsd)
 #  define VG_MIN_INSTR_SZB          2
 #  define VG_MAX_INSTR_SZB          6
 #  define VG_CLREQ_SZB             10
@@ -92,13 +92,13 @@
 #  define VG_CLREQ_SZB             19
 #  define VG_STACK_REDZONE_SZB    128
 
-#elif defined(VGP_mips32_linux)
+#elif defined(VGP_mips32_freebsd)
 #  define VG_MIN_INSTR_SZB          4
 #  define VG_MAX_INSTR_SZB          4 
 #  define VG_CLREQ_SZB             20
 #  define VG_STACK_REDZONE_SZB      0
 
-#elif defined(VGP_mips64_linux)
+#elif defined(VGP_mips64_freebsd)
 #  define VG_MIN_INSTR_SZB          4
 #  define VG_MAX_INSTR_SZB          4 
 #  define VG_CLREQ_SZB             20

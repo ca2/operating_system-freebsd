@@ -45,7 +45,7 @@
 #ifndef __PUB_TOOL_VKI_H
 #define __PUB_TOOL_VKI_H
 
-#if defined(VGO_linux)
+#if defined(VGO_freebsd)
 #  include "vki/vki-freebsd.h"
 #  include "vki/vki-freebsd-drm.h"
 #elif defined(VGO_darwin)
@@ -56,7 +56,7 @@
 #  error Unknown Plat/OS
 #endif
 
-#if defined(VGP_amd64_linux) || defined(VGP_x86_linux)
+#if defined(VGP_amd64_freebsd) || defined(VGP_x86_freebsd)
 #  include "vki/vki-xen.h"
 #endif
 

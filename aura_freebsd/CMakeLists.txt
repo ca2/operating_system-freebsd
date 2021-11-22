@@ -25,9 +25,9 @@ list(APPEND library_references
    aqua
    aura
    acme_posix
-   acme_linux
+   acme_freebsd
    apex_posix
-   apex_linux
+   apex_freebsd
    )
 
 

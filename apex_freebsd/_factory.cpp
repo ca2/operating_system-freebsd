@@ -1,6 +1,6 @@
 #include "framework.h"
 #include "apex/operating_system.h"
-//#include "apex/node/freebsd/_linux.h"
+//#include "apex/node/freebsd/_freebsd.h"
 //#include "file_os_watcher.h"
 #include "apex/platform/launcher.h"
 #include "launcher.h"
@@ -24,7 +24,7 @@
 __FACTORY_EXPORT void apex_posix_factory(::factory::factory * pfactory);
 
 
-__FACTORY_EXPORT void apex_linux_factory(::factory::factory * pfactory)
+__FACTORY_EXPORT void apex_freebsd_factory(::factory::factory * pfactory)
 {
 
    apex_posix_factory(pfactory);

@@ -1,7 +1,7 @@
 #pragma once
 
 
-#define index linux_bsd_index
+#define index freebsd_bsd_index
 
 #ifndef FREEBSD
 #define FREEBSD 1

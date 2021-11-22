@@ -92,7 +92,7 @@ namespace desktop_environment_xfce
 //      ////
 //      ////      //auto idle_source = g_idle_source_new();
 //      ////
-//      ////      //g_source_set_callback(idle_source, &linux_start_system, (::apex::system *) m_psystem, nullptr);
+//      ////      //g_source_set_callback(idle_source, &freebsd_start_system, (::apex::system *) m_psystem, nullptr);
 //      ////
 //      ////      //g_source_attach(idle_source, g_main_context_default());
 //      ////
@@ -474,7 +474,7 @@ namespace desktop_environment_xfce
 
       return str;
 
-      //return ::linux_g_direct_get_file_icon_path(pszPath, iSize);
+      //return ::freebsd_g_direct_get_file_icon_path(pszPath, iSize);
 
    }
 
@@ -486,7 +486,7 @@ namespace desktop_environment_xfce
 
       return str;
 
-      //return ::linux_g_direct_get_file_content_type(pszPath);
+      //return ::freebsd_g_direct_get_file_content_type(pszPath);
 
    }
 
@@ -531,7 +531,7 @@ namespace desktop_environment_xfce
 //   }
 
 
-//   ::nlinux::appindicator * node::appindicator_allocate()
+//   ::nfreebsd::appindicator * node::appindicator_allocate()
 //   {
 //
 //      return new ::node_xfce::appindicator();
