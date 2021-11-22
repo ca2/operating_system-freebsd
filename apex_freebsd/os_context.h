@@ -12,7 +12,7 @@ namespace freebsd
 
 
       os_context();
-      virtual ~os_context();
+      ~os_context() override;
 
 
       virtual string get_command_line() override;
@@ -21,7 +21,7 @@ namespace freebsd
       virtual bool reboot() override;
       virtual bool shutdown(bool bPowerOff) override;
 
-      virtual void terminate_processes_by_title(const char * lpszName) override;
+      virtual void terminate_processes_by_title(const ::string & strName) override;
 
 
       virtual bool freebsd_can_exec(const char *file);
@@ -30,8 +30,8 @@ namespace freebsd
       //virtual ::file::path get_module_path(HMODULE hmodule) override;
 
 
-      virtual bool get_pid_by_path(const char * lpszName, ::u32 & dwPid) override;
-      virtual bool get_pid_by_title(const char * lpszName, ::u32 & dwPid) override;
+      virtual bool get_pid_by_path(const ::string & strName, ::u32 & dwPid) override;
+      virtual bool get_pid_by_title(const ::string & strName, ::u32 & dwPid) override;
       virtual void get_all_processes(u32_array & dwa) override;
       virtual ::file::path get_process_path(::u32 dwPid) override;
       virtual int get_pid() override;
@@ -40,18 +40,18 @@ namespace freebsd
       virtual ::payload connection_settings_get_auto_config_url() override;
 
 
-      virtual bool local_machine_set_run(const char * pszKey, const char * pszCommand);
-      virtual bool local_machine_set_run_once(const char * pszKey, const char * pszCommand);
-      virtual bool current_user_set_run(const char * pszKey, const char * pszCommand);
-      virtual bool current_user_set_run_once(const char * pszKey, const char * pszCommand);
+      virtual bool local_machine_set_run(const ::string & strKey, const ::string & strCommand);
+      virtual bool local_machine_set_run_once(const ::string & strKey, const ::string & strCommand);
+      virtual bool current_user_set_run(const ::string & strKey, const ::string & strCommand);
+      virtual bool current_user_set_run_once(const ::string & strKey, const ::string & strCommand);
       virtual bool defer_register_ca2_plugin_for_mozilla() override;
 
-      virtual bool file_extension_get_open_with_list_keys(string_array & straKey, const char * pszExtension) override;
-      virtual bool file_extension_get_open_with_list_commands(string_array & straCommand, const char * pszExtension) override;
+      virtual bool file_extension_get_open_with_list_keys(string_array & straKey, const ::string & strExtension) override;
+      virtual bool file_extension_get_open_with_list_commands(string_array & straCommand, const ::string & strExtension) override;
 
-      virtual bool file_association_set_default_icon(const char * pszExtension, const char * pszExtensionNamingClass, const char * pszIconPath) override;
-      virtual bool file_association_set_shell_open_command(const char * pszExtension, const char * pszExtensionNamingClass,  const char * pszCommand, const char * pszParam) override;
-      virtual bool file_association_get_shell_open_command(const char * pszExtension, string & strExtensionNamingClass, string & strCommand, string & strParam) override;
+      virtual bool file_association_set_default_icon(const ::string & strExtension, const ::string & strExtensionNamingClass, const ::string & strIconPath) override;
+      virtual bool file_association_set_shell_open_command(const ::string & strExtension, const ::string & strExtensionNamingClass,  const ::string & strCommand, const ::string & strParam) override;
+      virtual bool file_association_get_shell_open_command(const ::string & strExtension, string & strExtensionNamingClass, string & strCommand, string & strParam) override;
 
 
       virtual bool open_in_ie(const char * pcsz);

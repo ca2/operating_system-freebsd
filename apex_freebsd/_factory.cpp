@@ -55,7 +55,7 @@ __FACTORY_EXPORT void apex_freebsd_factory(::factory::factory * pfactory)
    pfactory->add_factory_item < ::freebsd::file_context, ::file_context >();
    pfactory->add_factory_item < ::freebsd::service_handler, ::service_handler >();
 
-   pfactory->add_factory_item < ::freebsd::apex::node, ::acme::node >();
+   pfactory->add_factory_item < ::apex::freebsd::node, ::acme::node >();
 
    //add_factory_item < ::freebsd::copydesk, ::user::cop
    // 

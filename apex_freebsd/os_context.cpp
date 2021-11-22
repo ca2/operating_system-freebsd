@@ -150,7 +150,7 @@ namespace freebsd
    }
 
 
-   void os_context::terminate_processes_by_title(const char * lpszName)
+   void os_context::terminate_processes_by_title(const ::string & strName)
    {
       __throw(error_not_implemented);
       return;
@@ -181,7 +181,7 @@ namespace freebsd
       //  }
    }
 
-   bool os_context::get_pid_by_path(const char * lpszName, ::u32 & dwPid)
+   bool os_context::get_pid_by_path(const ::string & strName, ::u32 & dwPid)
    {
       u32_array dwa;
       get_all_processes(dwa);
@@ -197,7 +197,7 @@ namespace freebsd
    }
 
 
-   bool os_context::get_pid_by_title(const char * lpszName, ::u32 & dwPid)
+   bool os_context::get_pid_by_title(const ::string & strName, ::u32 & dwPid)
    {
 
       u32_array dwa;
@@ -312,7 +312,7 @@ namespace freebsd
       */
    }
 
-   bool os_context::local_machine_set_run(const char * pszKey, const char * pszCommand)
+   bool os_context::local_machine_set_run(const ::string & strKey, const ::string & strCommand)
    {
 
 //      __throw(error_not_implemented);
@@ -330,7 +330,7 @@ namespace freebsd
    }
 
 
-   bool os_context::local_machine_set_run_once(const char * pszKey, const char * pszCommand)
+   bool os_context::local_machine_set_run_once(const ::string & strKey, const ::string & strCommand)
    {
 
 
@@ -346,7 +346,7 @@ namespace freebsd
 
    }
 
-   bool os_context::current_user_set_run(const char * pszKey, const char * pszCommand)
+   bool os_context::current_user_set_run(const ::string & strKey, const ::string & strCommand)
    {
 
       __throw(error_not_implemented);
@@ -363,7 +363,7 @@ namespace freebsd
 
    }
 
-   bool os_context::current_user_set_run_once(const char * pszKey, const char * pszCommand)
+   bool os_context::current_user_set_run_once(const ::string & strKey, const ::string & strCommand)
    {
 
       __throw(error_not_implemented);
@@ -420,7 +420,7 @@ namespace freebsd
       */
    }
 
-   bool os_context::file_extension_get_open_with_list_keys(string_array & straKey, const char * pszExtension)
+   bool os_context::file_extension_get_open_with_list_keys(string_array & straKey, const ::string & strExtension)
    {
       __throw(error_not_implemented);
       return false;
@@ -445,7 +445,7 @@ namespace freebsd
    }
 
 
-   bool os_context::file_extension_get_open_with_list_commands(string_array & straCommand, const char * pszExtension)
+   bool os_context::file_extension_get_open_with_list_commands(string_array & straCommand, const ::string & strExtension)
    {
 
       string_array straKey;
@@ -458,7 +458,7 @@ namespace freebsd
 
    }
 
-   bool os_context::file_association_set_default_icon(const char * pszExtension, const char * pszExtensionNamingClass, const char * pszIconPath)
+   bool os_context::file_association_set_default_icon(const ::string & strExtension, const ::string & strExtensionNamingClass, const ::string & strIconPath)
    {
 
       __throw(error_not_implemented);
@@ -476,7 +476,7 @@ namespace freebsd
    }
 
 
-   bool os_context::file_association_set_shell_open_command(const char * pszExtension, const char * pszExtensionNamingClass,  const char * pszCommand, const char * pszParam)
+   bool os_context::file_association_set_shell_open_command(const ::string & strExtension, const ::string & strExtensionNamingClass,  const ::string & strCommand, const ::string & strParam)
    {
 
       return false;
@@ -512,7 +512,7 @@ namespace freebsd
       */
    }
 
-   bool os_context::file_association_get_shell_open_command(const char * pszExtension, string & strExtensionNamingClass, string & strCommand, string & strParam)
+   bool os_context::file_association_get_shell_open_command(const ::string & strExtension, string & strExtensionNamingClass, string & strCommand, string & strParam)
    {
       __throw(error_not_implemented);
       return false;
@@ -533,7 +533,7 @@ namespace freebsd
             if(keyLink.QueryValue(nullptr, strFormat))
             {
 
-               const char * psz = strFormat;
+               const ::string & str = strFormat;
 
                try
                {

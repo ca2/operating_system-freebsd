@@ -8,17 +8,17 @@
 #pragma once
 
 
-namespace freebsd
+namespace apex
 {
 
 
-   namespace apex
+   namespace freebsd
    {
 
 
       class CLASS_DECL_APEX_FREEBSD node :
-         virtual public ::freebsd::acme::node,
-         virtual public ::apex::node
+         virtual public ::acme::freebsd::node,
+         virtual public ::apex::posix::node
       {
       public:
 
@@ -79,14 +79,14 @@ namespace freebsd
 
 
          virtual bool is_application_installed(const ::file::path & pathExe, string strAppId, string & strBuild,
-                                               const char * pszPlatform, const char * pszConfiguration,
-                                               const char * pszLocale, const char * pszSchema) override;
+                                               const ::string & strPlatform, const ::string & strConfiguration,
+                                               const ::string & strLocale, const ::string & strSchema) override;
 
-         virtual bool set_application_installed(const ::file::path & pathExe, string strAppId, const char * pszBuild,
-                                                const char * pszPlatform, const char * pszConfiguration,
-                                                const char * pszLocale, const char * pszSchema) override;
+         virtual bool set_application_installed(const ::file::path & pathExe, string strAppId, const ::string & strBuild,
+                                                const ::string & strPlatform, const ::string & strConfiguration,
+                                                const ::string & strLocale, const ::string & strSchema) override;
 
-         virtual bool set_last_run_application_path(string strAppId) override;
+         virtual bool set_last_run_application_path(const string & strAppId) override;
 
 
          //virtual ::u32       get_file_attributes(const char* pFileName);
@@ -107,10 +107,10 @@ namespace freebsd
       };
 
 
-   } // namespace apex
+   } // namespace freebsd
 
 
-} // namespace freebsd
+} // namespace apex
 
 
 

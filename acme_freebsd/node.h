@@ -7,15 +7,15 @@
 #pragma once
 
 
+namespace acme
+{
+
+
    namespace freebsd
    {
 
 
-      namespace acme
-      {
-
-
-         class CLASS_DECL_ACME_FREEBSD node :
+      class CLASS_DECL_ACME_FREEBSD node :
          virtual public ::acme::node,
          virtual public ::acme::posix::node
       {
@@ -33,7 +33,7 @@
 
          node();
 
-         virtual ~node();
+         ~node() override;
 
 
          virtual ::e_status initialize_matter(::matter * pmatter) override;
@@ -68,12 +68,10 @@
       };
 
 
-   } // namespace acme
+   } // namespace freebsd
 
 
-} // namespace freebsd
-
-
+} // namespace acme
 
 
 

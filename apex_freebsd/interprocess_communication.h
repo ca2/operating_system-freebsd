@@ -102,7 +102,7 @@ namespace freebsd
       ~interprocess_communication_rx() override;
 
 
-      bool create(const ::string & strChannel) override;
+      ::e_status create(const ::string & strChannel) override;
       ::e_status destroy() override;
 
 
