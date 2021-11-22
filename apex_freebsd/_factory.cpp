@@ -29,7 +29,7 @@ __FACTORY_EXPORT void apex_freebsd_factory(::factory::factory * pfactory)
    //pfactory->add_factory_item < ::freebsd::process, ::process::process >();
 
    //add_factory_item < ::freebsd::console, ::console::console >();
-   pfactory->add_factory_item < ::freebsd::crypto, ::crypto::crypto >();
+   //pfactory->add_factory_item < ::freebsd::crypto, ::crypto::crypto >();
    pfactory->add_factory_item < ::freebsd::ip_enum, ::net::ip_enum >();
 
 
