@@ -71,23 +71,19 @@ namespace freebsd
 
 
       interprocess_communication_tx();
-      virtual ~interprocess_communication_tx();
+      ~interprocess_communication_tx() override;
 
 
 
-#if defined(_UWP)
-      bool open(const char * pszChannel);
-#else
-      bool open(const char * pszChannel, launcher * plauncher = nullptr);
-#endif
-      bool close();
+      ::e_status open(const ::string & strChannel, ::launcher * plauncher = nullptr) override;
+      ::e_status close() override;
 
 
-      bool send(const char * pszMessage, duration durationTimeout);
-      bool send(int message, void * pdata, int len, duration durationTimeout);
+      ::e_status send(const char * pszMessage, const duration & durationTimeout);
+      ::e_status send(int message, void * pdata, int len, const duration & durationTimeout);
 
 
-      bool is_tx_ok();
+      bool is_tx_ok() override;
 
    };
 
@@ -103,70 +99,29 @@ namespace freebsd
 
 
       interprocess_communication_rx();
-      virtual ~interprocess_communication_rx();
+      ~interprocess_communication_rx() override;
 
 
-      bool create(const char * pszChannel);
-      bool destroy();
+      bool create(const ::string & strChannel) override;
+      ::e_status destroy() override;
 
 
-      virtual void * on_interprocess_receive(::interprocess_communication::rx * prx, const char * pszMessage);
-      virtual void * on_interprocess_receive(::interprocess_communication::rx * prx, int message, void * pdata, memsize len);
-      virtual void * on_interprocess_post(::interprocess_communication::rx * prx, i64 a, i64 b);
+      virtual void on_interprocess_receive(::string && strMessage) override;
+      virtual void on_interprocess_receive(int message, ::memory && memory) override;
+      virtual void on_interprocess_post(i64 a, i64 b) override;
 
 
-      virtual bool on_idle();
+      bool on_idle() override;
 
 
       virtual bool start_receiving();
 
       virtual void * receive();
 
-      //LRESULT message_queue_proc(UINT message, WPARAM wparam, LPARAM lparam);
-
-
       bool is_rx_ok();
 
 
    };
-
-
-//   class CLASS_DECL_APEX interprocess_communication :
-//      virtual public interprocess_communication_base,
-//      virtual public ::interprocess_communication::interprocess_communication
-//   {
-//   public:
-//
-//
-//      interprocess_communication();
-//      virtual ~interprocess_communication();
-//
-//
-//#if defined(_UWP)
-//      bool open_ab(const char * pszChannel, const char * pszModule);
-//      bool open_ba(const char * pszChannel, const char * pszModule);
-//#elif defined(WINDOWS)
-//      bool open_ab(const char * pszChannel, const char * pszModule, launcher * plauncher = nullptr);
-//      bool open_ba(const char * pszChannel, const char * pszModule, launcher * plauncher = nullptr);
-//#else
-//      bool open_ab(const char * pszChannel, launcher * plauncher = nullptr);
-//      bool open_ba(const char * pszChannel, launcher * plauncher = nullptr);
-//#endif
-//
-//
-//      bool close();
-//
-//
-//      virtual void restart_apex_ipc();
-//
-//      //bool ensure_tx(const char * pszMessage, duration durationTimeout = one_hour());
-//      //bool ensure_tx(int message, void * pdata, int len, duration durationTimeout = one_hour());
-//
-//
-//      bool is_rx_tx_ok();
-//
-//
-//   };
 
 
    CLASS_DECL_APEX string app_install(string strPlatform = "");
