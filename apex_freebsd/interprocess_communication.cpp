@@ -395,7 +395,7 @@ namespace freebsd
       void * interprocess_communication_rx::receive()
       {
 
-         memory mem;
+         class ::memory mem;
 
          memory m;
 

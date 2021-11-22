@@ -303,7 +303,7 @@ namespace freebsd
             else
             {
 
-               path.m_iSize = file_length_dup(strPath);
+               path.m_iSize = m_psystem->m_pacmefile->get_size(strPath);
 
             }
 
@@ -319,14 +319,14 @@ namespace freebsd
    bool dir_context::is(const ::file::path & path)
    {
 
-      if(::dir::is(path))
+      if(m_psystem->m_pacmedir->is(path))
       {
 
          return true;
 
       }
 
-      bool bIsDir = ::dir::_is(path);
+      bool bIsDir = m_psystem->m_pacmedir->(path);
 
       return bIsDir;
 
@@ -366,7 +366,7 @@ namespace freebsd
          return true; // assume empty string is root_ones directory
       }
 
-      if(thread_is_set(id_thread_zip_is_dir) && iLast >= 3  && !ansi_count_compare_ci(&((const char *) str)[iLast - 3], ".zip", 4))
+      if(thread_is_set(id_thread_compress_is_dir) && iLast >= 3  && !ansi_count_compare_ci(&((const char *) str)[iLast - 3], ".zip", 4))
       {
 
          return true;
