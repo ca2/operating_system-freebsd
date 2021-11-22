@@ -11,10 +11,15 @@
 __FACTORY_EXPORT void apex_posix_factory(::factory::factory * pfactory);
 
 
+__FACTORY_EXPORT void acme_freebsd_factory(::factory::factory * pfactory);
+
+
 __FACTORY_EXPORT void apex_freebsd_factory(::factory::factory * pfactory)
 {
 
    apex_posix_factory(pfactory);
+
+   acme_freebsd_factory(pfactory);
 
    pfactory->add_factory_item < ::freebsd::dir_system, ::dir_system >();
    pfactory->add_factory_item < ::freebsd::file_system, ::file_system >();
