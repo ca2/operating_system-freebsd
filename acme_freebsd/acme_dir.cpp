@@ -253,7 +253,7 @@ namespace freebsd
 
    #else
 
-      return m_psystem->m_pacmepath->app_module().folder(4);
+      return m_psystem->m_pacmepath->module().folder(4);
 
    #endif
 
@@ -289,7 +289,7 @@ namespace freebsd
 
    #else
 
-      return m_psystem->m_pacmepath->app_module().folder(4);
+      return m_psystem->m_pacmepath->module().folder(4);
 
    #endif
 
@@ -304,71 +304,6 @@ namespace freebsd
    }
 
 
-
-
-
-
-   #ifdef FREEBSD_DESKTOP
-
-
-   #include <Shlobj.h>
-
-
-   ::file::path acme_dir::program_files_x86()
-   {
-
-      wstring wstrModuleFolder(get_buffer, sizeof(unichar) * 8);
-
-      wstring wstrModuleFilePath(get_buffer, sizeof(unichar) * 8);
-
-      wcscpy(wstrModuleFilePath, _wgetenv(L"PROGRAMFILES(X86)"));
-
-      if (wcslen(wstrModuleFilePath) == 0)
-      {
-
-         SHGetSpecialFolderPathW(nullptr, wstrModuleFilePath, CSIDL_PROGRAM_FILES, false);
-
-      }
-
-      wstrModuleFilePath.trim_right(L"\\/");
-
-      wcscpy(wstrModuleFolder, wstrModuleFilePath);
-
-      return string(wstrModuleFolder);
-
-   }
-
-
-   ::file::path acme_dir::program_files()
-   {
-
-      wstring wstrModuleFolder(get_buffer, sizeof(unichar) * 8);
-
-      wstring wstrModuleFilePath(get_buffer, sizeof(unichar) * 8);
-
-      wcscpy(wstrModuleFilePath, _wgetenv(L"PROGRAMW6432"));
-
-      if (wcslen(wstrModuleFilePath) == 0)
-      {
-
-         SHGetSpecialFolderPathW(nullptr, wstrModuleFilePath, CSIDL_PROGRAM_FILES, false);
-
-      }
-
-      wstrModuleFilePath.trim_right(L"\\/");
-
-      wstrModuleFolder = wstrModuleFilePath;
-
-      return string(wstrModuleFolder);
-
-
-
-   }
-
-
-   #else
-
-
    ::file::path acme_dir::program_files_x86()
    {
 
@@ -387,10 +322,6 @@ namespace freebsd
       return path;
 
    }
-
-
-   #endif
-
 
    ::file::path acme_dir::stage(string strAppId, string strPlatform, string strConfiguration)
    {
@@ -398,9 +329,6 @@ namespace freebsd
       return inplace_install(strAppId, strPlatform, strConfiguration) / "time" / time_binary_platform(strPlatform) / strConfiguration;
 
    }
-
-
-//   #ifdef FREEBSD
 
 
    ::file::path acme_dir::home()
@@ -411,44 +339,12 @@ namespace freebsd
    }
 
 
-//   #endif
-
-
-   #if defined(_UWP) || defined(__APPLE__) || defined(FREEBSD) || defined(ANDROID)
-
-
-//   ::file::path acme_dir::bookmark()
-//   {
-//
-//      auto psystem = m_psystem;
-//
-//      auto pacmedir = psystem->m_pacmedir;
-//
-//      return pacmedir->localconfig() / "bookmark";
-//
-//   }
-
-
-   #endif
 
 
    #ifdef _UWP
 
 
-   ::file::path acme_dir::home()
-   {
-
-      return "";
-
-   }
-
-
-   #endif
-
-
-
-
-   void acme_dir::set_path_install_folder(const char* pszPath)
+      void acme_dir::set_path_install_folder(const ::string & strPath)
    {
 
       m_pathInstallFolder = pszPath;
