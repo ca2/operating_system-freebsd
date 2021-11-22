@@ -36,11 +36,16 @@ namespace freebsd
 
       }
 
-      bool interprocess_communication_tx::open(const char * pszChannel,launcher * plauncher)
+      
+      ::e_status interprocess_communication_tx::open(const ::string & strChannel,launcher * plauncher)
       {
 
          if(m_iQueue >= 0)
+         {
+
             close();
+
+         }
 
          if(!file_exists(pszChannel))
          {
@@ -87,7 +92,7 @@ namespace freebsd
       }
 
 
-      bool interprocess_communication_tx::send(const char * pszMessage, duration durationTimeout)
+      bool interprocess_communication_tx::send(const ::string & strMessage, duration durationTimeout)
       {
 
          memory m;
@@ -166,7 +171,7 @@ namespace freebsd
                   }
                   */
 
-         //const char * pszMessage = (const char *)pdata;
+         //const ::string & strMessage = (const char *)pdata;
 
          ::memcpy_dup(pdata->data,p,iLen);
 
@@ -207,7 +212,7 @@ namespace freebsd
       }
 
 
-      bool interprocess_communication_rx::create(const char * pszChannel)
+      bool interprocess_communication_rx::create(const ::string & strChannel)
       {
 
 
@@ -284,7 +289,7 @@ namespace freebsd
       }
 
 
-//      void interprocess_communication_rx::receiver::on_ipc_receive(interprocess_communication_rx * prx,const char * pszMessage)
+//      void interprocess_communication_rx::receiver::on_ipc_receive(interprocess_communication_rx * prx,const ::string & strMessage)
 //      {
 //
 //      }
@@ -300,58 +305,58 @@ namespace freebsd
 //      {
 //
 //      }
-
-
-      void * interprocess_communication_rx::on_interprocess_receive(::interprocess_communication::rx * prx,const char * pszMessage)
-      {
-
-         if(m_preceiver != nullptr)
-         {
-
-            m_preceiver->on_interprocess_receive(prx,pszMessage);
-
-         }
-
-         // ODOW - on date of writing : return ignored by this windows implementation
-
-         return nullptr;
-
-      }
-
-
-      void * interprocess_communication_rx::on_interprocess_receive(::interprocess_communication::rx * prx,i32 message,void * pdata,memsize len)
-      {
-
-         if(m_preceiver != nullptr)
-         {
-
-            m_preceiver->on_interprocess_receive(prx,message,pdata,len);
-
-         }
-
-         // ODOW - on date of writing : return ignored by this windows implementation
-
-         return nullptr;
-
-      }
-
-
-      void * interprocess_communication_rx::on_interprocess_post(::interprocess_communication::rx * prx, i64 a, i64 b)
-      {
-
-         if(m_preceiver != nullptr)
-         {
-
-            m_preceiver->on_interprocess_post(prx,a,b);
-
-         }
-
-         // ODOW - on date of writing : return ignored by this windows implementation
-
-         return nullptr;
-
-      }
-
+//
+//
+//      void * interprocess_communication_rx::on_interprocess_receive(::interprocess_communication::rx * prx,const ::string & strMessage)
+//      {
+//
+//         if(m_preceiver != nullptr)
+//         {
+//
+//            m_preceiver->on_interprocess_receive(prx,pszMessage);
+//
+//         }
+//
+//         // ODOW - on date of writing : return ignored by this windows implementation
+//
+//         return nullptr;
+//
+//      }
+//
+//
+//      void * interprocess_communication_rx::on_interprocess_receive(::interprocess_communication::rx * prx,i32 message,void * pdata,memsize len)
+//      {
+//
+//         if(m_preceiver != nullptr)
+//         {
+//
+//            m_preceiver->on_interprocess_receive(prx,message,pdata,len);
+//
+//         }
+//
+//         // ODOW - on date of writing : return ignored by this windows implementation
+//
+//         return nullptr;
+//
+//      }
+//
+//
+//      void * interprocess_communication_rx::on_interprocess_post(::interprocess_communication::rx * prx, i64 a, i64 b)
+//      {
+//
+//         if(m_preceiver != nullptr)
+//         {
+//
+//            m_preceiver->on_interprocess_post(prx,a,b);
+//
+//         }
+//
+//         // ODOW - on date of writing : return ignored by this windows implementation
+//
+//         return nullptr;
+//
+//      }
+//
 
       bool interprocess_communication_rx::on_idle()
       {
@@ -423,13 +428,13 @@ namespace freebsd
                if(lRequest == 1024)
                {
 
-                  on_interprocess_receive(this, __str(m2));
+                  on_interprocess_receive(__str(m2));
 
                }
                else
                {
 
-                  on_interprocess_receive(this, lRequest, m2.get_data(), m2.get_size());
+                  on_interprocess_receive(lRequest, m2.get_data(), m2.get_size());
 
                }
 
@@ -458,7 +463,7 @@ namespace freebsd
 //
 //      }
 //
-//      bool interprocess_communication::open_ab(const char * pszChannel,launcher * plauncher)
+//      bool interprocess_communication::open_ab(const ::string & strChannel,launcher * plauncher)
 //      {
 //
 //         m_strChannel = pszChannel;
@@ -484,7 +489,7 @@ namespace freebsd
 //      }
 
 
-//      bool interprocess_communication::open_ba(const char * pszChannel,launcher * plauncher)
+//      bool interprocess_communication::open_ba(const ::string & strChannel,launcher * plauncher)
 //      {
 //
 //         m_strChannel = pszChannel;

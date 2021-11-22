@@ -64,7 +64,7 @@ namespace freebsd
 
       }
 
-      ::file::path pathAppModule = m_psystem->m_pacmepath->app_module();
+      ::file::path pathAppModule = m_psystem->m_pacmefile->module();
 
       m_pathModule = pathAppModule;
 
