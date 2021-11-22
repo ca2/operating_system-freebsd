@@ -1,16 +1,16 @@
 #include "framework.h"
-
-
 #include "apex/library.h"
 
 
-void CLASS_DECL_APEX_FREEBSD __cdecl _ca2_purecall()
-{
 
-   __throw(::exception::exception());
-
-}
-
+//
+//void CLASS_DECL_APEX_FREEBSD __cdecl _ca2_purecall()
+//{
+//
+//   __throw(::exception::exception());
+//
+//}
+//
 
 
 
