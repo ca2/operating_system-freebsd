@@ -21,47 +21,6 @@ inline bool freebsd_dir_myspace(char ch)
 }
 
 
-::file::path xdg_get_dir(string str)
-{
-
-   ::file::path pathHome;
-
-   pathHome = getenv("HOME");
-
-   ::file::path path;
-
-   path = pathHome / ".config/user-dirs.dirs";
-
-   string strDirs = m_pacmefile->as_string(path);
-
-   string_array stra;
-
-   stra.add_lines(strDirs);
-
-   string strPrefix = str + "=";
-
-   stra.filter_begins_ci(strPrefix);
-
-   if(stra.get_size() != 1)
-   {
-
-      return "";
-
-   }
-
-   path = stra[0];
-
-   ::str::begins_eat_ci(path, strPrefix);
-
-   path.replace("$HOME", pathHome);
-
-   path.trim("\"");
-
-   return path;
-
-}
-
-
 namespace freebsd
 {
 
@@ -237,11 +196,11 @@ namespace freebsd
 
          {
 
-            __restore(listing.m_pathUser);
+            __scope_restore(listing.m_pathUser);
 
-            __restore(listing.m_pathFinal);
+            __scope_restore(listing.m_pathFinal);
 
-            __restore(listing.m_eextract);
+            __scope_restore(listing.m_eextract);
 
             ::file::listing straDir;
 
@@ -279,7 +238,7 @@ namespace freebsd
          if(listing.m_bFile)
          {
 
-            __restore(listing.m_bRecursive);
+            __scope_restore(listing.m_bRecursive);
 
             listing.m_bRecursive = false;
 
@@ -851,6 +810,47 @@ namespace freebsd
       path = getenv("HOME");
 
       path /= "Downloads";
+
+      return path;
+
+   }
+
+
+   ::file::path dir_context::_xdg_get_dir(const string & str)
+   {
+
+      ::file::path pathHome;
+
+      pathHome = getenv("HOME");
+
+      ::file::path path;
+
+      path = pathHome / ".config/user-dirs.dirs";
+
+      string strDirs = m_pacmefile->as_string(path);
+
+      string_array stra;
+
+      stra.add_lines(strDirs);
+
+      string strPrefix = str + "=";
+
+      stra.filter_begins_ci(strPrefix);
+
+      if(stra.get_size() != 1)
+      {
+
+         return "";
+
+      }
+
+      path = stra[0];
+
+      ::str::begins_eat_ci(path, strPrefix);
+
+      path.replace("$HOME", pathHome);
+
+      path.trim("\"");
 
       return path;
 

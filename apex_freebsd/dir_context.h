@@ -98,6 +98,9 @@ namespace freebsd
       virtual ::file::path document() override;
 
 
+      virtual ::file::path _xdg_get_dir(const string & str);
+
+
    };
 
 

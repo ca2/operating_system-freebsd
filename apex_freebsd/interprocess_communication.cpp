@@ -96,7 +96,7 @@ namespace freebsd
       }
 
 
-      ::e_status interprocess_communication_tx::send(const ::string & strMessage, duration durationTimeout)
+      ::e_status interprocess_communication_tx::send(const ::string & strMessage, const duration & durationTimeout)
       {
 
          memory m;

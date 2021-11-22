@@ -79,8 +79,8 @@ namespace freebsd
       ::e_status close() override;
 
 
-      ::e_status send(const char * pszMessage, const duration & durationTimeout);
-      ::e_status send(int message, void * pdata, int len, const duration & durationTimeout);
+      ::e_status send(const ::string & strMessage, const duration & durationTimeout) override;
+      ::e_status send(int message, void * pdata, int len, const duration & durationTimeout) override;
 
 
       bool is_tx_ok() override;
