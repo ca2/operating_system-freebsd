@@ -50,7 +50,7 @@ namespace freebsd
          if(!file_exists(strChannel))
          {
 
-            m_pacmefile->put_contents(strChannel, strChannel);
+            m_psystem->m_pacmefile->put_contents(strChannel, strChannel);
 
          }
 
@@ -77,7 +77,7 @@ namespace freebsd
       }
 
 
-      bool interprocess_communication_tx::close()
+      ::e_status interprocess_communication_tx::close()
       {
 
          if(m_iQueue < 0)
