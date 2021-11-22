@@ -46,8 +46,8 @@
 #define __PUB_TOOL_VKI_H
 
 #if defined(VGO_linux)
-#  include "vki/vki-linux.h"
-#  include "vki/vki-linux-drm.h"
+#  include "vki/vki-freebsd.h"
+#  include "vki/vki-freebsd-drm.h"
 #elif defined(VGO_darwin)
 #  include "vki/vki-darwin.h"
 #elif defined(VGO_solaris)

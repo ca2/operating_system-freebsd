@@ -167,7 +167,7 @@ extern SizeT VG_(thread_get_altstack_size) ( ThreadId tid );
 // Given a pointer to a function as obtained by "& functionname" in C,
 // produce a pointer to the actual entry point for the function.  For
 // most platforms it's the identity function.  Unfortunately, on
-// ppc64-linux it isn't (sigh).
+// ppc64-freebsd it isn't (sigh).
 extern void* VG_(fnptr_to_fnentry)( void* );
 
 /* Returns the size of the largest guest register that we will

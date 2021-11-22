@@ -10,7 +10,7 @@
 #include "aura/const/_const.h"
 #include "acme/const/id.h"
 #include "platform/_.h"
-#include "aura/os/linux/appindicator.h"
+#include "aura/os/freebsd/appindicator.h"
 
 
 // apt-get install libgtk2.0-dev
@@ -140,7 +140,7 @@ extern "C"
 
 
 class gnome_appindicator :
-   virtual public ::linux::appindicator
+   virtual public ::freebsd::appindicator
 {
 public:
 

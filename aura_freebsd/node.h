@@ -17,7 +17,7 @@ namespace freebsd
 
 
       class CLASS_DECL_AURA_FREEBSD node :
-         virtual public ::linux::apex::node,
+         virtual public ::freebsd::apex::node,
          virtual public ::aura::node
       {
       public:

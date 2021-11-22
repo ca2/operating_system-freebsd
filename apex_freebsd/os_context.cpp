@@ -1,7 +1,7 @@
 #include "framework.h"
 #include "apex/platform/app_core.h"
 //#include "_linux.h"
-//#include "apex/os/linux/gnome_gnome.h"
+//#include "apex/os/freebsd/gnome_gnome.h"
 #include <unistd.h>
 
 i32 daemonize_process(const char * _cmd_line, i32 * pprocessId);
@@ -1022,7 +1022,7 @@ namespace freebsd
    void os_context::list_process(::file::patha & patha, u32_array & uaPid)
    {
 
-      ::output_debug_string("linux::os_context::list_process");
+      ::output_debug_string("freebsd::os_context::list_process");
 
       ::file::patha stra;
 

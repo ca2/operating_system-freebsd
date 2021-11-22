@@ -2774,7 +2774,7 @@ typedef
 
             At the moment, the only AbiHint is one which indicates
             that a given chunk of address space, [base .. base+len-1],
-            has become undefined.  This is used on amd64-linux and
+            has become undefined.  This is used on amd64-freebsd and
             some ppc variants to pass stack-redzoning hints to whoever
             wants to see them.  It also indicates the address of the
             next (dynamic) instruction that will be executed.  This is

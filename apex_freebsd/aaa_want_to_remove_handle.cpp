@@ -16,13 +16,13 @@ namespace freebsd
       //single_lock synchronouslock(&pMap->m_mutex, true);
 
       array < oswindow > oswindowaRemove;
-      array < __pointer(::linux::window) > wndptraRemove;
+      array < __pointer(::freebsd::window) > wndptraRemove;
 
       //POSITION pos = pMap->m_temporaryMap.get_start_position();
       //while (pos != nullptr)
       //{
       //   HANDLE h; // just used for asserts
-      //   ::linux::window * pTemp;
+      //   ::freebsd::window * pTemp;
       //   pMap->m_temporaryMap.get_next_assoc(pos, h, pTemp);
 
       //   if(!::IsWindow((oswindow) h))

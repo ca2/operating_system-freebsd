@@ -30,7 +30,7 @@ namespace aura
       e_status node::initialize(::object* pobject)
       {
 
-         auto estatus = ::apex::linux::node::initialize(pobject);
+         auto estatus = ::apex::freebsd::node::initialize(pobject);
 
          if(!estatus)
          {

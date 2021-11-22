@@ -3,7 +3,7 @@
 //
 
 #include "framework.h"
-//#include "apex/os/linux/gnome_gnome.h"
+//#include "apex/os/freebsd/gnome_gnome.h"
 #include "aura/user/_user.h"
 
 
@@ -12,7 +12,7 @@ static ::user::notify_icon * g_pnotifyiconLast = nullptr;
 
 #ifdef FREEBSD
 
-#include "aura/os/linux/appindicator.h"
+#include "aura/os/freebsd/appindicator.h"
 
 #endif
 

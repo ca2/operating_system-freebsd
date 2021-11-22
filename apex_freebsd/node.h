@@ -17,7 +17,7 @@ namespace freebsd
 
 
       class CLASS_DECL_APEX_FREEBSD node :
-         virtual public ::linux::acme::node,
+         virtual public ::freebsd::acme::node,
          virtual public ::apex::node
       {
       public:

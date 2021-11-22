@@ -12,7 +12,7 @@
 // CHandleMap
 //
 //  Note: Do not access the members of this class directly.
-//      Use ::linux::window::from_handle, ::linux::graphics::from_handle, etc.
+//      Use ::freebsd::window::from_handle, ::freebsd::graphics::from_handle, etc.
 //      The actual definition is only included because it is
 //      necessary for the definition of WindowsThread.
 //
@@ -185,27 +185,27 @@ public:
 };
 
 class CLASS_DECL_APEX oswindow_map :
-   public handle_map < ::linux::oswindow_handle, ::linux::window >
+   public handle_map < ::freebsd::oswindow_handle, ::freebsd::window >
 {
 public:
-   oswindow_map(::object * pobject) : handle_map < ::linux::oswindow_handle, ::linux::window >(pobject) {}
+   oswindow_map(::object * pobject) : handle_map < ::freebsd::oswindow_handle, ::freebsd::window >(pobject) {}
 };
 
 /*class CLASS_DECL_APEX hdc_map :
-   public handle_map < ::linux::hdc_handle, ::linux::graphics >
+   public handle_map < ::freebsd::hdc_handle, ::freebsd::graphics >
 {
 public:
 };*/
 
 /*class hgdiobj_map :
-   public handle_map < ::linux::hgdiobj_handle, ::linux::object >
+   public handle_map < ::freebsd::hgdiobj_handle, ::freebsd::object >
 {
 public:
 };*/
 
 /*
 class CLASS_DECL_APEX hdc_map :
-   public handle_map < ::linux::hmenu_handle, ::linux::menu >
+   public handle_map < ::freebsd::hmenu_handle, ::freebsd::menu >
 {
 public:
 };

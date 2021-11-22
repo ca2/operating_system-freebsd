@@ -341,31 +341,31 @@ void LibVEX_default_VexArchInfo ( /*OUT*/VexArchInfo* vai );
    Settings which are believed to be correct are:
 
    guest_stack_redzone_size
-      guest is ppc32-linux                ==> 0
-      guest is ppc64-linux                ==> 288
-      guest is amd64-linux                ==> 128
+      guest is ppc32-freebsd                ==> 0
+      guest is ppc64-freebsd                ==> 288
+      guest is amd64-freebsd                ==> 128
       guest is other                      ==> inapplicable
 
    guest_amd64_assume_fs_is_const
-      guest is amd64-linux                ==> True
+      guest is amd64-freebsd                ==> True
       guest is amd64-darwin               ==> False
       guest is amd64-solaris              ==> True
       guest is other                      ==> inapplicable
 
    guest_amd64_assume_gs_is_const
       guest is amd64-darwin               ==> True
-      guest is amd64-linux                ==> True
+      guest is amd64-freebsd                ==> True
       guest is amd64-solaris              ==> False
       guest is other                      ==> inapplicable
 
    guest_ppc_zap_RZ_at_blr
-      guest is ppc64-linux                ==> True
-      guest is ppc32-linux                ==> False
+      guest is ppc64-freebsd                ==> True
+      guest is ppc32-freebsd                ==> False
       guest is other                      ==> inapplicable
 
    guest_ppc_zap_RZ_at_bl
-      guest is ppc64-linux                ==> const True
-      guest is ppc32-linux                ==> const False
+      guest is ppc64-freebsd                ==> const True
+      guest is ppc32-freebsd                ==> const False
       guest is other                      ==> inapplicable
 
    guest__use_fallback_LLSC
@@ -374,8 +374,8 @@ void LibVEX_default_VexArchInfo ( /*OUT*/VexArchInfo* vai );
       guest is arm64                      ==> applicable, default False
 
    host_ppc_calls_use_fndescrs:
-      host is ppc32-linux                 ==> False
-      host is ppc64-linux                 ==> True
+      host is ppc32-freebsd                 ==> False
+      host is ppc64-freebsd                 ==> True
       host is other                       ==> inapplicable
 */
 
@@ -387,7 +387,7 @@ typedef
 
       /* AMD64 GUESTS only: should we translate %fs-prefixed
          instructions using the assumption that %fs always contains
-         the same value? (typically zero on linux and solaris) */
+         the same value? (typically zero on freebsd and solaris) */
       Bool guest_amd64_assume_fs_is_const;
 
       /* AMD64 GUESTS only: should we translate %gs-prefixed

@@ -4,7 +4,7 @@
 
 
 extern "C"
-void node_linux_factory_exchange(::factory::factory * pfactory)
+void node_linux_factory(::factory::factory * pfactory)
 {
 
    auto edesktop = get_edesktop();
@@ -54,7 +54,7 @@ void node_linux_factory_exchange(::factory::factory * pfactory)
 //
 //   aura_posix_factory_exchange( pfactory);
 //
-//   pfactory->add_factory_item < ::aura::linux::node, ::acme::node >();
+//   pfactory->add_factory_item < ::aura::freebsd::node, ::acme::node >();
 
 }
 

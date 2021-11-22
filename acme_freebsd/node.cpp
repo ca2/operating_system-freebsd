@@ -1,11 +1,11 @@
 #include "framework.h"
 
 
-namespace acme
+namespace freebsd
 {
 
 
-   namespace freebsd
+   namespace acme
    {
 
 
@@ -51,7 +51,7 @@ namespace acme
 //      return string(wsz);
 //
 //   }
-//#include "aura/os/linux/_c.h"
+//#include "aura/os/freebsd/_c.h"
 //
 //
 //   bool node::_os_calc_app_dark_mode()
@@ -60,7 +60,7 @@ namespace acme
 //      try
 //      {
 //
-//         ::linux::registry::key key;
+//         ::freebsd::registry::key key;
 //
 //         key.open(HKEY_CURRENT_USER, "Software\\Microsoft\\Windows\\CurrentVersion\\Themes\\Personalize");
 //
@@ -101,7 +101,7 @@ namespace acme
 //      try
 //      {
 //
-//         ::linux::registry::key key;
+//         ::freebsd::registry::key key;
 //
 //         key.open(HKEY_CURRENT_USER, "Software\\Microsoft\\Windows\\CurrentVersion\\Themes\\Personalize");
 //
@@ -165,7 +165,7 @@ namespace acme
 //   void node::set_console_colors(::u32 dwScreenColors, ::u32 dwPopupColors, ::u32 dwWindowAlpha)
 //   {
 //
-//      ::linux::registry::key key(HKEY_CURRENT_USER, "Console", true);
+//      ::freebsd::registry::key key(HKEY_CURRENT_USER, "Console", true);
 //
 //      key._set("ScreenColors", dwScreenColors);
 //      key._set("PopupColors", dwPopupColors);
@@ -178,7 +178,7 @@ namespace acme
 //   ::e_status node::set_system_dark_mode1(bool bSet)
 //   {
 //
-//      ::linux::registry::key key(HKEY_CURRENT_USER, "Software\\Microsoft\\Windows\\CurrentVersion\\Themes\\Personalize", true);
+//      ::freebsd::registry::key key(HKEY_CURRENT_USER, "Software\\Microsoft\\Windows\\CurrentVersion\\Themes\\Personalize", true);
 //
 //      ::u32 dwSystemUseLightTheme;
 //      if (bSet)
@@ -199,7 +199,7 @@ namespace acme
 //   ::e_status node::set_app_dark_mode1(bool bSet)
 //   {
 //
-//      ::linux::registry::key key(HKEY_CURRENT_USER, "Software\\Microsoft\\Windows\\CurrentVersion\\Themes\\Personalize", true);
+//      ::freebsd::registry::key key(HKEY_CURRENT_USER, "Software\\Microsoft\\Windows\\CurrentVersion\\Themes\\Personalize", true);
 //
 //      ::u32 dwAppsUseLightTheme;
 //      if (bSet)
@@ -460,7 +460,7 @@ namespace acme
 //      try
 //      {
 //
-//         ::linux::registry::key key(HKEY_LOCAL_MACHINE, "SOFTWARE\\Mozilla\\Mozilla Firefox");
+//         ::freebsd::registry::key key(HKEY_LOCAL_MACHINE, "SOFTWARE\\Mozilla\\Mozilla Firefox");
 //
 //         string strCurrentVersion;
 //
@@ -569,7 +569,7 @@ namespace acme
       void node::install_crash_dump_reporting(const string & strModuleNameWithTheExeExtension)
       {
 
-//      ::linux::registry::key k;
+//      ::freebsd::registry::key k;
 //
 //      string strKey = "SOFTWARE\\Microsoft\\Windows\\Windows Error Reporting\\LocalDumps\\" + strModuleNameWithTheExeExtension;
 //
@@ -718,9 +718,10 @@ namespace acme
       }
 
 
-   } // namespace node_linux
+   } // namespace acme
 
 
-} // namespace acme
+} // namespace freebsd
+
 
 

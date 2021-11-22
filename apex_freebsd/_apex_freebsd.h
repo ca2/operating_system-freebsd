@@ -73,7 +73,7 @@
 //
 //   class thread;
 //
-//   //class linux
+//   //class freebsd
 //   //{
 //   //   i32 function();
 //   //};

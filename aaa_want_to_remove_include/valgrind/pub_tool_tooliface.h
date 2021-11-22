@@ -182,7 +182,7 @@ extern void VG_(basic_tool_funcs)(
         non-redirected call to it using another client-request-like
         magic macro.
 
-      - For platforms that use the AIX ABI (including ppc64-linux), it
+      - For platforms that use the AIX ABI (including ppc64-freebsd), it
         is necessary to have a preamble even for replacement functions
         (not just for wrappers), because it is necessary to switch the
         R2 register (constant-pool pointer) to a different value when
@@ -207,7 +207,7 @@ extern void VG_(basic_tool_funcs)(
         out past the wrapper, because then the magic return stub will
         not be run and so the shadow stack will not be popped.  So it
         will quickly fill up.  Fortunately none of this applies to
-        {x86,amd64,ppc32}-linux; on those platforms, wrappers can
+        {x86,amd64,ppc32}-freebsd; on those platforms, wrappers can
         longjump and recurse arbitrarily and everything should work
         fine.
 

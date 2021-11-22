@@ -13,7 +13,7 @@ namespace desktop_environment_gnome
 
 
    class CLASS_DECL_DESKTOP_ENVIRONMENT_GNOME node :
-      virtual public ::aura::linux::node,
+      virtual public ::aura::freebsd::node,
       virtual public ::node_gnome::node
    {
    public:
@@ -81,7 +81,7 @@ namespace desktop_environment_gnome
 
       //virtual ::node_linux::appindicator * appindicator_allocate() override;
 
-      //virtual void appindicator_destroy(::linux::appindicator * pappindicator) override;
+      //virtual void appindicator_destroy(::freebsd::appindicator * pappindicator) override;
 
       //virtual void enum_display_monitors(::aura::session * psession) override;
 

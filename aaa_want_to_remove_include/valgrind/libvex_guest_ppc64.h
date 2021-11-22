@@ -272,7 +272,7 @@ typedef
       /* 1372 */ ULong guest_NRADDR_GPR2;
 
      /* A grows-upwards stack for hidden saves/restores of LR and R2
-        needed for function interception and wrapping on ppc64-linux.
+        needed for function interception and wrapping on ppc64-freebsd.
         A horrible hack.  REDIR_SP points to the highest live entry,
         and so starts at -1. */
       /* 1380 */ ULong guest_REDIR_SP;

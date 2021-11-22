@@ -36,7 +36,7 @@ namespace node_xfce
 //#ifdef WINDOWS_DESKTOP
 //      NOTIFYICONDATA m_nid;
 //#elif defined(FREEBSD)
-      __pointer(::linux::aura::appindicator)        m_pindicator;
+      __pointer(::freebsd::aura::appindicator)        m_pindicator;
 //#endif
       __pointer(::user::notify_icon_listener)      m_plistener;
       __pointer_array(::user::interaction)         m_wndptraHidden;

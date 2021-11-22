@@ -296,15 +296,15 @@
 
 #if defined(VGO_linux)
 
-#define  VG_Z_LD_FREEBSD_SO_3         ldZhlinuxZdsoZd3           // ld-linux.so.3
-#define  VG_U_LD_FREEBSD_SO_3         "ld-linux.so.3"
+#define  VG_Z_LD_FREEBSD_SO_3         ldZhlinuxZdsoZd3           // ld-freebsd.so.3
+#define  VG_U_LD_FREEBSD_SO_3         "ld-freebsd.so.3"
 
-#define  VG_Z_LD_FREEBSD_SO_2         ldZhlinuxZdsoZd2           // ld-linux.so.2
-#define  VG_U_LD_FREEBSD_SO_2         "ld-linux.so.2"
+#define  VG_Z_LD_FREEBSD_SO_2         ldZhlinuxZdsoZd2           // ld-freebsd.so.2
+#define  VG_U_LD_FREEBSD_SO_2         "ld-freebsd.so.2"
 
 #define  VG_Z_LD_FREEBSD_X86_64_SO_2  ldZhlinuxZhx86Zh64ZdsoZd2
-                                                        // ld-linux-x86-64.so.2
-#define  VG_U_LD_FREEBSD_X86_64_SO_2  "ld-linux-x86-64.so.2"
+                                                        // ld-freebsd-x86-64.so.2
+#define  VG_U_LD_FREEBSD_X86_64_SO_2  "ld-freebsd-x86-64.so.2"
 
 #define  VG_Z_LD64_SO_1             ld64ZdsoZd1                // ld64.so.1
 #define  VG_U_LD64_SO_1             "ld64.so.1"
@@ -313,8 +313,8 @@
 #define  VG_Z_LD_SO_1               ldZdsoZd1                  // ld.so.1
 #define  VG_U_LD_SO_1               "ld.so.1"
 
-#define  VG_U_LD_FREEBSD_AARCH64_SO_1 "ld-linux-aarch64.so.1"
-#define  VG_U_LD_FREEBSD_ARMHF_SO_3   "ld-linux-armhf.so.3"
+#define  VG_U_LD_FREEBSD_AARCH64_SO_1 "ld-freebsd-aarch64.so.1"
+#define  VG_U_LD_FREEBSD_ARMHF_SO_3   "ld-freebsd-armhf.so.3"
 
 #endif
 

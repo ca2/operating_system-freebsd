@@ -239,7 +239,7 @@
    a lot simpler.  VALGRIND_GET_NR_CONTEXT returns the value of the
    guest's NRADDR pseudo-register and whatever other information is
    needed to safely run the call original from the wrapper: on
-   ppc64-linux, the R2 value at the divert point is also needed.  This
+   ppc64-freebsd, the R2 value at the divert point is also needed.  This
    information is abstracted into a user-visible type, OrigFn.
 
    VALGRIND_CALL_NOREDIR_* behaves the same as the following on the
@@ -250,7 +250,7 @@
    inline asm stuff to be useful.
 */
 
-/* ----------------- x86-{linux,darwin,solaris} ---------------- */
+/* ----------------- x86-{freebsd,darwin,solaris} ---------------- */
 
 #if defined(PLAT_x86_linux)  ||  defined(PLAT_x86_darwin)  \
     ||  (defined(PLAT_x86_win32) && defined(__GNUC__)) \
@@ -390,7 +390,7 @@ valgrind_do_client_request_expr(uintptr_t _zzq_default, uintptr_t _zzq_request,
 
 #endif /* PLAT_x86_win32 */
 
-/* ----------------- amd64-{linux,darwin,solaris} --------------- */
+/* ----------------- amd64-{freebsd,darwin,solaris} --------------- */
 
 #if defined(PLAT_amd64_linux)  ||  defined(PLAT_amd64_darwin) \
     ||  defined(PLAT_amd64_solaris) \
@@ -464,7 +464,7 @@ typedef
 
 #endif /* PLAT_amd64_win64 */
 
-/* ------------------------ ppc32-linux ------------------------ */
+/* ------------------------ ppc32-freebsd ------------------------ */
 
 #if defined(PLAT_ppc32_linux)
 
@@ -533,7 +533,7 @@ typedef
 
 #endif /* PLAT_ppc32_linux */
 
-/* ------------------------ ppc64-linux ------------------------ */
+/* ------------------------ ppc64-freebsd ------------------------ */
 
 #if defined(PLAT_ppc64be_linux)
 
@@ -689,7 +689,7 @@ typedef
 
 #endif /* PLAT_ppc64le_linux */
 
-/* ------------------------- arm-linux ------------------------- */
+/* ------------------------- arm-freebsd ------------------------- */
 
 #if defined(PLAT_arm_linux)
 
@@ -757,7 +757,7 @@ typedef
 
 #endif /* PLAT_arm_linux */
 
-/* ------------------------ arm64-linux ------------------------- */
+/* ------------------------ arm64-freebsd ------------------------- */
 
 #if defined(PLAT_arm64_linux)
 
@@ -826,7 +826,7 @@ typedef
 
 #endif /* PLAT_arm64_linux */
 
-/* ------------------------ s390x-linux ------------------------ */
+/* ------------------------ s390x-freebsd ------------------------ */
 
 #if defined(PLAT_s390x_linux)
 
@@ -903,7 +903,7 @@ typedef
 
 #endif /* PLAT_s390x_linux */
 
-/* ------------------------- mips32-linux ---------------- */
+/* ------------------------- mips32-freebsd ---------------- */
 
 #if defined(PLAT_mips32_linux)
 
@@ -976,7 +976,7 @@ typedef
 
 #endif /* PLAT_mips32_linux */
 
-/* ------------------------- mips64-linux ---------------- */
+/* ------------------------- mips64-freebsd ---------------- */
 
 #if defined(PLAT_mips64_linux)
 
@@ -1142,7 +1142,7 @@ typedef
    do { volatile unsigned long _junk;                             \
         CALL_FN_W_7W(_junk,fnptr,arg1,arg2,arg3,arg4,arg5,arg6,arg7); } while (0)
 
-/* ----------------- x86-{linux,darwin,solaris} ---------------- */
+/* ----------------- x86-{freebsd,darwin,solaris} ---------------- */
 
 #if defined(PLAT_x86_linux)  ||  defined(PLAT_x86_darwin) \
     ||  defined(PLAT_x86_solaris)
@@ -1162,7 +1162,7 @@ typedef
 #define VALGRIND_RESTORE_STACK             \
       "movl %%edi,%%esp\n\t"
 
-/* These CALL_FN_ macros assume that on x86-linux, sizeof(unsigned
+/* These CALL_FN_ macros assume that on x86-freebsd, sizeof(unsigned
    long) == 4. */
 
 #define CALL_FN_W_v(lval, orig)                                   \
@@ -1574,7 +1574,7 @@ typedef
 
 #endif /* PLAT_x86_linux || PLAT_x86_darwin || PLAT_x86_solaris */
 
-/* ---------------- amd64-{linux,darwin,solaris} --------------- */
+/* ---------------- amd64-{freebsd,darwin,solaris} --------------- */
 
 #if defined(PLAT_amd64_linux)  ||  defined(PLAT_amd64_darwin) \
     ||  defined(PLAT_amd64_solaris)
@@ -1667,7 +1667,7 @@ typedef
 #define VALGRIND_RESTORE_STACK             \
       "movq %%r14,%%rsp\n\t"
 
-/* These CALL_FN_ macros assume that on amd64-linux, sizeof(unsigned
+/* These CALL_FN_ macros assume that on amd64-freebsd, sizeof(unsigned
    long) == 8. */
 
 /* NB 9 Sept 07.  There is a nasty kludge here in all these CALL_FN_
@@ -1686,7 +1686,7 @@ typedef
    redzone, for the duration of the hidden call, to make it safe.
 
    Probably the same problem afflicts the other redzone-style ABIs too
-   (ppc64-linux); but for those, the stack is
+   (ppc64-freebsd); but for those, the stack is
    self describing (none of this CFI nonsense) so at least messing
    with the stack pointer doesn't give a danger of non-unwindable
    stack. */
@@ -2128,7 +2128,7 @@ typedef
 
 #endif /* PLAT_amd64_linux || PLAT_amd64_darwin || PLAT_amd64_solaris */
 
-/* ------------------------ ppc32-linux ------------------------ */
+/* ------------------------ ppc32-freebsd ------------------------ */
 
 #if defined(PLAT_ppc32_linux)
 
@@ -2173,7 +2173,7 @@ typedef
 #define VALGRIND_RESTORE_STACK             \
       "mr 1,28\n\t"
 
-/* These CALL_FN_ macros assume that on ppc32-linux, 
+/* These CALL_FN_ macros assume that on ppc32-freebsd,
    sizeof(unsigned long) == 4. */
 
 #define CALL_FN_W_v(lval, orig)                                   \
@@ -2628,7 +2628,7 @@ typedef
 
 #endif /* PLAT_ppc32_linux */
 
-/* ------------------------ ppc64-linux ------------------------ */
+/* ------------------------ ppc64-freebsd ------------------------ */
 
 #if defined(PLAT_ppc64be_linux)
 
@@ -2652,7 +2652,7 @@ typedef
 #define VALGRIND_RESTORE_STACK             \
       "mr 1,28\n\t"
 
-/* These CALL_FN_ macros assume that on ppc64-linux, sizeof(unsigned
+/* These CALL_FN_ macros assume that on ppc64-freebsd, sizeof(unsigned
    long) == 8. */
 
 #define CALL_FN_W_v(lval, orig)                                   \
@@ -3185,7 +3185,7 @@ typedef
 
 #endif /* PLAT_ppc64be_linux */
 
-/* ------------------------- ppc64le-linux ----------------------- */
+/* ------------------------- ppc64le-freebsd ----------------------- */
 #if defined(PLAT_ppc64le_linux)
 
 /* ARGREGS: r3 r4 r5 r6 r7 r8 r9 r10 (the rest on stack somewhere) */
@@ -3208,7 +3208,7 @@ typedef
 #define VALGRIND_RESTORE_STACK             \
       "mr 1,28\n\t"
 
-/* These CALL_FN_ macros assume that on ppc64-linux, sizeof(unsigned
+/* These CALL_FN_ macros assume that on ppc64-freebsd, sizeof(unsigned
    long) == 8. */
 
 #define CALL_FN_W_v(lval, orig)                                   \
@@ -3741,7 +3741,7 @@ typedef
 
 #endif /* PLAT_ppc64le_linux */
 
-/* ------------------------- arm-linux ------------------------- */
+/* ------------------------- arm-freebsd ------------------------- */
 
 #if defined(PLAT_arm_linux)
 
@@ -3769,7 +3769,7 @@ typedef
 #define VALGRIND_RESTORE_STACK             \
       "mov sp,  r10\n\t"
 
-/* These CALL_FN_ macros assume that on arm-linux, sizeof(unsigned
+/* These CALL_FN_ macros assume that on arm-freebsd, sizeof(unsigned
    long) == 4. */
 
 #define CALL_FN_W_v(lval, orig)                                   \
@@ -4200,7 +4200,7 @@ typedef
 
 #endif /* PLAT_arm_linux */
 
-/* ------------------------ arm64-linux ------------------------ */
+/* ------------------------ arm64-freebsd ------------------------ */
 
 #if defined(PLAT_arm64_linux)
 
@@ -4222,7 +4222,7 @@ typedef
 #define VALGRIND_RESTORE_STACK             \
       "mov sp,  x21\n\t"
 
-/* These CALL_FN_ macros assume that on arm64-linux,
+/* These CALL_FN_ macros assume that on arm64-freebsd,
    sizeof(unsigned long) == 8. */
 
 #define CALL_FN_W_v(lval, orig)                                   \
@@ -4651,7 +4651,7 @@ typedef
 
 #endif /* PLAT_arm64_linux */
 
-/* ------------------------- s390x-linux ------------------------- */
+/* ------------------------- s390x-freebsd ------------------------- */
 
 #if defined(PLAT_s390x_linux)
 
@@ -5139,7 +5139,7 @@ typedef
 
 #endif /* PLAT_s390x_linux */
 
-/* ------------------------- mips32-linux ----------------------- */
+/* ------------------------- mips32-freebsd ----------------------- */
  
 #if defined(PLAT_mips32_linux)
 
@@ -5148,7 +5148,7 @@ typedef
 "$7", "$8", "$9", "$10", "$11", "$12", "$13", "$14", "$15", "$24", \
 "$25", "$31"
 
-/* These CALL_FN_ macros assume that on mips-linux, sizeof(unsigned
+/* These CALL_FN_ macros assume that on mips-freebsd, sizeof(unsigned
    long) == 4. */
 
 #define CALL_FN_W_v(lval, orig)                                   \
@@ -5678,7 +5678,7 @@ typedef
 
 #endif /* PLAT_mips32_linux */
 
-/* ------------------------- mips64-linux ------------------------- */
+/* ------------------------- mips64-freebsd ------------------------- */
 
 #if defined(PLAT_mips64_linux)
 
@@ -5687,7 +5687,7 @@ typedef
 "$7", "$8", "$9", "$10", "$11", "$12", "$13", "$14", "$15", "$24", \
 "$25", "$31"
 
-/* These CALL_FN_ macros assume that on mips-linux, sizeof(unsigned
+/* These CALL_FN_ macros assume that on mips-freebsd, sizeof(unsigned
    long) == 4. */
 
 #define CALL_FN_W_v(lval, orig)                                   \

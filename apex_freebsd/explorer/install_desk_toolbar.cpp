@@ -1,5 +1,5 @@
 #include "framework.h"
-#include "acme/node/linux/registry.h"
+#include "acme/node/freebsd/registry.h"
 #include <shlobj.h>
 #include <string.h>
 #include "explorer_restart.h"
@@ -229,7 +229,7 @@ bool position_desk_toolbar1()
          //while (iCount > 0)
          {
 
-            ::linux::registry::key k(HKEY_CURRENT_USER, "Software\\Microsoft\\Windows\\CurrentVersion\\Explorer\\Streams\\Desktop", false);
+            ::freebsd::registry::key k(HKEY_CURRENT_USER, "Software\\Microsoft\\Windows\\CurrentVersion\\Explorer\\Streams\\Desktop", false);
 
             k.get("TaskbarWinXP", m2);
 
@@ -396,7 +396,7 @@ bool position_desk_toolbar2()
    //sleep(1_s);
    //if (SUCCEEDED(hr))
    {
-      ::linux::registry::key k;
+      ::freebsd::registry::key k;
 
       if (k._open(HKEY_CURRENT_USER, "Software\\Microsoft\\Windows\\CurrentVersion\\Explorer\\Discardable\\PostSetup\\Component Categories64\\{00021492-0000-0000-C000-000000000046}\\Enum", false))
       {
@@ -437,7 +437,7 @@ bool position_desk_toolbar2()
 
          memory m;
 
-         ::linux::registry::key k;
+         ::freebsd::registry::key k;
 
          if (k._open(HKEY_CURRENT_USER, "Software\\Microsoft\\Windows\\CurrentVersion\\Shell Extensions\\Cached", false))
          {
@@ -483,7 +483,7 @@ bool position_desk_toolbar2()
 
          memory m2;
 
-         ::linux::registry::key k(HKEY_CURRENT_USER, "Software\\Microsoft\\Windows\\CurrentVersion\\Explorer\\Streams\\Desktop", false);
+         ::freebsd::registry::key k(HKEY_CURRENT_USER, "Software\\Microsoft\\Windows\\CurrentVersion\\Explorer\\Streams\\Desktop", false);
 
          k._get("TaskbarWinXP", m2);
 

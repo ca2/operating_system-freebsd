@@ -1,6 +1,6 @@
 #include "framework.h"
 #include "gnome_gnome.h"
-#include "aura/os/linux/appindicator.h"
+#include "aura/os/freebsd/appindicator.h"
 
 
 namespace user
@@ -54,7 +54,7 @@ namespace user
 namespace node_kde{
 
 
-   void appindicator_destroy(linux::appindicator * pindicator)
+   void appindicator_destroy(freebsd::appindicator * pindicator)
    {
 
       delete pindicator;

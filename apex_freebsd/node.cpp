@@ -4,7 +4,7 @@
 #include "acme/filesystem/filesystem/acme_path.h"
 //#include "acme_linux/acme.h"
 #include "node.h"
-#include "aura/os/linux/_c.h"
+#include "aura/os/freebsd/_c.h"
 
 
 bool __node_node_pre_init();
@@ -53,7 +53,7 @@ namespace freebsd
       ::e_status node::initialize(::object * pobject)
       {
 
-         auto estatus = ::linux::acme::node::initialize(pobject);
+         auto estatus = ::freebsd::acme::node::initialize(pobject);
 
          if (!estatus)
          {
@@ -88,7 +88,7 @@ namespace freebsd
 //      try
 //      {
 //
-//         ::linux::registry::key key;
+//         ::freebsd::registry::key key;
 //
 //         key.open(HKEY_CURRENT_USER, "Software\\Microsoft\\Windows\\CurrentVersion\\Themes\\Personalize");
 //
@@ -129,7 +129,7 @@ namespace freebsd
 //      try
 //      {
 //
-//         ::linux::registry::key key;
+//         ::freebsd::registry::key key;
 //
 //         key.open(HKEY_CURRENT_USER, "Software\\Microsoft\\Windows\\CurrentVersion\\Themes\\Personalize");
 //
@@ -193,7 +193,7 @@ namespace freebsd
 //   void node::set_console_colors(::u32 dwScreenColors, ::u32 dwPopupColors, ::u32 dwWindowAlpha)
 //   {
 //
-//      ::linux::registry::key key(HKEY_CURRENT_USER, "Console", true);
+//      ::freebsd::registry::key key(HKEY_CURRENT_USER, "Console", true);
 //
 //      key._set("ScreenColors", dwScreenColors);
 //      key._set("PopupColors", dwPopupColors);
@@ -206,7 +206,7 @@ namespace freebsd
 //   ::e_status node::set_system_dark_mode1(bool bSet)
 //   {
 //
-//      ::linux::registry::key key(HKEY_CURRENT_USER, "Software\\Microsoft\\Windows\\CurrentVersion\\Themes\\Personalize", true);
+//      ::freebsd::registry::key key(HKEY_CURRENT_USER, "Software\\Microsoft\\Windows\\CurrentVersion\\Themes\\Personalize", true);
 //
 //      ::u32 dwSystemUseLightTheme;
 //      if (bSet)
@@ -227,7 +227,7 @@ namespace freebsd
 //   ::e_status node::set_app_dark_mode1(bool bSet)
 //   {
 //
-//      ::linux::registry::key key(HKEY_CURRENT_USER, "Software\\Microsoft\\Windows\\CurrentVersion\\Themes\\Personalize", true);
+//      ::freebsd::registry::key key(HKEY_CURRENT_USER, "Software\\Microsoft\\Windows\\CurrentVersion\\Themes\\Personalize", true);
 //
 //      ::u32 dwAppsUseLightTheme;
 //      if (bSet)
@@ -488,7 +488,7 @@ namespace freebsd
 //      try
 //      {
 //
-//         ::linux::registry::key key(HKEY_LOCAL_MACHINE, "SOFTWARE\\Mozilla\\Mozilla Firefox");
+//         ::freebsd::registry::key key(HKEY_LOCAL_MACHINE, "SOFTWARE\\Mozilla\\Mozilla Firefox");
 //
 //         string strCurrentVersion;
 //

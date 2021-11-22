@@ -189,7 +189,7 @@ namespace desktop_environment_gnome
 
       ::node_gnome::g_defer_init();
 
-      auto estatus = ::aura::linux::node::initialize(pobject);
+      auto estatus = ::aura::freebsd::node::initialize(pobject);
 
       if(!estatus)
       {
@@ -215,7 +215,7 @@ namespace desktop_environment_gnome
 //   void node::os_calc_user_dark_mode()
 //   {
 //
-//      ::linux::aura::node::os_calc_user_dark_mode();
+//      ::freebsd::aura::node::os_calc_user_dark_mode();
 //
 //   }
 
@@ -568,10 +568,10 @@ namespace desktop_environment_gnome
 //   }
 //
 //
-//   void node::appindicator_destroy(::linux::appindicator * pappindicator)
+//   void node::appindicator_destroy(::freebsd::appindicator * pappindicator)
 //   {
 //
-//      //::linux::appindicator_destroy(pappindicator);
+//      //::freebsd::appindicator_destroy(pappindicator);
 //
 //      delete pappindicator;
 //

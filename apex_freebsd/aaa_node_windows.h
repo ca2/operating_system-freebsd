@@ -1,7 +1,7 @@
 #pragma once
 
 
-#include "acme/node/linux/_node_linux.h"
+#include "acme/node/freebsd/_node_linux.h"
 
 
 //#include "exception.h"
@@ -24,7 +24,7 @@ string get_error_message(::u32 dwError);
 //#include "ip_enum.h"
 
 
-#define NODE_THREAD(pthread) (dynamic_cast < ::linux::thread * > (dynamic_cast < thread * >(pthread)))
+#define NODE_THREAD(pthread) (dynamic_cast < ::freebsd::thread * > (dynamic_cast < thread * >(pthread)))
 
 
 //
@@ -113,7 +113,7 @@ i32 CLASS_DECL_APEX_FREEBSD __linux_main(::apex::system * psystem, ::create * pm
 //
 //   class thread;
 //
-//   class linux
+//   class freebsd
 //   {
 //      i32 function();
 //   };

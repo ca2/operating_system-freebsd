@@ -13,7 +13,7 @@ namespace desktop_environment_xfce
 
 
    class CLASS_DECL_DESKTOP_ENVIRONMENT_XFCE node :
-      virtual public ::aura::linux::node,
+      virtual public ::aura::freebsd::node,
       virtual public ::node_xfce::node
    {
    public:
@@ -71,7 +71,7 @@ namespace desktop_environment_xfce
 
       //virtual ::node_linux::appindicator * appindicator_allocate() override;
 
-      //virtual void appindicator_destroy(::linux::appindicator * pappindicator) override;
+      //virtual void appindicator_destroy(::freebsd::appindicator * pappindicator) override;
 
       //virtual void enum_display_monitors(::aura::session * psession) override;
 
