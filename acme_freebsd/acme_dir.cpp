@@ -222,7 +222,7 @@ namespace freebsd
 
    #else
 
-      return m_psystem->m_pacmepath->app_module().folder(4);
+      return m_psystem->m_pacmepath->module().folder(4);
 
    #endif
 
