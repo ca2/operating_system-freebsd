@@ -141,15 +141,22 @@ namespace freebsd
       }
 
 
-      bool interprocess_communication_tx::send(i32 message,void * p,i32 iLen,duration durationTimeout)
+      ::e_status interprocess_communication_tx::send(i32 message,void * p,i32 iLen,duration durationTimeout)
       {
 
          if(message == 1024)
+         {
+
             return false;
 
+         }
 
          if(!is_tx_ok())
+         {
+
             return false;
+
+         }
 
          memory m;
 
