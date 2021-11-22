@@ -32,7 +32,7 @@ inline bool freebsd_dir_myspace(char ch)
 
    path = pathHome / ".config/user-dirs.dirs";
 
-   string strDirs = file_as_string(path);
+   string strDirs = m_pacmefile->as_string(path);
 
    string_array stra;
 
