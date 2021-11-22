@@ -78,15 +78,15 @@ namespace apex
          //virtual string multimedia_audio_get_default_library_name() override;
 
 
-         virtual bool is_application_installed(const ::file::path & pathExe, string strAppId, string & strBuild,
+         bool is_application_installed(const ::file::path & pathExe, string strAppId, string & strBuild,
                                                const ::string & strPlatform, const ::string & strConfiguration,
                                                const ::string & strLocale, const ::string & strSchema) override;
 
-         virtual bool set_application_installed(const ::file::path & pathExe, string strAppId, const ::string & strBuild,
+         bool set_application_installed(const ::file::path & pathExe, string strAppId, const ::string & strBuild,
                                                 const ::string & strPlatform, const ::string & strConfiguration,
                                                 const ::string & strLocale, const ::string & strSchema) override;
 
-         virtual bool set_last_run_application_path(const string & strAppId) override;
+         ::e_status set_last_run_application_path(const string & strAppId) override;
 
 
          //virtual ::u32       get_file_attributes(const char* pFileName);
