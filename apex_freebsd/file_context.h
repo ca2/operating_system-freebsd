@@ -29,7 +29,7 @@ namespace freebsd
       virtual ::file_transport get_file(const ::payload & varFile, const ::file::e_open & eopen) override;
 
 
-      virtual bool is_link(string strPath) override;
+      //virtual bool is_link(string strPath) override;
 
 
       virtual ::file::path dropbox_info_network_payload() override;

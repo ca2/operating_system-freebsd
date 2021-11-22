@@ -88,12 +88,12 @@ namespace freebsd
    }
 
 
-   bool file_context::is_link(string strPath)
-   {
-
-      return file_path_is_link(strPath);
-
-   }
+//   bool file_context::is_link(string strPath)
+//   {
+//
+//      return file_path_is_link(strPath);
+//
+//   }
 
 
    ::file::path file_context::dropbox_info_json()
