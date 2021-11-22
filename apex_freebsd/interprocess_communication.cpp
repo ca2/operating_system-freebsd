@@ -113,7 +113,7 @@ namespace freebsd
 
          pdata->size          = iLen;
 
-         ::memcpy_dup(pdata->data, pszMessage, iLen);
+         ::memcpy_dup(pdata->data, strMessage.c_str(), iLen);
 
          int result = 0;
 
