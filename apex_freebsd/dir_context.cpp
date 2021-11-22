@@ -319,14 +319,7 @@ namespace freebsd
    bool dir_context::is(const ::file::path & path)
    {
 
-      if(m_psystem->m_pacmedir->is(path))
-      {
-
-         return true;
-
-      }
-
-      bool bIsDir = m_psystem->m_pacmedir->(path);
+      bool bIsDir = m_psystem->m_pacmedir->is(path);
 
       return bIsDir;
 
