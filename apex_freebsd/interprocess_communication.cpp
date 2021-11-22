@@ -47,17 +47,21 @@ namespace freebsd
 
          }
 
-         if(!file_exists(pszChannel))
+         if(!file_exists(strChannel))
          {
 
-            file_put_contents(pszChannel, pszChannel);
+            file_put_contents(strChannel, strChannel);
 
          }
 
-         m_key = ftok(pszChannel,'c');
+         m_key = ftok(strChannel,'c');
 
          if(m_key == 0)
+         {
+
             return false;
+
+         }
 
          if((m_iQueue = msgget(m_key,IPC_CREAT | 0660)) == -1)
          {
@@ -66,7 +70,7 @@ namespace freebsd
 
          }
 
-         m_strBaseChannel = pszChannel;
+         m_strBaseChannel = strChannel;
 
          return true;
 

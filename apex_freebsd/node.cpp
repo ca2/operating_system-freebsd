@@ -53,7 +53,7 @@ namespace apex
       ::e_status node::initialize(::object * pobject)
       {
 
-         auto estatus = ::freebsd::acme::node::initialize(pobject);
+         auto estatus = ::acme::freebsd::node::initialize(pobject);
 
          if (!estatus)
          {

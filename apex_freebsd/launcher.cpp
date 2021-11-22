@@ -19,7 +19,7 @@ namespace freebsd
 
       string strPath(get_executable_path());
 
-      string strDir(dir::name(strPath));
+      string strDir(file_path_folder(strPath));
 
 
       /*string strPath

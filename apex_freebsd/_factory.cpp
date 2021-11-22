@@ -1,18 +1,11 @@
 #include "framework.h"
-#include "apex/operating_system.h"
 #include "apex/platform/launcher.h"
 #include "launcher.h"
-#include "dir_system.h"
-#include "dir_context.h"
-#include "file_system.h"
-#include "file_context.h"
-#include "os_context.h"
-#include "service_handler.h"
 #include "crypto.h"
 #include "ip_enum.h"
-#include "interprocess_communication.h"
-#include "apex/platform/node.h"
-#include "node.h"
+#include "apex/parallelization/service.h"
+#include "apex/parallelization/service_handler.h"
+#include "service_handler.h"
 
 
 __FACTORY_EXPORT void apex_posix_factory(::factory::factory * pfactory);
