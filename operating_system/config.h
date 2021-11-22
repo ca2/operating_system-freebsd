@@ -28,7 +28,7 @@
 #define CLASS_DECL_EXPORT
 #define CLASS_DECL_IMPORT
 #define CLASS_DECL_THREAD __thread
-#define __FACTORY_EXPORT
+#define __FACTORY_EXPORT extern "C"
 
 
 #define __PLATFORM   		"freebsd"
