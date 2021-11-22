@@ -441,7 +441,7 @@ namespace freebsd
             fork([this, mem, lRequest]()
             {
 
-               memory m2(mem);
+               ::memory m2(mem);
 
                if(lRequest == 1024)
                {

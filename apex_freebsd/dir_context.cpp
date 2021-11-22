@@ -259,7 +259,7 @@ namespace freebsd
 
          ::file::patha stra;
 
-         ::dir::ls(stra, listing.m_pathFinal);
+         m_psystem->m_pacmedir->ls(stra, listing.m_pathFinal);
 
          for(i32 i = 0; i < stra.get_count(); i++)
          {
