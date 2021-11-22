@@ -25,7 +25,7 @@ namespace apex
 
          node();
 
-         virtual ~node();
+         ~node() override;
 
 
          virtual ::e_status initialize(::object * pobject) override;
