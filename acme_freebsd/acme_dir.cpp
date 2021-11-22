@@ -222,7 +222,7 @@ namespace freebsd
 
    #else
 
-      return m_psystem->m_pacmepath->module().folder(4);
+      return m_psystem->m_pacmefile->module().folder(4);
 
    #endif
 
@@ -253,7 +253,7 @@ namespace freebsd
 
    #else
 
-      return m_psystem->m_pacmepath->module().folder(4);
+      return m_psystem->m_pacmefile->module().folder(4);
 
    #endif
 
@@ -289,7 +289,7 @@ namespace freebsd
 
    #else
 
-      return m_psystem->m_pacmepath->module().folder(4);
+      return m_psystem->m_pacmefile->module().folder(4);
 
    #endif
 
@@ -299,7 +299,7 @@ namespace freebsd
    ::file::path acme_dir::beforeca2()
    {
 
-      return dir::name(install());
+      return file_path_folder(install());
 
    }
 
@@ -339,15 +339,10 @@ namespace freebsd
    }
 
 
-
-
-   #ifdef _UWP
-
-
-      void acme_dir::set_path_install_folder(const ::string & strPath)
+   void acme_dir::set_path_install_folder(const ::string & strPath)
    {
 
-      m_pathInstallFolder = pszPath;
+      m_pathInstallFolder = strPath;
 
    }
 

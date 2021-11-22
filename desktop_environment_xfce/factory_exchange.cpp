@@ -2,22 +2,22 @@
 
 
 extern "C"
-void aura_linux_factory_exchange(::factory_map * pfactorymap);
+void aura_linux_factory_exchange(::factory::factory * pfactory);
 
 
 extern "C"
-void node_xfce_factory_exchange(::factory_map * pfactorymap);
+void node_xfce_factory_exchange(::factory::factory * pfactory);
 
 
 extern "C"
-void desktop_environment_xfce_factory_exchange(::factory_map * pfactorymap)
+void desktop_environment_xfce_factory_exchange(::factory::factory * pfactory)
 {
 
-   aura_linux_factory_exchange(pfactorymap);
+   aura_linux_factory_exchange(pfactory);
 
-   node_xfce_factory_exchange(pfactorymap);
+   node_xfce_factory_exchange(pfactory);
 
-   pfactorymap->create_factory < ::desktop_environment_xfce::node, ::acme::node > ();
+   pfactory->add_factory_item < ::desktop_environment_xfce::node, ::acme::node > ();
 
 
 }

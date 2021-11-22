@@ -16,12 +16,12 @@ namespace music
          factory_exchange::factory_exchange()
          {
 
-            //create_factory < sequence, ::music::midi::sequence > ();
-            //create_factory < file, ::music::midi::file > ();
-            //create_factory < sequence_thread, ::music::midi::sequence_thread > ();
-            //create_factory < player, ::music::midi::player > ();
-            // create_factory < ::music::midi_alsa::player::player_interface , ::music::midi::player::player_interface > ();
-            create_factory < midi, ::music::midi::midi > ();
+            //add_factory_item < sequence, ::music::midi::sequence > ();
+            //add_factory_item < file, ::music::midi::file > ();
+            //add_factory_item < sequence_thread, ::music::midi::sequence_thread > ();
+            //add_factory_item < player, ::music::midi::player > ();
+            // add_factory_item < ::music::midi_alsa::player::player_interface , ::music::midi::player::player_interface > ();
+            add_factory_item < midi, ::music::midi::midi > ();
 
          }
 
@@ -45,7 +45,7 @@ void music_midi_alsa_factory_exchange()
 {
 
    //::music::midi::alsa::factory_exchange factoryexchange();
-   create_factory < ::music::midi::alsa::midi, ::music::midi::midi > ();
+   add_factory_item < ::music::midi::alsa::midi, ::music::midi::midi > ();
 
 }
 

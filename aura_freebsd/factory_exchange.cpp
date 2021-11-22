@@ -5,16 +5,16 @@
 //#include "aura.h"
 
 extern "C"
-void apex_linux_factory_exchange(::factory_map * pfactorymap);
+void apex_linux_factory_exchange(::factory::factory * pfactory);
 
 
 extern "C"
-void aura_linux_factory_exchange(::factory_map * pfactorymap)
+void aura_linux_factory_exchange(::factory::factory * pfactory)
 {
 
-   apex_linux_factory_exchange( pfactorymap);
+   apex_linux_factory_exchange( pfactory);
 
-   pfactorymap->create_factory < ::linux::aura::node, ::acme::node >();
+   pfactory->add_factory_item < ::linux::aura::node, ::acme::node >();
 
 }
 

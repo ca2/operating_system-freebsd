@@ -22,54 +22,54 @@
 
 
 extern "C"
-void apex_posix_factory_exchange(::factory_map * pfactorymap);
+void apex_posix_factory_exchange(::factory::factory * pfactory);
 
 
 extern "C"
-void apex_linux_factory_exchange(::factory_map * pfactorymap)
+void apex_linux_factory_exchange(::factory::factory * pfactory)
 {
 
-   apex_posix_factory_exchange(pfactorymap);
+   apex_posix_factory_exchange(pfactory);
 
-   pfactorymap->create_factory < ::linux::dir_system, ::dir_system >();
-   pfactorymap->create_factory < ::linux::file_system, ::file_system >();
+   pfactory->add_factory_item < ::linux::dir_system, ::dir_system >();
+   pfactory->add_factory_item < ::linux::file_system, ::file_system >();
 
-   pfactorymap->create_factory < ::linux::dir_context, ::dir_context >();
-   pfactorymap->create_factory < ::linux::file_context, ::file_context >();
+   pfactory->add_factory_item < ::linux::dir_context, ::dir_context >();
+   pfactory->add_factory_item < ::linux::file_context, ::file_context >();
 
-   //create_factory < ::linux::stdio_file, ::file::text_file >();
-   //create_factory < ::linux::file, ::file::file >();
-   pfactorymap->create_factory < ::linux::os_context, ::os_context >();
-   //pfactorymap->create_factory < ::linux::pipe, ::process::pipe >();
-   //pfactorymap->create_factory < ::linux::process, ::process::process >();
+   //add_factory_item < ::linux::stdio_file, ::file::text_file >();
+   //add_factory_item < ::linux::file, ::file::file >();
+   pfactory->add_factory_item < ::linux::os_context, ::os_context >();
+   //pfactory->add_factory_item < ::linux::pipe, ::process::pipe >();
+   //pfactory->add_factory_item < ::linux::process, ::process::process >();
 
-   //create_factory < ::linux::console, ::console::console >();
-   pfactorymap->create_factory < ::linux::crypto, ::crypto::crypto >();
-   pfactorymap->create_factory < ::linux::ip_enum, ::net::ip_enum >();
-
-
-   pfactorymap->create_factory < ::linux::interprocess_communication_base, ::interprocess_communication::base >();
-   pfactorymap->create_factory < ::linux::interprocess_communication_rx, ::interprocess_communication::rx >();
-   pfactorymap->create_factory < ::linux::interprocess_communication_tx, ::interprocess_communication::tx >();
-   //create_factory < ::linux::interprocess_communication, ::interprocess_communication::interprocess_communication >();
+   //add_factory_item < ::linux::console, ::console::console >();
+   pfactory->add_factory_item < ::linux::crypto, ::crypto::crypto >();
+   pfactory->add_factory_item < ::linux::ip_enum, ::net::ip_enum >();
 
 
-   //create_factory < ::linux::buffer, ::graphics::graphics >();
-   //create_factory < ::linux::interaction_impl, ::user::interaction_impl >();
+   pfactory->add_factory_item < ::linux::interprocess_communication_base, ::interprocess_communication::base >();
+   pfactory->add_factory_item < ::linux::interprocess_communication_rx, ::interprocess_communication::rx >();
+   pfactory->add_factory_item < ::linux::interprocess_communication_tx, ::interprocess_communication::tx >();
+   //add_factory_item < ::linux::interprocess_communication, ::interprocess_communication::interprocess_communication >();
 
-   //pfactorymap->create_factory < ::file::os_watcher, ::file::watcher >();
-   //pfactorymap->create_factory < ::file::os_watch, ::file::watch >();
 
-   pfactorymap->create_factory < ::linux::file_context, ::file_context >();
-   pfactorymap->create_factory < ::linux::service_handler, ::service_handler >();
+   //add_factory_item < ::linux::buffer, ::graphics::graphics >();
+   //add_factory_item < ::linux::interaction_impl, ::user::interaction_impl >();
 
-   pfactorymap->create_factory < ::linux::apex::node, ::acme::node >();
+   //pfactory->add_factory_item < ::file::os_watcher, ::file::watcher >();
+   //pfactory->add_factory_item < ::file::os_watch, ::file::watch >();
 
-   //create_factory < ::linux::copydesk, ::user::cop
+   pfactory->add_factory_item < ::linux::file_context, ::file_context >();
+   pfactory->add_factory_item < ::linux::service_handler, ::service_handler >();
+
+   pfactory->add_factory_item < ::linux::apex::node, ::acme::node >();
+
+   //add_factory_item < ::linux::copydesk, ::user::cop
    // 
    // 
    // ydesk >();
-   ////create_factory < ::linux::shell, ::user::shell >();
+   ////add_factory_item < ::linux::shell, ::user::shell >();
 
 
 }

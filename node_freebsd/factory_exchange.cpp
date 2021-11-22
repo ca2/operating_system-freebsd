@@ -4,7 +4,7 @@
 
 
 extern "C"
-void node_linux_factory_exchange(::factory_map * pfactorymap)
+void node_linux_factory_exchange(::factory::factory * pfactory)
 {
 
    auto edesktop = get_edesktop();
@@ -14,30 +14,30 @@ void node_linux_factory_exchange(::factory_map * pfactorymap)
    if (edesktop & ::user::e_desktop_kde)
    {
 
-      estatus = pfactorymap->m_psystem->do_factory_exchange("desktop_environment", "kde");
+      estatus = pfactory->m_psystem->do_factory_exchange("desktop_environment", "kde");
 
    }
    else if (edesktop & ::user::e_desktop_gnome)
    {
 
-      estatus = pfactorymap->m_psystem->do_factory_exchange("desktop_environment", "gnome");
+      estatus = pfactory->m_psystem->do_factory_exchange("desktop_environment", "gnome");
 
    }
    else if (edesktop & ::user::e_desktop_xfce)
    {
 
-      estatus = pfactorymap->m_psystem->do_factory_exchange("desktop_environment", "xfce");
+      estatus = pfactory->m_psystem->do_factory_exchange("desktop_environment", "xfce");
 
    }
    else
    {
 
-      estatus = pfactorymap->m_psystem->do_factory_exchange("desktop_environment", "gnome");
+      estatus = pfactory->m_psystem->do_factory_exchange("desktop_environment", "gnome");
 
       if (!estatus)
       {
 
-         estatus = pfactorymap->m_psystem->do_factory_exchange("desktop_environment", "kde");
+         estatus = pfactory->m_psystem->do_factory_exchange("desktop_environment", "kde");
 
       }
 
@@ -50,11 +50,11 @@ void node_linux_factory_exchange(::factory_map * pfactorymap)
 //#endif
 
 
-//      apex_linux_factory_exchange( pfactorymap);
+//      apex_linux_factory_exchange( pfactory);
 //
-//   aura_posix_factory_exchange( pfactorymap);
+//   aura_posix_factory_exchange( pfactory);
 //
-//   pfactorymap->create_factory < ::aura::linux::node, ::acme::node >();
+//   pfactory->add_factory_item < ::aura::linux::node, ::acme::node >();
 
 }
 

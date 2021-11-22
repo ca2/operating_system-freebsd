@@ -2,10 +2,10 @@
 
 
 extern "C"
-void node_linux_factory_exchange(::factory_map * pfactorymap)
+void node_linux_factory_exchange(::factory::factory * pfactory)
 {
 
-   create_factory < node_linux::node, ::acme::node >();
+   add_factory_item < node_linux::node, ::acme::node >();
 
 }
 
