@@ -16,7 +16,7 @@ namespace freebsd
 
 
       file_context();
-      virtual ~file_context();
+      ~file_context() override;
 
 
       virtual ::e_status initialize(::object * pobject) override;
@@ -26,13 +26,13 @@ namespace freebsd
       virtual ::e_status init_context() override;
 
 
-      virtual ::file_result get_file(const ::payload & varFile, const ::file::e_open & eopen) override;
+      virtual ::file_transport get_file(const ::payload & varFile, const ::file::e_open & eopen) override;
 
 
       virtual bool is_link(string strPath) override;
 
 
-      virtual ::file::path dropbox_info_json() override;
+      virtual ::file::path dropbox_info_network_payload() override;
 
 
    };
