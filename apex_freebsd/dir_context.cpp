@@ -359,7 +359,7 @@ namespace freebsd
          return true; // assume empty string is root_ones directory
       }
 
-      if(thread_is_set(e_thread_flag_compress_is_dir) && iLast >= 3  && !ansi_count_compare_ci(&((const char *) str)[iLast - 3], ".zip", 4))
+      if(task_flag().is_set(e_task_flag_compress_is_dir) && iLast >= 3  && !ansi_count_compare_ci(&((const char *) str)[iLast - 3], ".zip", 4))
       {
 
          return true;
@@ -477,7 +477,7 @@ namespace freebsd
       for(; i < stra.get_size(); i++)
       {
 
-         if(!::dir::mkdir(stra[i]))
+         if(!m_psystem->m_pacmedir->create(stra[i]))
          {
 
             ::e_status estatus = ::get_last_status();
@@ -519,7 +519,7 @@ namespace freebsd
 
                }
 
-               if(::dir::mkdir(stra[i]))
+               if(m_psystem->m_pacmedir->create(stra[i]))
                {
 
                }

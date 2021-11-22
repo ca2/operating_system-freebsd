@@ -452,7 +452,7 @@ namespace freebsd
                else
                {
 
-                  on_interprocess_receive(lRequest, memoryCopy);
+                  on_interprocess_receive((int) lRequest, (memory &&) memoryCopy);
 
                }
 
