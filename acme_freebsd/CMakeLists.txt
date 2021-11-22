@@ -9,8 +9,8 @@ list(APPEND library_source
         acme_dir.h
         acme_path.cpp
         acme_path.h
-        factory_exchange.cpp
-        factory_exchange.h
+        _factory.cpp
+
         framework.cpp
         framework.h
         node.cpp

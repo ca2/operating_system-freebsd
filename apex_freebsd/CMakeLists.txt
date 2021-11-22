@@ -11,8 +11,8 @@ list(APPEND library_source
     dir_context.h
     dir_system.cpp
     dir_system.h
-    factory_exchange.cpp
-    factory_exchange.h
+    _factory.cpp
+
     file_context.cpp
     file_context.h
     file_system.cpp

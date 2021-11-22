@@ -8,7 +8,7 @@ list(APPEND library_source
     _const.h
    appindicator.cpp
    appindicator.h
-    factory_exchange.cpp
+    _factory.cpp
     node.cpp
     node.h
     #../platform/x_window.cpp

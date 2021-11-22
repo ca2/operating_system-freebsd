@@ -5,7 +5,7 @@ project(node_freebsd CXX)
 list(APPEND library_source
     _.cpp
     _.h
-    factory_exchange.cpp
+    _factory.cpp
     )
 
 

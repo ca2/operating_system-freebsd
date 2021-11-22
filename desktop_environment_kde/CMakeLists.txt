@@ -14,8 +14,8 @@ list(APPEND library_source
    #copydesk.cpp
    #copydesk.h
    #enum_display_monitors.cpp
-   factory_exchange.cpp
-   factory_exchange.h
+   _factory.cpp
+
    #framework.cpp
    #framework.h
    #gdk.cpp
