@@ -596,51 +596,51 @@ namespace apex
 //   }
 
 
-      bool node::is_application_installed(const ::file::path & pathExe, string strAppId, string & strBuild,
-                                          const ::string & strPlatform, const ::string & strConfiguration,
-                                          const ::string & strLocale, const ::string & strSchema)
-      {
-
-         ::file::path path;
-
-         path = m_psystem->m_papexsystem->m_pdirsystem->application_installer_folder(pathExe, strAppId, pszPlatform,
-                                                                                     pszConfiguration, pszLocale,
-                                                                                     pszSchema) / "installed.txt";
-
-         strBuild = file_as_string(path);
-
-         return strBuild.has_char();
-
-      }
-
-
-      bool node::set_application_installed(const ::file::path & pathExe, string strAppId, const ::string & strBuild,
-                                           const ::string & strPlatform, const ::string & strConfiguration,
-                                           const ::string & strLocale, const ::string & strSchema)
-      {
-
-         ::file::path path;
-
-         path = m_psystem->m_papexsystem->m_pdirsystem->application_installer_folder(pathExe, strAppId, pszPlatform,
-                                                                                     pszConfiguration, pszLocale,
-                                                                                     pszSchema) / "installed.txt";
-
-         return file_put_contents(path, pszBuild);
-
-      }
-
-s
-      ::e_statu node::set_last_run_application_path(const string & strAppId)
-      {
-
-         ::file::path path = m_psystem->m_pacmepath->app_module();
-
-         ::file::path pathFile = m_psystem->m_papexsystem->m_pdirsystem->get_last_run_application_path_file(strAppId);
-
-         return file_put_contents(pathFile, path);
-
-      }
-
+//      bool node::is_application_installed(const ::file::path & pathExe, string strAppId, string & strBuild,
+//                                          const ::string & strPlatform, const ::string & strConfiguration,
+//                                          const ::string & strLocale, const ::string & strSchema)
+//      {
+//
+//         ::file::path path;
+//
+//         path = m_psystem->m_papexsystem->m_pdirsystem->application_installer_folder(pathExe, strAppId, pszPlatform,
+//                                                                                     pszConfiguration, pszLocale,
+//                                                                                     pszSchema) / "installed.txt";
+//
+//         strBuild = file_as_string(path);
+//
+//         return strBuild.has_char();
+//
+//      }
+//
+//
+//      bool node::set_application_installed(const ::file::path & pathExe, string strAppId, const ::string & strBuild,
+//                                           const ::string & strPlatform, const ::string & strConfiguration,
+//                                           const ::string & strLocale, const ::string & strSchema)
+//      {
+//
+//         ::file::path path;
+//
+//         path = m_psystem->m_papexsystem->m_pdirsystem->application_installer_folder(pathExe, strAppId, pszPlatform,
+//                                                                                     pszConfiguration, pszLocale,
+//                                                                                     pszSchema) / "installed.txt";
+//
+//         return file_put_contents(path, pszBuild);
+//
+//      }
+//
+//s
+//      ::e_statu node::set_last_run_application_path(const string & strAppId)
+//      {
+//
+//         ::file::path path = m_psystem->m_pacmepath->app_module();
+//
+//         ::file::path pathFile = m_psystem->m_papexsystem->m_pdirsystem->get_last_run_application_path_file(strAppId);
+//
+//         return file_put_contents(pathFile, path);
+//
+//      }
+//
 
 
    } // namespace freebsd

@@ -134,27 +134,27 @@ namespace freebsd
 
          ::output_debug_string("channel: \"" +m_strBaseChannel+ "\"\n");
 
-         ::output_debug_string("message: \"" +string(pszMessage)+ "\"\n");
+         ::output_debug_string("message: \"" +string(strMessage)+ "\"\n");
 
          return true;
 
       }
 
 
-      ::e_status interprocess_communication_tx::send(i32 message,void * p,i32 iLen,duration durationTimeout)
+      ::e_status interprocess_communication_tx::send(i32 message, void * p, i32 iLen, const duration & durationTimeout)
       {
 
          if(message == 1024)
          {
 
-            return false;
+            return error_failed;
 
          }
 
          if(!is_tx_ok())
          {
 
-            return false;
+            return error_failed;
 
          }
 
@@ -174,7 +174,7 @@ namespace freebsd
 
                   i32 result;
 
-                  ::memcpy_dup(data.data, pszMessage, data.size_i32);
+                  ::memcpy_dup(data.data, strMessage, data.size_i32);
 
                   if((result = msgsnd(m_iQueue,&data,length,0)) == -1)
                   {
@@ -191,11 +191,11 @@ namespace freebsd
          if((result = msgsnd(m_iQueue,pdata,m.get_size() - sizeof(long),0)) == -1)
          {
 
-            return false;
+            return error_failed;
 
          }
 
-         return true;
+         return ::success;
 
       }
 
@@ -223,29 +223,31 @@ namespace freebsd
       }
 
 
-      bool interprocess_communication_rx::create(const ::string & strChannel)
+      ::e_status interprocess_communication_rx::create(const ::string & strChannel)
       {
 
-
-
-         if(!file_exists(pszChannel))
+         if(!file_exists(strChannel))
          {
 
-            file_put_contents(pszChannel, pszChannel);
+            m_psystem->m_pacmefile->put_contents(strChannel, strChannel);
 
          }
 
-
-
-         m_key = ftok(pszChannel,'c');
+         m_key = ftok(strChannel,'c');
 
          if(m_key == 0)
-            return false;
+         {
+
+            return error_failed;
+
+         }
 
          //if((m_iQueue = msgget(m_key,IPC_CREAT | IPC_EXCL | 0660)) == -1)
          if((m_iQueue = msgget(m_key,IPC_CREAT | 0660)) == -1)
          {
-            return false;
+
+            return error_failed;
+
          }
 
          start_receiving();
@@ -255,15 +257,20 @@ namespace freebsd
       }
 
 
-      bool interprocess_communication_rx::destroy()
+      ::e_status interprocess_communication_rx::destroy()
       {
 
          i32 iRetry = 23;
+
          while(m_bRunning && iRetry > 0)
          {
+
             m_bRun = false;
+
             sleep(1_ms);
+
             iRetry--;
+
          }
 
          if(m_iQueue < 0)
@@ -324,7 +331,7 @@ namespace freebsd
 //         if(m_preceiver != nullptr)
 //         {
 //
-//            m_preceiver->on_interprocess_receive(prx,pszMessage);
+//            m_preceiver->on_interprocess_receive(prx,strMessage);
 //
 //         }
 //
@@ -439,13 +446,13 @@ namespace freebsd
                if(lRequest == 1024)
                {
 
-                  on_interprocess_receive(__str(m2));
+                  on_interprocess_receive(__string(m2));
 
                }
                else
                {
 
-                  on_interprocess_receive(lRequest, m2.get_data(), m2.get_size());
+                  on_interprocess_receive(lRequest, m2);
 
                }
 
@@ -477,7 +484,7 @@ namespace freebsd
 //      bool interprocess_communication::open_ab(const ::string & strChannel,launcher * plauncher)
 //      {
 //
-//         m_strChannel = pszChannel;
+//         m_strChannel = strChannel;
 //
 //         m_rx.m_preceiver = this;
 //
@@ -503,7 +510,7 @@ namespace freebsd
 //      bool interprocess_communication::open_ba(const ::string & strChannel,launcher * plauncher)
 //      {
 //
-//         m_strChannel = pszChannel;
+//         m_strChannel = strChannel;
 //
 //         m_rx.m_preceiver = this;
 //
