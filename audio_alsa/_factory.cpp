@@ -1,7 +1,6 @@
 #include "framework.h"
 
-extern "C"
-void audio_alsa_factory_exchange()
+__FACTORY_EXPORT void audio_alsa_factory()
 {
 
    add_factory_item < ::multimedia::audio_alsa::wave_in  , ::wave::in                  > ();

@@ -3,8 +3,7 @@
 
 
 
-extern "C"
-void node_freebsd_factory(::factory::factory * pfactory)
+__FACTORY_EXPORT void node_freebsd_factory(::factory::factory * pfactory)
 {
 
    auto edesktop = get_edesktop();

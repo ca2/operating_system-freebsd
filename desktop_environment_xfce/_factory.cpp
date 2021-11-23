@@ -1,16 +1,13 @@
 #include "framework.h"
 
 
-extern "C"
-void aura_freebsd_factory_exchange(::factory::factory * pfactory);
+__FACTORY_EXPORT aura_freebsd_factory(::factory::factory * pfactory);
 
 
-extern "C"
-void node_xfce_factory_exchange(::factory::factory * pfactory);
+__FACTORY_EXPORT node_xfce_factory(::factory::factory * pfactory);
 
 
-extern "C"
-void desktop_environment_xfce_factory_exchange(::factory::factory * pfactory)
+__FACTORY_EXPORT desktop_environment_xfce_factory(::factory::factory * pfactory)
 {
 
    aura_freebsd_factory_exchange(pfactory);
