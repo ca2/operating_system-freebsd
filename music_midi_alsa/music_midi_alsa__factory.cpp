@@ -41,7 +41,7 @@ namespace music
 
 
 extern "C"
-void music_midi_alsa_factory_exchange()
+void music_midi_alsa_factory()
 {
 
    //::music::midi::alsa::factory_exchange factoryexchange();

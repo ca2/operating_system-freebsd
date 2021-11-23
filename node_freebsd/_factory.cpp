@@ -13,30 +13,30 @@ __FACTORY_EXPORT void node_freebsd_factory(::factory::factory * pfactory)
    if (edesktop & ::user::e_desktop_kde)
    {
 
-      estatus = pfactory->m_psystem->do_factory_exchange("desktop_environment", "kde");
+      estatus = pfactory->m_psystem->factory("desktop_environment", "kde");
 
    }
    else if (edesktop & ::user::e_desktop_gnome)
    {
 
-      estatus = pfactory->m_psystem->do_factory_exchange("desktop_environment", "gnome");
+      estatus = pfactory->m_psystem->factory("desktop_environment", "gnome");
 
    }
    else if (edesktop & ::user::e_desktop_xfce)
    {
 
-      estatus = pfactory->m_psystem->do_factory_exchange("desktop_environment", "xfce");
+      estatus = pfactory->m_psystem->factory("desktop_environment", "xfce");
 
    }
    else
    {
 
-      estatus = pfactory->m_psystem->do_factory_exchange("desktop_environment", "gnome");
+      estatus = pfactory->m_psystem->factory("desktop_environment", "gnome");
 
       if (!estatus)
       {
 
-         estatus = pfactory->m_psystem->do_factory_exchange("desktop_environment", "kde");
+         estatus = pfactory->m_psystem->factory("desktop_environment", "kde");
 
       }
 
@@ -44,14 +44,14 @@ __FACTORY_EXPORT void node_freebsd_factory(::factory::factory * pfactory)
 //
 //#else
 //
-//      estatus = do_factory_exchange("aura", "windows");
+//      estatus = factory("aura", "windows");
 //
 //#endif
 
 
-//      apex_freebsd_factory_exchange( pfactory);
+//      apex_freebsd_factory( pfactory);
 //
-//   aura_posix_factory_exchange( pfactory);
+//   aura_posix_factory( pfactory);
 //
 //   pfactory->add_factory_item < ::aura::freebsd::node, ::acme::node >();
 
