@@ -13,30 +13,37 @@ __FACTORY_EXPORT void node_freebsd_factory(::factory::factory * pfactory)
    if (edesktop & ::user::e_desktop_kde)
    {
 
-      estatus = pfactory->m_psystem->factory("desktop_environment", "kde");
+      auto & pfactoryKde = pfactory->m_psystem->factory("desktop_environment", "kde");
 
    }
    else if (edesktop & ::user::e_desktop_gnome)
    {
 
-      estatus = pfactory->m_psystem->factory("desktop_environment", "gnome");
+      auto & pfactoryGnome = pfactory->m_psystem->factory("desktop_environment", "gnome");
 
    }
    else if (edesktop & ::user::e_desktop_xfce)
    {
 
-      estatus = pfactory->m_psystem->factory("desktop_environment", "xfce");
+      auto & pfactoryXfce = pfactory->m_psystem->factory("desktop_environment", "xfce");
 
    }
    else
    {
 
-      estatus = pfactory->m_psystem->factory("desktop_environment", "gnome");
+      auto & pfactoryGnome = pfactory->m_psystem->factory("desktop_environment", "gnome");
 
-      if (!estatus)
+      if (!pfactoryGnome)
       {
 
-         estatus = pfactory->m_psystem->factory("desktop_environment", "kde");
+         auto & pfactoryKde = pfactory->m_psystem->factory("desktop_environment", "kde");
+
+         if (!pfactoryKde)
+         {
+
+            auto & pfactoryXfce = pfactory->m_psystem->factory("desktop_environment", "kde");
+
+         }
 
       }
 
