@@ -97,7 +97,7 @@ __FACTORY_EXPORT void node_freebsd_factory(::factory::factory * pfactory)
 
    }
 
-   if(::dir::is("/etc/xdg/lubuntu"))
+   if(is_directory("/etc/xdg/lubuntu"))
    {
 
       return ::user::e_desktop_lxde;
