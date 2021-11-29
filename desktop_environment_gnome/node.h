@@ -37,39 +37,39 @@ namespace desktop_environment_gnome
 
       virtual ::e_status initialize(::object * pobject) override;
 
-      virtual void os_calc_dark_mode();
+      //virtual void os_calc_dark_mode();
 
-      virtual bool _os_calc_dark_mode();
+      //virtual bool _os_calc_dark_mode();
 
-      virtual string os_get_user_theme() override;
+      //virtual string os_get_user_theme() override;
 
-      string _os_get_user_theme() override;
+      //string _os_get_user_theme() override;
 
       //virtual string _os_get_user_theme();
 
-      virtual void os_process_user_theme(string strTheme);
+      //virtual void os_process_user_theme(string strTheme);
 
-      virtual void _os_process_user_theme_color(string strTheme);
+      //virtual void _os_process_user_theme_color(string strTheme);
 
-      bool os_set_user_theme(const string & strUserTheme) override;
+      //bool os_set_user_theme(const string & strUserTheme) override;
 
       //virtual void os_process_user_theme(string strTheme) override;
 
-      void enable_wallpaper_change_notification() override;
+      //void enable_wallpaper_change_notification() override;
 
-      string get_file_icon_path(const ::string & strPath, int iSize) override;
+      //string get_file_icon_path(const ::string & strPath, int iSize) override;
 
-      string get_file_content_type(const ::string & strPath) override;
+      //string get_file_content_type(const ::string & strPath) override;
 
-      bool set_wallpaper(index iScreen, string strLocalImagePath) override;
+      //bool set_wallpaper(index iScreen, string strLocalImagePath) override;
 
-      string get_wallpaper(index iScreen) override;
+      //string get_wallpaper(index iScreen) override;
 
-      using ::aura::node::node_fork;
+      //using ::aura::node::node_fork;
 
-      virtual bool windowing_message_loop_step();
+      //virtual bool windowing_message_loop_step();
 
-      virtual ::e_status node_branch(const ::routine & routine);
+      //virtual ::e_status node_branch(const ::routine & routine);
 
       //virtual void node_post_quit() override;
 
