@@ -30,6 +30,7 @@ list(APPEND library_references
    acme_freebsd
    apex_posix
    apex_freebsd
+   aura_posix
    )
 
 

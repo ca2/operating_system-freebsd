@@ -7,7 +7,7 @@ namespace freebsd
 
 
    class CLASS_DECL_ACME_FREEBSD acme_path :
-      virtual public ::acme_path
+      virtual public ::posix::acme_path
    {
    public:
 

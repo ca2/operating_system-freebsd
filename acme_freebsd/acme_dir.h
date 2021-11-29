@@ -7,13 +7,13 @@ namespace freebsd
 
 
    class CLASS_DECL_ACME_FREEBSD acme_dir :
-      virtual public ::acme_dir
+      virtual public ::posix::acme_dir
    {
    public:
 
 
       acme_dir();
-      virtual ~acme_dir();
+      ~acme_dir() override;
 
       virtual ::file::path install() override;
       virtual ::file::path default_install() override;

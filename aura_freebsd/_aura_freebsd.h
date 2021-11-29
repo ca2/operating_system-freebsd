@@ -13,6 +13,9 @@
 #include "appindicator.h"
 
 
+#include "interaction_impl.h"
+
+
 #include "node.h"
 
 
