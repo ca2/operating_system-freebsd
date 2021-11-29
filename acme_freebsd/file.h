@@ -5,9 +5,9 @@ class FileException;
 struct FileStatus;
 
 
-void CLASS_DECL_ACME vfxGetRoot(const widechar * pszPath, string& wstrRoot);
+//void CLASS_DECL_ACME vfxGetRoot(const widechar * pszPath, string& wstrRoot);
 
-void CLASS_DECL_ACME vfxGetRoot(wstring & wstrRoot, const wstring & wstrPath);
+//void CLASS_DECL_ACME vfxGetRoot(wstring & wstrRoot, const wstring & wstrPath);
 
 
 /////////////////////////////////////////////////////////////////////////////
@@ -126,7 +126,7 @@ namespace freebsd
 
 
 
-bool CLASS_DECL_ACME vfxFullPath(wstring & wstrFullPath, const wstring & wstrPath);
+//bool CLASS_DECL_ACME vfxFullPath(wstring & wstrFullPath, const wstring & wstrPath);
 
 
 
