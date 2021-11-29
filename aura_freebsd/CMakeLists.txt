@@ -3,16 +3,18 @@ project(aura_freebsd CXX)
 
 
 list(APPEND library_source
-    _.cpp
-    _.h
-    _const.h
+   _.cpp
+   _.h
+   _const.h
+   _factory.cpp
    appindicator.cpp
    appindicator.h
-    _factory.cpp
-    node.cpp
-    node.h
-    #../platform/x_window.cpp
-    )
+   interaction_impl.cpp
+   interaction_impl.h
+   node.cpp
+   node.h
+   #../platform/x_window.cpp
+   )
 
 
 
