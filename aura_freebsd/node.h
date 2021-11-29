@@ -8,16 +8,16 @@
 #pragma once
 
 
-namespace freebsd
+namespace aura
 {
 
 
-   namespace aura
+   namespace freebsd
    {
 
 
       class CLASS_DECL_AURA_FREEBSD node :
-         virtual public ::freebsd::apex::node,
+         virtual public ::apex::freebsd::node,
          virtual public ::aura::node
       {
       public:
@@ -57,10 +57,10 @@ namespace freebsd
       };
 
 
-   } // namespace aura
+   } // namespace freebsd
 
 
-} // namespace freebsd
+} // namespace aura
 
 
 
