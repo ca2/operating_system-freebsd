@@ -667,7 +667,7 @@ namespace desktop_environment_gnome
 //
 //   }
 
-   bool node::should_launch_on_node(::subject::subject * psubject)
+   bool node::should_launch_on_node(::subject * psubject)
    {
 
       if(::is_null(psubject))
@@ -689,7 +689,7 @@ namespace desktop_environment_gnome
    }
 
 
-   bool node::launch_on_node(::subject::subject * psubject)
+   bool node::launch_on_node(::subject * psubject)
    {
 
       auto bOk = ::node_gnome::node::launch_on_node(psubject);
