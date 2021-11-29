@@ -14,6 +14,9 @@
 #include <ctype.h>
 #include <sys/stat.h>
 
+
+#include <dlfcn.h>
+
 //#elif defined(MACOS)
 //#include <dlfcn.h>
 //#endif
@@ -345,7 +348,7 @@ namespace freebsd
       ::i32 lLoOffset = offset & 0xffffffff;
       //::i32 lHiOffset = (lOff >> 32) & 0xffffffff;
 
-      filesize posNew = ::lseek64(m_iFile, lLoOffset, (::u32)eseek);
+      filesize posNew = ::lseek(m_iFile, lLoOffset, (::u32)eseek);
 //      posNew |= ((filesize) lHiOffset) << 32;
       if(posNew  == (filesize)-1)
          throw_errno(errno, m_path);
@@ -361,7 +364,7 @@ namespace freebsd
       ::i32 lLoOffset = 0;
 //      ::i32 lHiOffset = 0;
 
-      filesize pos = ::lseek64(m_iFile, lLoOffset, SEEK_CUR);
+      filesize pos = ::lseek(m_iFile, lLoOffset, SEEK_CUR);
       //    pos |= ((filesize)lHiOffset) << 32;
       if(pos  == (filesize)-1)
          throw_errno(errno, m_path);
@@ -462,7 +465,7 @@ namespace freebsd
 
       set_position(dwNewLen);
 
-      if (::ftruncate64(m_iFile, dwNewLen) == -1)
+      if (::ftruncate(m_iFile, dwNewLen) == -1)
       {
 
          throw_errno(errno, m_path);
