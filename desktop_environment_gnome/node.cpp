@@ -677,7 +677,7 @@ namespace desktop_environment_gnome
 
       }
 
-      if(psubject->m_id == e_id_os_dark_mode)
+      if(psubject->m_id == e_id_user_color)
       {
 
          return false;
