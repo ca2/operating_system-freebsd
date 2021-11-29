@@ -5,7 +5,10 @@
 //#include "aura.h"
 
 
-__FACTORY_EXPORT void apex_freebsd_factory(::factory::factory * pfactory);
+__FACTORY_IMPORT void apex_freebsd_factory(::factory::factory * pfactory);
+
+
+__FACTORY_IMPORT void apex_freebsd_factory(::factory::factory * pfactory);
 
 
 __FACTORY_EXPORT void aura_freebsd_factory(::factory::factory * pfactory)
