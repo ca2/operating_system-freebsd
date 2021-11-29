@@ -13,5 +13,8 @@
 
 
 
+CLASS_DECL_ACME_FREEBSD ::user::enum_desktop get_edesktop();
+
+
 
 

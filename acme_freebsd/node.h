@@ -65,6 +65,9 @@ namespace acme
          virtual string audio_get_default_library_name() override;
 
 
+         ::user::enum_desktop calculate_edesktop() override;
+
+
       };
 
 

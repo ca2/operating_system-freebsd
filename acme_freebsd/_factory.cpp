@@ -21,4 +21,3 @@ __FACTORY_EXPORT void acme_freebsd_factory(::factory::factory * pfactory)
 }
 
 
-

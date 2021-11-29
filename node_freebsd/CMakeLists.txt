@@ -15,6 +15,7 @@ add_library(node_freebsd SHARED ${library_source})
 
 list(APPEND library_references
    acme
+   acme_freebsd
    )
 
 

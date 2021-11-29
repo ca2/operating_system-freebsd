@@ -718,6 +718,14 @@ namespace acme
       }
 
 
+      ::user::enum_desktop node::calculate_edesktop()
+      {
+
+         return ::get_edesktop();
+
+      }
+
+
    } // namespace freebsd
 
 

@@ -22,7 +22,7 @@ list(APPEND library_source
 
 
 
-add_library(acme_freebsd SHARED ${library_source})
+add_library(acme_freebsd SHARED ${library_source} calculate_edesktop.cpp)
 
 
 list(APPEND library_references acme acme_posix)
