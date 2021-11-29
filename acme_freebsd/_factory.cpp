@@ -15,6 +15,9 @@ __FACTORY_EXPORT void acme_freebsd_factory(::factory::factory * pfactory)
    pfactory->add_factory_item < ::freebsd::acme_path, ::acme_path >();
 
 
+   pfactory->add_factory_item < ::freebsd::file, ::file::file >();
+
+
 }
 
 
