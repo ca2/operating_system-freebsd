@@ -517,7 +517,7 @@ namespace desktop_environment_gnome
 //   }
 
 
-   void node::handle(::subject * psubject, ::subject * pcontext)
+   void node::handle(::subject * psubject, ::context * pcontext)
    {
 
       if(psubject->m_id == ::id_os_user_theme)
@@ -648,10 +648,10 @@ namespace desktop_environment_gnome
 //   }
 
 
-   void node::os_post_quit()
-   {
-
-   }
+//   void node::os_post_quit()
+//   {
+//
+//   }
 
 
 //   void * node::node_wrap_window(void * pvoidDisplay, i64 window)
