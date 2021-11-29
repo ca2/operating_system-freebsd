@@ -22,11 +22,11 @@ namespace desktop_environment_gnome
       //gpointer m_pGtkSettingsDefault;
       //string   m_strTheme;
 
-      ::logic::bit         m_bitDarkMode;
+      //::boolean         m_bDarkMode;
 
 
       node();
-      virtual ~node();
+      ~node() override;
 
 
       virtual int node_init_check(int * pi, char *** ppz) override;
@@ -51,19 +51,19 @@ namespace desktop_environment_gnome
 
       virtual void _os_process_user_theme_color(string strTheme);
 
-      virtual bool os_set_user_theme(const string & strUserTheme) override;
+      bool os_set_user_theme(const string & strUserTheme) override;
 
       //virtual void os_process_user_theme(string strTheme) override;
 
-      virtual void enable_wallpaper_change_notification() override;
+      void enable_wallpaper_change_notification() override;
 
-      virtual string get_file_icon_path(const char * pszPath, int iSize) override;
+      string get_file_icon_path(const ::string & strPath, int iSize) override;
 
-      virtual string get_file_content_type(const char * pszPath) override;
+      string get_file_content_type(const ::string & strPath) override;
 
-      virtual bool set_wallpaper(index iScreen, string strLocalImagePath) override;
+      bool set_wallpaper(index iScreen, string strLocalImagePath) override;
 
-      virtual string get_wallpaper(index iScreen) override;
+      string get_wallpaper(index iScreen) override;
 
       using ::aura::node::node_fork;
 
@@ -73,7 +73,7 @@ namespace desktop_environment_gnome
 
       //virtual void node_post_quit() override;
 
-      void on_subject(::subject::subject * psubject, ::subject::context * pcontext) override;
+      void handle(::subject * psubject, ::context * pcontext) override;
 
       //virtual void _on_change_os_user_theme(string strTheme);
 

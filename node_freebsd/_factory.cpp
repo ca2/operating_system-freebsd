@@ -127,6 +127,12 @@ __FACTORY_EXPORT void node_freebsd_factory(::factory::factory * pfactory)
       return ::user::e_desktop_ubuntu_gnome;
 
    }
+   else if(strcasecmp(pszDesktop, "gnome") == 0)
+   {
+
+      return ::user::e_desktop_gnome;
+
+   }
 
    return ::user::e_desktop_gnome;
 
