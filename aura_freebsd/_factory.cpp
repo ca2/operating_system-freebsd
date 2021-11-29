@@ -13,7 +13,7 @@ __FACTORY_EXPORT void aura_freebsd_factory(::factory::factory * pfactory)
 
    apex_freebsd_factory( pfactory);
 
-   pfactory->add_factory_item < ::freebsd::aura::node, ::acme::node >();
+   pfactory->add_factory_item < ::aura::freebsd::node, ::acme::node >();
 
 }
 
