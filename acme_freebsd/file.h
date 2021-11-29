@@ -5,9 +5,9 @@ class FileException;
 struct FileStatus;
 
 
-void CLASS_DECL_ACME vfxGetRoot(const widechar * pszPath, string& wstrRoot);
+//void CLASS_DECL_ACME vfxGetRoot(const widechar * pszPath, string& wstrRoot);
 
-void CLASS_DECL_ACME vfxGetRoot(wstring & wstrRoot, const wstring & wstrPath);
+//void CLASS_DECL_ACME vfxGetRoot(wstring & wstrRoot, const wstring & wstrPath);
 
 
 /////////////////////////////////////////////////////////////////////////////
@@ -25,26 +25,26 @@ namespace freebsd
    public:
 
 
-      enum Attribute
-      {
-         normal =    0x00,
-         readOnly =  0x01,
-         hidden =    0x02,
-         system =    0x04,
-         volume =    0x08,
-         directory = 0x10,
-         archive =   0x20
-      };
+//      enum Attribute
+//      {
+//         normal =    0x00,
+//         readOnly =  0x01,
+//         hidden =    0x02,
+//         system =    0x04,
+//         volume =    0x08,
+//         directory = 0x10,
+//         archive =   0x20
+//      };
 
-      enum BufferCommand
-      {
-
-         bufferRead,
-         bufferWrite,
-         bufferCommit,
-         bufferCheck
-
-      };
+//      enum BufferCommand
+//      {
+//
+//         bufferRead,
+//         bufferWrite,
+//         bufferCommit,
+//         bufferCheck
+//
+//      };
 
       int                  m_iFile;
       int                  m_iPutCharacter;
@@ -124,9 +124,7 @@ namespace freebsd
 } // namepsace freebsd
 
 
-
-
-bool CLASS_DECL_ACME vfxFullPath(wstring & wstrFullPath, const wstring & wstrPath);
+//bool CLASS_DECL_ACME vfxFullPath(wstring & wstrFullPath, const wstring & wstrPath);
 
 
 
