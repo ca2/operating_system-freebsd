@@ -8,7 +8,7 @@
 __FACTORY_IMPORT void apex_freebsd_factory(::factory::factory * pfactory);
 
 
-__FACTORY_IMPORT void apex_freebsd_factory(::factory::factory * pfactory);
+__FACTORY_IMPORT void aura_posix_factory(::factory::factory * pfactory);
 
 
 __FACTORY_EXPORT void aura_freebsd_factory(::factory::factory * pfactory)
