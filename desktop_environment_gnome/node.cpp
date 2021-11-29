@@ -677,7 +677,7 @@ namespace desktop_environment_gnome
 
       }
 
-      if(psubject->m_id == e_id_user_color)
+      if(psubject->m_id == id_user_color)
       {
 
          return false;
