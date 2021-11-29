@@ -87,11 +87,11 @@ namespace desktop_environment_gnome
 
       //virtual bool _os_calc_system_dark_mode() override;
 
-      virtual void os_post_quit() override;
+      //virtual void os_post_quit() override;
 
-      virtual bool should_launch_on_node(::subject::subject * psubject);
+      bool should_launch_on_node(::subject * psubject) override;
 
-      virtual bool launch_on_node(::subject::subject * psubject);
+      bool launch_on_node(::subject * psubject) override;
 
 
    };

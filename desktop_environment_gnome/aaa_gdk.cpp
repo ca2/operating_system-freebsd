@@ -12,6 +12,7 @@
 ::e_status os_defer_init_gtk();
 
 
+
 bool x11_message_loop_step();
 
 

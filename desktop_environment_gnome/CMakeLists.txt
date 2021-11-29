@@ -19,8 +19,8 @@ list(APPEND library_source
    _factory.cpp
    framework.cpp
    framework.h
-        gdk.cpp
-        gdk.h
+        #gdk.cpp
+        #gdk.h
         #gnome_direct.cpp
         #gtk_clipboard.cpp
         #monitor.cpp
