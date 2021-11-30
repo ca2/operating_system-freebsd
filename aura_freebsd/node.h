@@ -24,8 +24,7 @@ namespace aura
 
 
          node();
-
-         virtual ~node();
+         ~node() override;
 
 
          string get_user_name();
