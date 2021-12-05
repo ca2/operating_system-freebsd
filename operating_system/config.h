@@ -67,6 +67,9 @@
 #define AXIS_FREEIMAGE
 
 
+#define _MAX_PATH PATH_MAX
+
+
 #define FONT_SANS "FreeSans"
 #define FONT_SERIF "FreeSerif"
 #define FONT_MONO "Ubuntu Mono"
