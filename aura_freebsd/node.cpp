@@ -45,6 +45,35 @@ namespace aura
       }
 
 
+      ::e_status node::initialize(::object * pobject)
+      {
+
+         INFORMATION("aura::freebsd::node::initialize");
+
+         auto estatus = ::apex::freebsd::node::initialize(pobject);
+
+         if(!estatus)
+         {
+
+            return estatus;
+
+         }
+
+         estatus = ::aura::posix::node::initialize(pobject);
+
+         if(!estatus)
+         {
+
+            return estatus;
+
+         }
+
+         return estatus;
+
+
+      }
+
+
 //      bool node::_os_calc_app_dark_mode()
 //      {
 //

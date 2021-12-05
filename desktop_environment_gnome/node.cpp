@@ -189,6 +189,8 @@ namespace desktop_environment_gnome
 
       //::node_gnome::g_defer_init();
 
+      INFORMATION("desktop_environment_gnome::node::initialize");
+
       auto estatus = ::aura::freebsd::node::initialize(pobject);
 
       if(!estatus)

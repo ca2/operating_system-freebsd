@@ -18,7 +18,7 @@ namespace aura
 
       class CLASS_DECL_AURA_FREEBSD node :
          virtual public ::apex::freebsd::node,
-         virtual public ::aura::node
+         virtual public ::aura::posix::node
       {
       public:
 
@@ -28,6 +28,9 @@ namespace aura
 
 
          string get_user_name();
+
+
+         ::e_status initialize(::object * pobject) override;
 
 
          //virtual bool _os_calc_app_dark_mode() override;
