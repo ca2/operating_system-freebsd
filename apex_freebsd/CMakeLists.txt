@@ -33,7 +33,7 @@ list(APPEND library_source
    )
 
 
-if(DEFINED USE_KQUEUE_FILE_WATCHER_DIRECTLY)
+if(USE_KQUEUE_FILE_WATCHER_DIRECTLY)
    list(APPEND library_source
    kqueue/file_watcher.cpp
    kqueue/file_watcher.h
