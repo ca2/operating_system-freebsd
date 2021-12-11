@@ -3,6 +3,8 @@ project(apex_freebsd CXX)
 
 
 list(APPEND library_source
+   kqueue/file_watcher.cpp
+   kqueue/file_watcher.h
    _.cpp
    _.h
    _factory.cpp
@@ -35,7 +37,7 @@ list(APPEND library_source
 
 list(APPEND library_references acme acme_posix acme_freebsd apex apex_posix)
 
-add_library(apex_freebsd SHARED ${library_source})
+add_library(apex_freebsd SHARED ${library_source} kqueue/file_watcher.cpp kqueue/file_watcher.h)
 
 target_precompile_headers(apex_freebsd PRIVATE framework.h)
 
