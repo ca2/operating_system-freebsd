@@ -3,8 +3,8 @@ project(apex_freebsd CXX)
 
 
 list(APPEND library_source
-   kqueue/file_watcher.cpp
-   kqueue/file_watcher.h
+   #kqueue/file_watcher.cpp
+   #kqueue/file_watcher.h
    _.cpp
    _.h
    _factory.cpp
