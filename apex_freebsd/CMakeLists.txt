@@ -3,8 +3,6 @@ project(apex_freebsd CXX)
 
 
 list(APPEND library_source
-   #kqueue/file_watcher.cpp
-   #kqueue/file_watcher.h
    _.cpp
    _.h
    _factory.cpp
@@ -33,6 +31,14 @@ list(APPEND library_source
    service_handler.cpp
    service_handler.h
    )
+
+
+if(USE_KQUEUE_FILE_WATCHER_DIRECTLY)
+   list(APPEND library_source
+   kqueue/file_watcher.cpp
+   kqueue/file_watcher.h
+      )
+endif()
 
 
 list(APPEND library_references acme acme_posix acme_freebsd apex apex_posix)
