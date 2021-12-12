@@ -713,7 +713,7 @@ namespace acme
       string node::audio_get_default_library_name()
       {
 
-         return "audio_mmsystem";
+         return "audio_alsa";
 
       }
 
