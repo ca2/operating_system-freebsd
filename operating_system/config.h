@@ -5,7 +5,6 @@
 
 #define ENABLE_BINRELOC
 
-
 #define BROAD_PRECOMPILED_HEADER 1
 
 #define _OPENGL 1
@@ -22,6 +21,9 @@
 
 #define HAVE_PTHREAD_MUTEX_TIMEDLOCK 1
 
+#define MUTEX_COND_TIMED 1
+
+
 #define OPENSSL_API_COMPAT 0x10100000L
 
 
@@ -32,9 +34,8 @@
 #define __FACTORY_IMPORT extern "C"
 
 
-#define __PLATFORM   		"freebsd"
-#define PLATFORM_NAMESPACE	freebsd
-#define PLATFORM_NAME	"freebsd"
+#define OPERATING_SYSTEM_NAME	"freebsd"
+#define OPERATING_SYSTEM_NAMESPACE	freebsd
 
 
 #define INFINITE_TIMEOUT ((::u32)0xffffffff)
@@ -77,6 +78,8 @@
 #define FONT_SERIF_EX "Liberation Serif"
 #define FONT_SANS_FX "Ubuntu"
 #define FONT_SERIF_FX "Bitstream Charter"
+#define FONT_SANS_UI "Ubuntu"
+#define FONT_SERIF_UI "Bitstream Charter"
 
 
 
