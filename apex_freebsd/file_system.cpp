@@ -1,17 +1,15 @@
 #include "framework.h"
-//#include "_freebsd.h"
 #include "acme/filesystem/filesystem/acme_path.h"
-#include "acme/filesystem/filesystem/acme_dir.h"
+#include "acme/filesystem/filesystem/acme_directory.h"
 
 
-//#include "_freebsd.h"
 #undef USE_MISC
 
 #include <dlfcn.h>
 #include <link.h>
 
 
-namespace freebsd
+namespace apex_freebsd
 {
 
 
@@ -27,17 +25,19 @@ namespace freebsd
    }
 
 
-   ::e_status file_system::initialize(::object * pobject)
+   void file_system::initialize(::object * pobject)
    {
 
-      auto estatus = ::file_system::initialize(pobject);
+      //auto estatus =
 
-      if(!estatus)
-      {
+      ::file_system::initialize(pobject);
 
-         return estatus;
-
-      }
+//      if(!estatus)
+//      {
+//
+//         return estatus;
+//
+//      }
 
       ::file::path pathAppModule = m_psystem->m_pacmefile->module();
 
@@ -76,12 +76,12 @@ namespace freebsd
 //
 //      }
 
-      return estatus;
+//      return estatus;
 
    }
 
 
-   ::e_status file_system::init_system()
+   void file_system::init_system()
    {
 
 //      if(!update_module_path())
@@ -91,7 +91,7 @@ namespace freebsd
 //
 //      }
 
-      return ::success;
+//      return ::success;
 
    }
 
@@ -125,7 +125,7 @@ namespace freebsd
 //   }
 
 
-} // namespace freebsd
+} // namespace apex_freebsd
 
 
 

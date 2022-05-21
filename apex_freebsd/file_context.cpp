@@ -1,9 +1,7 @@
 #include "framework.h"
-//#include "_freebsd.h"
 #include <sys/types.h>
 #include <sys/stat.h>
-//#include "acme/os/ansios/file_raw.h"
-#include "acme/filesystem/filesystem/acme_dir.h"
+#include "acme/filesystem/filesystem/acme_directory.h"
 
 
 struct PROCESS_INFO_t
@@ -13,7 +11,7 @@ struct PROCESS_INFO_t
 };
 
 
-namespace freebsd
+namespace apex_freebsd
 {
 
 
@@ -28,62 +26,68 @@ namespace freebsd
    }
 
 
-   ::e_status file_context::initialize(::object * pobject)
+   void file_context::initialize(::object * pobject)
    {
 
-      auto estatus = ::object::initialize(pobject);
+      //auto estatus =
 
-      if(!estatus)
-      {
+      ::object::initialize(pobject);
 
-         return estatus;
-
-      }
-
-      return estatus;
+//      if(!estatus)
+//      {
+//
+//         return estatus;
+//
+//      }
+//
+//      return estatus;
 
 
    }
 
 
-   file_transport file_context::get_file(const ::payload & varFile, const ::file::e_open & eopen)
+//   file_transport file_context::get_file(const ::payload & varFile, const ::file::e_open & eopen)
+//   {
+//
+//      return ::file_context::get_file(varFile, eopen);
+//
+//   }
+
+
+   void file_context::init_system()
    {
 
-      return ::file_context::get_file(varFile, eopen);
+      //auto estatus =
+      //
+      ::file_context::init_system();
+
+//   if(!estatus)
+//   {
+//
+//   return estatus;
+//
+//   }
+//
+//      return estatus;
 
    }
 
 
-   ::e_status file_context::init_system()
+   void file_context::init_context()
    {
 
-   auto estatus = ::file_context::init_system();
+   //auto estatus =
 
-   if(!estatus)
-   {
+      ::file_context::init_context();
 
-   return estatus;
-
-   }
-
-      return estatus;
-
-   }
-
-
-   ::e_status file_context::init_context()
-   {
-
-   auto estatus = ::file_context::init_context();
-
-   if(!estatus)
-   {
-
-   return estatus;
-
-   }
-
-      return estatus;
+//   if(!estatus)
+//   {
+//
+//   return estatus;
+//
+//   }
+//
+//      return estatus;
 
    }
 
@@ -103,7 +107,7 @@ namespace freebsd
 
       auto psystem = m_psystem;
 
-      auto pacmedir = psystem->m_pacmedir;
+      auto pacmedir = psystem->m_pacmedirectory;
 
       pathJson = pacmedir->home() / ".dropbox/info.json";
 
@@ -112,10 +116,7 @@ namespace freebsd
    }
 
 
-} // namespace freebsd
-
-
-
+} // namespace apex_freebsd
 
 
 

@@ -1,7 +1,7 @@
 #pragma once
 
 
-namespace freebsd
+namespace apex_freebsd
 {
 
 
@@ -39,7 +39,7 @@ namespace freebsd
    };
 
 
-} // namespace apex
+} // namespace apex_freebsd
 
 
 

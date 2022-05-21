@@ -1,8 +1,8 @@
 #include "framework.h"
 //#include "_linux.h"
-#include "apex/platform/app_core.h"
+//#include "apex/platform/app_core.h"
 #include "aura/operating_system.h"
-#include "acme/node/operating_system/_user.h"
+#include "acme/operating_system/_user.h"
 ////#include "third/sn/sn.h"
 
 //::user::interaction * g_puserinteractionMouseCapture123 = nullptr;
@@ -12,7 +12,7 @@
 #define TEST 0
 
 
-namespace freebsd
+namespace aura_freebsd
 {
 
 
@@ -108,14 +108,14 @@ namespace freebsd
 
       }
 
-      if(is_null(oswindow->m_pimpl))
+      if(is_null(oswindow->m_puserinteractionimpl))
       {
 
          return nullptr;
 
       }
 
-      return oswindow->m_pimpl;
+      return oswindow->m_puserinteractionimpl;
 
    }
 
@@ -123,10 +123,14 @@ namespace freebsd
    ::user::interaction_impl * interaction_impl::FromHandlePermanent(oswindow oswindow)
    {
 
-      if(oswindow->m_pimpl == nullptr)
+      if(oswindow->m_puserinteractionimpl == nullptr)
+      {
+
          return nullptr;
 
-      return oswindow->m_pimpl;
+      }
+
+      return oswindow->m_puserinteractionimpl;
 
    }
 
@@ -180,104 +184,104 @@ namespace freebsd
    }
 
 
-   ::e_status interaction_impl::native_create_host()
-   {
-
-      __pointer(::user::system) pusersystem;
-
-      if(m_puserinteraction->m_pusersystem)
-      {
-
-         pusersystem = m_puserinteraction->m_pusersystem;
-
-      }
-      else
-      {
-
-         pusersystem = __new(::user::system);
-
-      }
-
-//      ENSURE_ARG(pusersystem->m_createstruct.lpszName == nullptr || __is_valid_string(pusersystem->m_createstruct.lpszName));
+//   ::e_status interaction_impl::native_create_host()
+//   {
 //
-      if (!m_puserinteraction->pre_create_window(pusersystem))
-      {
-
-         return false;
-
-      }
-
-      __refer(m_puserinteraction->m_pthreadUserInteraction, ::get_task());
-
-      //m_pthreadUserImpl = m_puserinteraction->m_pthreadUserInteraction;
-
-      install_message_routing(m_puserinteraction);
-
-      bool bOk = true;
-
-//      if(pusersystem->m_createstruct.hwndParent == (oswindow) MESSAGE_WINDOW_PARENT)
+//      __pointer(::user::system) pusersystem;
+//
+//      if(m_puserinteraction->m_pusersystem)
 //      {
 //
-//         auto pwindowing = m_pwindowwindowing();
-//
-//         m_oswindow = pwindowing->new_message_window(this);
-//
-//         m_puserinteraction->m_bMessageWindow = true;
-//
-//         //send_message(e_message_create, 0, (LPARAM) &cs);
+//         pusersystem = m_puserinteraction->m_pusersystem;
 //
 //      }
 //      else
-      {
-
-         m_puserinteraction->m_bMessageWindow = false;
-
-         auto psession = get_session();
-
-         auto puser = psession->user();
-
-         auto pwindowing = puser->windowing();
-
-         pwindowing->windowing_send(__routine(15_s, [&]()
-         {
-
-            auto psession = get_session();
-
-            auto puser = psession->user();
-
-            auto pwindowing = puser->windowing();
-
-            m_pwindow = pwindowing->new_window(this);
-
-            if(m_pwindow)
-            {
-
-               output_debug_string("window created");
-
-            }
-            else
-            {
-
-               output_debug_string("window not created");
-
-            }
-
-         }));
-
-      }
-
-//      if(bOk)
 //      {
 //
-//         m_puserinteraction->send_message(e_message_create, 0, (lparam) &pusersystem->m_createstruct);
-//
-//         m_puserinteraction->m_ewindowflag |= e_window_flag_window_created;
+//         pusersystem = __new(::user::system);
 //
 //      }
-
-      return bOk;
-
-   }
+//
+////      ENSURE_ARG(pusersystem->m_createstruct.lpszName == nullptr || __is_valid_string(pusersystem->m_createstruct.lpszName));
+////
+//      if (!m_puserinteraction->pre_create_window(pusersystem))
+//      {
+//
+//         return false;
+//
+//      }
+//
+//      __refer(m_puserinteraction->m_pthreadUserInteraction, ::get_task());
+//
+//      //m_pthreadUserImpl = m_puserinteraction->m_pthreadUserInteraction;
+//
+//      install_message_routing(m_puserinteraction);
+//
+//      bool bOk = true;
+//
+////      if(pusersystem->m_createstruct.hwndParent == (oswindow) MESSAGE_WINDOW_PARENT)
+////      {
+////
+////         auto pwindowing = m_pwindowwindowing();
+////
+////         m_oswindow = pwindowing->new_message_window(this);
+////
+////         m_puserinteraction->m_bMessageWindow = true;
+////
+////         //send_message(e_message_create, 0, (LPARAM) &cs);
+////
+////      }
+////      else
+//      {
+//
+//         m_puserinteraction->m_bMessageWindow = false;
+//
+//         auto psession = get_session();
+//
+//         auto puser = psession->user();
+//
+//         auto pwindowing = puser->windowing();
+//
+//         pwindowing->windowing_send(__routine(15_s, [&]()
+//         {
+//
+//            auto psession = get_session();
+//
+//            auto puser = psession->user();
+//
+//            auto pwindowing = puser->windowing();
+//
+//            m_pwindow = pwindowing->new_window(this);
+//
+//            if(m_pwindow)
+//            {
+//
+//               output_debug_string("window created");
+//
+//            }
+//            else
+//            {
+//
+//               output_debug_string("window not created");
+//
+//            }
+//
+//         }));
+//
+//      }
+//
+////      if(bOk)
+////      {
+////
+////         m_puserinteraction->send_message(e_message_create, 0, (lparam) &pusersystem->m_createstruct);
+////
+////         m_puserinteraction->m_ewindowflag |= e_window_flag_window_created;
+////
+////      }
+//
+//      return bOk;
+//
+//   }
 
 
    bool interaction_impl::pre_create_window(::user::system * pusersystem)
@@ -346,12 +350,12 @@ namespace freebsd
          if(m_bMoveEvent || m_bSizeEvent)
          {
 
-            defer_branch("delayed_placement", __routine([this]()
+            defer_branch("delayed_placement", [this]()
             {
 
                _thread_delayed_placement();
 
-            }));
+            });
 
          }
 
@@ -671,7 +675,7 @@ namespace freebsd
    }
 
 
-   void interaction_impl::assert_valid() const
+   void interaction_impl::assert_ok() const
    {
 
       if (get_os_data() == nullptr)
@@ -738,13 +742,15 @@ namespace freebsd
    }
 
 
-   bool interaction_impl::start_destroying_window()
+   void interaction_impl::start_destroying_window()
    {
 
       if(!m_pwindow)
       {
 
-         return true;
+         //return true;
+
+         return;
 
       }
 
@@ -772,13 +778,15 @@ namespace freebsd
       if (window != nullptr)
       {
 
-         bResult = m_pwindow->destroy_window();
+         //bResult =
+
+         m_pwindow->destroy_window();
 
          //Detach();
 
       }
 
-      return bResult;
+      //return bResult;
 
    }
 
@@ -980,25 +988,25 @@ namespace freebsd
 
       }
 
-      if(pmessage->m_id == e_message_timer)
+      if(pmessage->m_atom == e_message_timer)
       {
 
          //m_pthread->step_timer();
 
       }
-      else if(pmessage->m_id == e_message_left_button_down)
+      else if(pmessage->m_atom == e_message_left_button_down)
       {
 
          output_debug_string("linux::interaction_impl::e_message_left_button_down\n");
 
       }
-      else if(pmessage->m_id == e_message_left_button_up)
+      else if(pmessage->m_atom == e_message_left_button_up)
       {
 
          output_debug_string("linux::interaction_impl::e_message_left_button_up\n");
 
       }
-      else if(pmessage->m_id == e_message_mouse_move)
+      else if(pmessage->m_atom == e_message_mouse_move)
       {
 
          g_iMouseMove++;
@@ -1007,11 +1015,11 @@ namespace freebsd
          //printf("g_iMouseMove = %d\n", g_iMouseMove);
 
       }
-      else if(pmessage->m_id == e_message_paint)
+      else if(pmessage->m_atom == e_message_paint)
       {
 
       }
-      else if(pmessage->m_id == e_message_left_button_up)
+      else if(pmessage->m_atom == e_message_left_button_up)
       {
 
          TRACE("e_message_left_button_up (0)");
@@ -1128,7 +1136,7 @@ namespace freebsd
 
       pmessage->m_lresult = 0;
 
-      if(pmessage->m_id == e_message_mouse_leave)
+      if(pmessage->m_atom == e_message_mouse_leave)
       {
 
          _000OnMouseLeave(pmessage);
@@ -1137,14 +1145,14 @@ namespace freebsd
 
       }
 
-      if(pmessage->m_id == e_message_left_button_down ||
-            pmessage->m_id == e_message_left_button_up ||
-            pmessage->m_id == e_message_middle_button_down ||
-            pmessage->m_id == e_message_middle_button_up ||
-            pmessage->m_id == e_message_right_button_down ||
-            pmessage->m_id == e_message_right_button_up ||
-            pmessage->m_id == e_message_mouse_move ||
-            pmessage->m_id == e_message_mouse_move)
+      if(pmessage->m_atom == e_message_left_button_down ||
+            pmessage->m_atom == e_message_left_button_up ||
+            pmessage->m_atom == e_message_middle_button_down ||
+            pmessage->m_atom == e_message_middle_button_up ||
+            pmessage->m_atom == e_message_right_button_down ||
+            pmessage->m_atom == e_message_right_button_up ||
+            pmessage->m_atom == e_message_mouse_move ||
+            pmessage->m_atom == e_message_mouse_move)
 //         pmessage->m_id == e_message_mouse_wheel)
       {
 
@@ -1253,9 +1261,9 @@ namespace freebsd
 
          auto pwindowing = puser->windowing();
 
-         pwindowing->set(pmouse, get_oswindow(), m_pwindow, pmouse->m_id, pmouse->m_wparam, pmouse->m_lparam);
+         pwindowing->set(pmouse, get_oswindow(), m_pwindow, pmouse->m_atom, pmouse->m_wparam, pmouse->m_lparam);
 
-         if(pmessage->m_id == e_message_mouse_move)
+         if(pmessage->m_atom == e_message_mouse_move)
          {
 
             // We are at the message handler routine.
@@ -1264,7 +1272,7 @@ namespace freebsd
             // what forces, at the end of message processing, setting the bergedge cursor to the default cursor, if no other
             // handler has set it to another one.
 
-            m_puserinteraction->m_pimpl2->_on_mouse_move_step(pmouse->m_point);
+            m_puserinteraction->m_pinteractionimpl->_on_mouse_move_step(pmouse->m_point);
 
          }
 
@@ -1310,7 +1318,7 @@ namespace freebsd
 //
 //         }
 
-         if(pmouse->m_id == e_message_left_button_down)
+         if(pmouse->m_atom == e_message_left_button_down)
          {
 
 
@@ -1325,14 +1333,14 @@ namespace freebsd
 
          }
 
-         if(pmouse->m_id == e_message_left_button_down)
+         if(pmouse->m_atom == e_message_left_button_down)
          {
 
 
             ::output_debug_string("left_button_down");
 
          }
-         else if(pmouse->m_id == e_message_left_button_up)
+         else if(pmouse->m_atom == e_message_left_button_up)
          {
 
 
@@ -1342,7 +1350,7 @@ namespace freebsd
 
          string strUserInteractionType(::is_null(puserinteractionMouse) ? "(null)" : __type_name(puserinteractionMouse));
 
-         if(pmouse->m_id == e_message_mouse_move)
+         if(pmouse->m_atom == e_message_mouse_move)
          {
 
             static int s_iMotionNotify = 0;
@@ -1425,13 +1433,13 @@ namespace freebsd
 
       }
 
-      if(pmessage->m_id == e_message_subject)
+      if(pmessage->m_atom == e_message_subject)
       {
 
          if(m_puserinteraction != nullptr)
          {
 
-            m_puserinteraction->handle((::subject *) pmessage->m_lparam.m_lparam, nullptr);
+            m_puserinteraction->handle((::topic *) pmessage->m_lparam.m_lparam, nullptr);
 
          }
 //         else
@@ -2046,7 +2054,7 @@ namespace freebsd
 //
 //   {
 //
-//      __throw(error_not_implemented);
+//      throw not_implemented();
 ////
 ////      LPDRAGLISTINFO pInfo = (LPDRAGLISTINFO)lparam;
 //
@@ -2244,7 +2252,7 @@ namespace freebsd
 //         try
 //         {
 ////            HANDLE hevent = (HANDLE) pprintwindow->m_event.get_os_data();
-//            //          __throw(error_not_implemented);
+//            //          throw not_implemented();
 //            /*            ::PrintWindow(pprintwindow->m_hwnd, pprintwindow->m_hdc, 0);
 //                        ::SetEvent(hevent);*/
 //         }
@@ -2279,14 +2287,14 @@ namespace freebsd
 //      HRGN rgnIntersect;
 //      HRGN rgnUpdate = nullptr;
 //
-//      __throw(error_not_implemented);
+//      throw not_implemented();
 //      /*
 //            rgnWindow = CreateRectRgn(0, 0, 0, 0);
 //            rgnIntersect = CreateRectRgn(0, 0, 0, 0);
 //      */
 //      //      i32 iCount = wndaApp.get_count();
 //
-//      __throw(error_not_implemented);
+//      throw not_implemented();
 //   }
 //
 //   void interaction_impl::_001OnProdevianSynch(::message::message * pmessage)
@@ -2355,12 +2363,12 @@ namespace freebsd
       if(pwindowing)
       {
 
-         pwindowing->windowing_post(__routine([this]()
+         pwindowing->windowing_post([this]()
                           {
 
                              m_pwindow->exit_iconify();
 
-                          }));
+                          });
 
       }
 
@@ -2386,12 +2394,12 @@ namespace freebsd
       if(pwindowing)
       {
 
-         pwindowing->windowing_post(__routine([this]()
+         pwindowing->windowing_post([this]()
          {
 
             m_pwindow->exit_full_screen();
 
-         }));
+         });
 
       }
 
@@ -2417,12 +2425,12 @@ namespace freebsd
       if(pwindowing)
       {
 
-         pwindowing->windowing_post(__routine([this]()
+         pwindowing->windowing_post([this]()
          {
 
             m_pwindow->exit_zoomed();
 
-         }));
+         });
 
       }
 
@@ -2600,7 +2608,7 @@ namespace freebsd
 //   bool interaction_impl::DragDetect(const ::point_i32 & point) const
 //   {
 //
-//      __throw(error_not_implemented);
+//      throw not_implemented();
 //      //ASSERT(::is_window((oswindow) get_handle()));
 //
 //      //return ::DragDetect(get_handle(), point_i32) != false;
@@ -2642,7 +2650,7 @@ namespace freebsd
 //   strsize interaction_impl::GetWindowTextLength()
 //   {
 //
-//      __throw(error_not_implemented);
+//      throw not_implemented();
 //      //ASSERT(::is_window((oswindow) get_handle()));
 //
 //      //return ::GetWindowTextLength(get_handle());
@@ -2674,7 +2682,7 @@ namespace freebsd
 //   void interaction_impl::DragAcceptFiles(bool bAccept)
 //   {
 //
-//      __throw(error_not_implemented);
+//      throw not_implemented();
 //
 //      //ASSERT(::is_window((oswindow) get_handle()));
 //      //::DragAcceptFiles(get_handle(), bAccept);
@@ -2719,7 +2727,7 @@ namespace freebsd
 //   ::u32 interaction_impl::ArrangeIconicWindows()
 //   {
 //
-//      __throw(error_not_implemented);
+//      throw not_implemented();
 //
 ////      ASSERT(::is_window((oswindow) get_handle())); return ::ArrangeIconicWindows(get_handle());
 //
@@ -2732,7 +2740,7 @@ namespace freebsd
 //      UNREFERENCED_PARAMETER(hRgn);
 //      UNREFERENCED_PARAMETER(bRedraw);
 //
-//      //__throw(error_not_implemented);
+//      //throw not_implemented();
 //
 ////      ASSERT(::is_window((oswindow) get_handle())); return ::SetWindowRgn(get_handle(), hRgn, bRedraw);
 //      return 0;
@@ -2742,7 +2750,7 @@ namespace freebsd
 //   i32 interaction_impl::GetWindowRgn(HRGN hRgn)
 //   {
 //
-//      __throw(error_not_implemented);
+//      throw not_implemented();
 //
 ////      ASSERT(::is_window((oswindow) get_handle()) && hRgn != nullptr); return ::GetWindowRgn(get_handle(), hRgn);
 //
@@ -2752,7 +2760,7 @@ namespace freebsd
 //   bool interaction_impl::BringWindowToTop()
 //   {
 //
-////      __throw(error_not_implemented);
+////      throw not_implemented();
 ////      return ::BringWindowToTop(get_handle()) != false;
 //      return true;
 //   }
@@ -2762,7 +2770,7 @@ namespace freebsd
 //
 //   {
 //
-//      __throw(error_not_implemented);
+//      throw not_implemented();
 //
 ////      ASSERT(::is_window((oswindow) get_handle()));
 ////      ::MapWindowPoints(get_handle(), (oswindow) puserinteractionTo->get_handle(), pPoint, nCount);
@@ -2775,7 +2783,7 @@ namespace freebsd
 //
 //   {
 //
-//      __throw(error_not_implemented);
+//      throw not_implemented();
 //
 ////      ASSERT(::is_window((oswindow) get_handle()));
 ////      ::MapWindowPoints(get_handle(), (oswindow) puserinteractionTo->get_handle(), (POINT_I32 *)prectangle, 2);
@@ -2875,13 +2883,13 @@ namespace freebsd
 //
 //   void interaction_impl::UpdateWindow()
 //   {
-//      //__throw(error_not_implemented);
+//      //throw not_implemented();
 //      //::UpdateWindow(get_handle());
 //   }
 //
 //   void interaction_impl::SetRedraw(bool bRedraw)
 //   {
-//      __throw(error_not_implemented);
+//      throw not_implemented();
 //      //ASSERT(::is_window((oswindow) get_handle()));
 //      //::SendMessage(get_handle(), WM_SETREDRAW, bRedraw, 0);
 //   }
@@ -2889,7 +2897,7 @@ namespace freebsd
 //   bool interaction_impl::GetUpdateRect(RECTANGLE_I32 * prectangle, bool bErase)
 //
 //   {
-//      __throw(error_not_implemented);
+//      throw not_implemented();
 //      //ASSERT(::is_window((oswindow) get_handle()));
 //      //return ::GetUpdateRect(get_handle(), prectangle, bErase) != false;
 //
@@ -2897,14 +2905,14 @@ namespace freebsd
 //
 //   i32 interaction_impl::GetUpdateRgn(draw2d::region * pRgn, bool bErase)
 //   {
-//      __throw(error_not_implemented);
+//      throw not_implemented();
 //      //ASSERT(::is_window((oswindow) get_handle()));
 //      //return ::GetUpdateRgn(get_handle(), (HRGN)pRgn->get_handle(), bErase);
 //   }
 //
 //   void interaction_impl::Invalidate(bool bErase)
 //   {
-//      __throw(error_not_implemented);
+//      throw not_implemented();
 //      //ASSERT(::is_window((oswindow) get_handle()));
 //      //::InvalidateRect(get_handle(), nullptr, bErase);
 //   }
@@ -2912,7 +2920,7 @@ namespace freebsd
 //   void interaction_impl::InvalidateRect(const ::rectangle_i32 & rectangle, bool bErase)
 //
 //   {
-//      __throw(error_not_implemented);
+//      throw not_implemented();
 //      //ASSERT(::is_window((oswindow) get_handle()));
 //      //::InvalidateRect(get_handle(), prectangle, bErase);
 //
@@ -2920,7 +2928,7 @@ namespace freebsd
 //
 //   void interaction_impl::InvalidateRgn(::draw2d::region* pRgn, bool bErase)
 //   {
-//      __throw(error_not_implemented);
+//      throw not_implemented();
 //      //ASSERT(::is_window((oswindow) get_handle()));
 //      //::InvalidateRgn(get_handle(), (HRGN)pRgn->get_handle(), bErase);
 //   }
@@ -2928,7 +2936,7 @@ namespace freebsd
 //   void interaction_impl::ValidateRect(const ::rectangle_i32 & rectangle)
 //
 //   {
-//      __throw(error_not_implemented);
+//      throw not_implemented();
 //      //ASSERT(::is_window((oswindow) get_handle()));
 //      //::ValidateRect(get_handle(), prectangle);
 //
@@ -2936,7 +2944,7 @@ namespace freebsd
 //
 //   void interaction_impl::ValidateRgn(::draw2d::region* pRgn)
 //   {
-//      __throw(error_not_implemented);
+//      throw not_implemented();
 //      //ASSERT(::is_window((oswindow) get_handle()));
 //      //::ValidateRgn(get_handle(), (HRGN)pRgn->get_handle());
 //   }
@@ -2972,7 +2980,7 @@ namespace freebsd
 //   void interaction_impl::ShowOwnedPopups(bool bShow)
 //   {
 //
-//      __throw(error_not_implemented);
+//      throw not_implemented();
 //      //ASSERT(::is_window((oswindow) get_handle()));
 //      //::ShowOwnedPopups(get_handle(), bShow);
 //
@@ -3025,7 +3033,7 @@ namespace freebsd
 //   ::draw2d::graphics * interaction_impl::GetDCEx(::draw2d::region * prgnClip, ::u32 flags)
 //   {
 //
-//      __throw(error_not_implemented);
+//      throw not_implemented();
 //      //ASSERT(::is_window((oswindow) get_handle()));
 //      //::draw2d::graphics_pointer g(this);
 //      //g->attach(::GetDCEx(get_handle(), (HRGN)prgnClip->get_handle(), flags));
@@ -3036,7 +3044,7 @@ namespace freebsd
 //   bool interaction_impl::LockWindowUpdate()
 //   {
 //
-//      __throw(error_not_implemented);
+//      throw not_implemented();
 //      //ASSERT(::is_window((oswindow) get_handle()));
 //      //return ::LockWindowUpdate(get_handle()) != false;
 //
@@ -3045,7 +3053,7 @@ namespace freebsd
 //   void interaction_impl::UnlockWindowUpdate()
 //   {
 //
-//      __throw(error_not_implemented);
+//      throw not_implemented();
 //      //ASSERT(::is_window((oswindow) get_handle()));
 //      //::LockWindowUpdate(nullptr);
 //
@@ -3089,7 +3097,7 @@ namespace freebsd
 //
 //   {
 //
-//      __throw(error_not_implemented);
+//      throw not_implemented();
 //      //ASSERT(::is_window((oswindow) get_handle()));
 //      //return ::DrawAnimatedRects(get_handle(), idAni, prcFrom, lprcTo) != false;
 //
@@ -3101,7 +3109,7 @@ namespace freebsd
 //
 //   {
 //
-//      __throw(error_not_implemented);
+//      throw not_implemented();
 //      //ASSERT(::is_window((oswindow) get_handle()));
 //      //return ::DrawCaption(get_handle(), (HDC)(dynamic_cast<::linux::graphics * >(pgraphics))->get_handle(), prc, uFlags) != false;
 //
@@ -3122,7 +3130,7 @@ namespace freebsd
 ////
 ////        return uEvent;
 //
-//      //__throw(error_not_implemented);
+//      //throw not_implemented();
 //      //ASSERT(::is_window((oswindow) get_handle()));
 //      //return ::SetTimer(get_handle(), uEvent, nElapse, pfnTimer);
 //
@@ -3269,7 +3277,7 @@ namespace freebsd
 //   void interaction_impl::CheckDlgButton(i32 nIDButton, ::u32 nCheck)
 //   {
 //
-//      __throw(error_not_implemented);
+//      throw not_implemented();
 ////      ASSERT(::is_window((oswindow) get_handle()));
 ////      ::CheckDlgButton(get_handle(), nIDButton, nCheck);
 //
@@ -3278,7 +3286,7 @@ namespace freebsd
 //   void interaction_impl::CheckRadioButton(i32 nIDFirstButton, i32 nIDLastButton, i32 nIDCheckButton)
 //   {
 //
-//      __throw(error_not_implemented);
+//      throw not_implemented();
 ////      ASSERT(::is_window((oswindow) get_handle()));
 ////      ::CheckRadioButton(get_handle(), nIDFirstButton, nIDLastButton, nIDCheckButton);
 //
@@ -3288,7 +3296,7 @@ namespace freebsd
 //
 //   {
 //
-//      __throw(error_not_implemented);
+//      throw not_implemented();
 ////      ASSERT(::is_window((oswindow) get_handle()));
 ////      return ::DlgDirList(get_handle(), pPathSpec, nIDListBox, nIDStaticPath, nFileType);
 //
@@ -3299,7 +3307,7 @@ namespace freebsd
 //
 //   {
 //
-//      __throw(error_not_implemented);
+//      throw not_implemented();
 ////      ASSERT(::is_window((oswindow) get_handle()));
 ////      return ::DlgDirListComboBox(get_handle(), pPathSpec, nIDComboBox, nIDStaticPath, nFileType);
 //
@@ -3310,7 +3318,7 @@ namespace freebsd
 //
 //   {
 //
-//      __throw(error_not_implemented);
+//      throw not_implemented();
 ////      ASSERT(::is_window((oswindow) get_handle()));
 ////      return ::DlgDirSelectEx(get_handle(), pString, nSize, nIDListBox) != false;
 //
@@ -3321,7 +3329,7 @@ namespace freebsd
 //
 //   {
 //
-//      __throw(error_not_implemented);
+//      throw not_implemented();
 ////      ASSERT(::is_window((oswindow) get_handle()));
 ////      return ::DlgDirSelectComboBoxEx(get_handle(), pString, nSize, nIDComboBox) != false;
 //
@@ -3356,14 +3364,14 @@ namespace freebsd
 //
 ////   {
 ////
-////      __throw(error_not_implemented);
+////      throw not_implemented();
 ////      ASSERT(::is_window((oswindow) get_handle())); return ::GetDlgItemText(get_handle(), nID, pStr, nMaxCount);}
 //
 //
 //   ::user::interaction * interaction_impl::GetNextDlgGroupItem(::user::interaction * pWndCtl, bool bPrevious) const
 //   {
 //
-//      __throw(error_not_implemented);
+//      throw not_implemented();
 ////      ASSERT(::is_window((oswindow) get_handle()));
 ////      return ::linux::interaction_impl::from_handle(::GetNextDlgGroupItem(get_handle(), (oswindow) pWndCtl->get_handle(), bPrevious));
 //
@@ -3372,7 +3380,7 @@ namespace freebsd
 //   ::user::interaction * interaction_impl::GetNextDlgTabItem(::user::interaction * pWndCtl, bool bPrevious) const
 //   {
 //
-//      __throw(error_not_implemented);
+//      throw not_implemented();
 ////      ASSERT(::is_window((oswindow) get_handle()));
 ////      return ::linux::interaction_impl::from_handle(::GetNextDlgTabItem(get_handle(), (oswindow) pWndCtl->get_handle(), bPrevious));
 //
@@ -3381,7 +3389,7 @@ namespace freebsd
 //   ::u32 interaction_impl::IsDlgButtonChecked(i32 nIDButton) const
 //   {
 //
-//      __throw(error_not_implemented);
+//      throw not_implemented();
 ////      ASSERT(::is_window((oswindow) get_handle()));
 ////      return ::IsDlgButtonChecked(get_handle(), nIDButton);
 //
@@ -3391,7 +3399,7 @@ namespace freebsd
 //
 //   {
 //
-//      __throw(error_not_implemented);
+//      throw not_implemented();
 ////      ASSERT(::is_window((oswindow) get_handle()));
 ////      return ::SendDlgItemMessage(get_handle(), nID, message, wparam, lparam);
 //
@@ -3401,7 +3409,7 @@ namespace freebsd
 //   void interaction_impl::SetDlgItemInt(i32 nID, ::u32 nValue, bool bSigned)
 //   {
 //
-//      __throw(error_not_implemented);
+//      throw not_implemented();
 ////      ASSERT(::is_window((oswindow) get_handle()));
 ////      ::SetDlgItemInt(get_handle(), nID, nValue, bSigned);
 //
@@ -3411,7 +3419,7 @@ namespace freebsd
 //
 //   {
 //
-//      __throw(error_not_implemented);
+//      throw not_implemented();
 ////      ASSERT(::is_window((oswindow) get_handle()));
 ////      ::SetDlgItemText(get_handle(), nID, pszString);
 //
@@ -3422,7 +3430,7 @@ namespace freebsd
 //
 //   {
 //
-//      __throw(error_not_implemented);
+//      throw not_implemented();
 ////      ASSERT(::is_window((oswindow) get_handle()));
 ////      return ::ScrollWindowEx(get_handle(), dx, dy, pRectScroll, lpRectClip, (HRGN)prgnUpdate->get_handle(), lpRectUpdate, flags);
 //
@@ -3432,7 +3440,7 @@ namespace freebsd
 //   void interaction_impl::ShowScrollBar(::u32 nBar, bool bShow)
 //   {
 //
-//      __throw(error_not_implemented);
+//      throw not_implemented();
 ////      ASSERT(::is_window((oswindow) get_handle()));
 ////      ::ShowScrollBar(get_handle(), nBar, bShow);
 //
@@ -3442,7 +3450,7 @@ namespace freebsd
 //   {
 //
 //
-//      __throw(error_not_implemented);
+//      throw not_implemented();
 ////      ASSERT(::is_window((oswindow) get_handle()));
 ////      return ::linux::interaction_impl::from_handle(::ChildWindowFromPoint(get_handle(), point_i32));
 //
@@ -3451,7 +3459,7 @@ namespace freebsd
 //   ::user::interaction * interaction_impl::ChildWindowFromPoint(const ::point_i32 & point, ::u32 nFlags)
 //   {
 //
-//      __throw(error_not_implemented);
+//      throw not_implemented();
 ////      ASSERT(::is_window((oswindow) get_handle()));
 ////      return ::linux::interaction_impl::from_handle(::ChildWindowFromPointEx(get_handle(), point, nFlags));
 //
@@ -3469,7 +3477,7 @@ namespace freebsd
 //         return nullptr;
 //
 //      return m_puserinteraction->m_uiptraChild[0];
-//      //  __throw(error_not_implemented);
+//      //  throw not_implemented();
 ////      ASSERT(::is_window((oswindow) get_handle()));
 ////      return ::linux::interaction_impl::from_handle(::GetTopWindow(get_handle()));
 //
@@ -3518,7 +3526,7 @@ namespace freebsd
 //   {
 //
 //
-//      __throw(error_not_implemented);
+//      throw not_implemented();
 ////      ASSERT(::is_window((oswindow) get_handle()));
 ////      return ::FlashWindow(get_handle(), bInvert) != false;
 //
@@ -3527,7 +3535,7 @@ namespace freebsd
 //   bool interaction_impl::ChangeClipboardChain(oswindow hWndNext)
 //   {
 //
-//      __throw(error_not_implemented);
+//      throw not_implemented();
 ////      ASSERT(::is_window((oswindow) get_handle()));
 ////      return ::ChangeClipboardChain(get_handle(), hWndNext) != false;
 //
@@ -3536,7 +3544,7 @@ namespace freebsd
 //   oswindow interaction_impl::SetClipboardViewer()
 //   {
 //
-//      __throw(error_not_implemented);
+//      throw not_implemented();
 ////      ASSERT(::is_window((oswindow) get_handle()));
 ////      return ::SetClipboardViewer(get_handle());
 //
@@ -3545,7 +3553,7 @@ namespace freebsd
 //   bool interaction_impl::OpenClipboard()
 //   {
 //
-//      __throw(error_not_implemented);
+//      throw not_implemented();
 ////      ASSERT(::is_window((oswindow) get_handle()));
 ////      return ::OpenClipboard(get_handle()) != false;
 //
@@ -3604,7 +3612,7 @@ namespace freebsd
 //   void interaction_impl::HideCaret()
 //   {
 //
-//      __throw(error_not_implemented);
+//      throw not_implemented();
 ////      ::Hidecaret(get_handle());
 //
 //   }
@@ -3612,7 +3620,7 @@ namespace freebsd
 //   void interaction_impl::ShowCaret()
 //   {
 //
-//      __throw(error_not_implemented);
+//      throw not_implemented();
 ////    ::Showcaret(get_handle());
 //   }
 //
@@ -3642,7 +3650,7 @@ namespace freebsd
 //
 //   {
 //
-//      __throw(error_not_implemented);
+//      throw not_implemented();
 ////      return ::SendNotifyMessage(get_handle(), message, wparam, lparam) != false;
 //
 //
@@ -3651,7 +3659,7 @@ namespace freebsd
 //   void interaction_impl::Print(::draw2d::graphics_pointer & pgraphics, ::u32 dwFlags) const
 //   {
 //
-//      __throw(error_not_implemented);
+//      throw not_implemented();
 ////      ASSERT(::is_window((oswindow) get_handle()));
 ////      const_cast < interaction_impl * > (this)->send_message(WM_PRINT, (WPARAM)(dynamic_cast<::linux::graphics * >(pgraphics))->get_handle(), dwFlags);
 //
@@ -3660,7 +3668,7 @@ namespace freebsd
 //   void interaction_impl::PrintClient(::draw2d::graphics_pointer & pgraphics, ::u32 dwFlags) const
 //   {
 //
-//      __throw(error_not_implemented);
+//      throw not_implemented();
 ////      ASSERT(::is_window((oswindow) get_handle()));
 ////      const_cast < interaction_impl * > (this)->send_message(WM_PRINTCLIENT, (WPARAM)(dynamic_cast<::linux::graphics * >(pgraphics))->get_handle(), dwFlags);
 //
@@ -3669,7 +3677,7 @@ namespace freebsd
 //   bool interaction_impl::SetWindowContextHelpId(::u32 dwContextHelpId)
 //   {
 //
-//      __throw(error_not_implemented);
+//      throw not_implemented();
 ////      ASSERT(::is_window((oswindow) get_handle()));
 ////      return ::SetWindowContextHelpId(get_handle(), dwContextHelpId) != false;
 //
@@ -3678,7 +3686,7 @@ namespace freebsd
 //   ::u32 interaction_impl::GetWindowContextHelpId() const
 //   {
 //
-//      __throw(error_not_implemented);
+//      throw not_implemented();
 ////      ASSERT(::is_window((oswindow) get_handle()));
 ////      return ::GetWindowContextHelpId(get_handle());
 //
@@ -3791,7 +3799,7 @@ namespace freebsd
 //            && psession->get_cursor()->m_ecursor != cursor_system)
 //      {
 //
-//         __throw(error_not_implemented);
+//         throw not_implemented();
 ////         ::SetCursor(nullptr);
 //      }
 //      pmessage->m_lresult  = 1;
@@ -4053,7 +4061,7 @@ namespace freebsd
 //   void interaction_impl::CloseWindow()
 //   {
 //
-//      __throw(error_not_implemented);
+//      throw not_implemented();
 ////      ASSERT(::is_window((oswindow) get_handle()));
 ////      ::CloseWindow(get_handle());
 //
@@ -4062,7 +4070,7 @@ namespace freebsd
 //   bool interaction_impl::OpenIcon()
 //   {
 //
-//      __throw(error_not_implemented);
+//      throw not_implemented();
 ////      ASSERT(::is_window((oswindow) get_handle()));
 ////      return ::OpenIcon(get_handle()) != false;
 //
@@ -4278,13 +4286,13 @@ namespace freebsd
 //   }
 
 
-   bool interaction_impl::prodevian_update_screen()
+   void interaction_impl::prodevian_update_screen()
    {
 
       if(!m_puserinteraction)
       {
 
-         return false;
+         throw exception(error_null_pointer);
 
       }
 
@@ -4308,7 +4316,7 @@ namespace freebsd
 
       }
 
-      return true;
+      //return true;
 
    }
 
@@ -4337,7 +4345,7 @@ namespace freebsd
 //   }
 
 
-} // namespace freebsd
+} // namespace aura_freebsd
 
 
 

@@ -3,10 +3,10 @@
 // on 2021-08-12 17:38 BRT
 // <3ThomasBorregaardSørensen!!
 #include "framework.h"
-#include "acme/node/operating_system/freebsd/_freebsd.h"
+#include "acme/operating_system/freebsd/_freebsd.h"
 
 
-namespace freebsd
+namespace acme_freebsd
 {
 
 
@@ -27,14 +27,16 @@ namespace freebsd
    ::file::path acme_file::module()
    {
 
-      auto pathModule = ::path::module();
+      return ::acme_posix::acme_file::module();
 
-      return pathModule;
+      //auto pathModule = m_psystem->m_pacmepath->module();
+
+      //return pathModule;
 
    }
 
 
-}  // namespace frebsd
+}  // namespace acme_frebsd
 
 
 

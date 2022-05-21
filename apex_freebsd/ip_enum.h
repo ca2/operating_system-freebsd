@@ -12,7 +12,7 @@ Copyright (ca) 1998 by PJ Naughter.
 */
 
 
-namespace freebsd
+namespace apex_freebsd
 {
 
 
@@ -26,16 +26,16 @@ namespace freebsd
 
 
       ip_enum();
-      virtual ~ip_enum();
+      ~ip_enum() override;
 
 
       //      virtual ::count enumerate(ip_array & ipa);
-      virtual ::count enumerate(array < ::net::address > & ipa) override;
+      ::count enumerate(array < ::net::address > & ipa) override;
 
    };
 
 
-} // namespace freebsd
+} // namespace apex_freebsd
 
 
 

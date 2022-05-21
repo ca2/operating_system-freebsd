@@ -66,7 +66,7 @@ namespace draw2d_gdiplus
    }
 
 
-   void object::assert_valid() const
+   void object::assert_ok() const
    {
       ::object::assert_valid();
       //ASSERT(get_handle() == nullptr ||

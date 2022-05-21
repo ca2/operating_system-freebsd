@@ -1,7 +1,7 @@
 #pragma once
 
 
-namespace freebsd
+namespace apex_freebsd
 {
 
 
@@ -51,17 +51,19 @@ namespace freebsd
 
       //virtual void _main_server(::u32 argumentCount, PWSTR * arguments);
 
-      virtual ::e_status defer_service();
+      void defer_service();
 
       //virtual ::e_status enable_service();
       //virtual ::e_status disable_service();
 
-      virtual ::e_status start_service();
-      virtual ::e_status stop_service();
+      void start_service();
+      void stop_service();
+
+
    };
 
 
-} // namespace freebsd
+} // namespace apex_freebsd
 
 
 

@@ -7,34 +7,28 @@
 class user_notify_icon_bridge;
 
 
-namespace freebsd
+namespace aura_freebsd
 {
 
 
-   namespace aura
+   class CLASS_DECL_AURA_FREEBSD appindicator :
+      virtual public ::matter
    {
+   public:
 
 
-      class CLASS_DECL_AURA_FREEBSD appindicator :
-         virtual public ::matter
-      {
-         public:
+      appindicator();
+      ~appindicator() override;
 
 
-         appindicator();
-         virtual ~appindicator();
+      virtual bool
+      create(const char * pszId, const char * pszIcon, const char * pszFolder, user_notify_icon_bridge * pbridge) = 0;
 
 
-         virtual bool create(const char * pszId, const char * pszIcon, const char * pszFolder, user_notify_icon_bridge * pbridge) = 0;
+   };
 
 
-      };
-
-
-   } // namespace aura
-
-
-} // namespace_freebsd
+} // namespace aura_freebsd
 
 
 

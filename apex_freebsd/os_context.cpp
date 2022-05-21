@@ -1,5 +1,5 @@
 #include "framework.h"
-#include "apex/platform/app_core.h"
+//#include "apex/platform/app_core.h"
 //#include "_freebsd.h"
 //#include "apex/os/freebsd/gnome_gnome.h"
 #include <unistd.h>
@@ -37,7 +37,7 @@ string empty_get_file_content_type(string)
 //}
 
 
-namespace freebsd
+namespace apex_freebsd
 {
 
 
@@ -59,7 +59,7 @@ namespace freebsd
    }
 
 
-   bool os_context::shutdown(bool bIfPowerOff)
+   void os_context::shutdown(bool bIfPowerOff)
    {
       /*      bool retval = true;
             HANDLE hToken;
@@ -81,12 +81,13 @@ namespace freebsd
             AdjustTokenPrivileges(hToken, false, &tkp, 0, (PTOKEN_PRIVILEGES) nullptr, 0);
             return retval;*/
 
-      __throw(error_not_implemented);
-      return false;
+      throw not_implemented();
+      //return false;
 
    }
 
-   bool os_context::reboot()
+
+   void os_context::reboot()
    {
       /*      HANDLE hToken;
             TOKEN_PRIVILEGES tkp;
@@ -142,18 +143,21 @@ namespace freebsd
       //      tkp.Privileges[0].Attributes = 0;
       //      AdjustTokenPrivileges(hToken, false, &tkp, 0, (PTOKEN_PRIVILEGES) nullptr, 0);
       //      return true;
-            __throw(error_not_implemented);
+            throw not_implemented();
             return false;
 
          */
-      return false;
+      throw not_implemented();
+      //return false;
    }
 
 
    void os_context::terminate_processes_by_title(const ::string & strName)
    {
-      __throw(error_not_implemented);
-      return;
+
+      throw not_implemented();
+
+      //return;
 
       /*      ::u32 dwPid;
             while(get_pid_by_title(strName, dwPid))
@@ -181,8 +185,10 @@ namespace freebsd
       //  }
    }
 
-   bool os_context::get_pid_by_path(const ::string & strName, ::u32 & dwPid)
+
+   bool os_context::path_pid(::u32 & dwPid, const ::string & strName)
    {
+
       u32_array dwa;
       get_all_processes(dwa);
       for(i32 i = 0; i < dwa.get_count(); i++)
@@ -197,7 +203,7 @@ namespace freebsd
    }
 
 
-   bool os_context::get_pid_by_title(const ::string & strName, ::u32 & dwPid)
+   bool os_context::title_pid(::u32 & dwPid,  const ::string & strName)
    {
 
       u32_array dwa;
@@ -225,16 +231,20 @@ namespace freebsd
 
    ::file::path os_context::get_process_path(::u32 dwPid)
    {
-      __throw(error_not_implemented);
+
+      throw not_implemented();
+
       return "";
 
    }
 
+
    void os_context::get_all_processes(u32_array & dwa )
    {
 
-      __throw(error_not_implemented);
-      return;
+      throw not_implemented();
+
+      //return;
 
       /*
             dwa.set_size(0);
@@ -255,7 +265,7 @@ namespace freebsd
 
 //   string os_context::get_module_path(HMODULE hmodule)
 //   {
-//      __throw(error_not_implemented);
+//      throw not_implemented();
 //      return "";
 //      /*
 //      string strPath;
@@ -274,7 +284,7 @@ namespace freebsd
 
    ::payload os_context::connection_settings_get_auto_detect()
    {
-      //__throw(error_not_implemented);
+      //throw not_implemented();
       return false;
 
       /*
@@ -297,7 +307,7 @@ namespace freebsd
    ::payload os_context::connection_settings_get_auto_config_url()
    {
 
-      //__throw(error_not_implemented);
+      //throw not_implemented();
       return "";
       /*
             registry::Key key;
@@ -312,11 +322,14 @@ namespace freebsd
       */
    }
 
-   bool os_context::local_machine_set_run(const ::string & strKey, const ::string & strCommand)
+
+   void os_context::local_machine_set_run(const ::string & strKey, const ::string & strCommand, const ::string& strArguments, bool bSet)
    {
 
-//      __throw(error_not_implemented);
-      return false;
+
+      throw not_implemented();
+//      throw not_implemented();
+//      return false;
 
       /*
             registry::Key keyKar(HKEY_LOcaL_MACHINE, "SOFTWARE\\Micros_contextoft\\Windows\\CurrentVersion\\Run", true);
@@ -330,27 +343,28 @@ namespace freebsd
    }
 
 
-   bool os_context::local_machine_set_run_once(const ::string & strKey, const ::string & strCommand)
+   void os_context::local_machine_set_run_once(const ::string & strKey, const ::string & strCommand, const ::string& strArguments, bool bSet)
    {
 
 
-      __throw(error_not_implemented);
-      return false;
+      throw not_implemented();
+      //return false;
       /*    registry::Key keyKar(HKEY_LOcaL_MACHINE, "SOFTWARE\\Micros_contextoft\\Windows\\CurrentVersion\\RunOnce", true);
 
 
             keyKar.SetValue(pszKey, pszCommand);
       */
 
-      return false;
+      ///return false;
 
    }
 
-   bool os_context::current_user_set_run(const ::string & strKey, const ::string & strCommand)
+
+   void os_context::current_user_set_run(const ::string & strKey, const ::string & strCommand, const ::string& strArguments, bool bSet)
    {
 
-      __throw(error_not_implemented);
-      return false;
+      throw not_implemented();
+      //return false;
 
       /*
             registry::Key keyKar(HKEY_CURRENT_USER, "SOFTWARE\\Micros_contextoft\\Windows\\CurrentVersion\\Run", true);
@@ -359,15 +373,16 @@ namespace freebsd
             keyKar.SetValue(pszKey, pszCommand);
       */
 
-      return false;
+      //return false;
 
    }
 
-   bool os_context::current_user_set_run_once(const ::string & strKey, const ::string & strCommand)
+
+   void os_context::current_user_set_run_once(const ::string & strKey, const ::string & strCommand, const ::string& strArguments, bool bSet)
    {
 
-      __throw(error_not_implemented);
-      return false;
+      throw not_implemented();
+      //return false;
 
       /*
             registry::Key keyKar(HKEY_CURRENT_USER, "SOFTWARE\\Micros_contextoft\\Windows\\CurrentVersion\\RunOnce", true);
@@ -376,15 +391,15 @@ namespace freebsd
             keyKar.SetValue(pszKey, pszCommand);
 
       */
-      return false;
+      //return false;
 
    }
 
 
-   bool os_context::defer_register_ca2_plugin_for_mozilla()
+   void os_context::defer_register_ca2_plugin_for_mozilla()
    {
-      //  __throw(error_not_implemented);
-      return false;
+      //  throw not_implemented();
+      //return false;
 
       /*
             registry::Key keyPlugins;
@@ -420,10 +435,12 @@ namespace freebsd
       */
    }
 
-   bool os_context::file_extension_get_open_with_list_keys(string_array & straKey, const ::string & strExtension)
+
+   void os_context::file_extension_get_open_with_list_keys(string_array & straKey, const ::string & strExtension)
    {
-      __throw(error_not_implemented);
-      return false;
+
+      throw not_implemented();
+      //return false;
 
       /*
             string strExt;
@@ -445,24 +462,32 @@ namespace freebsd
    }
 
 
-   bool os_context::file_extension_get_open_with_list_commands(string_array & straCommand, const ::string & strExtension)
+   void os_context::file_extension_get_open_with_list_commands(string_array & straCommand, const ::string & strExtension)
    {
 
       string_array straKey;
 
-      if(!file_extension_get_open_with_list_keys(straKey, strExtension))
-         return false;
+      //if(!
+      //
+      file_extension_get_open_with_list_keys(straKey, strExtension);
+//      {
+//
+//         //return false;
+//
+//         throw exception(error_failed);
+//
+//      }
 
-
-      return true;
+      //return true;
 
    }
 
-   bool os_context::file_association_set_default_icon(const ::string & strExtension, const ::string & strExtensionNamingClass, const ::string & strIconPath)
+
+   void os_context::file_association_set_default_icon(const ::string & strExtension, const ::string & strExtensionNamingClass, const ::string & strIconPath)
    {
 
-      __throw(error_not_implemented);
-      return false;
+      throw not_implemented();
+      //return false;
 
       /*
             string strExtensionNamingClass(pszExtensionNamingClass);
@@ -476,14 +501,14 @@ namespace freebsd
    }
 
 
-   bool os_context::file_association_set_shell_open_command(const ::string & strExtension, const ::string & strExtensionNamingClass,  const ::string & strCommand, const ::string & strParam)
+   void os_context::file_association_set_shell_open_command(const ::string & strExtension, const ::string & strExtensionNamingClass,  const ::string & strCommand, const ::string & strParam)
    {
 
-      return false;
+      //return false;
 
-      __throw(error_not_implemented);
+      throw not_implemented();
 
-      return false;
+      //return false;
 
       /*
             string strExt;
@@ -512,10 +537,13 @@ namespace freebsd
       */
    }
 
-   bool os_context::file_association_get_shell_open_command(const ::string & strExtension, string & strExtensionNamingClass, string & strCommand, string & strParam)
+
+   void os_context::file_association_get_shell_open_command(const ::string & strExtension, string & strExtensionNamingClass, string & strCommand, string & strParam)
    {
-      __throw(error_not_implemented);
-      return false;
+
+      throw not_implemented();
+
+      //return false;
 
       /*
             string strExt;
@@ -555,63 +583,66 @@ namespace freebsd
       */
    }
 
-   bool os_context::open_in_ie(const char * pcsz)
 
+//   bool os_context::open_in_ie(const char * pcsz)
+//   {
+//
+//      throw not_implemented();
+//      return false;
+//
+//      /*    registry reg;
+//            string str;
+//            string str2;
+//            string strCommand;
+//            registry::Key key;
+//            if(key.OpenKey(HKEY_CLASSES_ROOT, ".html", false))
+//            {
+//               if(reg.RegQueryValue(key.m_hkey, "", str))
+//               {
+//                  if(key.OpenKey(HKEY_CLASSES_ROOT, ".html\\shell\\opennew\\command", false))
+//                  {
+//                     string str;
+//                     if(reg.RegQueryValue(HKEY_CLASSES_ROOT, str, str2))
+//                     {
+//                        string strCommand(str2);
+//                        strCommand.replace("%1", pcsz);
+//
+//                        WinExec(strCommand,e_display_normal);
+//                     }
+//                  }
+//                  else
+//                  {
+//                     if(key.OpenKey(HKEY_CLASSES_ROOT, str, false))
+//                     {
+//                        str += "\\shell\\opennew\\command";
+//                        if(key.OpenKey(HKEY_CLASSES_ROOT, str, false))
+//                        {
+//                           if(reg.RegQueryValue(key.m_hkey, "", str2))
+//                           {
+//                              string strCommand(str2);
+//                              strCommand.replace("%1", pcsz);
+//
+//                              WinExec(strCommand,e_display_normal);
+//                           }
+//                        }
+//                     }
+//                  }
+//               }
+//            }
+//
+//            return true;
+//      */
+//
+//   }
+
+
+   void os_context::enable_service(const ::string & strServiceName, const ::string & strDisplayName, const ::string & strCommand, const ::string & strUser, const ::string & strPass)
    {
 
-      __throw(error_not_implemented);
-      return false;
+      throw not_implemented();
 
-      /*    registry reg;
-            string str;
-            string str2;
-            string strCommand;
-            registry::Key key;
-            if(key.OpenKey(HKEY_CLASSES_ROOT, ".html", false))
-            {
-               if(reg.RegQueryValue(key.m_hkey, "", str))
-               {
-                  if(key.OpenKey(HKEY_CLASSES_ROOT, ".html\\shell\\opennew\\command", false))
-                  {
-                     string str;
-                     if(reg.RegQueryValue(HKEY_CLASSES_ROOT, str, str2))
-                     {
-                        string strCommand(str2);
-                        strCommand.replace("%1", pcsz);
-
-                        WinExec(strCommand,e_display_normal);
-                     }
-                  }
-                  else
-                  {
-                     if(key.OpenKey(HKEY_CLASSES_ROOT, str, false))
-                     {
-                        str += "\\shell\\opennew\\command";
-                        if(key.OpenKey(HKEY_CLASSES_ROOT, str, false))
-                        {
-                           if(reg.RegQueryValue(key.m_hkey, "", str2))
-                           {
-                              string strCommand(str2);
-                              strCommand.replace("%1", pcsz);
-
-                              WinExec(strCommand,e_display_normal);
-                           }
-                        }
-                     }
-                  }
-               }
-            }
-
-            return true;
-      */
-
-   }
-
-   bool os_context::create_service(::object * pobject)
-   {
-
-      //__throw(error_not_implemented);
-      return true;
+      //throw not_implemented();
+      //return true;
 
       /*
             if(papp->m_strAppName.is_empty()
@@ -660,10 +691,13 @@ namespace freebsd
    }
 
 
-   bool os_context::erase_service(::object * pobject)
+   void os_context::disable_service(const ::string & strServiceName)
    {
-//      __throw(error_not_implemented);
-      return false;
+
+      throw not_implemented();
+
+//      throw not_implemented();
+      //return false;
 
       /*
             if(papp->m_strAppName.is_empty()
@@ -701,10 +735,14 @@ namespace freebsd
       */
    }
 
-   bool os_context::start_service(::object * pobject)
+
+   void os_context::start_service(const ::string & strServiceName)
    {
-      //__throw(error_not_implemented);
-      return false;
+
+      throw not_implemented();
+
+      //throw not_implemented();
+      //return false;
 
       /*
             if(papp->m_strAppName.is_empty()
@@ -742,10 +780,14 @@ namespace freebsd
             */
    }
 
-   bool os_context::stop_service(::object * pobject)
+
+   void os_context::stop_service(const ::string & strServiceName)
    {
-      __throw(error_not_implemented);
-      return false;
+
+      throw not_implemented();
+
+      //throw not_implemented();
+      //return false;
 
       /*
             if(papp->m_strAppName.is_empty()
@@ -793,17 +835,18 @@ namespace freebsd
    void os_context::raise_exception( ::u32 dwExceptionCode, ::u32 dwExceptionFlags)
    {
 
-      __throw(error_not_implemented);
+      throw not_implemented();
       return;
       /*
             RaiseException( dwExceptionCode, dwExceptionFlags, 0, nullptr );
             */
    }
 
+
    bool os_context::is_remote_session()
    {
 
-//      __throw(error_not_implemented);
+//      throw not_implemented();
       return false;
       /*
             return GetSystemMetrics(SM_REMOTESESSION) != false;
@@ -811,13 +854,12 @@ namespace freebsd
    }
 
 
-   void os_context::post_to_all_threads(const ::id & id, wparam wparam, lparam lparam)
-
-   {
-
-      return;
-
-   }
+//   void os_context::post_to_all_threads(const ::id & id, wparam wparam, lparam lparam)
+//   {
+//
+//      return;
+//
+//   }
 
 
    int os_context::get_pid()
@@ -828,21 +870,29 @@ namespace freebsd
    }
 
 
-   bool os_context::initialize_wallpaper_fileset(::file::set * pfileset, bool bAddSearch)
+   void os_context::initialize_wallpaper_fileset(::file::set * pfileset, bool bAddSearch)
    {
 
       if (bAddSearch)
       {
 
-         string strDir;
+         ::file::path pathBaseFolder;
 
-         strDir = "/usr/share/backgrounds";
+         pathBaseFolder = "/usr/local/share/backgrounds";
 
-         pfileset->add_search(strDir, true);
+         ::file::path pathFolder;
+
+         string strCurrentDesktop;
+
+         strCurrentDesktop = string(getenv("XDG_CURRENT_DESKTOP")).lowered();
+
+         pathFolder = pathBaseFolder / strCurrentDesktop;
+
+         pfileset->add_search(pathFolder, true);
 
       }
 
-      return true;
+      //return true;
 
    }
 
@@ -861,7 +911,7 @@ namespace freebsd
    //
    //#else
 
-   bool os_context::get_default_browser(string & strId, ::file::path & path, string & strParam)
+   void os_context::get_default_browser(string & strId, ::file::path & path, string & strParam)
    {
 
       string str = m_psystem->m_papexsystem->process().get_output("/bin/sh -c \"xdg-settings get default-web-browser\"");
@@ -913,15 +963,17 @@ namespace freebsd
 
       }
 
-      return true;
+      //return true;
 
    }
 
 
-   bool os_context::file_open(::file::path strTarget, string strParams, string strFolder)
+   void os_context::file_open(const ::file::path & path, const ::string & strParams, const ::file::path & pathFolder)
    {
 
-      strTarget = get_context()->m_papexcontext->defer_process_path(strTarget);
+      string strTarget;
+
+      strTarget = get_context()->m_papexcontext->defer_process_path(path);
 
       if(freebsd_can_exec(strTarget))
       {
@@ -936,7 +988,7 @@ namespace freebsd
 
          // 2018-01-29 call_async("/bin/bash", "-c \"" + strTarget + "\"", strFolder, SW_SHOWDEFAULT, false);
 
-         m_psystem->node()->call_async(strTarget, strParams, strFolder, e_display_default, false);
+         m_psystem->node()->call_async(strTarget, strParams, pathFolder, e_display_default, false);
 
 //         char * pszCommandLine = strdup(strTarget + " " + strParams);
 
@@ -961,7 +1013,7 @@ namespace freebsd
 //
 //         }
 
-         return true;
+         //return true;
 
       }
       else
@@ -977,7 +1029,7 @@ namespace freebsd
 
          auto pnode = psystem->node();
 
-         pnode->node_fork([this, strTarget]()
+         pnode->node_post([this, strTarget]()
          {
 
             string strUri = strTarget;
@@ -1014,25 +1066,27 @@ namespace freebsd
 
       }
 
-      return true;
+      //return true;
 
    }
 
 
-   void os_context::list_process(::file::patha & patha, u32_array & uaPid)
+   void os_context::list_process(::file::path_array & patha, u32_array & uaPid)
    {
 
       ::output_debug_string("freebsd::os_context::list_process");
 
-      ::file::patha stra;
+      ::file::listing listing;
 
-      m_psystem->m_pacmedir->ls_dir(stra, "/proc/");
+      listing.set_folder_listing("/proc/");
+
+      m_psystem->m_pacmedirectory->enumerate(listing);
 
       auto psystem = m_psystem;
 
       auto pnode = psystem->node();
 
-      for(auto & strPid : stra)
+      for(auto & strPid : listing)
       {
 
          int iPid = atoi(strPid.title());
@@ -1158,7 +1212,7 @@ namespace freebsd
    }
 
 
-} // namespace freebsd
+} // namespace apex_freebsd
 
 
 

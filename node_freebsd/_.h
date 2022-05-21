@@ -3,7 +3,7 @@
 
 #include "aura/_.h"
 #include "apex_freebsd/_.h"
-#include "platform-posix/aura_posix/_.h"
+#include "operating-system-posix/aura_posix/_.h"
 
 
 #if defined(_NODE_FREEBSD_LIBRARY)

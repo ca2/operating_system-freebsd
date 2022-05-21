@@ -3,7 +3,7 @@
 #include "shell_launcher.h"
 
 
-namespace freebsd
+namespace apex_freebsd
 {
 
    
@@ -54,7 +54,7 @@ namespace freebsd
    //}
 
 
-} // namespace freebsd
+} // namespace apex_freebsd
 
 
 

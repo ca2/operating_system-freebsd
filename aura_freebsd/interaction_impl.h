@@ -1,7 +1,7 @@
 #pragma once
 
 
-namespace freebsd
+namespace aura_freebsd
 {
 
 
@@ -46,7 +46,7 @@ namespace freebsd
       void linux_interaction_impl_common_construct();
 
 
-      void assert_valid() const override;
+      void assert_ok() const override;
       void dump(dump_context & dumpcontext) const override;
 
 
@@ -127,7 +127,7 @@ namespace freebsd
 //      id id = ::id()) override;
 
 
-         virtual ::e_status native_create_host() override;
+         //virtual ::e_status native_create_host() override;
 
 
 //      virtual bool native_create_window_ex(
@@ -136,7 +136,7 @@ namespace freebsd
 //      ::user::interaction * pParentWnd = nullptr,
 //      id id = ::id());
 
-      virtual bool start_destroying_window() override;
+      void start_destroying_window() override;
 
       // special pre-creation and ::user::interaction_impl rectangle_i32 adjustment hooks
       virtual bool pre_create_window(::user::system * pusersystem) override;
@@ -153,16 +153,16 @@ namespace freebsd
       void defer_delayed_placement();
 
 
-      virtual void on_start_layout_experience(enum_layout_experience elayoutexperience) override;
-      virtual void on_end_layout_experience(enum_layout_experience elayoutexperience) override;
+      void on_start_layout_experience(enum_layout_experience elayoutexperience) override;
+      void on_end_layout_experience(enum_layout_experience elayoutexperience) override;
 
 
-      virtual void on_layout(::draw2d::graphics_pointer & pgraphics) override;
+      void on_layout(::draw2d::graphics_pointer & pgraphics) override;
 
 
 
 
-      virtual bool _is_window() const override;
+      bool _is_window() const override;
 
 #if(WINVER >= 0x0500)
 
@@ -333,7 +333,7 @@ namespace freebsd
       virtual bool EnableWindow(bool bEnable = true);
 
 
-      virtual bool prodevian_update_screen() override;
+      void prodevian_update_screen() override;
 
 
       DECLARE_MESSAGE_HANDLER(on_message_create);
@@ -372,8 +372,7 @@ namespace freebsd
    };
 
 
-} // namespace freebsd
-
+} // namespace aura_freebsd
 
 
 

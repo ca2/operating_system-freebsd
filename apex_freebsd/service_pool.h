@@ -1,19 +1,19 @@
 #pragma once
 
 
-namespace freebsd
-{
-
-
-class service_pool
-{
-public:
-
-   
-
-
-};
-
-
+//namespace freebsd
+//{
+//
+//
+//class service_pool
+//{
+//public:
+//
+//
+//
+//
+//};
+//
+//
 
 

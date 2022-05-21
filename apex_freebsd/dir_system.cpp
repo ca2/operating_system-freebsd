@@ -1,7 +1,7 @@
 #include "framework.h"
 
 
-namespace freebsd
+namespace apex_freebsd
 {
 
 
@@ -17,28 +17,30 @@ namespace freebsd
    }
 
 
-   ::e_status dir_system::initialize(::object * pobject)
+   void dir_system::initialize(::object * pobject)
    {
 
-      auto estatus = ::dir_system::initialize(pobject);
+      //auto estatus =
 
-      if(!estatus)
-      {
+      ::dir_system::initialize(pobject);
 
-         return estatus;
-
-      }
+//      if(!estatus)
+//      {
+//
+//         return estatus;
+//
+//      }
 
       m_pathHome = getenv("HOME");
 
       m_pathCa2Config = m_pathHome / ".config/ca2";
 
-      return estatus;
+//      return estatus;
 
     }
 
 
-} // namespace freebsd
+} // namespace apex_freebsd
 
 
 

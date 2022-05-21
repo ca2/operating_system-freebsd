@@ -6,31 +6,27 @@
 //#include "node/os/freebsd/_c.h"
 
 
-namespace aura
+namespace aura_freebsd
 {
 
 
-   namespace freebsd
+   node::node()
+   {
+
+      //m_pnodenode = this;
+
+   }
+
+
+   node::~node()
    {
 
 
-      node::node()
-      {
-
-         //m_pnodenode = this;
-
-      }
+   }
 
 
-      node::~node()
-      {
-
-
-      }
-
-
-      string node::get_user_name()
-      {
+   string node::get_user_name()
+   {
 
 //         WCHAR wsz[1024];
 //
@@ -40,38 +36,41 @@ namespace aura
 //
 //         return string(wsz);
 
-         return "";
+      return "";
 
-      }
-
-
-      ::e_status node::initialize(::object * pobject)
-      {
-
-         INFORMATION("aura::freebsd::node::initialize");
-
-         auto estatus = ::apex::freebsd::node::initialize(pobject);
-
-         if(!estatus)
-         {
-
-            return estatus;
-
-         }
-
-         estatus = ::aura::posix::node::initialize(pobject);
-
-         if(!estatus)
-         {
-
-            return estatus;
-
-         }
-
-         return estatus;
+   }
 
 
-      }
+   void node::initialize(::object * pobject)
+   {
+
+      //INFORMATION("aura::freebsd::node::initialize");
+
+      //auto estatus =
+
+      ::apex_freebsd::node::initialize(pobject);
+
+//      if (!estatus)
+//      {
+//
+//         return estatus;
+//
+//      }
+
+      //estatus =
+
+      ::aura_posix::node::initialize(pobject);
+
+//      if (!estatus)
+//      {
+//
+//         return estatus;
+//
+//      }
+//
+//      return estatus;
+
+   }
 
 
 //      bool node::_os_calc_app_dark_mode()
@@ -296,8 +295,8 @@ namespace aura
 //      }
 
 
-      ::e_status node::browse_for_folder(::file::path & pathFolder)
-      {
+   void node::browse_for_folder(::file::path & pathFolder)
+   {
 
 //         wstring wstrFolder(pathFolder);
 //
@@ -349,9 +348,9 @@ namespace aura
 //
 //         }
 
-         return ::success;
+      //return ::success;
 
-      }
+   }
 
 //      ::e_status node::register_dll(const ::file::path & pathDll)
 //      {
@@ -473,9 +472,7 @@ namespace aura
 //      }
 
 
-   } // namespace freebsd
+} // namespace aura_freebsd
 
-
-} // namespace node
 
 

@@ -29,7 +29,7 @@
 }*/
 
 
-namespace freebsd
+namespace acme_freebsd
 {
 
 
@@ -93,7 +93,8 @@ namespace freebsd
 //   }
 //
 
-   ::extended::status file::open(const ::file::path & pszFileName, const ::file::e_open & openParam)
+
+   void file::open(const ::file::path & pszFileName, const ::file::e_open & openParam)
    {
 
       if (m_iFile != INVALID_FILE)
@@ -113,7 +114,7 @@ namespace freebsd
       if ((eopen & ::file::e_open_defer_create_directory) && (eopen & ::file::e_open_write))
       {
 
-         m_psystem->m_pacmedir->create(pszFileName.folder());
+         m_psystem->m_pacmedirectory->create(pszFileName.folder());
 
       }
 
@@ -194,11 +195,27 @@ namespace freebsd
 
          int iError = errno;
 
-         ::e_status estatus = ::errno_to_status(iError);
+         m_estatus = ::errno_to_status(iError);
+
+         if(!::failed(m_estatus))
+         {
+
+            m_estatus = ::error_failed;
+
+         }
+
+         set_nok();
+
+         if(eopen & ::file::e_open_no_exception_on_open)
+         {
+
+            return;
+
+         }
 
          //return //::fesp(get_application(), file_exception::os_error_to_exception(dwLastError), dwLastError, m_path);
 
-         return estatus;
+         throw ::file::exception(m_estatus, 0, iError, m_path, eopen);
 
       }
 
@@ -208,7 +225,11 @@ namespace freebsd
 
       m_eopen = eopen;
 
-      return ::success;
+      m_estatus = ::success;
+
+      set_ok();
+
+      //return ::success;
 
    }
 
@@ -268,7 +289,8 @@ namespace freebsd
             {
 
             }
-            ::file::throw_errno( errno);
+            auto estatus = errno_to_status(iError);
+            ::file::exception(estatus, 0, iError, m_path, m_eopen);
          }
          else if(iRead == 0)
          {
@@ -314,7 +336,11 @@ namespace freebsd
          if(iWrite < 0)
          {
 
-            throw_errno(errno, m_path);
+            auto iError = errno;
+
+            auto estatus = errno_to_status(iError);
+
+            ::file::exception(estatus, 0, iError, m_path, m_eopen);
 
          }
 
@@ -336,7 +362,7 @@ namespace freebsd
       if(m_iFile == INVALID_FILE)
       {
 
-         throw_errno(errno, m_path);
+         ::file::exception(error_wrong_state, 0, -1, m_path, m_eopen);
 
       }
 
@@ -351,7 +377,15 @@ namespace freebsd
       filesize posNew = ::lseek(m_iFile, lLoOffset, (::u32)eseek);
 //      posNew |= ((filesize) lHiOffset) << 32;
       if(posNew  == (filesize)-1)
-         throw_errno(errno, m_path);
+      {
+
+         auto iError = errno;
+
+         auto estatus = errno_to_status(iError);
+
+         throw ::file::exception(estatus, 0, iError, m_path, m_eopen);
+
+      }
 
       return posNew;
    }
@@ -367,7 +401,15 @@ namespace freebsd
       filesize pos = ::lseek(m_iFile, lLoOffset, SEEK_CUR);
       //    pos |= ((filesize)lHiOffset) << 32;
       if(pos  == (filesize)-1)
-         throw_errno(errno, m_path);
+      {
+
+         int iError = errno;
+
+         auto estatus = errno_to_status(iError);
+
+         throw ::file::exception(estatus, 0, iError, m_path, m_eopen);
+
+      }
 
       return pos;
    }
@@ -420,7 +462,15 @@ namespace freebsd
       m_path.Empty();
 
       if (bError)
-         throw_errno(errno, m_path);
+      {
+
+         int iErrorNumber = errno;
+
+         auto estatus = errno_to_status(iErrorNumber);
+
+         throw ::file::exception(estatus, 0, iErrorNumber, m_path, m_eopen);
+
+      }
 
    }
 
@@ -468,7 +518,11 @@ namespace freebsd
       if (::ftruncate(m_iFile, dwNewLen) == -1)
       {
 
-         throw_errno(errno, m_path);
+         int iErrorNumber = errno;
+
+         auto estatus = errno_to_status(iErrorNumber);
+
+         throw ::file::exception(estatus, 0, iErrorNumber, m_path, m_eopen);
 
       }
 
@@ -504,10 +558,10 @@ namespace freebsd
    }
 
 
-   void file::assert_valid() const
+   void file::assert_ok() const
    {
 
-      ::file::file::assert_valid();
+      ::file::file::assert_ok();
 
    }
 
@@ -528,8 +582,6 @@ namespace freebsd
    string file::GetFileName() const
    {
 
-
-
       ::file::file_status status;
 
       GetStatus(status);
@@ -541,8 +593,6 @@ namespace freebsd
 
    string file::GetFileTitle() const
    {
-
-
 
       ::file::file_status status;
 
@@ -556,217 +606,15 @@ namespace freebsd
    string file::GetFilePath() const
    {
 
-
       ::file::file_status status;
+
       GetStatus(status);
+
       return status.m_strFullName;
+
    }
 
 
-
-
-   /////////////////////////////////////////////////////////////////////////////
-   // FileException
-
-
-
-
-//   void PASCAL file_exception::throw_os_error(::i32 lOsError, const char * pszFileName /* = nullptr */)
-
-//   {
-//      if (lOsError != 0)
-//         ::file::throw_os_error(file_exception::os_error_to_exception(lOsError), lOsError, pszFileName);
-
-//   }
-
-//   void PASCAL file_exception::ThrowErrno(i32 nErrno, const char * pszFileName /* = nullptr */)
-
-//   {
-//      if (nErrno != 0)
-//         vfxThrowFileexception(file_exception::errno_to_status(nErrno), errno, pszFileName);
-
-//   }
-
-
-
-//   ::e_status PASCAL file_exception::os_error_to_exception(::i32 lOsErr)
-//   {
-//      // NT Error codes
-//      switch ((::u32)lOsErr)
-//      {
-//      case NO_ERROR:
-//         return ::file::exception::undefined;
-//      case ERROR_FILE_NOT_FOUND:
-//         return ::file::exception::fileNotFound;
-//      case ERROR_PATH_NOT_FOUND:
-//         return ::file::exception::badPath;
-//      case ERROR_TOO_MANY_OPEN_FILES:
-//         return ::file::exception::tooManyOpenFiles;
-//      case ERROR_ACCESS_DENIED:
-//         return ::file::exception::accessDenied;
-//      case ERROR_INVALID_HANDLE:
-//         return ::file::exception::fileNotFound;
-//      case ERROR_BAD_FORMAT:
-//         return ::file::exception::invalidFile;
-//      case ERROR_INVALID_ACCESS:
-//         return ::file::exception::accessDenied;
-//      case ERROR_INVALID_DRIVE:
-//         return ::file::exception::badPath;
-//      case ERROR_CURRENT_DIRECTORY:
-//         return ::file::exception::eraseCurrentDir;
-//      case ERROR_NOT_SAME_DEVICE:
-//         return ::file::exception::badPath;
-//      case ERROR_NO_MORE_FILES:
-//         return ::file::exception::fileNotFound;
-//      case ERROR_WRITE_PROTECT:
-//         return ::file::exception::accessDenied;
-//      case ERROR_BAD_UNIT:
-//         return ::file::exception::hardIO;
-//      case ERROR_NOT_READY:
-//         return ::file::exception::hardIO;
-//      case ERROR_BAD_COMMAND:
-//         return ::file::exception::hardIO;
-//      case ERROR_CRC:
-//         return ::file::exception::hardIO;
-//      case ERROR_BAD_LENGTH:
-//         return ::file::exception::badSeek;
-//      case ERROR_SEEK:
-//         return ::file::exception::badSeek;
-//      case ERROR_NOT_DOS_DISK:
-//         return ::file::exception::invalidFile;
-//      case ERROR_SECTOR_NOT_FOUND:
-//         return ::file::exception::badSeek;
-//      case ERROR_WRITE_FAULT:
-//         return ::file::exception::accessDenied;
-//      case ERROR_READ_FAULT:
-//         return ::file::exception::badSeek;
-//      case ERROR_SHARING_VIOLATION:
-//         return ::file::exception::sharingViolation;
-//      case ERROR_LOCK_VIOLATION:
-//         return ::file::exception::lockViolation;
-//      case ERROR_WRONG_DISK:
-//         return ::file::exception::badPath;
-//      case ERROR_SHARING_BUFFER_EXCEEDED:
-//         return ::file::exception::tooManyOpenFiles;
-//      case ERROR_HANDLE_EOF:
-//         return ::file::exception::endOfFile;
-//      case ERROR_HANDLE_DISK_FULL:
-//         return ::file::exception::diskFull;
-//      case ERROR_DUP_NAME:
-//         return ::file::exception::badPath;
-//      case ERROR_BAD_NETPATH:
-//         return ::file::exception::badPath;
-//      case ERROR_NETWORK_BUSY:
-//         return ::file::exception::accessDenied;
-//      case ERROR_DEV_NOT_EXIST:
-//         return ::file::exception::badPath;
-//      case ERROR_ADAP_HDW_ERR:
-//         return ::file::exception::hardIO;
-//      case ERROR_BAD_NET_RESP:
-//         return ::file::exception::accessDenied;
-//      case ERROR_UNEXP_NET_ERR:
-//         return ::file::exception::hardIO;
-//      case ERROR_BAD_REM_ADAP:
-//         return ::file::exception::invalidFile;
-//      case ERROR_NO_SPOOL_SPACE:
-//         return ::file::exception::directoryFull;
-//      case ERROR_NETNAME_DELETED:
-//         return ::file::exception::accessDenied;
-//      case ERROR_NETWORK_ACCESS_DENIED:
-//         return ::file::exception::accessDenied;
-//      case ERROR_BAD_DEV_TYPE:
-//         return ::file::exception::invalidFile;
-//      case ERROR_BAD_NET_NAME:
-//         return ::file::exception::badPath;
-//      case ERROR_TOO_MANY_NAMES:
-//         return ::file::exception::tooManyOpenFiles;
-//      case ERROR_SHARING_PAUSED:
-//         return ::file::exception::badPath;
-//      case ERROR_REQ_NOT_ACCEP:
-//         return ::file::exception::accessDenied;
-//      case ERROR_FILE_EXISTS:
-//         return ::file::exception::accessDenied;
-//      case ERROR_CANNOT_MAKE:
-//         return ::file::exception::accessDenied;
-//      case ERROR_ALREADY_ASSIGNED:
-//         return ::file::exception::badPath;
-//      case ERROR_INVALID_PASSWORD:
-//         return ::file::exception::accessDenied;
-//      case ERROR_NET_WRITE_FAULT:
-//         return ::file::exception::hardIO;
-//      case ERROR_DISK_CHANGE:
-//         return ::file::exception::fileNotFound;
-//      case ERROR_DRIVE_LOCKED:
-//         return ::file::exception::lockViolation;
-//      case ERROR_BUFFER_OVERFLOW:
-//         return ::file::exception::badPath;
-//      case ERROR_DISK_FULL:
-//         return ::file::exception::diskFull;
-//      case ERROR_NO_MORE_SEARCH_HANDLES:
-//         return ::file::exception::tooManyOpenFiles;
-//      case ERROR_INVALID_TARGET_HANDLE:
-//         return ::file::exception::invalidFile;
-//      case ERROR_INVALID_CATEGORY:
-//         return ::file::exception::hardIO;
-//      case ERROR_INVALID_NAME:
-//         return ::file::exception::badPath;
-//      case ERROR_INVALID_LEVEL:
-//         return ::file::exception::badPath;
-//      case ERROR_NO_VOLUME_LABEL:
-//         return ::file::exception::badPath;
-//      case ERROR_NEGATIVE_SEEK:
-//         return ::file::exception::badSeek;
-//      case ERROR_SEEK_ON_DEVICE:
-//         return ::file::exception::badSeek;
-//      case ERROR_DIR_NOT_ROOT:
-//         return ::file::exception::badPath;
-//      case ERROR_DIR_NOT_EMPTY:
-//         return ::file::exception::eraseCurrentDir;
-//      case ERROR_LABEL_TOO_LONG:
-//         return ::file::exception::badPath;
-//      case ERROR_BAD_PATHNAME:
-//         return ::file::exception::badPath;
-//      case ERROR_LOCK_FAILED:
-//         return ::file::exception::lockViolation;
-//      case ERROR_BUSY:
-//         return ::file::exception::accessDenied;
-//      case ERROR_INVALID_ORDINAL:
-//         return ::file::exception::invalidFile;
-//      case ERROR_ALREADY_EXISTS:
-//         return ::file::exception::accessDenied;
-//      case ERROR_INVALID_EXE_SIGNATURE:
-//         return ::file::exception::invalidFile;
-//      case ERROR_BAD_EXE_FORMAT:
-//         return ::file::exception::invalidFile;
-//      case ERROR_FILENAME_EXCED_RANGE:
-//         return ::file::exception::badPath;
-//      case ERROR_META_EXPANSION_TOO_LONG:
-//         return ::file::exception::badPath;
-//      case ERROR_DIRECTORY:
-//         return ::file::exception::badPath;
-//      case ERROR_OPERATION_ABORTED:
-//         return ::file::exception::hardIO;
-//      case ERROR_IO_INCOMPLETE:
-//         return ::file::exception::hardIO;
-//      case ERROR_IO_PENDING:
-//         return ::file::exception::hardIO;
-//      case ERROR_SWAPERROR:
-//         return ::file::exception::accessDenied;
-//      default:
-//         return ::file::exception::type_generic;
-//      }
-//   }
-//
-
-   // IMPLEMENT_DYNAMIC(WinFileException, ::exception::acme)
-
-   /////////////////////////////////////////////////////////////////////////////
-
-
-
-
-   /////////////////////////////////////////////////////////////////////////////
-   // file Status implementation
 
    bool file::GetStatus(::file::file_status& rStatus) const
    {
@@ -779,37 +627,52 @@ namespace freebsd
 
       if (m_iFile != INVALID_FILE)
       {
+
          struct stat st;
+
          if(fstat(m_iFile, &st) == -1)
+         {
+
             return false;
 
-         rStatus.m_size = st.st_size;
+         }
+
+         rStatus.m_filesize = st.st_size;
 
          rStatus.m_attribute = 0;
 
-         rStatus.m_ctime = ::datetime::time(st.st_mtime);
-         rStatus.m_atime = ::datetime::time(st.st_atime);
-         rStatus.m_mtime = ::datetime::time(st.st_ctime);
+         rStatus.m_ctime = ::earth::time(st.st_mtime);
+         rStatus.m_atime = ::earth::time(st.st_atime);
+         rStatus.m_mtime = ::earth::time(st.st_ctime);
 
          if (rStatus.m_ctime.get_time() == 0)
+         {
+
             rStatus.m_ctime = rStatus.m_mtime;
 
+         }
+
          if (rStatus.m_atime.get_time() == 0)
+         {
+
             rStatus.m_atime = rStatus.m_mtime;
+
+         }
+
       }
       return true;
    }
 
 
-
    bool file::IsOpened()
    {
+
       return m_iFile != INVALID_FILE;
+
    }
 
 
    void file::SetFilePath(const char * pszNewName)
-
    {
 
 
@@ -817,48 +680,39 @@ namespace freebsd
 
    }
 
-   u64 file::ReadHuge(void * pBuffer, u64 dwCount)
 
+   u64 file::ReadHuge(void * pBuffer, u64 dwCount)
    {
 
       return  read(pBuffer, dwCount);
 
-
    }
 
-   void file::WriteHuge(const void * pBuffer, u64 dwCount)
 
+   void file::WriteHuge(const void * pBuffer, u64 dwCount)
    {
 
       write(pBuffer, dwCount);
 
-
    }
 
 
-   int file::put_character_back(int iCharacter)
-   {
-
-      m_iPutCharacter = (int)(byte)iCharacter;
-
-      return 0;
-
-   }
-
-
+//   int file::put_character_back(int iCharacter)
+//   {
+//
+//      m_iPutCharacter = (int)(byte)iCharacter;
+//
+//      return 0;
+//
+//   }
 
 
-} // namespace freebsd
-
-
+} // namespace acme_freebsd
 
 
 #define _wcsdec(_cpc1, _cpc2) ((_cpc1)>=(_cpc2) ? nullptr : (_cpc2)-1)
 
 #define _wcsinc(_pc)    ((_pc)+1)
-
-
-
 
 // turn a file, relative path or other into an absolute path
 bool CLASS_DECL_ACME vfxFullPath(wstring & wstrFullPath, const wstring & wstrPath)

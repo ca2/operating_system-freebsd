@@ -2,7 +2,7 @@
 #include "framework.h"
 
 
-namespace freebsd
+namespace acme_freebsd
 {
 
    
@@ -67,7 +67,7 @@ namespace freebsd
 //   }
 
 
-} // namespace freebsd
+} // namespace acme_freebsd
 
 
 

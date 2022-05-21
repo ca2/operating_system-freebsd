@@ -1,41 +1,35 @@
 #include "framework.h"
-//#include "node/platform/node.h"
-#include "acme/filesystem/filesystem/acme_dir.h"
+#include "acme/filesystem/filesystem/acme_directory.h"
 #include "acme/filesystem/filesystem/acme_path.h"
-//#include "acme_freebsd/acme.h"
 #include "node.h"
-//#include "aura/node/operating_system/freebsd/_c.h"
 
 
 bool __node_node_pre_init();
+
 bool __node_node_pos_init();
 
 
-namespace apex
+namespace apex_freebsd
 {
 
 
-   namespace freebsd
+   node::node()
    {
-   
-   
-      node::node()
-      {
 
-         //m_pnodenode = this;
+      //m_pnodenode = this;
 
-      }
+   }
 
 
-      node::~node()
-      {
+   node::~node()
+   {
 
 
-      }
+   }
 
 
-      string node::get_user_name()
-      {
+   string node::get_user_name()
+   {
 
 //      WCHAR wsz[1024];
 //
@@ -45,22 +39,24 @@ namespace apex
 //
 //      return string(wsz);
 
-         return "";
+      return "";
 
-      }
+   }
 
 
-      ::e_status node::initialize(::object * pobject)
-      {
+   void node::initialize(::object * pobject)
+   {
 
-         auto estatus = ::acme::freebsd::node::initialize(pobject);
+      //auto estatus =
+      //
+      ::acme_freebsd::node::initialize(pobject);
 
-         if (!estatus)
-         {
-
-            return estatus;
-
-         }
+//      if (!estatus)
+//      {
+//
+//         return estatus;
+//
+//      }
 
 //         if (!__node_node_pre_init())
 //         {
@@ -77,38 +73,35 @@ namespace apex
 //
 //         }
 
-         return estatus;
+      //return estatus;
 
-      }
-
-
-      ::e_status node::_001InitializeShellOpen()
-      {
-
-         //ASSERT(m_atomApp == nullptr && m_atomSystemTopic == nullptr); // do once
-
-         //m_atomApp            = ::GlobalAddAtomW(::str::international::utf8_to_unicode(m_strAppName));
-
-         //m_atomSystemTopic    = ::GlobalAddAtomW(L"system");
-
-         return ::success;
-
-      }
+   }
 
 
-      ::e_status node::process_init()
-      {
+   void node::_001InitializeShellOpen()
+   {
 
-         //defer_initialize_winsock();
-         return success;
+      //ASSERT(m_atomApp == nullptr && m_atomSystemTopic == nullptr); // do once
 
-      }
+      //m_atomApp            = ::GlobalAddAtomW(::str::international::utf8_to_unicode(m_strAppName));
+
+      //m_atomSystemTopic    = ::GlobalAddAtomW(L"system");
+
+      //return ::success;
+
+   }
 
 
-   } // namespace freebsd
+   void node::process_init()
+   {
+
+      //defer_initialize_winsock();
+      //return success;
+
+   }
 
 
-} // namespace apex
+} // namespace apex_freebsd
 
 
 

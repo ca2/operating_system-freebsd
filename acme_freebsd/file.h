@@ -1,8 +1,8 @@
 #pragma once
 
 
-class FileException;
-struct FileStatus;
+//class FileException;
+//struct FileStatus;
 
 
 //void CLASS_DECL_ACME vfxGetRoot(const widechar * pszPath, string& wstrRoot);
@@ -15,7 +15,7 @@ struct FileStatus;
 
 #define INVALID_FILE -1
 
-namespace freebsd
+namespace acme_freebsd
 {
 
 
@@ -54,10 +54,10 @@ namespace freebsd
       ~file() override;
 
 
-      virtual void assert_valid() const override;
-      virtual void dump(dump_context & dumpcontext) const override;
+      void assert_ok() const override;
+      void dump(dump_context & dumpcontext) const override;
 
-      virtual filesize get_position() const override;
+      filesize get_position() const override;
 
 
       bool GetStatus(::file::file_status & rStatus) const;
@@ -67,7 +67,7 @@ namespace freebsd
       virtual void SetFilePath(const char * pszNewName);
 
 
-      virtual ::extended::status open(const ::file::path & pszFileName, const ::file::e_open & eopen) override;
+      void open(const ::file::path & pszFileName, const ::file::e_open & eopen) override;
 
 
       //virtual bool PASCAL GetStatus(const char * pszFileName, ::file::file_status& rStatus);
@@ -79,13 +79,13 @@ namespace freebsd
 
 //      virtual __pointer(::file::file) Duplicate() const;
 
-      virtual ::index translate(::count c, ::enum_seek eseek) override;
-      virtual void set_size(filesize dwNewLen) override;
-      virtual filesize get_size() const override;
+      ::index translate(::count c, ::enum_seek eseek) override;
+      void set_size(filesize dwNewLen) override;
+      filesize get_size() const override;
 
-      virtual memsize read(void * pdata, memsize nCount) override;
+      memsize read(void * pdata, memsize nCount) override;
 
-      virtual void write(const void * pdata, memsize nCount) override;
+      void write(const void * pdata, memsize nCount) override;
 
 
       virtual void LockRange(filesize dwPos, filesize dwCount);
@@ -100,7 +100,7 @@ namespace freebsd
       virtual u64 GetBufferPtr(::u32 nCommand, u64 nCount = 0, void ** ppBufStart = nullptr, void ** ppBufMax = nullptr);
 
 
-      int put_character_back(int iCharacter) override;
+      //int put_character_back(int iCharacter) override;
 
 
    };
@@ -121,7 +121,7 @@ namespace freebsd
 //   }  // namespace file_exception
 
 
-} // namepsace freebsd
+} // namepsace acme_freebsd
 
 
 //bool CLASS_DECL_ACME vfxFullPath(wstring & wstrFullPath, const wstring & wstrPath);

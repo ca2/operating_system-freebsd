@@ -1,43 +1,41 @@
 #include "framework.h"
 
 
-namespace acme
+namespace acme_freebsd
 {
 
 
-   namespace freebsd
+   node::node()
    {
 
 
-      node::node()
-      {
+   }
 
 
-      }
+   node::~node()
+   {
 
 
-      node::~node()
-      {
+   }
 
 
-      }
+   void node::initialize_matter(::matter * pmatter)
+   {
 
+      //auto estatus =
 
-      ::e_status node::initialize_matter(::matter * pmatter)
-      {
+      ::matter::initialize_matter(pmatter);
 
-         auto estatus = ::matter::initialize_matter(pmatter);
+//      if (!estatus)
+//      {
+//
+//         return estatus;
+//
+//      }
+//
+//      return estatus;
 
-         if (!estatus)
-         {
-
-            return estatus;
-
-         }
-
-         return estatus;
-
-      }
+   }
 
 //   string node::get_user_name()
 //   {
@@ -562,12 +560,12 @@ namespace acme
 //   }
 //
 //
-      // Twitter Automator and Denis Lakic and UpWork contribution
+   // Twitter Automator and Denis Lakic and UpWork contribution
 // enzymes: Liveedu.tv, Twitch.tv and Mixer.com streamers and viewers
 // Mummi and bilbo!!
 // create call to :
-      void node::install_crash_dump_reporting(const string & strModuleNameWithTheExeExtension)
-      {
+   void node::install_crash_dump_reporting(const string & strModuleNameWithTheExeExtension)
+   {
 
 //      ::freebsd::registry::key k;
 //
@@ -587,7 +585,7 @@ namespace acme
 //
 //      output_debug_string("test01");
 
-      }
+   }
 //
 //
 //   int g_iMemoryCountersStartable = 0;
@@ -710,26 +708,38 @@ namespace acme
 //   }
 
 
-      string node::audio_get_default_library_name()
-      {
+   string node::audio_get_default_library_name()
+   {
 
-         return "audio_alsa";
+      return "audio_alsa";
 
-      }
-
-
-      ::user::enum_desktop node::calculate_edesktop()
-      {
-
-         return ::get_edesktop();
-
-      }
+   }
 
 
-   } // namespace freebsd
+   ::user::enum_desktop node::calculate_edesktop()
+   {
+
+      return ::get_edesktop();
+
+   }
 
 
-} // namespace acme
+   void node::shell_open(const ::file::path & path, const ::string & strParams, const ::file::path & pathFolder)
+   {
+
+      string str(path);
+
+      fork([this, str]()
+           {
+
+              ::system("xdg-open \"" + str + "\" & ");
+
+           });
+
+   }
+
+
+} // namespace acme_freebsd
 
 
 

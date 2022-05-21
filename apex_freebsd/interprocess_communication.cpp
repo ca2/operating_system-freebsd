@@ -6,7 +6,8 @@
 #include <sys/ipc.h>
 #include <sys/msg.h>
 
-namespace freebsd
+
+namespace apex_freebsd
 {
 
 
@@ -37,7 +38,7 @@ namespace freebsd
       }
 
       
-      ::e_status interprocess_communication_tx::open(const ::string & strChannel,launcher * plauncher)
+      void interprocess_communication_tx::open(const ::string & strChannel,launcher * plauncher)
       {
 
          if(m_iQueue >= 0)
@@ -59,31 +60,37 @@ namespace freebsd
          if(m_key == 0)
          {
 
-            return false;
+
+
+            //return false;
 
          }
 
          if((m_iQueue = msgget(m_key,IPC_CREAT | 0660)) == -1)
          {
 
-            return false;
+            //return false;
+
+            throw ::exception(error_failed);
 
          }
 
          m_strBaseChannel = strChannel;
 
-         return true;
+         //return true;
 
       }
 
 
-      ::e_status interprocess_communication_tx::close()
+      void interprocess_communication_tx::close()
       {
 
          if(m_iQueue < 0)
          {
 
-            return true;
+            //return true;
+
+            return;
 
          }
 
@@ -91,12 +98,12 @@ namespace freebsd
 
          m_strBaseChannel = "";
 
-         return true;
+         //return true;
 
       }
 
 
-      ::e_status interprocess_communication_tx::send(const ::string & strMessage, const duration & durationTimeout)
+      void interprocess_communication_tx::send(const ::string & strMessage, const duration & durationTimeout)
       {
 
          memory m;
@@ -124,9 +131,15 @@ namespace freebsd
          if((result = msgsnd(m_iQueue, pdata, m.get_size() - sizeof(long), 0)) == -1)
          {
 
-            int iError = errno;
+            int iErrorNumber = errno;
 
-            return false;
+            auto estatus = errno_to_status(iErrorNumber);
+
+            throw ::exception(estatus);
+
+            return;
+
+            //return false;
 
          }
 
@@ -136,25 +149,27 @@ namespace freebsd
 
          ::output_debug_string("message: \"" +string(strMessage)+ "\"\n");
 
-         return true;
+         //return true;
 
       }
 
 
-      ::e_status interprocess_communication_tx::send(i32 message, void * p, i32 iLen, const duration & durationTimeout)
+      void interprocess_communication_tx::send(i32 message, void * p, i32 iLen, const duration & durationTimeout)
       {
 
          if(message == 1024)
          {
 
-            return error_failed;
+            throw exception(error_wrong_state);
+
+            //return error_failed;
 
          }
 
          if(!is_tx_ok())
          {
 
-            return error_failed;
+            //return error_failed;
 
          }
 
@@ -191,11 +206,11 @@ namespace freebsd
          if((result = msgsnd(m_iQueue,pdata,m.get_size() - sizeof(long),0)) == -1)
          {
 
-            return error_failed;
+            throw ::exception(error_failed);
 
          }
 
-         return ::success;
+         //return ::success;
 
       }
 
@@ -223,7 +238,7 @@ namespace freebsd
       }
 
 
-      ::e_status interprocess_communication_rx::create(const ::string & strChannel)
+      void interprocess_communication_rx::create(const ::string & strChannel)
       {
 
          if(!file_exists(strChannel))
@@ -238,7 +253,8 @@ namespace freebsd
          if(m_key == 0)
          {
 
-            return error_failed;
+            throw exception(error_failed);
+
 
          }
 
@@ -246,18 +262,18 @@ namespace freebsd
          if((m_iQueue = msgget(m_key,IPC_CREAT | 0660)) == -1)
          {
 
-            return error_failed;
+            throw exception(error_failed);
 
          }
 
          start_receiving();
 
-         return true;
+         //return true;
 
       }
 
 
-      ::e_status interprocess_communication_rx::destroy()
+      void interprocess_communication_rx::destroy()
       {
 
          i32 iRetry = 23;
@@ -274,16 +290,28 @@ namespace freebsd
          }
 
          if(m_iQueue < 0)
-            return true;
+         {
+
+            ///return true;
+
+            return;
+
+         }
 
          if(msgctl(m_iQueue,IPC_RMID,0) == -1)
          {
-            return false;
+
+            //return false;
+
+            throw exception(error_failed);
+
+            return;
+
          }
 
          m_iQueue = -1;
 
-         return true;
+         //return true;
 
       }
 
@@ -542,7 +570,7 @@ namespace freebsd
 //      }
 
 
-   } // namespace interprocess_intercommunication
+} // namespace apex_freebsd
 
 
 

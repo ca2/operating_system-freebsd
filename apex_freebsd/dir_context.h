@@ -1,7 +1,7 @@
 #pragma once
 
 
-namespace freebsd
+namespace apex_freebsd
 {
 
 
@@ -16,40 +16,36 @@ namespace freebsd
 
 
       dir_context();
-      virtual ~dir_context();
+      ~dir_context() override;
 
 
-      virtual ::e_status initialize(::object * pobject) override;
+      void initialize(::object * pobject) override;
 
-      virtual ::e_status init_system() override;
-      virtual ::e_status init_context() override;
+      void init_system() override;
+      void init_context() override;
 
-      using ::dir_context::ls;
-      virtual ::file::listing & ls(::file::listing & ls) override;
-
-
-      virtual bool  is(const ::file::path & path) override;
-      virtual bool  is_inside(const ::file::path & pcszDir, const ::file::path & lpcszPath) override;
-
-      virtual bool  is_inside_time(const ::file::path & pcsz) override;
-
-      virtual bool  name_is(const ::file::path & path) override;
-      virtual bool  has_subdir(const ::file::path & pcsz) override;
+      //::file::listing & ls(::file::listing & ls) override;
 
 
-      virtual ::file::listing & root_ones(::file::listing & listing) override;
-      virtual bool mk(const ::file::path & pcsz) override;
+      //bool  is(const ::file::path & path) override;
+      bool  is_inside(const ::file::path & pcszDir, const ::file::path & lpcszPath) override;
 
-      virtual bool rm(const ::file::path & psz, bool bRecursive = true) override;
+      bool  is_inside_time(const ::file::path & pcsz) override;
+
+      bool  name_is(const ::file::path & path) override;
+      //bool  has_subdir(const ::file::path & pcsz) override;
 
 
-      //virtual ::file::path name(const ::file::path & pcsz);
+      ::file::listing & root_ones(::file::listing & listing) override;
+      //bool mk(const ::file::path & pcsz) override;
+
+      //bool rm(const ::file::path & psz, bool bRecursive = true) override;
 
 
-      virtual ::file::path time() override;
-      virtual ::file::path stage() override;
-      virtual ::file::path stageapp() override;
-      virtual ::file::path netseed() override;
+      ::file::path time() override;
+      ::file::path stage() override;
+      ::file::path stageapp() override;
+      ::file::path netseed() override;
 
       // stage in ca2os spalib
       //  virtual string matter(const char * pcsz, const char * lpcsz2 = nullptr);
@@ -64,15 +60,15 @@ namespace freebsd
 
 //      virtual ::file::path module();
 //      virtual ::file::path ca2module();
-      virtual ::file::path time_square() override;
-      virtual ::file::path time_log(const string & pszId) override;
+      ::file::path time_square() override;
+      ::file::path time_log(const string & pszId) override;
 
 
-      virtual ::file::path trash_that_is_not_trash(const ::file::path & psz) override;
+      ::file::path trash_that_is_not_trash(const ::file::path & psz) override;
 
-      //virtual ::file::path appdata(const ::string & strAppId = "") override;
-      virtual ::file::path commonappdata() override;
-      virtual ::file::path element_commonappdata(const string & strElement) override;
+      //::file::path appdata(const ::string & strAppId = "") override;
+      ::file::path commonappdata() override;
+      ::file::path element_commonappdata(const string & strElement) override;
 
 //      virtual ::file::path usersystemappdata(const string & pcszPrefix);
 
@@ -86,25 +82,25 @@ namespace freebsd
 
 //      virtual ::file::path default_userfolder(const string & pcszPrefix, const string & lpcszLogin);
 
-      virtual ::file::path userquicklaunch(::object * pobject);
-      virtual ::file::path userprograms(::object * pobject);
+      //virtual ::file::path userquicklaunch(::object * pobject);
+      //virtual ::file::path userprograms(::object * pobject);
 
-      virtual ::file::path commonprograms() override;
+      ::file::path commonprograms() override;
 
-      virtual ::file::path music() override;
-      virtual ::file::path video() override;
-      virtual ::file::path image() override;
-      virtual ::file::path download() override;
-      virtual ::file::path document() override;
+      ::file::path music() override;
+      ::file::path video() override;
+      ::file::path image() override;
+      ::file::path download() override;
+      ::file::path document() override;
 
 
-      virtual ::file::path _xdg_get_dir(const string & str);
+      ::file::path _xdg_get_dir(const string & str);
 
 
    };
 
 
-} // namespace freebsd
+} // namespace apex_freebsd
 
 
 

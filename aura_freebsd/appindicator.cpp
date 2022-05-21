@@ -4,32 +4,25 @@
 #include "framework.h"
 
 
-namespace freebsd
+namespace aura_freebsd
 {
 
 
-   namespace aura
+   appindicator::appindicator()
    {
 
 
-      appindicator::appindicator()
-      {
+   }
 
 
-      }
+   appindicator::~appindicator()
+   {
 
 
-      appindicator::~appindicator()
-      {
+   }
 
 
-      }
-
-
-   } // namespace aura
-
-
-} // namespace freebsd
+} // namespace aura_freebsd
 
 
 

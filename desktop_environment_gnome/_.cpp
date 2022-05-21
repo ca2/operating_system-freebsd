@@ -2,6 +2,9 @@
 #include <gtk/gtk.h>
 
 
+platform_char *** process_get_pargv();
+
+
 bool g_bInitGtk = false;
 
 

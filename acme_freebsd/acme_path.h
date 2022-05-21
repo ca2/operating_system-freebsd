@@ -2,12 +2,12 @@
 #pragma once
 
 
-namespace freebsd
+namespace acme_freebsd
 {
 
 
    class CLASS_DECL_ACME_FREEBSD acme_path :
-      virtual public ::posix::acme_path
+      virtual public ::acme_posix::acme_path
    {
    public:
 
@@ -22,7 +22,7 @@ namespace freebsd
    };
 
 
-} // namespace freebsd
+} // namespace acme_freebsd
 
 
 

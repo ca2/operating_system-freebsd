@@ -5,12 +5,12 @@
 // 05:02 BRT
 
 
-namespace freebsd
+namespace acme_freebsd
 {
 
 
    class CLASS_DECL_ACME acme_file :
-      virtual public ::posix::acme_file
+      virtual public ::acme_posix::acme_file
    {
    public:
 
@@ -25,7 +25,7 @@ namespace freebsd
    };
 
 
-} // namespace freebsd
+} // namespace acme_freebsd
 
 
 

@@ -3,17 +3,17 @@
 #include "launcher.h"
 
 
-namespace freebsd
+namespace apex_freebsd
 {
 
 
-   ::e_status launcher::start()
+   void launcher::start()
    {
 
       if (!ensure_executable())
       {
 
-         return false;
+         throw exception(error_failed);
 
       }
 
@@ -38,12 +38,12 @@ namespace freebsd
 
 
 
-      return true;
+      //return true;
 
    }
 
 
-} // namespace freebsd
+} // namespace apex_freebsd
 
 
 

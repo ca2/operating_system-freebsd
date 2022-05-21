@@ -1,9 +1,10 @@
 #include "framework.h"
 #include "apex/networking/sockets/_sockets.h"
 #include "ip_enum.h"
+#include <unistd.h>
 
 
-namespace freebsd
+namespace apex_freebsd
 {
 
 
@@ -262,7 +263,7 @@ namespace freebsd
    }
 
 
-} // namespace freebsd
+} // namespace apex_freebsd
 
 
 
