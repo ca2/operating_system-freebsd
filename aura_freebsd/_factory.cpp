@@ -1,8 +1,6 @@
 #include "framework.h"
-//#include "acme/node/windows/registry.h"
-//#include "acme_freebsd/acme.h"
-//#include "apex_windows/apex.h"
-//#include "aura.h"
+#include "node.h"
+#include "interaction_impl.h"
 
 
 __FACTORY_IMPORT void apex_freebsd_factory(::factory::factory * pfactory);

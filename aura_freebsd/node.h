@@ -8,6 +8,10 @@
 #pragma once
 
 
+#include "apex_freebsd/node.h"
+#include "aura_posix/node.h"
+
+
 namespace aura_freebsd
 {
 
@@ -24,7 +28,7 @@ namespace aura_freebsd
       ~node() override;
 
 
-      string get_user_name();
+      string get_user_name() override;
 
 
       void initialize(::object * pobject) override;

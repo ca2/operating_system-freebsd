@@ -1,6 +1,9 @@
 #pragma once
 
 
+#include "aura/user/user/interaction_impl.h"
+
+
 namespace aura_freebsd
 {
 
@@ -82,14 +85,14 @@ namespace aura_freebsd
       virtual void window_show_change_visibility(::e_display edisplay, ::e_activation eactivation) override;
 
 
-      virtual ::user::interaction_impl * from_os_data(void * pdata) override;
+      //virtual ::user::interaction_impl * from_os_data(void * pdata) override;
       //virtual void * get_os_data() const override;
 
-      static user::interaction_impl * from_handle(oswindow hWnd);
-      static user::interaction_impl * FromHandlePermanent(oswindow hWnd);
+      //static user::interaction_impl * from_handle(::oswindow hWnd);
+      //static user::interaction_impl * FromHandlePermanent(oswindow hWnd);
       //static void DeleteTempMap();
-      bool Attach(oswindow hWndNew);
-      oswindow Detach();
+      //bool Attach(oswindow hWndNew);
+      //oswindow Detach();
 
       // subclassing/unsubclassing functions
       virtual void pre_subclass_window() override;
@@ -302,7 +305,7 @@ namespace aura_freebsd
 //                                ::u32 flags = RDW_INVALIDATE | RDW_ERASE);
       // xxx      virtual bool EnableScrollBar(i32 nSBFlags, ::u32 nArrowFlags = ESB_ENABLE_BOTH);
 
-      virtual void set_viewport_org(::draw2d::graphics_pointer & pgraphics) override;
+      virtual void set_origin(::draw2d::graphics_pointer & pgraphics) override;
 
 //
 //      //virtual bool DrawAnimatedRects(i32 idAni, const LPRECTprcFrom, const LPRECTlprcTo);

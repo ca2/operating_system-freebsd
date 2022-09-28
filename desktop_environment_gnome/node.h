@@ -8,6 +8,10 @@
 #pragma once
 
 
+#include "aura_freebsd/node.h"
+#include "node_gnome/node.h"
+
+
 namespace desktop_environment_gnome
 {
 
