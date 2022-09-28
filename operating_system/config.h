@@ -15,6 +15,23 @@
 #define HAVE_TERMIOS_H 1
 
 
+
+#define OPERATING_SYSTEM_NAMESPACE freebsd
+
+#define PLATFORM_COMMON_NAMESPACE posix
+
+#define PLATFORM_STRING "freebsd"
+
+#define PLATFORM_COMMON_STRING "posix"
+
+#define DEFAULT_DIR_SEPARATOR "/"
+
+#define OPERATING_SYSTEM_NAME "freebsd"
+
+#define OPERATING_SYSTEM_NAMESPACE freebsd
+
+
+
 #define PARALLELIZATION_PTHREAD 1
 
 #define VARIADIC_TEMPLATE_FORMAT2
@@ -34,8 +51,11 @@
 #define __FACTORY_IMPORT extern "C"
 
 
-#define OPERATING_SYSTEM_NAME	"freebsd"
-#define OPERATING_SYSTEM_NAMESPACE	freebsd
+
+
+
+
+
 
 
 #define INFINITE_TIMEOUT ((::u32)0xffffffff)

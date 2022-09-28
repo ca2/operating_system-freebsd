@@ -4337,6 +4337,20 @@ namespace aura_freebsd
 //   }
 
 
+   void interaction_impl::show_software_keyboard(::user::element* pprimitive)
+   {
+
+
+   }
+
+
+   void interaction_impl::hide_software_keyboard(::user::element * pprimitive)
+   {
+
+
+   }
+
+
 } // namespace aura_freebsd
 
 

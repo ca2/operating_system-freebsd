@@ -372,6 +372,11 @@ namespace aura_freebsd
 
       virtual void non_top_most_upper_window_rects(::rectangle_i32_array& recta) override;
 
+
+      void show_software_keyboard(::user::element* pprimitive) override;
+      void hide_software_keyboard(::user::element * pprimitive) override;
+
+
    };
 
 
