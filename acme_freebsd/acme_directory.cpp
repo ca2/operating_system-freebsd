@@ -1,5 +1,7 @@
 // Create on 2021-03-21 20:00 <3ThomasBS_
 #include "framework.h"
+#include "acme_directory.h"
+#include "acme_file.h"
 
 
 namespace acme_freebsd
@@ -137,7 +139,7 @@ namespace acme_freebsd
 
       path.find_replace(":", "");
 
-      ::str::ends_eat_ci(path, ".exe");
+      ::str().ends_eat_ci(path, ".exe");
 
       return path;
 

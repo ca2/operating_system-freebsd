@@ -7,13 +7,15 @@
 #pragma once
 
 
+#include "acme_posix/node.h"
+
+
 namespace acme_freebsd
 {
 
 
    class CLASS_DECL_ACME_FREEBSD node :
-           virtual public ::acme::node,
-           virtual public ::acme_posix::node
+      virtual public ::acme_posix::node
    {
    public:
 

@@ -1,4 +1,5 @@
 #include "framework.h"
+#include "node.h"
 
 
 namespace acme_freebsd
