@@ -118,7 +118,7 @@ namespace apex_freebsd
 
       virtual void * receive();
 
-      bool is_rx_ok();
+      bool is_rx_ok() override;
 
 
    };

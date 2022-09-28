@@ -20,8 +20,8 @@ list(APPEND library_source
    framework.h
    interprocess_communication.cpp
    interprocess_communication.h
-   ip_enum.cpp
-   ip_enum.h
+   #ip_enum.cpp
+   #ip_enum.h
    launcher.cpp
    launcher.h
    node.cpp

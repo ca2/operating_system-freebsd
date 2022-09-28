@@ -1,7 +1,6 @@
 #include "framework.h"
-//#include "apex/platform/app_core.h"
-//#include "_freebsd.h"
-//#include "apex/os/freebsd/gnome_gnome.h"
+#include "os_context.h"
+#include "acme/filesystem/filesystem/acme_directory.h"
 #include <unistd.h>
 
 i32 daemonize_process(const char * _cmd_line, i32 * pprocessId);
@@ -1119,7 +1118,7 @@ namespace apex_freebsd
 
       string str(file);
 
-      if(::str::begins_eat_ci(str, "\""))
+      if(::str().begins_eat_ci(str, "\""))
       {
 
          strsize iFind = str.find("\"");
@@ -1134,7 +1133,7 @@ namespace apex_freebsd
          str = str.Left(iFind);
 
       }
-      else if(::str::begins_eat_ci(str, "\'"))
+      else if(::str().begins_eat_ci(str, "\'"))
       {
 
          strsize iFind = str.find("\'");

@@ -1,4 +1,5 @@
 #include "framework.h"
+#include "file_context.h"
 #include <sys/types.h>
 #include <sys/stat.h>
 #include "acme/filesystem/filesystem/acme_directory.h"

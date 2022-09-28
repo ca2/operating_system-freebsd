@@ -11,3 +11,22 @@
 #else
 #define CLASS_DECL_APEX_FREEBSD  CLASS_DECL_IMPORT
 #endif
+
+
+namespace apex_freebsd
+{
+
+
+   class dir_context;
+   class dir_system;
+
+   class file_context;
+   class file_system;
+
+   class node;
+
+
+} // namespace apex_freebsd
+
+
+

@@ -1,8 +1,16 @@
 #include "framework.h"
 #include "apex/platform/launcher.h"
 #include "launcher.h"
-//#include "crypto.h"
-#include "ip_enum.h"
+#include "dir_system.h"
+#include "file_system.h"
+#include "dir_context.h"
+#include "file_context.h"
+#include "os_context.h"
+//#include "ip_enum.h"
+#include "interprocess_communication.h"
+#include "file_context.h"
+#include "service_handler.h"
+#include "node.h"
 #include "apex/parallelization/service.h"
 #include "apex/parallelization/service_handler.h"
 #include "service_handler.h"
@@ -35,7 +43,7 @@ __FACTORY_EXPORT void apex_freebsd_factory(::factory::factory * pfactory)
 
    //add_factory_item < ::freebsd::console, ::console::console >();
    //pfactory->add_factory_item < ::freebsd::crypto, ::crypto::crypto >();
-   pfactory->add_factory_item < ::apex_freebsd::ip_enum, ::net::ip_enum >();
+   //pfactory->add_factory_item < ::apex_freebsd::ip_enum, ::networking::ip_enum >();
 
 
    pfactory->add_factory_item < ::apex_freebsd::interprocess_communication_base, ::interprocess_communication::base >();

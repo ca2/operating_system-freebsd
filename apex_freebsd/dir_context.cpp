@@ -1,7 +1,9 @@
 #include "framework.h"
-//#include "apex/xml/_.h"
+#include "dir_context.h"
+#include "dir_system.h"
+#include "file_system.h"
 #include "acme/id.h"
-//#include "_freebsd.h"
+#include "acme/filesystem/filesystem/acme_file.h"
 #undef USE_MISC
 
 #ifdef RASPBIAN
@@ -382,9 +384,9 @@ namespace apex_freebsd
 
       wstring wstrPath;
 
-      wstrPath = ::str::international::utf8_to_unicode(str, iLast + 1);
+      wstrPath = ::utf8_to_unicode(str, iLast + 1);
 
-      bool bIsDir = ::dir_context::is(::str::international::unicode_to_utf8(wstrPath));
+      bool bIsDir = ::dir_context::is(unicode_to_utf8(wstrPath));
 
       return bIsDir;
 
@@ -701,7 +703,7 @@ namespace apex_freebsd
    bool dir_context::is_inside(const ::file::path & pszDir, const ::file::path & pszPath)
    {
 
-      return ::str::begins_ci(pszDir, pszPath);
+      return ::str().begins_ci(pszDir, pszPath);
 
    }
 
@@ -853,7 +855,7 @@ namespace apex_freebsd
 
       path = stra[0];
 
-      ::str::begins_eat_ci(path, strPrefix);
+      ::str().begins_eat_ci(path, strPrefix);
 
       path.find_replace("$HOME", pathHome);
 

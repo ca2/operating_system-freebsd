@@ -8,6 +8,10 @@
 #pragma once
 
 
+#include "acme_freebsd/node.h"
+#include "apex_posix/node.h"
+
+
 namespace apex_freebsd
 {
 

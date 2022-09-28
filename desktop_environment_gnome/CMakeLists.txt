@@ -5,7 +5,7 @@ project(desktop_environment_gnome CXX)
 list(APPEND library_source
    _.cpp
    _.h
-        _desktop_environment_gnome.h
+#        _desktop_environment_gnome.h
         #appindicator.cpp
         #appindicator.h
         #application.cpp
