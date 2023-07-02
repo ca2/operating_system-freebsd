@@ -58,8 +58,8 @@ message(STATUS "DESKTOP_ENVIRONMENT_NAME is ${DESKTOP_ENVIRONMENT_NAME}")
 
 set(UNDERSCORE_OPERATING_SYSTEM $ENV{__SYSTEM_UNDERSCORE_OPERATING_SYSTEM})
 set(SLASHED_OPERATING_SYSTEM $ENV{__SYSTEM_SLASHED_OPERATING_SYSTEM})
-set(DISTRO $ENV{__OPERATING_SYSTEM})
-set(DISTRO_RELEASE $ENV{__SYSTEM_DISTRO_RELEASE})
+set(OPERATING_SYSTEM $ENV{__OPERATING_SYSTEM})
+set(OPERATING_SYSTEM_RELEASE $ENV{__OPERATING_SYSTEM_RELEASE})
 
 
 string(TOLOWER ${CMAKE_BUILD_TYPE} tolower_cmake_build_type)
@@ -117,7 +117,7 @@ set(CMAKE_INSTALL_RPATH $ORIGIN)
 #set(CMAKE_INSTALL_RPATH_USE_LINK_PATH TRUE)
 
 set(LINUX TRUE)
-set(OPERATING_SYSTEM_NAME "linux")
+set(OPERATING_SYSTEM_NAME "freebsd")
 set(OPERATING_SYSTEM_POSIX TRUE)
 set(FILE_SYSTEM_INOTIFY TRUE)
 set(POSIX_SPAWN TRUE)
@@ -129,39 +129,41 @@ set(PTHREAD TRUE)
 
 message(STATUS "DISTRO is ${DISTRO}")
 
-if (${DISTRO} STREQUAL "ubuntu")
+if (${OPERATING_SYSTEM} STREQUAL "freebsd")
 
-    set(UBUNTU TRUE)
+    set(FREEBSD TRUE)
 
-    set(DEBIAN_LIKE TRUE)
+    set(BSD_LIKE TRUE)
 
-    message(STATUS "UBUNTU has been set TRUE")
+    add_compile_definitions(FREEBSD)
 
-    set(APPINDICATOR_PKG_MODULE "ayatana-appindicator3-0.1")
-
-    set(MPG123_PKG_MODULE "libmpg123")
-
-elseif (${DISTRO} STREQUAL "debian")
-
-    set(DEBIAN TRUE)
-
-    add_compile_definitions(DEBIAN_LINUX)
-
-    message(STATUS "DEBIAN has been set TRUE")
+    message(STATUS "FREEBSD has been set TRUE")
 
     set(APPINDICATOR_PKG_MODULE "ayatana-appindicator3-0.1")
 
     set(MPG123_PKG_MODULE "libmpg123")
 
-elseif ("${DISTRO}" STREQUAL "raspbian")
+elseif (${OPERATING_SYSTEM} STREQUAL "netbsd")
 
-    set(RASPBIAN TRUE)
+    set(NETBSD TRUE)
 
-    set(DEBIAN_LIKE TRUE)
+    add_compile_definitions(NETBSD)
+
+    message(STATUS "NETBSD has been set TRUE")
+
+    set(APPINDICATOR_PKG_MODULE "ayatana-appindicator3-0.1")
+
+    set(MPG123_PKG_MODULE "libmpg123")
+
+elseif ("${OPERATING_SYSTEM}" STREQUAL "openbsd")
+
+    set(OPENBSD TRUE)
+
+    set(BSD_LIKE TRUE)
 
     set(DONT_USE_PKG_CONFIG FALSE)
 
-    add_compile_definitions(RASPBERRYPIOS)
+    add_compile_definitions(OPENBSD)
 
     message(STATUS "RASPBERRYPIOS defined!!")
 
