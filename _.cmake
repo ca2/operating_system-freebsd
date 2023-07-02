@@ -19,11 +19,11 @@ if ("${CMAKE_BUILD_TYPE}" STREQUAL "")
 endif()
 
 
-#if (NOT ${CMAKE_SYSTEM_NAME} STREQUAL "Linux")
+if (NOT ${CMAKE_SYSTEM_NAME} STREQUAL "FreeBSD")
 
-#    error("This file is designed to be used only for linux systems...")
+    error("This file is designed to be used only for FreeBSD systems...")
 
-#endif ()
+endif ()
 
 
 if (CMAKE_CXX_COMPILER_ID STREQUAL "GNU")
@@ -119,6 +119,7 @@ set(CMAKE_INSTALL_RPATH $ORIGIN)
 set(LINUX TRUE)
 set(OPERATING_SYSTEM_NAME "freebsd")
 set(OPERATING_SYSTEM_POSIX TRUE)
+set(DISTRO "(NotApplicable)")
 set(FILE_SYSTEM_INOTIFY TRUE)
 set(POSIX_SPAWN TRUE)
 set(POSIX_LIST_SERIAL_PORTS TRUE)
@@ -127,7 +128,7 @@ set(USE_OPENSSL TRUE)
 set(PTHREAD TRUE)
 
 
-message(STATUS "DISTRO is ${DISTRO}")
+#message(STATUS "DISTRO is ${DISTRO}")
 
 if (${OPERATING_SYSTEM} STREQUAL "freebsd")
 
@@ -264,7 +265,7 @@ set(default_imaging "imaging_freeimage")
 set(default_write_text "write_text_pango")
 set(default_audio "audio_alsa")
 set(default_music_midi "music_midi_alsa")
-set(default_node "node_linux")
+set(default_node "node_freebsd")
 set(default_audio_mixer "audio_mixer_alsa")
 set(default_gpu "gpu_opengl")
 #add_compile_definitions(default_draw2d=draw2d_cairo)
