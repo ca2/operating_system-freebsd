@@ -66,7 +66,7 @@ namespace acme_freebsd
    ::file::path acme_directory::appdata()
    {
 
-      return ca2roaming() / "appdata" / app_relative();
+      return ca2roaming() / "appdata" / this->appid();
 
    }
 
@@ -139,7 +139,7 @@ namespace acme_freebsd
 
       path.find_replace(":", "");
 
-      ::str().ends_eat_ci(path, ".exe");
+      path.case_insensitive_ends_eat(".exe");
 
       return path;
 
@@ -159,7 +159,7 @@ namespace acme_freebsd
    #else
 
 
-   ::file::path acme_directory::app_relative()
+   ::string acme_directory::appid()
    {
 
       ::file::path path = m_pacmefile->module();
@@ -224,7 +224,7 @@ namespace acme_freebsd
 
    #else
 
-      return m_psystem->m_pacmefile->module().folder(4);
+      return acmefile()->module().folder(4);
 
    #endif
 
@@ -255,7 +255,7 @@ namespace acme_freebsd
 
    #else
 
-      return m_psystem->m_pacmefile->module().folder(4);
+      return acmefile()->module().folder(4);
 
    #endif
 
@@ -266,7 +266,7 @@ namespace acme_freebsd
    ::file::path acme_directory::install()
    {
 
-      if (m_pathInstallFolder == nullptr || m_pathInstallFolder.is_empty())
+      if (m_pathInstallFolder.is_empty())
       {
 
          return default_install();
@@ -291,7 +291,7 @@ namespace acme_freebsd
 
    #else
 
-      return m_psystem->m_pacmefile->module().folder(4);
+      return acmefile()->module().folder(4);
 
    #endif
 
@@ -328,7 +328,7 @@ namespace acme_freebsd
    ::file::path acme_directory::stage(string strAppId, string strPlatform, string strConfiguration)
    {
 
-      return inplace_install(strAppId, strPlatform, strConfiguration) / "time" / time_binary_platform(strPlatform) / strConfiguration;
+      return inplace_install(strAppId, strPlatform, strConfiguration) / "time" / strPlatform / strConfiguration;
 
    }
 

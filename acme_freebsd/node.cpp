@@ -20,12 +20,12 @@ namespace acme_freebsd
    }
 
 
-   void node::initialize_matter(::matter * pmatter)
+   void node::initialize(::particle * pparticle)
    {
 
       //auto estatus =
 
-      ::matter::initialize_matter(pmatter);
+      ::acme_darwin::node::initialize(pparticle);
 
 //      if (!estatus)
 //      {
@@ -709,7 +709,7 @@ namespace acme_freebsd
 //   }
 
 
-   string node::audio_get_default_library_name()
+   string node::audio_get_default_implementation_name()
    {
 
       return "audio_alsa";

@@ -12,7 +12,7 @@
 
    string strDesktop(pszDesktop);
 
-   if(strDesktop.compare_ci("kde") == 0)
+   if(strDesktop.case_insensitive_equals("kde"))
    {
 
       return ::user::e_desktop_kde;
@@ -79,22 +79,22 @@
 }
 
 
-::user::enum_desktop g_edesktop = ::user::e_desktop_none;
-
-
-::user::enum_desktop get_edesktop()
-{
-
-   if(g_edesktop == user::e_desktop_none)
-   {
-
-      g_edesktop = calculate_edesktop();
-
-   }
-
-   return g_edesktop;
-
-}
-
+//::user::enum_desktop g_edesktop = ::user::e_desktop_none;
+//
+//
+//::user::enum_desktop get_edesktop()
+//{
+//
+//   if(g_edesktop == user::e_desktop_none)
+//   {
+//
+//      g_edesktop = calculate_edesktop();
+//
+//   }
+//
+//   return g_edesktop;
+//
+//}
+//
 
 

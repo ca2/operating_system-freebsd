@@ -23,7 +23,7 @@ namespace acme_freebsd
       virtual ::file::path beforeca2() override;
       virtual ::file::path module() override;
       virtual ::file::path relative(::file::path path) override;
-      virtual ::file::path app_relative() override;
+      ::string appid() override;
       virtual ::file::path appdata() override; // appdata
       virtual ::file::path archive() override;
       virtual ::file::path tool() override;
