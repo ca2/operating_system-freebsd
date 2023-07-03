@@ -35,7 +35,7 @@ if (MSVC)
    target_link_libraries(node_freebsd PRIVATE ${library_references})
 
 
-elseif(FREEBSD)
+elseif(${FREEBSD})
 
 
    pkg_check_modules(PKGCONFIG x11)

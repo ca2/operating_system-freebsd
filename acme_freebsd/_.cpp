@@ -1,7 +1,7 @@
 #include "framework.h"
 
 
-#include "acme/library.h"
+//#include "acme/library.h"
 
 
 char * get_current_dir_name();
@@ -18,7 +18,7 @@ namespace acme_freebsd
 
       str = ::string_from_strdup(psz);
 
-      return str.get_length();
+      return str.length();
 
    }
 

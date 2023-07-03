@@ -7,7 +7,7 @@
 #pragma once
 
 
-#include "acme_posix/node.h"
+#include "acme_darwin/node.h"
 
 
 namespace acme_freebsd
@@ -15,7 +15,7 @@ namespace acme_freebsd
 
 
    class CLASS_DECL_ACME_FREEBSD node :
-      virtual public ::acme_posix::node
+      virtual public ::acme_darwin::node
    {
    public:
 
@@ -34,7 +34,7 @@ namespace acme_freebsd
       ~node() override;
 
 
-      void initialize_matter(::matter * pmatter) override;
+      void initialize(::particle * pparticle) override;
 
       //virtual ::string dir_root() override;
 
@@ -60,7 +60,7 @@ namespace acme_freebsd
       //virtual ::e_status last_error_to_status(::u32 dwLastError);
 
 
-      virtual string audio_get_default_library_name() override;
+      string audio_get_default_implementation_name() override;
 
 
       ::user::enum_desktop calculate_edesktop() override;

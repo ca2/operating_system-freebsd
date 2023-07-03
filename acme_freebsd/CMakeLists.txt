@@ -22,13 +22,27 @@ list(APPEND library_source
 
 
 
-add_library(acme_freebsd SHARED ${library_source} calculate_edesktop.cpp)
+add_library(${PROJECT_NAME} SHARED ${library_source} calculate_edesktop.cpp)
+add_library(static_${PROJECT_NAME} SHARED ${library_source} calculate_edesktop.cpp)
 
 
-list(APPEND library_references acme acme_posix)
+list(APPEND library_references acme acme_posix acme_darwin)
 
 
-target_precompile_headers(acme_freebsd PRIVATE framework.h)
+if (NOT ${NO_PRECOMPILED_HEADER})
+
+    target_precompile_headers(${PROJECT_NAME} PRIVATE framework.h)
+    target_precompile_headers(static_${PROJECT_NAME} PRIVATE framework.h)
+
+endif ()
+
+
+
+list(APPEND static_library_references ${library_references})
+
+list(TRANSFORM static_library_references PREPEND static_)
+
+
 
 
 set_target_properties(acme_freebsd PROPERTIES LINKER_LANGUAGE CXX)
@@ -40,29 +54,41 @@ if (MSVC)
     target_link_options(acme_freebsd PRIVATE "/IMPLIB:${LIBRARY_OUTPUT_PATH}/acme_freebsd.lib")
     target_link_options(acme_freebsd PRIVATE "/DEF:${CMAKE_CURRENT_SOURCE_DIR}/acme_freebsd.def")
     target_link_libraries(acme_freebsd PRIVATE acme apex aqua aura Gdiplus)
-elseif(FREEBSD)
-    #pkg_check_modules(PKGCONFIG glib-2.0 gtk+-3.0 gdk-3.0 appindicator-0.1)
-    #pkg_check_modules(PKGCONFIG glib-2.0 freetype2 gtk+-3.0 gdk-3.0)
-    #   target_compile_options(acme_freebsd PRIVATE ${PKGCONFIG_CFLAGS})
-   target_link_options(acme_freebsd PRIVATE ${PKGCONFIG_LDFLAGS})
-    #target_compile_options(acme_freebsd PRIVATE -std=c++14)
-    #target_link_options(acme_freebsd PRIVATE ${GTK_LDFLAGS})
-    target_link_options(acme_freebsd PRIVATE -Wl,-rpath=\$ORIGIN)
-    target_link_libraries(acme_freebsd PRIVATE ${PKGCONFIG_LIBRARIES} ${library_references})
-    target_link_options(acme_freebsd PRIVATE -Wl,-z,defs)
-    message("PKGCONFIG_LIBRARIES is " ${PKGCONFIG_LIBRARIES})
-endif()
+elseif(${FREEBSD})
 
 
-target_link_directories(acme_freebsd PRIVATE ${LIBRARY_OUTPUT_PATH})
-target_link_directories(acme_freebsd PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/../../../archive/storage-${PLATFORM_NAME}/library/x64/basis)
-target_link_directories(acme_freebsd PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/../../../archive/storage-${PLATFORM_NAME}/third/library/x64/basis)
+    target_compile_options(${PROJECT_NAME} PRIVATE -fpermissive)
+    target_compile_options(static_${PROJECT_NAME} PRIVATE -fpermissive)
+    target_compile_definitions(static_${PROJECT_NAME} PRIVATE CUBE)
 
 
-target_include_directories(acme_freebsd PRIVATE $ENV{HOME}/__config)
-target_include_directories(acme_freebsd PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/../..)
-target_include_directories(acme_freebsd PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/..)
-target_include_directories(acme_freebsd PRIVATE ${CMAKE_CURRENT_SOURCE_DIR})
+    target_compile_options(${PROJECT_NAME} PRIVATE ${PKGCONFIG_CFLAGS})
+    target_compile_options(static_${PROJECT_NAME} PRIVATE ${PKGCONFIG_CFLAGS})
+    target_compile_options(${PROJECT_NAME} PRIVATE ${PKGCONFIG_CFLAGS})
+    target_compile_options(static_${PROJECT_NAME} PRIVATE ${PKGCONFIG_CFLAGS})
+    target_link_options(acme_posix PRIVATE ${PKGCONFIG_LDFLAGS})
+    target_link_libraries(${PROJECT_NAME} PRIVATE ${library_references} ${PKGCONFIG_LIBRARIES})
+    target_link_libraries(static_${PROJECT_NAME} PRIVATE ${static_library_references} ${PKGCONFIG_LIBRARIES})
+    target_link_options(${PROJECT_NAME} PRIVATE -Wl,-z,defs)
+    if(${LINUX})
+    target_link_options(static_${PROJECT_NAME} PRIVATE --whole-archive)
+    endif()
+
+
+endif ()
+
+
+list(APPEND library_include_directories ${CMAKE_CURRENT_SOURCE_DIR})
+list(APPEND library_include_directories ${CMAKE_CURRENT_SOURCE_DIR}/..)
+list(APPEND library_include_directories ${CMAKE_CURRENT_SOURCE_DIR}/../..)
+list(APPEND library_include_directories ${CMAKE_CURRENT_SOURCE_DIR}/../../operating_system-darwin)
+list(APPEND library_include_directories ${CMAKE_CURRENT_SOURCE_DIR}/../../operating_system-posix)
+
+
+target_include_directories(${PROJECT_NAME} PRIVATE ${library_include_directories})
+target_include_directories(static_${PROJECT_NAME} PRIVATE ${library_include_directories})
+
+
 
 
 target_compile_definitions(acme_freebsd PRIVATE _acme_freebsd_LIBRARY)

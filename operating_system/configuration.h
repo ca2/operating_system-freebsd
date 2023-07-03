@@ -7,7 +7,10 @@
 #include "config_memdleak.h"
 
 
+#ifndef _THREAD_SAFE
 #define _THREAD_SAFE
+#endif // _THREAD_SAFE
+
 
 #define _LARGEFILE64_SOURCE
 
@@ -15,18 +18,18 @@
 #define PARALLELIZATION_PTHREAD
 
 
-#define ENABLE_BINRELOC
+//#define ENABLE_BINRELOC
 
 
 #define HAS_FREEDESKTOP
 
 
-#ifndef LINUX
-#define LINUX
+#ifndef FREEBSD
+#define FREEBSD
 #endif
 
-#ifndef _LINUX
-#define _LINUX
+#ifndef _FREEBSD
+#define _FREEBSD
 #endif
 
 
@@ -38,27 +41,31 @@
 #define c_cdecl
 
 
-#ifdef RASPBIAN
-#define BROAD_PRECOMPILED_HEADER 0
-#else
-#define BROAD_PRECOMPILED_HEADER 1
-#endif
+//#ifdef RASPBIAN
+//#define BROAD_PRECOMPILED_HEADER 0
+//#else
+//#define BROAD_PRECOMPILED_HEADER 1
+//#endif
 
 using errno_t = int;
 
-#define OPERATING_SYSTEM_NAMESPACE linux
+#define OPERATING_SYSTEM_NAMESPACE freebsd
 
 #define PLATFORM_COMMON_NAMESPACE posix
 
-#define PLATFORM_STRING "linux"
+#define PLATFORM_FAMILY_NAMESPACE darwin
+
+#define PLATFORM_STRING "freebsd"
 
 #define PLATFORM_COMMON_STRING "posix"
 
+#define PLATFORM_FAMILY_STRING "darwin"
+
 #define DEFAULT_DIR_SEPARATOR "/"
 
-#define OPERATING_SYSTEM_NAME   	"linux"
+#define OPERATING_SYSTEM_NAME "freebsd"
 
-#define OPERATING_SYSTEM_NAMESPACE	linux
+#define OPERATING_SYSTEM_NAMESPACE freebsd
 
 
 

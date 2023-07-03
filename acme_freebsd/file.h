@@ -1,6 +1,9 @@
 #pragma once
 
 
+#include "acme_posix/file.h"
+
+
 //class FileException;
 //struct FileStatus;
 
@@ -20,7 +23,7 @@ namespace acme_freebsd
 
 
    class CLASS_DECL_ACME file :
-      virtual public ::file::file
+      virtual public ::acme_posix::file
    {
    public:
 
@@ -54,53 +57,53 @@ namespace acme_freebsd
       ~file() override;
 
 
-      void assert_ok() const override;
-      void dump(dump_context & dumpcontext) const override;
-
-      filesize get_position() const override;
-
-
-      bool GetStatus(::file::file_status & rStatus) const;
-      virtual string GetFileName() const;
-      virtual string GetFileTitle() const;
-      virtual string GetFilePath() const;
-      virtual void SetFilePath(const char * pszNewName);
-
-
-      void open(const ::file::path & pszFileName, const ::file::e_open & eopen) override;
-
-
-      //virtual bool PASCAL GetStatus(const char * pszFileName, ::file::file_status& rStatus);
-
-      u64 ReadHuge(void * pBuffer, u64 dwCount);
-
-      void WriteHuge(const void * pBuffer, u64 dwCount);
-
-
-//      virtual __pointer(::file::file) Duplicate() const;
-
-      ::index translate(::count c, ::enum_seek eseek) override;
-      void set_size(filesize dwNewLen) override;
-      filesize get_size() const override;
-
-      memsize read(void * pdata, memsize nCount) override;
-
-      void write(const void * pdata, memsize nCount) override;
-
-
-      virtual void LockRange(filesize dwPos, filesize dwCount);
-      virtual void UnlockRange(filesize dwPos, filesize dwCount);
-
-      virtual void Abort();
-      void flush() override;
-      void close() override;
-
-      virtual bool IsOpened();
-
-      virtual u64 GetBufferPtr(::u32 nCommand, u64 nCount = 0, void ** ppBufStart = nullptr, void ** ppBufMax = nullptr);
-
-
-      //int put_character_back(int iCharacter) override;
+//      //void assert_ok() const override;
+//      //void dump(dump_context & dumpcontext) const override;
+//
+//      filesize get_position() const override;
+//
+//
+//      bool GetStatus(::file::file_status & rStatus) const;
+//      virtual string GetFileName() const;
+//      virtual string GetFileTitle() const;
+//      virtual string GetFilePath() const;
+//      virtual void SetFilePath(const char * pszNewName);
+//
+//
+//      void open(const ::file::path & path, ::file::e_open eopen, ::pointer < ::file::exception > * pfileexception = nullptr) override;
+//
+//
+//      //virtual bool PASCAL GetStatus(const char * pszFileName, ::file::file_status& rStatus);
+//
+//      u64 ReadHuge(void * pBuffer, u64 dwCount);
+//
+//      void WriteHuge(const void * pBuffer, u64 dwCount);
+//
+//
+////      virtual __pointer(::file::file) Duplicate() const;
+//
+//      void translate(::filesize offset, ::enum_seek eseek) override;
+//      void set_size(filesize dwNewLen) override;
+//      filesize size() const override;
+//
+//      memsize read(void * pdata, memsize nCount) override;
+//
+//      void write(const void * pdata, memsize nCount) override;
+//
+//
+//      virtual void LockRange(filesize dwPos, filesize dwCount);
+//      virtual void UnlockRange(filesize dwPos, filesize dwCount);
+//
+//      virtual void Abort();
+//      void flush() override;
+//      void close() override;
+//
+//      virtual bool IsOpened();
+//
+//      virtual u64 GetBufferPtr(::u32 nCommand, u64 nCount = 0, void ** ppBufStart = nullptr, void ** ppBufMax = nullptr);
+//
+//
+//      //int put_character_back(int iCharacter) override;
 
 
    };

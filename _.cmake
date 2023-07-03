@@ -117,7 +117,7 @@ SET(CMAKE_BUILD_WITH_INSTALL_RPATH TRUE)
 set(CMAKE_INSTALL_RPATH $ORIGIN)
 #set(CMAKE_INSTALL_RPATH_USE_LINK_PATH TRUE)
 
-set(LINUX TRUE)
+set(LINUX FALSE)
 set(OPERATING_SYSTEM_NAME "freebsd")
 set(OPERATING_SYSTEM_POSIX TRUE)
 set(DISTRO "(NotApplicable)")
@@ -275,8 +275,6 @@ set(default_gpu "gpu_opengl")
 #add_compile_definitions(default_audio=audio_alsa)
 #add_compile_definitions(default_music_midi=music_midi_alsa)
 #add_compile_definitions(default_node=node_linux)
-
-set(LINUX TRUE)
 
 
 if (LXDE_DESKTOP)
