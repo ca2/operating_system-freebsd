@@ -2,6 +2,9 @@
 #include "node.h"
 
 
+::user::enum_desktop _get_edesktop();
+
+
 namespace acme_freebsd
 {
 
@@ -720,7 +723,7 @@ namespace acme_freebsd
    ::user::enum_desktop node::calculate_edesktop()
    {
 
-      return ::get_edesktop();
+      return _get_edesktop();
 
    }
 

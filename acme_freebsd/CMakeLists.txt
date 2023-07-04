@@ -23,7 +23,7 @@ list(APPEND library_source
 
 
 add_library(${PROJECT_NAME} SHARED ${library_source} calculate_edesktop.cpp)
-add_library(static_${PROJECT_NAME} SHARED ${library_source} calculate_edesktop.cpp)
+add_library(static_${PROJECT_NAME} STATIC ${library_source} calculate_edesktop.cpp)
 
 
 list(APPEND library_references acme acme_posix acme_darwin)

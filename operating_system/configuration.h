@@ -69,8 +69,8 @@ using errno_t = int;
 
 
 
-#ifndef __linux__
-#define __linux__
+#ifndef __freebsd__
+#define __freebsd__
 #endif
 
 #define _OPENGL 1
@@ -84,6 +84,9 @@ using errno_t = int;
 #define BSD_STYLE_SOCKETS
 #define HAVE_MYSQL 1
 #define HAVE_OPENSSL 1
+
+
+#define _POSIX_C_SOURCE 200809L
 
 #define VARIADIC_TEMPLATE_FORMAT2
 

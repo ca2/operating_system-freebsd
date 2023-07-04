@@ -11,34 +11,36 @@
 #define _FREEBSD 1
 #endif
 
-#include <strings.h>
-#include <string.h>
+//#include <strings.h>
+//#include <string.h>
+//
+//
+//#include <errno.h>
+//
+//
+//#include <stdarg.h>
+//#include <stdlib.h>
+//#include <stdio.h>
+//
+//
+//#include <limits.h>
+////#define sync unistd_sync
+////#include <unistd.h>
+////#undef sync
+//
+//#include <ctype.h>
+//#include <wchar.h>
+//#include <wctype.h>
 
-
-#include <errno.h>
-
-
-#include <stdarg.h>
-#include <stdlib.h>
-#include <stdio.h>
-
-
-#include <limits.h>
-//#define sync unistd_sync
-//#include <unistd.h>
-//#undef sync
-
-#include <ctype.h>
-#include <wchar.h>
-#include <wctype.h>
-
-#include "__standard_type.h"
+//#include "__standard_type.h"
 
 
 #define __cdecl
 #define _stdcall
 
 #define _NORMAL_BLOCK  1
+
+#include <stdarg.h>
 
 
 // Ubuntu apt-get install libx11-dev
@@ -53,11 +55,13 @@ typedef iptr                 LPARAM;
 typedef iptr                 LRESULT;
 //typedef struct oswindow_data *   oswindow;
 
-#include <pthread.h>
+//#include <pthread.h>
+
+
 
 //typedef pthread_t pthread;
 
-typedef pthread_t HTHREAD;
+//stypedef pthread_t HTHREAD;
 
 using platform_char = char;
 
