@@ -43,6 +43,9 @@
 #include <stdarg.h>
 
 
+#include <cstddef>
+
+
 // Ubuntu apt-get install libx11-dev
 // CentOS yum install libX11-devel
 // openSUSE zypper install libx11-devel

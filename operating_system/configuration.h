@@ -86,6 +86,11 @@ using errno_t = int;
 #define HAVE_OPENSSL 1
 
 
+#define MEMORY_DECL
+
+
+
+
 #define _POSIX_C_SOURCE 200809L
 
 #define VARIADIC_TEMPLATE_FORMAT2
