@@ -266,13 +266,13 @@ typedef wd32char        widechar;
 #endif
 
 
-#define DWORD     uint32_t
+//#define DWORD     uint32_t
 
-#define BYTE      uint8_t
+//#define BYTE      uint8_t
 
 //#define NULL 0
 
-#define _strcmpi strcasecmp
+//#define _strcmpi strcasecmp
 
 
 #define __forceinline inline
@@ -290,15 +290,15 @@ typedef void * PVOID;
 
 
 #define __stdcall
-#define _gmtime64 gmtime
+//#define _gmtime64 gmtime
 
 
-#define stricmp strcasecmp
-#define strnicmp strncasecmp
+//#define stricmp strcasecmp
+//#define strnicmp strncasecmp
 
 
-#define _stricmp  stricmp
-#define _strnicmp  strnicmp
+//#define _stricmp  stricmp
+//#define _strnicmp  strnicmp
 
 
 
