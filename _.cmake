@@ -179,8 +179,8 @@ endif ()
 
 message(STATUS "DISTRO_RELEASE is ${DISTRO_RELEASE}")
 
-
-set(ALSA_MIDI TRUE)
+set(MIDI FALSE)
+set(ALSA_MIDI FALSE)
 set(INTERPROCESS_COMMUNICATION_SYSTEM_5 TRUE)
 
 add_compile_definitions(WITH_X11)
