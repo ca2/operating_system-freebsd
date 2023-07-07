@@ -1,11 +1,10 @@
 #pragma once
 
 
-#include "acme/_.h"
-#include "operating_system-posix/acme_posix/_.h"
+#include "operating_system-darwin/acme_darwin/_.h"
 
 
-#if defined(_ACME_FREEBSD_LIBRARY)
+#if defined(_acme_freebsd_project)
 #define CLASS_DECL_ACME_FREEBSD  CLASS_DECL_EXPORT
 #else
 #define CLASS_DECL_ACME_FREEBSD  CLASS_DECL_IMPORT

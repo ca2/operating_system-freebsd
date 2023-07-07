@@ -2,7 +2,7 @@
 #pragma once
 
 
-#include "acme_posix/acme_path.h"
+#include "acme_darwin/acme_path.h"
 
 
 namespace acme_freebsd
@@ -10,7 +10,7 @@ namespace acme_freebsd
 
 
    class CLASS_DECL_ACME_FREEBSD acme_path :
-      virtual public ::acme_posix::acme_path
+      virtual public ::acme_darwin::acme_path
    {
    public:
 

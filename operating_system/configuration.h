@@ -7,6 +7,9 @@
 #include "config_memdleak.h"
 
 
+#define HAVE_UNISTD_H
+
+
 #ifndef _THREAD_SAFE
 #define _THREAD_SAFE
 #endif // _THREAD_SAFE
