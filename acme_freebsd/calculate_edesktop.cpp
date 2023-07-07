@@ -21,14 +21,14 @@
 
    utsname name;
 
-   memset(&name, 0, sizeof(utsname));
+   memory_set(&name, 0, sizeof(utsname));
 
    uname(&name);
 
    if(pszDesktop != nullptr)
    {
 
-      if(strcasecmp(pszDesktop, "Unity") == 0)
+      if(ansi_icmp(pszDesktop, "Unity") == 0)
       {
 
          return ::user::e_desktop_unity_gnome;
@@ -61,13 +61,13 @@
       return ::user::e_desktop_unity_gnome;
 
    }
-   else if(strcasecmp(pszDesktop, "ubuntu:gnome") == 0)
+   else if(ansi_icmp(pszDesktop, "ubuntu:gnome") == 0)
    {
 
       return ::user::e_desktop_ubuntu_gnome;
 
    }
-   else if(strcasecmp(pszDesktop, "gnome") == 0)
+   else if(ansi_icmp(pszDesktop, "gnome") == 0)
    {
 
       return ::user::e_desktop_gnome;

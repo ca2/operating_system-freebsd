@@ -463,7 +463,7 @@ namespace acme_freebsd
 //      if (bError)
 //      {
 //
-//         int iErrorNumber = errno;
+//         auto cerrornumber = c_error_number();
 //
 //         auto estatus = errno_to_status(iErrorNumber);
 //
@@ -517,7 +517,7 @@ namespace acme_freebsd
 //      if (::ftruncate(m_iFile, dwNewLen) == -1)
 //      {
 //
-//         int iErrorNumber = errno;
+//         auto cerrornumber = c_error_number();
 //
 //         auto estatus = errno_to_status(iErrorNumber);
 //

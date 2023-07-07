@@ -132,7 +132,7 @@ namespace apex_freebsd
          if((result = msgsnd(m_iQueue, pdata, m.get_size() - sizeof(long), 0)) == -1)
          {
 
-            int iErrorNumber = errno;
+            auto cerrornumber = c_error_number();
 
             auto estatus = errno_to_status(iErrorNumber);
 
