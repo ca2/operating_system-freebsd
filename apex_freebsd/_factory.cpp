@@ -7,7 +7,7 @@
 #include "file_context.h"
 #include "os_context.h"
 //#include "ip_enum.h"
-#include "interprocess_communication.h"
+//#include "interprocess_communication.h"
 #include "file_context.h"
 #include "service_handler.h"
 #include "node.h"
@@ -25,7 +25,7 @@ __FACTORY_EXPORT void acme_freebsd_factory(::factory::factory * pfactory);
 __FACTORY_EXPORT void apex_freebsd_factory(::factory::factory * pfactory)
 {
 
-   apex_posix_factory(pfactory);
+   apex_darwin_factory(pfactory);
 
    acme_freebsd_factory(pfactory);
 
@@ -46,9 +46,9 @@ __FACTORY_EXPORT void apex_freebsd_factory(::factory::factory * pfactory)
    //pfactory->add_factory_item < ::apex_freebsd::ip_enum, ::networking::ip_enum >();
 
 
-   pfactory->add_factory_item < ::apex_freebsd::interprocess_communication_base, ::interprocess_communication::base >();
-   pfactory->add_factory_item < ::apex_freebsd::interprocess_communication_rx, ::interprocess_communication::rx >();
-   pfactory->add_factory_item < ::apex_freebsd::interprocess_communication_tx, ::interprocess_communication::tx >();
+   //pfactory->add_factory_item < ::apex_freebsd::interprocess_communication_base, ::interprocess_communication::base >();
+   //pfactory->add_factory_item < ::apex_freebsd::interprocess_communication_rx, ::interprocess_communication::rx >();
+   //pfactory->add_factory_item < ::apex_freebsd::interprocess_communication_tx, ::interprocess_communication::tx >();
    //add_factory_item < ::freebsd::interprocess_communication, ::interprocess_communication::interprocess_communication >();
 
 
@@ -58,7 +58,7 @@ __FACTORY_EXPORT void apex_freebsd_factory(::factory::factory * pfactory)
    //pfactory->add_factory_item < ::file::os_watcher, ::file::watcher >();
    //pfactory->add_factory_item < ::file::os_watch, ::file::watch >();
 
-   pfactory->add_factory_item < ::apex_freebsd::file_context, ::file_context >();
+   //pfactory->add_factory_item < ::apex_freebsd::file_context, ::file_context >();
    pfactory->add_factory_item < ::apex_freebsd::service_handler, ::service_handler >();
 
    pfactory->add_factory_item < ::apex_freebsd::node, ::acme::node >();
