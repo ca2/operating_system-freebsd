@@ -1,4 +1,5 @@
 #include "framework.h"
+#include "acme/platform/system.h"
 
 
 ::user::enum_desktop get_edesktop();
