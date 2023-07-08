@@ -1,6 +1,8 @@
 #include "framework.h"
 #include "os_context.h"
+#include "acme/exception/not_implemented.h"
 #include "acme/filesystem/filesystem/acme_directory.h"
+#include "apex/filesystem/file/set.h"
 #include "apex/platform/system.h"
 #include <unistd.h>
 
@@ -51,12 +53,12 @@ namespace apex_freebsd
    }
 
 
-   string os_context::get_command_line()
-   {
-
-      return acmesystem()->m_papexsystem->get_command_line();
-
-   }
+//   string os_context::get_command_line()
+//   {
+//
+//      return acmesystem()->m_papexsystem->get_command_line();
+//
+//   }
 
 
    void os_context::shutdown(bool bIfPowerOff)
@@ -186,100 +188,100 @@ namespace apex_freebsd
    }
 
 
-   bool os_context::path_pid(::u32 & dwPid, const ::string & strName)
-   {
-
-      u32_array dwa;
-      get_all_processes(dwa);
-      for(i32 i = 0; i < dwa.get_count(); i++)
-      {
-         if(get_process_path(dwa[i]).compare_ci(strName) == 0)
-         {
-            dwPid = dwa[i];
-            return true;
-         }
-      }
-      return false;
-   }
-
-
-   bool os_context::title_pid(::u32 & dwPid,  const ::string & strName)
-   {
-
-      u32_array dwa;
-
-      get_all_processes(dwa);
-
-      for(i32 i = 0; i < dwa.get_count(); i++)
-      {
-
-         if(get_process_path(dwa[i]).title().compare_ci(strName) == 0)
-         {
-
-            dwPid = dwa[i];
-
-            return true;
-
-         }
-
-      }
-
-      return false;
-
-   }
-
-
-   ::file::path os_context::get_process_path(::u32 dwPid)
-   {
-
-      throw not_implemented();
-
-      return "";
-
-   }
-
-
-   void os_context::get_all_processes(u32_array & dwa )
-   {
-
-      throw not_implemented();
-
-      //return;
-
-      /*
-            dwa.set_size(0);
-            ::u32 cbNeeded = 0;
-            while(cbNeeded == natural(dwa.get_count()))
-            {
-               dwa.set_size(dwa.get_count() + 1024);
-               if(!EnumProcesses(
-                  dwa.get_data(),
-                  (::u32) (dwa.get_count() * sizeof(::u32)),
-                  &cbNeeded))
-               {
-                  return;
-               }
-               dwa.set_size(cbNeeded / sizeof(::u32));
-            }*/
-   }
-
-//   string os_context::get_module_path(HMODULE hmodule)
+//   bool os_context::path_pid(::u32 & dwPid, const ::string & strName)
 //   {
-//      throw not_implemented();
-//      return "";
-//      /*
-//      string strPath;
-//      ::u32 dwSize = 1;
-//      while(natural(strPath.get_length() + 1) == dwSize)
+//
+//      u32_array dwa;
+//      get_all_processes(dwa);
+//      for(i32 i = 0; i < dwa.get_count(); i++)
 //      {
-//         dwSize = ::GetModuleFileName(
-//            hmodule,
-//            strPath.get_string_buffer(dwSize + 1024),
-//            (dwSize + 1024));
-//         strPath.ReleaseBuffer();
+//         if(get_process_path(dwa[i]).compare_ci(strName) == 0)
+//         {
+//            dwPid = dwa[i];
+//            return true;
+//         }
 //      }
-//      return strPath;*/
+//      return false;
 //   }
+//
+//
+//   bool os_context::title_pid(::u32 & dwPid,  const ::string & strName)
+//   {
+//
+//      u32_array dwa;
+//
+//      get_all_processes(dwa);
+//
+//      for(i32 i = 0; i < dwa.get_count(); i++)
+//      {
+//
+//         if(get_process_path(dwa[i]).title().compare_ci(strName) == 0)
+//         {
+//
+//            dwPid = dwa[i];
+//
+//            return true;
+//
+//         }
+//
+//      }
+//
+//      return false;
+//
+//   }
+//
+//
+//   ::file::path os_context::get_process_path(::u32 dwPid)
+//   {
+//
+//      throw not_implemented();
+//
+//      return "";
+//
+//   }
+//
+//
+//   void os_context::get_all_processes(u32_array & dwa )
+//   {
+//
+//      throw not_implemented();
+//
+//      //return;
+//
+//      /*
+//            dwa.set_size(0);
+//            ::u32 cbNeeded = 0;
+//            while(cbNeeded == natural(dwa.get_count()))
+//            {
+//               dwa.set_size(dwa.get_count() + 1024);
+//               if(!EnumProcesses(
+//                  dwa.get_data(),
+//                  (::u32) (dwa.get_count() * sizeof(::u32)),
+//                  &cbNeeded))
+//               {
+//                  return;
+//               }
+//               dwa.set_size(cbNeeded / sizeof(::u32));
+//            }*/
+//   }
+//
+////   string os_context::get_module_path(HMODULE hmodule)
+////   {
+////      throw not_implemented();
+////      return "";
+////      /*
+////      string strPath;
+////      ::u32 dwSize = 1;
+////      while(natural(strPath.get_length() + 1) == dwSize)
+////      {
+////         dwSize = ::GetModuleFileName(
+////            hmodule,
+////            strPath.get_string_buffer(dwSize + 1024),
+////            (dwSize + 1024));
+////         strPath.ReleaseBuffer();
+////      }
+////      return strPath;*/
+////   }
 
 
    ::payload os_context::connection_settings_get_auto_detect()
@@ -862,12 +864,12 @@ namespace apex_freebsd
 //   }
 
 
-   int os_context::get_pid()
-   {
-
-      return ::getpid();
-
-   }
+//   int os_context::get_pid()
+//   {
+//
+//      return ::getpid();
+//
+//   }
 
 
    void os_context::initialize_wallpaper_fileset(::file::set * pfileset, bool bAddSearch)
@@ -914,7 +916,7 @@ namespace apex_freebsd
    void os_context::get_default_browser(string & strId, ::file::path & path, string & strParam)
    {
 
-      string str = m_psystem->m_papexsystem->process().get_output("/bin/sh -c \"xdg-settings get default-web-browser\"");
+      auto pstring = acmenode()->get_output("/bin/sh -c \"xdg-settings get default-web-browser\"");
 
       str.trim();
 

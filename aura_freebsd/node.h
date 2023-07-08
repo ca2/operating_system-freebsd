@@ -31,7 +31,7 @@ namespace aura_freebsd
       string get_user_name() override;
 
 
-      void initialize(::object * pobject) override;
+      void initialize(::particle * pparticle) override;
 
 
       //virtual bool _os_calc_app_dark_mode() override;

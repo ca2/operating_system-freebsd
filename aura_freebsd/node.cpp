@@ -41,14 +41,14 @@ namespace aura_freebsd
    }
 
 
-   void node::initialize(::object * pobject)
+   void node::initialize(::particle * pparticle)
    {
 
       //INFORMATION("aura::freebsd::node::initialize");
 
       //auto estatus =
 
-      ::apex_freebsd::node::initialize(pobject);
+      ::apex_freebsd::node::initialize(pparticle);
 
 //      if (!estatus)
 //      {
@@ -59,7 +59,7 @@ namespace aura_freebsd
 
       //estatus =
 
-      ::aura_posix::node::initialize(pobject);
+      ::aura_posix::node::initialize(pparticle);
 
 //      if (!estatus)
 //      {

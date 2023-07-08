@@ -18,7 +18,7 @@ namespace apex_freebsd
       ~os_context() override;
 
 
-      string get_command_line() override;
+      //string get_command_line() override;
 
 
       void reboot() override;
