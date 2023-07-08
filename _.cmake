@@ -12,6 +12,9 @@ message(STATUS "CMAKE_SYSTEM_NAME is ${CMAKE_SYSTEM_NAME}")
 set(USE_PKGCONFIG TRUE)
 set(NO_PRECOMPILED_HEADER TRUE)
 
+#set(GLOBAL_EXTRA_COMPILER_FLAGS -fnon-call-exceptions -nostdinc -nostdinc++ -I/usr/include/c++/v1 -I/usr/include -I/usr/local/include)
+#set(GLOBAL_EXTRA_LINKER_FLAGS -nodefaultlibs -lc++ -lcxxrt -lthr -lm -lc -lgcc_s)
+#set(GLOBAL_EXTRA_LINKER_FLAGS -L/usr/lib)
 
 if ("${CMAKE_BUILD_TYPE}" STREQUAL "")
 
@@ -34,7 +37,8 @@ if (CMAKE_CXX_COMPILER_ID STREQUAL "GNU")
 endif ()
 
 
-set(DONT_USE_PKG_CONFIG NOT PKG_CONFIG_FOUND)
+#set(DONT_USE_PKG_CONFIG NOT PKG_CONFIG_FOUND)
+set(DONT_USE_PKG_CONFIG FALSE)
 
 
 if ($ENV{XDG_CURRENT_DESKTOP} STREQUAL "KDE")

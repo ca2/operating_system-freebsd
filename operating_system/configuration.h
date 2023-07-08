@@ -84,7 +84,7 @@ using errno_t = int;
 #define _FILE_OFFSET_BITS 64
 
 
-#define BSD_STYLE_SOCKETS
+#define BSD_STYLE_SOCKETS 1
 #define HAVE_MYSQL 1
 #define HAVE_OPENSSL 1
 
