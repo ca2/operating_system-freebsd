@@ -2,14 +2,16 @@
 #include "os_context.h"
 #include "acme/exception/not_implemented.h"
 #include "acme/filesystem/filesystem/acme_directory.h"
+#include "apex/platform/node.h"
 #include "apex/filesystem/file/set.h"
+#include "apex/filesystem/filesystem/link.h"
 #include "apex/platform/system.h"
+#define __BSD_VISIBLE 1
 #include <unistd.h>
 
 i32 daemonize_process(const char * _cmd_line, i32 * pprocessId);
 
 #undef USERNAME_LENGTH // mysql one
-
 
 #include <sys/stat.h>
 
@@ -916,11 +918,11 @@ namespace apex_freebsd
    void os_context::get_default_browser(string & strId, ::file::path & path, string & strParam)
    {
 
-      auto pstring = acmenode()->get_output("/bin/sh -c \"xdg-settings get default-web-browser\"");
+      auto str = acmenode()->get_output("/bin/sh -c \"xdg-settings get default-web-browser\"");
 
       str.trim();
 
-      if(str.ends_ci(".desktop"))
+      if(str.case_insensitive_ends(".desktop"))
       {
 
          ::file::path pathDesktop = "/usr/share/applications";
@@ -932,9 +934,9 @@ namespace apex_freebsd
 
             ::file::path pathTarget;
 
-            resolve_link(pathTarget, pathDesktop, nullptr, &strParam);
+            auto pfilelink = resolve_link(pathTarget, ::file::e_link_target);
 
-            path = pathTarget;
+            path = pfilelink->m_pathTarget;
 
          }
 
@@ -942,7 +944,7 @@ namespace apex_freebsd
 
       //string str = ::apex::get_system()->process().get_output("xdg-settings get default-web-browser");
 
-      if(str.find_ci("chrome") >= 0)
+      if(str.case_insensitive_find_index("chrome") >= 0)
       {
 
          strId = "chrome";
@@ -990,7 +992,7 @@ namespace apex_freebsd
 
          // 2018-01-29 call_async("/bin/bash", "-c \"" + strTarget + "\"", strFolder, SW_SHOWDEFAULT, false);
 
-         m_psystem->node()->call_async(strTarget, strParams, pathFolder, e_display_default, false);
+         acmenode()->call_async(strTarget, strParams, pathFolder, e_display_default, false);
 
 //         char * pszCommandLine = strdup(strTarget + " " + strParams);
 
@@ -1027,11 +1029,7 @@ namespace apex_freebsd
 
          //::system("nohup xdg-open \"" + strTarget + "\" > /dev/null 2>&1&");
 
-         auto psystem = m_psystem;
-
-         auto pnode = psystem->node();
-
-         pnode->node_post([this, strTarget]()
+         acmenode()->node_post([this, strTarget]()
          {
 
             string strUri = strTarget;
@@ -1047,20 +1045,16 @@ namespace apex_freebsd
 
             int iBufferSize = 4096;
 
-            char * pszError = strError.get_string_buffer(iBufferSize);
+            char * pszError = strError.get_buffer(iBufferSize);
 
-            auto psystem = m_psystem;
+            int iBool = acmenode()->os_launch_uri(strUri, pszError, iBufferSize);
 
-            auto pnode = psystem->node();
-
-            int iBool = pnode->os_launch_uri(strUri, pszError, iBufferSize);
-
-            strError.release_string_buffer();
+            strError.release_buffer();
 
             if(!iBool)
             {
 
-               FORMATTED_TRACE("Error launching file : \"%s\" , %s", strUri.c_str(), strError.c_str());
+               information("Error launching file : \"%s\" , %s", strUri.c_str(), strError.c_str());
 
             }
 
@@ -1073,45 +1067,45 @@ namespace apex_freebsd
    }
 
 
-   void os_context::list_process(::file::path_array & patha, u32_array & uaPid)
-   {
-
-      ::output_debug_string("freebsd::os_context::list_process");
-
-      ::file::listing listing;
-
-      listing.set_folder_listing("/proc/");
-
-      m_psystem->m_pacmedirectory->enumerate(listing);
-
-      auto psystem = m_psystem;
-
-      auto pnode = psystem->node();
-
-      for(auto & strPid : listing)
-      {
-
-         int iPid = atoi(strPid.title());
-
-         if(iPid > 0)
-         {
-
-            ::file::path path = pnode->module_path_from_pid(iPid);
-
-            if(path.has_char())
-            {
-
-               patha.add(path);
-
-               uaPid.add(iPid);
-
-            }
-
-         }
-
-      }
-
-   }
+//   void os_context::list_process(::file::path_array & patha, u32_array & uaPid)
+//   {
+//
+//      ::output_debug_string("freebsd::os_context::list_process");
+//
+//      ::file::listing listing;
+//
+//      listing.set_folder_listing("/proc/");
+//
+//      m_psystem->m_pacmedirectory->enumerate(listing);
+//
+//      auto psystem = m_psystem;
+//
+//      auto pnode = psystem->node();
+//
+//      for(auto & strPid : listing)
+//      {
+//
+//         int iPid = atoi(strPid.title());
+//
+//         if(iPid > 0)
+//         {
+//
+//            ::file::path path = pnode->module_path_from_pid(iPid);
+//
+//            if(path.has_char())
+//            {
+//
+//               patha.add(path);
+//
+//               uaPid.add(iPid);
+//
+//            }
+//
+//         }
+//
+//      }
+//
+//   }
 
 
    bool os_context::freebsd_can_exec(const char *file)
@@ -1121,10 +1115,10 @@ namespace apex_freebsd
 
       string str(file);
 
-      if(::str().begins_eat_ci(str, "\""))
+      if(str.case_insensitive_begins_eat("\""))
       {
 
-         strsize iFind = str.find("\"");
+         strsize iFind = str.find_index("\"");
 
          if(iFind < 0)
          {
@@ -1133,13 +1127,13 @@ namespace apex_freebsd
 
          }
 
-         str = str.Left(iFind);
+         str = str.left(iFind);
 
       }
-      else if(::str().begins_eat_ci(str, "\'"))
+      else if(str.case_insensitive_begins_eat("\'"))
       {
 
-         strsize iFind = str.find("\'");
+         strsize iFind = str.find_index("\'");
 
          if(iFind < 0)
          {
@@ -1148,18 +1142,18 @@ namespace apex_freebsd
 
          }
 
-         str = str.Left(iFind);
+         str = str.left(iFind);
 
       }
       else
       {
 
-         strsize iFind = str.find(" ");
+         strsize iFind = str.find_index(" ");
 
          if(iFind > 0)
          {
 
-            str = str.Left(iFind);
+            str = str.left(iFind);
 
          }
 
@@ -1173,7 +1167,7 @@ namespace apex_freebsd
 
       }
 
-      __zero(st);
+      zero(st);
 
       if (stat(str, &st) < 0)
       {
@@ -1185,11 +1179,7 @@ namespace apex_freebsd
       if ((st.st_mode & S_IEXEC) != 0)
       {
 
-         auto psystem = m_psystem;
-
-         auto pnode = psystem->node();
-
-         string strContentType = pnode->get_file_content_type(str);
+         string strContentType = acmenode()->get_file_content_type(str);
 
          if(strContentType == "application/x-shellscript")
          {

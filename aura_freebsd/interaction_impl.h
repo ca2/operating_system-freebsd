@@ -33,13 +33,13 @@ namespace aura_freebsd
 
       //__pointer(::thread)            m_pthreadDraw;
       ::rectangle_i64                  m_rectLastPos;
-      ::duration                       m_durationLastPos;
+      class ::time                     m_timeLastPos;
 
       ::point_i32                      m_pointLastMove;
       bool                             m_bMoveEvent;
       ::size_i32                       m_sizeLastSize;
       bool                             m_bSizeEvent;
-      ::duration                       m_durationLastPlacementEvent;
+      class ::time                     m_timeLastPlacementEvent;
 
 
       interaction_impl();
@@ -49,16 +49,16 @@ namespace aura_freebsd
       void linux_interaction_impl_common_construct();
 
 
-      void assert_ok() const override;
-      void dump(dump_context & dumpcontext) const override;
+      //void assert_ok() const override;
+      //void dump(dump_context & dumpcontext) const override;
 
 
-      static const MESSAGE * GetCurrentMessage();
+      //static const MESSAGE * GetCurrentMessage();
 
       virtual void install_message_routing(::channel * pchannel) override;
 
-      bool operator==(const ::user::interaction_impl& wnd) const;
-      bool operator!=(const ::user::interaction_impl& wnd) const;
+      //bool operator==(const ::user::interaction_impl& wnd) const;
+      //bool operator!=(const ::user::interaction_impl& wnd) const;
 
 //      ::u32 GetStyle() const override;
       //::u32 GetExStyle() const override;
@@ -165,13 +165,13 @@ namespace aura_freebsd
 
 
 
-      bool _is_window() const override;
-
-#if(WINVER >= 0x0500)
-
-      ::user::interaction * GetAncestor(::u32 gaFlags) const;
-
-#endif   // WINVER >= 0x0500
+      //bool _is_window() const override;
+//
+//#if(WINVER >= 0x0500)
+//
+//      ::user::interaction * GetAncestor(::u32 gaFlags) const;
+//
+//#endif   // WINVER >= 0x0500
 
       //LRESULT send_message(const ::id & id, WPARAM wParam = 0, lparam lparam = 0) override;
 
@@ -188,12 +188,12 @@ namespace aura_freebsd
 
 
 
-      // oswindow Text Functions
-      void set_window_text(const ::string & strString) override;
-
-      //strsize GetWindowText(char * pszStringBuf, strsize nMaxCount);
-
-      void get_window_text(string & str) override;
+//      // oswindow Text Functions
+//      void set_window_text(const ::string & strString) override;
+//
+//      //strsize GetWindowText(char * pszStringBuf, strsize nMaxCount);
+//
+//      void get_window_text(string & str) override;
       //strsize GetWindowTextLength();
       void SetFont(::write_text::font* pFont, bool bRedraw = true);
       ::write_text::font* GetFont();
@@ -211,9 +211,9 @@ namespace aura_freebsd
 //      i32 GetWindowRgn(HRGN hRgn);
 
 
-      virtual void _001OnExitIconic() override;
-      virtual void _001OnExitFullScreen() override;
-      virtual void _001OnExitZoomed() override;
+//      virtual void _001OnExitIconic() override;
+//      virtual void _001OnExitFullScreen() override;
+//      virtual void _001OnExitZoomed() override;
 
 
       //virtual bool set_window_position(iptr z, i32 x, i32 y, i32 cx, i32 cy, ::u32 nFlags);

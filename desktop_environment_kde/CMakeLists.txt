@@ -77,11 +77,15 @@ elseif(FREEBSD OR FREEBSD)
    target_link_options(desktop_environment_kde PRIVATE -Wl,-z,defs)
 endif ()
 
+list(APPEND library_include_directories ${CMAKE_CURRENT_SOURCE_DIR})
+list(APPEND library_include_directories ${CMAKE_CURRENT_SOURCE_DIR}/..)
+list(APPEND library_include_directories ${CMAKE_CURRENT_SOURCE_DIR}/../..)
+list(APPEND library_include_directories ${CMAKE_CURRENT_SOURCE_DIR}/../../operating_system-darwin)
+list(APPEND library_include_directories ${CMAKE_CURRENT_SOURCE_DIR}/../../operating_system-posix)
 
-target_include_directories(desktop_environment_kde PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/../..)
-target_include_directories(desktop_environment_kde PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/..)
-target_include_directories(desktop_environment_kde PRIVATE ${CMAKE_CURRENT_SOURCE_DIR})
 
+target_include_directories(${PROJECT_NAME} PRIVATE ${library_include_directories})
+target_include_directories(static_${PROJECT_NAME} PRIVATE ${library_include_directories})
 
 target_compile_definitions(desktop_environment_kde PRIVATE _MUSIC_MIDI_ALSA_LIBRARY)
 

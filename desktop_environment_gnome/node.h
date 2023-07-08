@@ -33,13 +33,13 @@ namespace desktop_environment_gnome
       ~node() override;
 
 
-      virtual int node_init_check(int * pi, char *** ppz) override;
+      //virtual int node_init_check(int * pi, char *** ppz) override;
 
-      virtual void defer_notify_startup_complete() override;
+      //virtual void defer_notify_startup_complete() override;
 
-      void start_node() override;
+      //void start_node() override;
 
-      void initialize(::object * pobject) override;
+      void initialize(::particle * pparticle) override;
 
       //virtual void os_calc_dark_mode();
 
@@ -77,7 +77,7 @@ namespace desktop_environment_gnome
 
       //virtual void node_post_quit() override;
 
-      void handle(::topic * psubject, ::context * pcontext) override;
+      //void handle(::topic * psubject, ::context * pcontext) override;
 
       //virtual void _on_change_os_user_theme(string strTheme);
 
@@ -92,11 +92,11 @@ namespace desktop_environment_gnome
       //virtual bool _os_calc_system_dark_mode() override;
 
       //virtual void os_post_quit() override;
-
-      bool should_launch_on_node(::topic * ptopic) override;
-
-      bool launch_on_node(::topic * ptopic) override;
-
+//
+//      bool should_launch_on_node(::topic * ptopic) override;
+//
+//      bool launch_on_node(::topic * ptopic) override;
+//
 
    };
 

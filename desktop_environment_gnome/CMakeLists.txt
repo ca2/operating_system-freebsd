@@ -73,13 +73,17 @@ elseif(${FREEBSD})
    target_link_options(desktop_environment_gnome PRIVATE -Wl,-z,defs)
 endif ()
 
+list(APPEND library_include_directories ${CMAKE_CURRENT_SOURCE_DIR})
+list(APPEND library_include_directories ${CMAKE_CURRENT_SOURCE_DIR}/..)
+list(APPEND library_include_directories ${CMAKE_CURRENT_SOURCE_DIR}/../..)
+list(APPEND library_include_directories ${CMAKE_CURRENT_SOURCE_DIR}/../../operating_system-darwin)
+list(APPEND library_include_directories ${CMAKE_CURRENT_SOURCE_DIR}/../../operating_system-posix)
 
-target_include_directories(desktop_environment_gnome PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/../..)
-target_include_directories(desktop_environment_gnome PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/..)
-target_include_directories(desktop_environment_gnome PRIVATE ${CMAKE_CURRENT_SOURCE_DIR})
 
+target_include_directories(${PROJECT_NAME} PRIVATE ${library_include_directories})
+#target_include_directories(static_${PROJECT_NAME} PRIVATE ${library_include_directories})
 
-target_compile_definitions(desktop_environment_gnome PRIVATE _desktop_environment_gnome_LIBRARY)
+target_compile_definitions(desktop_environment_gnome PRIVATE _desktop_environment_gnome_project)
 target_compile_definitions(desktop_environment_gnome PRIVATE UNICODE)
 target_compile_definitions(desktop_environment_gnome PRIVATE _UNICODE)
 

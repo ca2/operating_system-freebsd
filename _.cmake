@@ -129,6 +129,7 @@ set(FILE_SYSTEM_INOTIFY TRUE)
 set(POSIX_SPAWN TRUE)
 set(POSIX_LIST_SERIAL_PORTS TRUE)
 set(WITH_X11 TRUE)
+set(WITH_XCB FALSE)
 set(USE_OPENSSL TRUE)
 set(PTHREAD TRUE)
 
@@ -188,6 +189,7 @@ set(ALSA_MIDI FALSE)
 set(INTERPROCESS_COMMUNICATION_SYSTEM_5 TRUE)
 
 add_compile_definitions(WITH_X11)
+add_compile_definitions(WITH_SN)
 link_libraries(pthread)
 include(FindPkgConfig)
 

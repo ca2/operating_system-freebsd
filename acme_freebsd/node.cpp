@@ -720,14 +720,6 @@ namespace acme_freebsd
    }
 
 
-   ::user::enum_desktop node::calculate_edesktop()
-   {
-
-      return _get_edesktop();
-
-   }
-
-
    void node::shell_open(const ::file::path & path, const ::string & strParams, const ::file::path & pathFolder)
    {
 

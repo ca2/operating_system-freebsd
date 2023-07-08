@@ -63,9 +63,6 @@ namespace acme_freebsd
       string audio_get_default_implementation_name() override;
 
 
-      ::user::enum_desktop calculate_edesktop() override;
-
-
       void shell_open(const ::file::path & path, const ::string & strParams = "", const ::file::path & pathFolder = "") override;
 
 

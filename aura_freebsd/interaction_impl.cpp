@@ -1,8 +1,9 @@
 #include "framework.h"
 #include "interaction_impl.h"
+#include "acme/constant/message.h"
 #include "aura/graphics/draw2d/graphics.h"
 #include "aura/message/user.h"
-#include "aura/operating_system.h"
+//#include "aura/operating_system.h"
 #include "aura/platform/session.h"
 #include "aura/windowing/window.h"
 
@@ -321,7 +322,7 @@ namespace aura_freebsd
          //MESSAGE_LINK(e_message_nccalcsize, pchannel, this,&interaction_impl::_001OnNcCalcSize);
 
          // linux
-         MESSAGE_LINK(e_message_move, pchannel, this, &interaction_impl::_001OnMove);
+         MESSAGE_LINK(e_message_reposition, pchannel, this, &interaction_impl::_001OnMove);
          MESSAGE_LINK(e_message_size, pchannel, this, &interaction_impl::_001OnSize);
          MESSAGE_LINK(e_message_show_window, pchannel, this, &interaction_impl::_001OnShowWindow);
 
@@ -366,7 +367,7 @@ namespace aura_freebsd
    void interaction_impl::_thread_delayed_placement()
    {
 
-      while(m_durationLastPlacementEvent.elapsed() < 40_ms || m_puserinteraction->layout().is_changing())
+      while(m_timeLastPlacementEvent.elapsed() < 40_ms || m_puserinteraction->layout().is_changing())
       {
 
          if(!task_sleep(10_ms))
@@ -392,7 +393,7 @@ namespace aura_freebsd
       if (bMove)
       {
 
-         INFORMATION("linux::interaction_impl Window Manager Move ("<<m_pointLastMove.x<<", "<<m_pointLastMove.y<<")");
+         information()<<"linux::interaction_impl Window Manager Move ("<<m_pointLastMove.x()<<", "<<m_pointLastMove.y()<<")";
 
          m_puserinteraction->set_position(m_pointLastMove);
 
@@ -407,7 +408,7 @@ namespace aura_freebsd
       if (bSize)
       {
 
-         FORMATTED_INFORMATION("linux::interaction_impl Window Manager Size (%d, %d)", m_sizeLastSize.cx, m_sizeLastSize.cy);
+         information("linux::interaction_impl Window Manager Size (%d, %d)", m_sizeLastSize.cx(), m_sizeLastSize.cy());
 
          m_puserinteraction->set_size(m_sizeLastSize);
 
@@ -510,7 +511,7 @@ namespace aura_freebsd
    void interaction_impl::_001OnShowWindow(::message::message * pmessage)
    {
 
-      __pointer(::message::show_window) pshowwindow(pmessage);
+      ::pointer < ::message::show_window > pshowwindow(pmessage);
 
       if(!m_puserinteraction)
       {
@@ -522,7 +523,7 @@ namespace aura_freebsd
       if(pshowwindow->m_bShow)
       {
 
-         INFORMATION("linux::interaction_impl::_001OnShowWindow VISIBLE edisplay=" << __string(m_puserinteraction->const_layout().design().display().m_eenum));
+         information() << "linux::interaction_impl::_001OnShowWindow VISIBLE edisplay=" << ::as_string(m_puserinteraction->const_layout().design().display().m_eenum);
 
          //m_puserinteraction->ModifyStyle(0, WS_VISIBLE);
 
@@ -531,20 +532,22 @@ namespace aura_freebsd
          if(m_puserinteraction->const_layout().design().display() == ::e_display_iconic && !m_pwindow->is_iconic())
          {
 
-            m_puserinteraction->hide();
+            //m_puserinteraction->hide();
 
-            if(m_puserinteraction->window_previous_display() == ::e_display_iconic)
-            {
+//            if(m_puserinteraction->window_previous_display() == ::e_display_iconic)
+//            {
+//
+//               m_puserinteraction->_001OnDeiconify(::e_display_stored);
+//
+//            }
+//            else
+//            {
 
-               m_puserinteraction->_001OnDeiconify(::e_display_restored);
+               m_puserinteraction->display_previous();
 
-            }
-            else
-            {
-
-               m_puserinteraction->_001OnDeiconify(m_puserinteraction->window_previous_display());
-
-            }
+//               m_puserinteraction->_001OnDeiconify(m_puserinteraction->window_previous_display());
+//
+//            }
 
          }
 
@@ -674,71 +677,71 @@ namespace aura_freebsd
    }
 
 
-   void interaction_impl::assert_ok() const
-   {
+//   void interaction_impl::assert_ok() const
+//   {
+//
+//      if (get_os_data() == nullptr)
+//      {
+//
+//         return;
+//
+//      }
+//
+//   }
 
-      if (get_os_data() == nullptr)
-      {
 
-         return;
-
-      }
-
-   }
-
-
-   void interaction_impl::dump(dump_context & dumpcontext) const
-   {
-
-      ::object::dump(dumpcontext);
-
-      dumpcontext << "\nm_hWnd = " << (void *)((interaction_impl *) this)->get_os_data();
-
-      /*
-
-      if (get_handle() == nullptr || get_handle() == oswindow_BOTTOM ||
-               get_handle() == oswindow_TOPMOST || get_handle() == oswindow_NOTOPMOST)
-      {
-
-         // not a normal interaction_impl - nothing more to dump
-            return;
-
-      }
-
-      */
-
-      /*
-
-      if (!::is_window((oswindow) get_handle()))
-      {
-
-         // not a valid interaction_impl
-         dumpcontext << " (illegal oswindow)";
-         return; // don't do anything more
-
-      }
-
-      */
-
-      __pointer(::user::interaction_impl) pWnd = (::user::interaction_impl *) this;
-      if (pWnd.m_p != this)
-         dumpcontext << " (Detached or temporary interaction_impl)";
-      else
-         dumpcontext << " (permanent interaction_impl)";
-
-      char szBuf [64];
-
-      ::rectangle_i32 rectangle;
-      ((::user::interaction_impl *) this)->m_puserinteraction->get_window_rect(&rectangle);
-      dumpcontext << "\nrect = " << rectangle;
-      dumpcontext << "\nparent __pointer(::interaction_impl) = " << (void *)((::user::interaction_impl *) this)->get_parent();
-
-//      dumpcontext << "\nstyle = " << (void *)(dword_ptr)::GetWindowLong(get_handle(), GWL_STYLE);
-      //    if (::GetWindowLong(get_handle(), GWL_STYLE) & WS_CHILD)
-      //     dumpcontext << "\nid = " << __get_dialog_control_id(get_handle());
-
-      dumpcontext << "\n";
-   }
+//   void interaction_impl::dump(dump_context & dumpcontext) const
+//   {
+//
+//      ::object::dump(dumpcontext);
+//
+//      dumpcontext << "\nm_hWnd = " << (void *)((interaction_impl *) this)->get_os_data();
+//
+//      /*
+//
+//      if (get_handle() == nullptr || get_handle() == oswindow_BOTTOM ||
+//               get_handle() == oswindow_TOPMOST || get_handle() == oswindow_NOTOPMOST)
+//      {
+//
+//         // not a normal interaction_impl - nothing more to dump
+//            return;
+//
+//      }
+//
+//      */
+//
+//      /*
+//
+//      if (!::is_window((oswindow) get_handle()))
+//      {
+//
+//         // not a valid interaction_impl
+//         dumpcontext << " (illegal oswindow)";
+//         return; // don't do anything more
+//
+//      }
+//
+//      */
+//
+//      __pointer(::user::interaction_impl) pWnd = (::user::interaction_impl *) this;
+//      if (pWnd.m_p != this)
+//         dumpcontext << " (Detached or temporary interaction_impl)";
+//      else
+//         dumpcontext << " (permanent interaction_impl)";
+//
+//      char szBuf [64];
+//
+//      ::rectangle_i32 rectangle;
+//      ((::user::interaction_impl *) this)->m_puserinteraction->get_window_rect(&rectangle);
+//      dumpcontext << "\nrect = " << rectangle;
+//      dumpcontext << "\nparent __pointer(::interaction_impl) = " << (void *)((::user::interaction_impl *) this)->get_parent();
+//
+////      dumpcontext << "\nstyle = " << (void *)(dword_ptr)::GetWindowLong(get_handle(), GWL_STYLE);
+//      //    if (::GetWindowLong(get_handle(), GWL_STYLE) & WS_CHILD)
+//      //     dumpcontext << "\nid = " << __get_dialog_control_id(get_handle());
+//
+//      dumpcontext << "\n";
+//   }
 
 
    void interaction_impl::start_destroying_window()
@@ -833,17 +836,17 @@ namespace aura_freebsd
    */
    void interaction_impl::pre_translate_message(::message::message * pmessage)
    {
-      __UNREFERENCED_PARAMETER(pmessage);
+      UNREFERENCED_PARAMETER(pmessage);
       // no default processing
    }
 
 
-   void interaction_impl::get_window_text(string & rectString)
-   {
-
-      rectString = m_strWindowText;
-
-   }
+//   void interaction_impl::get_window_text(string & rectString)
+//   {
+//
+//      rectString = m_strWindowText;
+//
+//   }
 
    /*
       i32 interaction_impl::GetDlgItemText(i32 nID, string & rectString) const
@@ -968,11 +971,11 @@ namespace aura_freebsd
 //   }
 //
 
-   ::duration     durationDebugmessage_handlerTime;
-   int            iDebugmessage_handlerTime;
-   ::duration     durationLastMouseMove;
-   ::duration     durationLastPaint;
-
+//   ::duration     durationDebugmessage_handlerTime;
+//   int            iDebugmessage_handlerTime;
+//   ::duration     durationLastMouseMove;
+//   ::duration     durationLastPaint;
+//
 
    void interaction_impl::message_handler(::message::message * pmessage)
    {
@@ -2170,7 +2173,7 @@ namespace aura_freebsd
    void interaction_impl::on_message_create(::message::message * pmessage)
    {
 
-      __UNREFERENCED_PARAMETER(pmessage);
+      UNREFERENCED_PARAMETER(pmessage);
 
 //      Default();
 
@@ -2322,19 +2325,19 @@ namespace aura_freebsd
    }
 
 
-   bool interaction_impl::_is_window() const
-   {
-
-      if(::is_null(m_pwindow))
-      {
-
-         return false;
-
-      }
-
-      return m_pwindow->is_window();
-
-   }
+//   bool interaction_impl::is_window() const
+//   {
+//
+//      if(::is_null(m_pwindow))
+//      {
+//
+//         return false;
+//
+//      }
+//
+//      return m_pwindow->is_window();
+//
+//   }
 
 
 //   oswindow interaction_impl::get_handle() const
@@ -2345,88 +2348,88 @@ namespace aura_freebsd
 //   }
 
 
-   void interaction_impl::_001OnExitIconic()
-   {
-
-      if(!m_pwindow)
-      {
-
-         return;
-
-      }
-
-
-         m_psystem->windowing_post([this]()
-                          {
-
-                             m_pwindow->exit_iconify();
-
-                          });
-
-
-   }
-
-
-   void interaction_impl::_001OnExitFullScreen()
-   {
-
-      if(!m_pwindow)
-      {
-
-         return;
-
-      }
-
-//      auto psession = get_session();
+//   void interaction_impl::_001OnExitIconic()
+//   {
 //
-//      auto puser = psession->user();
+//      if(!m_pwindow)
+//      {
 //
-//      auto pwindowing = puser->windowing();
+//         return;
 //
-//      if(pwindowing)
-      {
-
-         m_psystem->windowing_post([this]()
-         {
-
-            m_pwindow->exit_full_screen();
-
-         });
-
-      }
-
-   }
-
-
-   void interaction_impl::_001OnExitZoomed()
-   {
-
-      if(!m_pwindow)
-      {
-
-         return;
-
-      }
-
-//      auto psession = get_session();
+//      }
 //
-//      auto puser = psession->user();
 //
-//      auto pwindowing = puser->windowing();
+//         m_psystem->windowing_post([this]()
+//                          {
 //
-//      if(pwindowing)
-      {
-
-         m_psystem->windowing_post([this]()
-         {
-
-            m_pwindow->exit_zoomed();
-
-         });
-
-      }
-
-   }
+//                             m_pwindow->exit_iconify();
+//
+//                          });
+//
+//
+//   }
+//
+//
+//   void interaction_impl::_001OnExitFullScreen()
+//   {
+//
+//      if(!m_pwindow)
+//      {
+//
+//         return;
+//
+//      }
+//
+////      auto psession = get_session();
+////
+////      auto puser = psession->user();
+////
+////      auto pwindowing = puser->windowing();
+////
+////      if(pwindowing)
+//      {
+//
+//         m_psystem->windowing_post([this]()
+//         {
+//
+//            m_pwindow->exit_full_screen();
+//
+//         });
+//
+//      }
+//
+//   }
+//
+//
+//   void interaction_impl::_001OnExitZoomed()
+//   {
+//
+//      if(!m_pwindow)
+//      {
+//
+//         return;
+//
+//      }
+//
+////      auto psession = get_session();
+////
+////      auto puser = psession->user();
+////
+////      auto pwindowing = puser->windowing();
+////
+////      if(pwindowing)
+//      {
+//
+//         m_psystem->windowing_post([this]()
+//         {
+//
+//            m_pwindow->exit_zoomed();
+//
+//         });
+//
+//      }
+//
+//   }
 
 
 
@@ -2609,22 +2612,22 @@ namespace aura_freebsd
 //
 
 
-   void interaction_impl::set_window_text(const ::string & strText)
-   {
-
-      m_strWindowText = strText;
-
-      //windowing_output_debug_string("\nlinux::interaction_impl::set_window_text");
-
-      //fflush(stdout);
-
-//      x11_store_name(m_oswindow, m_strWindowText);
-
-      //windowing_output_debug_string("\nlinux::interaction_impl::set_window_text END");
-
-      //fflush(stdout);
-
-   }
+//   void interaction_impl::set_window_text(const ::string & strText)
+//   {
+//
+//      m_strWindowText = strText;
+//
+//      //windowing_output_debug_string("\nlinux::interaction_impl::set_window_text");
+//
+//      //fflush(stdout);
+//
+////      x11_store_name(m_oswindow, m_strWindowText);
+//
+//      //windowing_output_debug_string("\nlinux::interaction_impl::set_window_text END");
+//
+//      //fflush(stdout);
+//
+//   }
 
 
 //   strsize interaction_impl::GetWindowText(char * pszString, strsize nMaxCount)
@@ -2653,7 +2656,7 @@ namespace aura_freebsd
    void interaction_impl::SetFont(::write_text::font* pfont, bool bRedraw)
    {
 
-      __UNREFERENCED_PARAMETER(bRedraw);
+      UNREFERENCED_PARAMETER(bRedraw);
 
       //ASSERT(::is_window((oswindow) get_handle())); m_pfont = new ::write_text::font(*pfont);
 
