@@ -33,11 +33,11 @@ namespace apex_freebsd
       //virtual ::file::path get_module_path(HMODULE hmodule) override;
 
 
-      virtual bool path_pid(::u32 & dwPid, const ::string & strName) override;
-      virtual bool title_pid(::u32 & dwPid, const ::string & strName) override;
-      virtual void get_all_processes(u32_array & dwa) override;
-      virtual ::file::path get_process_path(::u32 dwPid) override;
-      virtual int get_pid() override;
+      //virtual bool path_pid(::u32 & dwPid, const ::string & strName) override;
+      //virtual bool title_pid(::u32 & dwPid, const ::string & strName) override;
+      //virtual void get_all_processes(u32_array & dwa) override;
+      //virtual ::file::path get_process_path(::u32 dwPid) override;
+      //virtual int get_pid() override;
 
       virtual ::payload connection_settings_get_auto_detect() override;
       virtual ::payload connection_settings_get_auto_config_url() override;
@@ -81,7 +81,7 @@ namespace apex_freebsd
 
       virtual void file_open(const ::file::path & path, const ::string & strParams = "", const ::file::path & pathFolder = "") override;
 
-      virtual void list_process(::file::path_array & patha, u32_array & iaPid) override;
+      //virtual void list_process(::file::path_array & patha, u32_array & iaPid) override;
 
 
    };
