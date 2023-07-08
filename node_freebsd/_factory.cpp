@@ -14,7 +14,7 @@ __FACTORY_EXPORT void node_freebsd_factory(::factory::factory * pfactory)
    if (edesktop & ::user::e_desktop_kde)
    {
 
-      auto & pfactoryKde = pfactory->m_psystem->factory("desktop_environment", "kde");
+      auto & pfactoryKde = pfactory->acmesystem()->factory("desktop_environment", "kde");
 
       pfactoryKde->merge_to_global_factory();
 
@@ -22,7 +22,7 @@ __FACTORY_EXPORT void node_freebsd_factory(::factory::factory * pfactory)
    else if (edesktop & ::user::e_desktop_gnome)
    {
 
-      auto & pfactoryGnome = pfactory->m_psystem->factory("desktop_environment", "gnome");
+      auto & pfactoryGnome = pfactory->acmesystem()->factory("desktop_environment", "gnome");
 
       pfactoryGnome->merge_to_global_factory();
 
@@ -30,7 +30,7 @@ __FACTORY_EXPORT void node_freebsd_factory(::factory::factory * pfactory)
    else if (edesktop & ::user::e_desktop_xfce)
    {
 
-      auto & pfactoryXfce = pfactory->m_psystem->factory("desktop_environment", "xfce");
+      auto & pfactoryXfce = pfactory->acmesystem()->factory("desktop_environment", "xfce");
 
       pfactoryXfce->merge_to_global_factory();
 
@@ -38,17 +38,17 @@ __FACTORY_EXPORT void node_freebsd_factory(::factory::factory * pfactory)
    else
    {
 
-      auto & pfactoryGnome = pfactory->m_psystem->factory("desktop_environment", "gnome");
+      auto & pfactoryGnome = pfactory->acmesystem()->factory("desktop_environment", "gnome");
 
       if (!pfactoryGnome)
       {
 
-         auto & pfactoryKde = pfactory->m_psystem->factory("desktop_environment", "kde");
+         auto & pfactoryKde = pfactory->acmesystem()->factory("desktop_environment", "kde");
 
          if (!pfactoryKde)
          {
 
-            auto & pfactoryXfce = pfactory->m_psystem->factory("desktop_environment", "kde");
+            auto & pfactoryXfce = pfactory->acmesystem()->factory("desktop_environment", "kde");
 
             if (!pfactoryXfce)
             {
