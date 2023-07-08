@@ -54,7 +54,7 @@ __FACTORY_EXPORT void node_freebsd_factory(::factory::factory * pfactory)
             if (!pfactoryXfce)
             {
 
-               printf("No desktop_environment_*\n");
+               output_debug_string("No desktop_environment_*\n");
 
             }
             else
