@@ -5,50 +5,52 @@ project(desktop_environment_gnome CXX)
 list(APPEND library_source
    _.cpp
    _.h
-#        _desktop_environment_gnome.h
-        #appindicator.cpp
-        #appindicator.h
-        #application.cpp
-        #application.h
-        #clipboard_data.h
-        #copydesk.cpp
-        #copydesk.h
-        #display.cpp
-        #display.h
-        #enum_display_monitors.cpp
+   #        _desktop_environment_gnome.h
+   #appindicator.cpp
+   #appindicator.h
+   #application.cpp
+   #application.h
+   #clipboard_data.h
+   #copydesk.cpp
+   #copydesk.h
+   #display.cpp
+   #display.h
+   #enum_display_monitors.cpp
    _factory.cpp
    framework.cpp
    framework.h
-        #gdk.cpp
-        #gdk.h
-        #gnome_direct.cpp
-        #gtk_clipboard.cpp
-        #monitor.cpp
-        #monitor.h
+   #gdk.cpp
+   #gdk.h
+   #gnome_direct.cpp
+   #gtk_clipboard.cpp
+   #monitor.cpp
+   #monitor.h
    node.cpp
    node.h
-        #notify_icon.cpp
-        #windowing.cpp
-        #windowing.h
+   #notify_icon.cpp
+   #windowing.cpp
+   #windowing.h
    )
 
 
 list(APPEND library_references
    acme
    acme_posix
+   acme_darwin
    acme_freebsd
    apex
    apex_posix
+   apex_darwin
    apex_freebsd
    aqua
    aura
    aura_posix
+   aura_darwin
    aura_freebsd
    windowing_x11
    node_gtk
    node_gnome
    )
-
 
 
 add_library(desktop_environment_gnome SHARED ${library_source})
@@ -63,10 +65,10 @@ if (MSVC)
    target_link_options(desktop_environment_gnome PRIVATE "/DEFAULTLIB:msvcrt$<$<CONFIG:Debug>:d>")
    target_link_options(desktop_environment_gnome PRIVATE "/SUBSYSTEM:WINDOWS")
    target_link_libraries(desktop_environment_gnome PRIVATE ${library_references})
-elseif(${FREEBSD})
+elseif (${FREEBSD})
    pkg_check_modules(PKGCONFIG glib-2.0 gtk+-3.0 gdk-3.0 ayatana-appindicator3-0.1)
    target_compile_options(desktop_environment_gnome PRIVATE -fpermissive)
-      target_compile_options(desktop_environment_gnome PRIVATE ${PKGCONFIG_CFLAGS})
+   target_compile_options(desktop_environment_gnome PRIVATE ${PKGCONFIG_CFLAGS})
    target_link_options(desktop_environment_gnome PRIVATE ${PKGCONFIG_LDFLAGS})
    #target_link_options(desktop_environment_gnome PRIVATE -Wl,-rpath=$ORIGIN)
    target_link_libraries(desktop_environment_gnome PRIVATE ${library_references} ${PKGCONFIG_LIBRARIES})

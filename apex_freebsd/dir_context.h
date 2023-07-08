@@ -26,6 +26,9 @@ namespace apex_freebsd
 
 
 
+      ::file::listing& root_ones(::file::listing& listing) override;
+
+
    };
 
 

@@ -1,5 +1,6 @@
 #include "framework.h"
 #include "dir_context.h"
+#include "acme/filesystem/filesystem/listing.h"
 
 
 namespace apex_freebsd
@@ -40,6 +41,20 @@ namespace apex_freebsd
    {
 
       ::dir_context::init_context();
+
+   }
+
+
+   ::file::listing& dir_context::root_ones(::file::listing& listing)
+   {
+
+      ::file::path path;
+
+      path = "/";
+
+      listing.defer_add(path);
+
+      return listing;
 
    }
 
