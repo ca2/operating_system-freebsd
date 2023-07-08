@@ -1,13 +1,5 @@
 #include "framework.h"
 #include "file_system.h"
-#include "acme/filesystem/filesystem/acme_file.h"
-#include "acme/filesystem/filesystem/acme_directory.h"
-#include "acme/filesystem/filesystem/acme_path.h"
-
-#undef USE_MISC
-
-#include <dlfcn.h>
-#include <link.h>
 
 
 namespace apex_freebsd
@@ -26,58 +18,10 @@ namespace apex_freebsd
    }
 
 
-   void file_system::initialize(::object * pobject)
+   void file_system::initialize(::particle * pparticle)
    {
 
-      //auto estatus =
-
-      ::file_system::initialize(pobject);
-
-//      if(!estatus)
-//      {
-//
-//         return estatus;
-//
-//      }
-
-      ::file::path pathAppModule = m_psystem->m_pacmefile->module();
-
-      m_pathModule = pathAppModule;
-
-      //m_pathCa2Module = pathCa2AppModule;
-
-//      auto psystem = m_psystem;
-//
-//      auto pacmedir = psystem->m_pacmedir;
-//
-//      ::file::path pathCa2AppModule = pacmedir->module();
-
-      //m_pathCa2Module = pathCa2AppModule;
-
-//
-//      void * handle = dlopen("libapex.so", RTLD_NOW);
-//
-//      if(::is_set(handle))
-//      {
-//
-//         link_map * plm;
-//
-//         dlinfo(handle, RTLD_DI_LINKMAP, &plm);
-//
-//         m_pathCa2Module = plm->l_name;
-//
-//         dlclose(handle);
-//
-//      }
-//
-//      if(m_pathCa2Module.is_empty() || m_pathCa2Module[0] != '/')
-//      {
-//
-//         m_pathCa2Module = m_pathModule;
-//
-//      }
-
-//      return estatus;
+      ::file_system::initialize(pparticle);
 
    }
 
@@ -85,45 +29,9 @@ namespace apex_freebsd
    void file_system::init_system()
    {
 
-//      if(!update_module_path())
-//      {
-//
-//         return ::error_failed;
-//
-//      }
-
-//      return ::success;
+      ::file_system::init_system();
 
    }
-
-
-//   ::e_status file_system::update_module_path()
-//   {
-//
-//      auto estatus = ::file_system::update_module_path();
-//
-//      if(!estatus)
-//      {
-//
-//         return estatus;
-//
-//      }
-//
-//      ::file::path pathAppModule = m_psystem->m_pacmefile->module();
-//
-//      m_pathModule = pathAppModule;
-//
-//      auto psystem = m_psystem;
-//
-//      auto pacmedir = psystem->m_pacmedir;
-//
-//      ::file::path pathCa2AppModule = pacmedir->module();
-//
-//      m_pathCa2Module = pathCa2AppModule;
-//
-//      return estatus;
-//
-//   }
 
 
 } // namespace apex_freebsd

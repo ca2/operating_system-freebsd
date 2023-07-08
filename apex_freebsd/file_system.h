@@ -1,11 +1,14 @@
 #pragma once
 
 
+#include "apex/filesystem/filesystem/file_system.h"
+
+
 namespace apex_freebsd
 {
 
 
-   class CLASS_DECL_APEX file_system:
+   class CLASS_DECL_APEX_FREEBSD file_system:
       virtual public ::file_system
    {
    public:
@@ -15,12 +18,10 @@ namespace apex_freebsd
       ~file_system() override;
 
 
-      void initialize(::object * pobject) override;
+      void initialize(::particle * pparticle) override;
+
 
       void init_system() override;
-
-
-      //virtual ::e_status update_module_path() override;
 
 
    };

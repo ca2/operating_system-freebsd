@@ -28,25 +28,17 @@ list(APPEND library_references
    aqua
    aura
    acme_posix
+   acme_darwin
    acme_freebsd
    apex_posix
+   apex_darwin
    apex_freebsd
    aura_posix
+   aura_darwin
    )
 
 
-list(APPEND library_references
-        acme
-        acme_posix
-        acme_darwin
-        acme_freebsd
-        apex
-        apex_posix
-        apex_darwin
-        apex_freebsd
-        aura
-        aura_posix
-        aura_darwin)
+
 
 if (NOT ${NO_PRECOMPILED_HEADER})
 
@@ -57,13 +49,15 @@ endif ()
 
 
 
+
 list(APPEND static_library_references ${library_references})
 
 list(TRANSFORM static_library_references PREPEND static_)
 
 
 
-set_target_properties(aura_freebsd PROPERTIES LINKER_LANGUAGE CXX)
+set_target_properties(${PROJECT_NAME} PROPERTIES LINKER_LANGUAGE CXX)
+
 
 if (MSVC)
     target_compile_options(aura_freebsd PRIVATE "/MD$<$<CONFIG:Debug>:d>")
@@ -107,21 +101,17 @@ target_include_directories(static_${PROJECT_NAME} PRIVATE ${library_include_dire
 
 
 
-target_include_directories(aura_freebsd PRIVATE $ENV{HOME}/__config)
-target_include_directories(aura_freebsd PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/../..)
-target_include_directories(aura_freebsd PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/..)
-target_include_directories(aura_freebsd PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/../../../source)
-target_include_directories(aura_freebsd PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/../../../source/app)
-target_include_directories(aura_freebsd PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/../../../source/app/_include)
-target_include_directories(aura_freebsd PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/../../../source/include)
-target_include_directories(aura_freebsd PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/../../../archive/platform-${PLATFORM_NAME})
-target_include_directories(aura_freebsd PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/../../../archive/platform-${PLATFORM_NAME}/_include)
-target_include_directories(aura_freebsd PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/../../../archive/third-${PLATFORM_NAME}/include)
-target_include_directories(aura_freebsd PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/../../../archive/third-${PLATFORM_NAME}/third/include)
-target_include_directories(aura_freebsd PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/../../../archive/third-${PLATFORM_NAME}/third/include/include)
-target_include_directories(aura_freebsd PRIVATE ${CMAKE_CURRENT_SOURCE_DIR})
+list(APPEND library_include_directories ${CMAKE_CURRENT_SOURCE_DIR})
+list(APPEND library_include_directories ${CMAKE_CURRENT_SOURCE_DIR}/..)
+list(APPEND library_include_directories ${CMAKE_CURRENT_SOURCE_DIR}/../..)
+list(APPEND library_include_directories ${CMAKE_CURRENT_SOURCE_DIR}/../../operating_system-darwin)
+list(APPEND library_include_directories ${CMAKE_CURRENT_SOURCE_DIR}/../../operating_system-posix)
 
 
-target_compile_definitions(aura_freebsd PRIVATE _DRAW2D_GDIPLUS_LIBRARY)
+target_include_directories(${PROJECT_NAME} PRIVATE ${library_include_directories})
+target_include_directories(static_${PROJECT_NAME} PRIVATE ${library_include_directories})
+
+
+target_compile_definitions(aura_freebsd PRIVATE _aura_freebsd_project)
 target_compile_definitions(aura_freebsd PRIVATE UNICODE)
 target_compile_definitions(aura_freebsd PRIVATE _UNICODE)

@@ -1,15 +1,6 @@
 #include "framework.h"
 #include "file_context.h"
-#include <sys/types.h>
-#include <sys/stat.h>
 #include "acme/filesystem/filesystem/acme_directory.h"
-
-
-struct PROCESS_INFO_t
-{
-   string csProcess;
-   u32 dwImageListIndex;
-};
 
 
 namespace apex_freebsd
@@ -18,6 +9,7 @@ namespace apex_freebsd
 
    file_context::file_context()
    {
+
    }
 
 
@@ -27,49 +19,19 @@ namespace apex_freebsd
    }
 
 
-   void file_context::initialize(::object * pobject)
+   void file_context::initialize(::particle * pparticle)
    {
 
-      //auto estatus =
 
-      ::object::initialize(pobject);
-
-//      if(!estatus)
-//      {
-//
-//         return estatus;
-//
-//      }
-//
-//      return estatus;
-
+      ::apex_darwin::file_context::initialize(pparticle);
 
    }
-
-
-//   file_transport file_context::get_file(const ::payload & varFile, const ::file::e_open & eopen)
-//   {
-//
-//      return ::file_context::get_file(varFile, eopen);
-//
-//   }
 
 
    void file_context::init_system()
    {
 
-      //auto estatus =
-      //
       ::file_context::init_system();
-
-//   if(!estatus)
-//   {
-//
-//   return estatus;
-//
-//   }
-//
-//      return estatus;
 
    }
 
@@ -77,28 +39,10 @@ namespace apex_freebsd
    void file_context::init_context()
    {
 
-   //auto estatus =
-
       ::file_context::init_context();
 
-//   if(!estatus)
-//   {
-//
-//   return estatus;
-//
-//   }
-//
-//      return estatus;
 
    }
-
-
-//   bool file_context::is_link(string strPath)
-//   {
-//
-//      return file_path_is_link(strPath);
-//
-//   }
 
 
    ::file::path file_context::dropbox_info_network_payload()

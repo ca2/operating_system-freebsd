@@ -1,21 +1,17 @@
 #pragma once
 
 
-#include "apex_posix/file_context.h"
+#include "apex_darwin/file_context.h"
 
 
 namespace apex_freebsd
 {
 
 
-   class CLASS_DECL_APEX file_context :
-      virtual public ::apex_posix::file_context
+   class CLASS_DECL_APEX_FREEBSD file_context :
+      virtual public ::apex_darwin::file_context
    {
    public:
-
-
-      __reference(file_system)      m_pfilesystem;
-      __reference(dir_system)       m_pdirsystem;
 
 
       file_context();
@@ -23,16 +19,6 @@ namespace apex_freebsd
 
 
       void initialize(::object * pobject) override;
-
-
-      void init_system() override;
-      void init_context() override;
-
-
-      //::file_transport get_file(const ::payload & varFile, const ::file::e_open & eopen) override;
-
-
-      //virtual bool is_link(string strPath) override;
 
 
       ::file::path dropbox_info_network_payload() override;

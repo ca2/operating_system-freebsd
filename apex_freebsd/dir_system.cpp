@@ -25,20 +25,16 @@ namespace apex_freebsd
 
       ::dir_system::initialize(pobject);
 
-//      if(!estatus)
-//      {
-//
-//         return estatus;
-//
-//      }
 
-      m_pathHome = getenv("HOME");
+   }
 
-      m_pathCa2Config = m_pathHome / ".config/ca2";
 
-//      return estatus;
+   void dir_system::init_system()
+   {
 
-    }
+      ::dir_system::init_system();
+
+   }
 
 
 } // namespace apex_freebsd
