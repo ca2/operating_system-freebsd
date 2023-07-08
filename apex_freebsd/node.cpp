@@ -49,7 +49,7 @@ namespace apex_freebsd
 
       //auto estatus =
       //
-      ::acme_freebsd::node::initialize(pobject);
+      ::acme_freebsd::node::initialize(pparticle);
 
 //      if (!estatus)
 //      {
