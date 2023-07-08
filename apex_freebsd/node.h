@@ -28,7 +28,7 @@ namespace apex_freebsd
       ~node() override;
 
 
-      void initialize(::object * pobject) override;
+      void initialize(::particle * pparticle) override;
 
 
       string get_user_name() override;

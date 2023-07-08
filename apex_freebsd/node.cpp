@@ -44,7 +44,7 @@ namespace apex_freebsd
    }
 
 
-   void node::initialize(::object * pobject)
+   void node::initialize(::particle * pparticle)
    {
 
       //auto estatus =

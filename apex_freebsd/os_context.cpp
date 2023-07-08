@@ -1,6 +1,7 @@
 #include "framework.h"
 #include "os_context.h"
 #include "acme/filesystem/filesystem/acme_directory.h"
+#include "apex/platform/system.h"
 #include <unistd.h>
 
 i32 daemonize_process(const char * _cmd_line, i32 * pprocessId);
@@ -53,7 +54,7 @@ namespace apex_freebsd
    string os_context::get_command_line()
    {
 
-      return m_psystem->m_papexsystem->get_command_line();
+      return acmesystem()->m_papexsystem->get_command_line();
 
    }
 

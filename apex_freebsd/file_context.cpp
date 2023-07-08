@@ -50,11 +50,7 @@ namespace apex_freebsd
 
       ::file::path pathJson;
 
-      auto psystem = m_psystem;
-
-      auto pacmedir = psystem->m_pacmedirectory;
-
-      pathJson = pacmedir->home() / ".dropbox/info.json";
+      pathJson = acmedirectory()->home() / ".dropbox/info.json";
 
       return pathJson;
 

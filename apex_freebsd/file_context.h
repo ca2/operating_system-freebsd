@@ -21,6 +21,10 @@ namespace apex_freebsd
       void initialize(::particle * pparticle) override;
 
 
+      void init_system() override;
+      void init_context() override;
+
+
       ::file::path dropbox_info_network_payload() override;
 
 

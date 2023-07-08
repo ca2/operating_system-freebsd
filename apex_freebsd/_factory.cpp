@@ -16,13 +16,13 @@
 #include "service_handler.h"
 
 
-__FACTORY_EXPORT void apex_posix_factory(::factory::factory * pfactory);
+DECLARE_FACTORY(apex_darwin);
 
 
-__FACTORY_EXPORT void acme_freebsd_factory(::factory::factory * pfactory);
+DECLARE_FACTORY(acme_freebsd);
 
 
-__FACTORY_EXPORT void apex_freebsd_factory(::factory::factory * pfactory)
+IMPLEMENT_FACTORY(apex_freebsd)
 {
 
    apex_darwin_factory(pfactory);
