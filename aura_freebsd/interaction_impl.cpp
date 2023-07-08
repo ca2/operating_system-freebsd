@@ -1,6 +1,7 @@
 #include "framework.h"
 #include "interaction_impl.h"
 #include "acme/constant/message.h"
+#include "acme/platform/keep.h"
 #include "aura/graphics/draw2d/graphics.h"
 #include "aura/message/user.h"
 //#include "aura/operating_system.h"
