@@ -430,11 +430,8 @@ if (OPERATING_SYSTEM_POSIX)
 endif ()
 include_directories(${WORKSPACE_FOLDER}/operating_system/operating_system-${OPERATING_SYSTEM_NAME})
 include_directories(${WORKSPACE_FOLDER}/operating_system/operating_system-${OPERATING_SYSTEM_NAME}/include)
-include_directories(${WORKSPACE_FOLDER}/operating_system/third-${OPERATING_SYSTEM_NAME}/include)
-include_directories(${WORKSPACE_FOLDER}/operating_system/third-${OPERATING_SYSTEM_NAME}/third/include)
-include_directories(${WORKSPACE_FOLDER}/operating_system/third-${OPERATING_SYSTEM_NAME}/third/include/include)
+include_directories(${WORKSPACE_FOLDER}/operating_system/operating_system-${OPERATING_SYSTEM_NAME}/configuration)
 include_directories(${WORKSPACE_FOLDER}/operating_system/operating_system-${OPERATING_SYSTEM_NAME}/operating_system/${SLASHED_OPERATING_SYSTEM})
-include_directories(${WORKSPACE_FOLDER}/operating_system/operating_system-${OPERATING_SYSTEM_NAME}/operating_system/${DISTRO})
 
 
 set(INCLUDE_DRAW2D_CAIRO TRUE)

@@ -2,7 +2,7 @@
 #pragma once
 
 
-#include "configuration/config.h"
+#include "common/config.h"
 
 /* config.h.in.  Generated automatically from configure.in by autoheader.  */
 /*
