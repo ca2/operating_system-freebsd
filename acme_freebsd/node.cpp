@@ -715,7 +715,7 @@ namespace acme_freebsd
    string node::audio_get_default_implementation_name()
    {
 
-      return "audio_alsa";
+      return "alsa";
 
    }
 
