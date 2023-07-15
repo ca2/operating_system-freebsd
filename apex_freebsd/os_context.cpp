@@ -327,7 +327,7 @@ namespace apex_freebsd
    }
 
 
-   void os_context::local_machine_set_run(const ::string & strKey, const ::string & strCommand, const ::string& strArguments, bool bSet)
+   void os_context::local_machine_set_run(const ::string & strKey, const ::file::path & pathExecutable, const ::string& strArguments, bool bSet)
    {
 
 
@@ -347,7 +347,7 @@ namespace apex_freebsd
    }
 
 
-   void os_context::local_machine_set_run_once(const ::string & strKey, const ::string & strCommand, const ::string& strArguments, bool bSet)
+   void os_context::local_machine_set_run_once(const ::string & strKey, const ::file::path & pathExecutable, const ::string& strArguments, bool bSet)
    {
 
 
@@ -364,7 +364,7 @@ namespace apex_freebsd
    }
 
 
-   void os_context::current_user_set_run(const ::string & strKey, const ::string & strCommand, const ::string& strArguments, bool bSet)
+   void os_context::current_user_set_run(const ::string & strKey, const ::file::path & pathExecutable, const ::string& strArguments, bool bSet)
    {
 
       throw not_implemented();
@@ -382,7 +382,7 @@ namespace apex_freebsd
    }
 
 
-   void os_context::current_user_set_run_once(const ::string & strKey, const ::string & strCommand, const ::string& strArguments, bool bSet)
+   void os_context::current_user_set_run_once(const ::string & strKey, const ::file::path & pathExecutable, const ::string& strArguments, bool bSet)
    {
 
       throw not_implemented();

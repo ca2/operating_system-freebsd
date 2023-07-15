@@ -27,12 +27,16 @@
 #define HAS_FREEDESKTOP
 
 
+//#ifndef FREEBSD
+//#define FREEBSD
+//#endif
+
+//#ifndef _FREEBSD
+//#define _FREEBSD
+//#endif
+
 #ifndef FREEBSD
 #define FREEBSD
-#endif
-
-#ifndef _FREEBSD
-#define _FREEBSD
 #endif
 
 
