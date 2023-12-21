@@ -11,7 +11,6 @@ message(STATUS "CMAKE_SYSTEM_NAME is ${CMAKE_SYSTEM_NAME}")
 #ENDIF(PKG_CONFIG_FOUND)
 set(USE_PKGCONFIG TRUE)
 set(NO_PRECOMPILED_HEADER TRUE)
-set(PLATFORM_NAME "freebsd")
 
 #set(GLOBAL_EXTRA_COMPILER_FLAGS -fnon-call-exceptions -nostdinc -nostdinc++ -I/usr/include/c++/v1 -I/usr/include -I/usr/local/include)
 #set(GLOBAL_EXTRA_LINKER_FLAGS -nodefaultlibs -lc++ -lcxxrt -lthr -lm -lc -lgcc_s)
@@ -24,7 +23,32 @@ if ("${CMAKE_BUILD_TYPE}" STREQUAL "")
 endif()
 
 
-if (NOT ${CMAKE_SYSTEM_NAME} STREQUAL "FreeBSD")
+
+set(CONFIGURATION_NAME ${CMAKE_BUILD_TYPE})
+
+
+if (${CMAKE_SYSTEM_NAME} STREQUAL "FreeBSD")
+
+    set(OPERATING_SYSTEM_NAME "freebsd")
+    set(OPERATING_SYSTEM "freebsd")
+    set(PLATFORM_NAME "freebsd")
+
+
+elseif (${CMAKE_SYSTEM_NAME} STREQUAL "OpenBSD")
+
+    set(OPERATING_SYSTEM_NAME "openbsd")
+    set(OPERATING_SYSTEM "openbsd")
+    set(PLATFORM_NAME "openbsd")
+
+
+elseif (${CMAKE_SYSTEM_NAME} STREQUAL "NetBSD")
+
+    set(OPERATING_SYSTEM_NAME "netbsd")
+    set(OPERATING_SYSTEM "netbsd")
+    set(PLATFORM_NAME "netbsd")
+
+
+else()
 
     error("This file is designed to be used only for FreeBSD systems...")
 
@@ -122,7 +146,6 @@ SET(CMAKE_BUILD_WITH_INSTALL_RPATH TRUE)
 set(CMAKE_INSTALL_RPATH $ORIGIN)
 #set(CMAKE_INSTALL_RPATH_USE_LINK_PATH TRUE)
 
-set(OPERATING_SYSTEM_NAME "freebsd")
 set(OPERATING_SYSTEM_POSIX TRUE)
 set(FILE_SYSTEM_INOTIFY TRUE)
 set(POSIX_SPAWN TRUE)
@@ -132,13 +155,15 @@ set(WITH_XCB TRUE)
 set(WITH_XI TRUE)
 set(USE_OPENSSL TRUE)
 set(PTHREAD TRUE)
+set(BSD TRUE)
 
 
-#message(STATUS "DISTRO is ${DISTRO}")
 
 if (${OPERATING_SYSTEM} STREQUAL "freebsd")
 
-    set(BSD_LIKE TRUE)
+    set(FREEBSD TRUE)
+    set(NETBSD FALSE)
+    set(OPENBSD FALSE)
 
     add_compile_definitions(FREEBSD)
 
@@ -151,6 +176,8 @@ if (${OPERATING_SYSTEM} STREQUAL "freebsd")
 elseif (${OPERATING_SYSTEM} STREQUAL "netbsd")
 
     set(NETBSD TRUE)
+    set(FREEBSD FALSE)
+    set(OPENBSD FALSE)
 
     add_compile_definitions(NETBSD)
 
@@ -163,8 +190,8 @@ elseif (${OPERATING_SYSTEM} STREQUAL "netbsd")
 elseif ("${OPERATING_SYSTEM}" STREQUAL "openbsd")
 
     set(OPENBSD TRUE)
-
-    set(BSD_LIKE TRUE)
+    set(FREEBSD FALSE)
+    set(NETBSD FALSE)
 
     set(DONT_USE_PKG_CONFIG FALSE)
 
@@ -431,6 +458,7 @@ endif ()
 include_directories(${WORKSPACE_FOLDER}/operating_system/operating_system-${OPERATING_SYSTEM_NAME})
 include_directories(${WORKSPACE_FOLDER}/operating_system/operating_system-${OPERATING_SYSTEM_NAME}/include)
 include_directories(${WORKSPACE_FOLDER}/operating_system/operating_system-${OPERATING_SYSTEM_NAME}/configuration)
+include_directories(${WORKSPACE_FOLDER}/operating_system/operating_system-${OPERATING_SYSTEM_NAME}/include/configuration_selection/${CONFIGURATION_NAME})
 include_directories(${WORKSPACE_FOLDER}/operating_system/operating_system-${OPERATING_SYSTEM_NAME}/operating_system/${SLASHED_OPERATING_SYSTEM})
 
 
