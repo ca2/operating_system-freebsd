@@ -1,14 +1,9 @@
 #include "framework.h"
 #include "apex/platform/launcher.h"
 #include "launcher.h"
-#include "dir_system.h"
-#include "file_system.h"
-#include "dir_context.h"
-#include "file_context.h"
 #include "os_context.h"
 //#include "ip_enum.h"
 //#include "interprocess_communication.h"
-#include "file_context.h"
 #include "service_handler.h"
 #include "node.h"
 #include "apex/parallelization/service.h"
@@ -29,11 +24,6 @@ IMPLEMENT_FACTORY(apex_freebsd)
 
    acme_freebsd_factory(pfactory);
 
-   pfactory->add_factory_item < ::apex_freebsd::dir_system, ::dir_system >();
-   pfactory->add_factory_item < ::apex_freebsd::file_system, ::file_system >();
-
-   pfactory->add_factory_item < ::apex_freebsd::dir_context, ::dir_context >();
-   pfactory->add_factory_item < ::apex_freebsd::file_context, ::file_context >();
 
    //add_factory_item < ::freebsd::stdio_file, ::file::text_file >();
    //add_factory_item < ::freebsd::file, ::file::file >();
