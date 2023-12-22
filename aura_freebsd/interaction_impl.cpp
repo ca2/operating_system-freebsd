@@ -409,7 +409,7 @@ namespace aura_freebsd
       if (bSize)
       {
 
-         information("linux::interaction_impl Window Manager Size (%d, %d)", m_sizeLastSize.cx(), m_sizeLastSize.cy());
+         informationf("linux::interaction_impl Window Manager Size (%d, %d)", m_sizeLastSize.cx(), m_sizeLastSize.cy());
 
          m_puserinteraction->set_size(m_sizeLastSize);
 
@@ -528,7 +528,7 @@ namespace aura_freebsd
 
          //m_puserinteraction->ModifyStyle(0, WS_VISIBLE);
 
-         m_puserinteraction->m_bVisible = true;
+         //m_puserinteraction->m_bVisible = true;
 
          if(m_puserinteraction->const_layout().design().display() == ::e_display_iconic && !m_pwindow->is_iconic())
          {
@@ -563,7 +563,7 @@ namespace aura_freebsd
       {
 
          //m_puserinteraction->ModifyStyle(WS_VISIBLE, 0, 0);
-         m_puserinteraction->m_bVisible = false;
+         //m_puserinteraction->m_bVisible = false;
 
       }
 
@@ -4164,50 +4164,50 @@ namespace aura_freebsd
    }
 
 
-   void interaction_impl::window_show_change_visibility(::e_display edisplay, ::e_activation eactivation)
-   {
-
-      __keep_flag_on(m_puserinteraction->layout().m_eflag, ::user::interaction_layout::flag_show_window);
-
-      //auto edisplay = m_puserinteraction->layout().design().display();
-
-      //auto eactivation = m_puserinteraction->layout().design().activation();
-
-      //if(eactivation &)
-//      {
+//   void interaction_impl::window_show_change_visibility(::e_display edisplay, ::e_activation eactivation)
+//   {
 //
-//         wm_add_erase_state(m_oswindow, net_wm_state_hidden, false);
+//      __keep_flag_on(m_puserinteraction->layout().m_eflag, ::user::interaction_layout::flag_show_window);
 //
-//      }
+//      //auto edisplay = m_puserinteraction->layout().design().display();
 //
-
-      m_pwindow->show_window(edisplay, eactivation);
-
-//      if (edisplay == e_display_full_screen)
-//      {
+//      //auto eactivation = m_puserinteraction->layout().design().activation();
 //
-//         if(m_puserinteraction->m_bWorkspaceFullScreen)
-//         {
+//      //if(eactivation &)
+////      {
+////
+////         wm_add_erase_state(m_oswindow, net_wm_state_hidden, false);
+////
+////      }
+////
 //
-//            ::show_window(m_oswindow, e_display_zoomed);
+//      m_pwindow->show_window(edisplay, eactivation);
 //
-//         }
-//         else
-//         {
+////      if (edisplay == e_display_full_screen)
+////      {
+////
+////         if(m_puserinteraction->m_bWorkspaceFullScreen)
+////         {
+////
+////            ::show_window(m_oswindow, e_display_zoomed);
+////
+////         }
+////         else
+////         {
+////
+////            m_oswindow->full_screen();
+////
+////         }
+////
+////      }
+////      else
+////      {
+////
+////         ::user::interaction_impl::window_show_change_visibility(edisplay, eactivation);
+////
+////      }
 //
-//            m_oswindow->full_screen();
-//
-//         }
-//
-//      }
-//      else
-//      {
-//
-//         ::user::interaction_impl::window_show_change_visibility(edisplay, eactivation);
-//
-//      }
-
-   }
+//   }
 
 
 //   ::user::interaction * interaction_impl::GetNextWindow(::u32 nFlag)
@@ -4282,39 +4282,39 @@ namespace aura_freebsd
 //   }
 
 
-   void interaction_impl::prodevian_update_screen()
-   {
-
-      if(!m_puserinteraction)
-      {
-
-         throw exception(error_null_pointer);
-
-      }
-
-      if(m_puserinteraction->m_ewindowflag & e_window_flag_embedded_prodevian)
-      {
-
-         _001UpdateScreen();
-
-      }
-      else
-      {
-
-         //x11_async_runnable(__routine([&]()
-         //{
-
-            //synchronous_lock synchronouslock(x11_mutex());
-
-            _001UpdateScreen();
-
-         //}));
-
-      }
-
-      //return true;
-
-   }
+//   void interaction_impl::prodevian_update_screen()
+//   {
+//
+//      if(!m_puserinteraction)
+//      {
+//
+//         throw exception(error_null_pointer);
+//
+//      }
+//
+//      if(m_puserinteraction->m_ewindowflag & e_window_flag_embedded_prodevian)
+//      {
+//
+//         _001UpdateScreen();
+//
+//      }
+//      else
+//      {
+//
+//         //x11_async_runnable(__routine([&]()
+//         //{
+//
+//            //synchronous_lock synchronouslock(x11_mutex());
+//
+//            _001UpdateScreen();
+//
+//         //}));
+//
+//      }
+//
+//      //return true;
+//
+//   }
 
 
    void interaction_impl::non_top_most_upper_window_rects(::rectangle_i32_array& recta)

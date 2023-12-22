@@ -2,9 +2,10 @@
 #include "os_context.h"
 #include "acme/exception/not_implemented.h"
 #include "acme/filesystem/filesystem/acme_directory.h"
+#include "acme/filesystem/filesystem/acme_path.h"
+#include "acme/filesystem/filesystem/link.h"
 #include "apex/platform/node.h"
 #include "apex/filesystem/file/set.h"
-#include "apex/filesystem/filesystem/link.h"
 #include "apex/platform/system.h"
 #define __BSD_VISIBLE 1
 #include <unistd.h>
@@ -934,7 +935,7 @@ namespace apex_freebsd
 
             ::file::path pathTarget;
 
-            auto pfilelink = resolve_link(pathTarget, ::file::e_link_target);
+            auto pfilelink = acmepath()->resolve_link(pathTarget, ::file::e_link_target);
 
             path = pfilelink->m_pathTarget;
 
@@ -1029,7 +1030,7 @@ namespace apex_freebsd
 
          //::system("nohup xdg-open \"" + strTarget + "\" > /dev/null 2>&1&");
 
-         acmenode()->node_post([this, strTarget]()
+         acmenode()->user_post([this, strTarget]()
          {
 
             string strUri = strTarget;
@@ -1054,7 +1055,7 @@ namespace apex_freebsd
             if(!iBool)
             {
 
-               information("Error launching file : \"%s\" , %s", strUri.c_str(), strError.c_str());
+               informationf("Error launching file : \"%s\" , %s", strUri.c_str(), strError.c_str());
 
             }
 

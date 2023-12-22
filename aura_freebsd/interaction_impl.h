@@ -82,7 +82,7 @@ namespace aura_freebsd
       DECLARE_MESSAGE_HANDLER(_001OnShowWindow);
 
 
-      virtual void window_show_change_visibility(::e_display edisplay, ::e_activation eactivation) override;
+      //virtual void window_show_change_visibility(::e_display edisplay, ::e_activation eactivation) override;
 
 
       //virtual ::user::interaction_impl * from_os_data(void * pdata) override;
@@ -336,7 +336,7 @@ namespace aura_freebsd
       virtual bool EnableWindow(bool bEnable = true);
 
 
-      void prodevian_update_screen() override;
+      //void prodevian_update_screen() override;
 
 
       DECLARE_MESSAGE_HANDLER(on_message_create);
