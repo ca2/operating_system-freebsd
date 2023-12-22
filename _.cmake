@@ -23,7 +23,7 @@ if ("${CMAKE_BUILD_TYPE}" STREQUAL "")
 endif()
 
 
-
+set(CURL_NANO_HTTP TRUE)
 set(CONFIGURATION_NAME ${CMAKE_BUILD_TYPE})
 
 
@@ -436,7 +436,7 @@ set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/library)
 set(CMAKE_LIBRARY_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/output)
 set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/output)
 
-
+link_directories(/usr/local/lib)
 link_directories(${LIBRARY_OUTPUT_PATH})
 link_directories(${CMAKE_CURRENT_SOURCE_DIR}/operating_system/storage-${OPERATING_SYSTEM_NAME}/library/x64/basis)
 link_directories(${CMAKE_CURRENT_SOURCE_DIR}/operating_system/storage-${OPERATING_SYSTEM_NAME}/third/library/x64/basis)
