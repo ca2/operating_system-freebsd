@@ -169,7 +169,9 @@ if (${OPERATING_SYSTEM} STREQUAL "freebsd")
 
     message(STATUS "FREEBSD has been set TRUE")
 
-    set(APPINDICATOR_PKG_MODULE "ayatana-appindicator3-0.1")
+    #set(APPINDICATOR_PKG_MODULE "ayatana-appindicator3-0.1")
+    #set(APPINDICATOR_PKG_MODULE "ayatana-indicator3-0.4")
+    set(APPINDICATOR_PKG_MODULE "appindicator3-0.1")
 
     set(MPG123_PKG_MODULE "libmpg123")
 
@@ -301,6 +303,8 @@ set(default_music_midi "music_midi_alsa")
 set(default_node "node_freebsd")
 set(default_audio_mixer "audio_mixer_alsa")
 set(default_gpu "gpu_opengl")
+set(default_input "input_xinput")
+set(default_networking "networking_bsd")
 #add_compile_definitions(default_draw2d=draw2d_cairo)
 #add_compile_definitions(default_imaging=imaging_freeimage)
 #add_compile_definitions(default_write_text=write_text_pango)
@@ -436,7 +440,7 @@ set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/library)
 set(CMAKE_LIBRARY_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/output)
 set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/output)
 
-link_directories(/usr/local/lib)
+link_directories(/usr/lib)
 link_directories(${LIBRARY_OUTPUT_PATH})
 link_directories(${CMAKE_CURRENT_SOURCE_DIR}/operating_system/storage-${OPERATING_SYSTEM_NAME}/library/x64/basis)
 link_directories(${CMAKE_CURRENT_SOURCE_DIR}/operating_system/storage-${OPERATING_SYSTEM_NAME}/third/library/x64/basis)
