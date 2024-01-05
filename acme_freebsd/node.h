@@ -66,6 +66,9 @@ namespace acme_freebsd
       void shell_open(const ::file::path & path, const ::string & strParams = "", const ::file::path & pathFolder = "") override;
 
 
+      ::pointer <::operating_system::summary > operating_system_summary() override;
+
+
    };
 
 

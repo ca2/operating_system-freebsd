@@ -156,6 +156,7 @@ set(WITH_XI TRUE)
 set(USE_OPENSSL TRUE)
 set(PTHREAD TRUE)
 set(BSD TRUE)
+add_compile_definitions(__BSD__)
 
 
 
