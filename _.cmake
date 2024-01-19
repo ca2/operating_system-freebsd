@@ -32,6 +32,7 @@ if (${CMAKE_SYSTEM_NAME} STREQUAL "FreeBSD")
     set(OPERATING_SYSTEM_NAME "freebsd")
     set(OPERATING_SYSTEM "freebsd")
     set(PLATFORM_NAME "freebsd")
+    set(HAS_SYSTEM_UNAC FALSE)
 
 
 elseif (${CMAKE_SYSTEM_NAME} STREQUAL "OpenBSD")
