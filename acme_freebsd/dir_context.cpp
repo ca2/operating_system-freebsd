@@ -24,7 +24,7 @@ namespace acme_freebsd
    void dir_context::initialize(::particle * pparticle)
    {
 
-      ::dir_context::initialize(pparticle);
+      ::acme_posix::dir_context::initialize(pparticle);
 
    }
 
@@ -32,7 +32,7 @@ namespace acme_freebsd
    void dir_context::init_system()
    {
 
-      ::dir_context::init_system();
+      ::acme_posix::dir_context::init_system();
 
    }
 
