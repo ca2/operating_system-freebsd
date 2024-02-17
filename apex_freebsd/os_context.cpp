@@ -919,7 +919,7 @@ namespace apex_freebsd
    void os_context::get_default_browser(string & strId, ::file::path & path, string & strParam)
    {
 
-      auto str = acmenode()->get_output("/bin/sh -c \"xdg-settings get default-web-browser\"");
+      auto str = node()->get_output("/bin/sh -c \"xdg-settings get default-web-browser\"");
 
       str.trim();
 
@@ -993,7 +993,7 @@ namespace apex_freebsd
 
          // 2018-01-29 call_async("/bin/bash", "-c \"" + strTarget + "\"", strFolder, SW_SHOWDEFAULT, false);
 
-         acmenode()->call_async(strTarget, strParams, pathFolder, e_display_default, false);
+         node()->call_async(strTarget, strParams, pathFolder, e_display_default, false);
 
 //         char * pszCommandLine = strdup(strTarget + " " + strParams);
 
@@ -1030,7 +1030,7 @@ namespace apex_freebsd
 
          //::system("nohup xdg-open \"" + strTarget + "\" > /dev/null 2>&1&");
 
-         acmenode()->user_post([this, strTarget]()
+         node()->user_post([this, strTarget]()
          {
 
             string strUri = strTarget;
@@ -1048,7 +1048,7 @@ namespace apex_freebsd
 
             char * pszError = strError.get_buffer(iBufferSize);
 
-            int iBool = acmenode()->os_launch_uri(strUri, pszError, iBufferSize);
+            int iBool = node()->os_launch_uri(strUri, pszError, iBufferSize);
 
             strError.release_buffer();
 
@@ -1180,7 +1180,7 @@ namespace apex_freebsd
       if ((st.st_mode & S_IEXEC) != 0)
       {
 
-         string strContentType = acmenode()->get_file_content_type(str);
+         string strContentType = node()->get_file_content_type(str);
 
          if(strContentType == "application/x-shellscript")
          {
