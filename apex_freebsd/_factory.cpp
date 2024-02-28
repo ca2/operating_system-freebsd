@@ -1,7 +1,7 @@
 #include "framework.h"
 #include "apex/platform/launcher.h"
 #include "launcher.h"
-#include "os_context.h"
+//#include "os_context.h"
 //#include "ip_enum.h"
 //#include "interprocess_communication.h"
 #include "service_handler.h"
@@ -27,7 +27,7 @@ IMPLEMENT_FACTORY(apex_freebsd)
 
    //add_factory_item < ::freebsd::stdio_file, ::file::text_file >();
    //add_factory_item < ::freebsd::file, ::file::file >();
-   pfactory->add_factory_item < ::apex_freebsd::os_context, ::os_context >();
+   //pfactory->add_factory_item < ::apex_freebsd::os_context, ::os_context >();
    //pfactory->add_factory_item < ::freebsd::pipe, ::process::pipe >();
    //pfactory->add_factory_item < ::freebsd::process, ::process::process >();
 
