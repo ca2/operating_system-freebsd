@@ -48,10 +48,14 @@ list(APPEND library_references
    aura_darwin
    aura_freebsd
    windowing_x11
-   node_gtk
    node_gnome
    )
 
+if(${HAS_GTK4})
+   list(APPEND library_references node_gtk4)
+elseif(${HAS_GTK3})
+   list(APPEND library_references node_gtk3)
+endif()
 
 add_library(desktop_environment_gnome SHARED ${library_source})
 
