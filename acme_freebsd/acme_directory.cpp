@@ -427,7 +427,7 @@ namespace acme_freebsd
    ::file::path acme_directory::module()
    {
 
-      return "";
+      return ::acme_darwin::acme_directory::module();
 
    }
 

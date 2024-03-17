@@ -821,6 +821,13 @@ namespace acme_freebsd
 
       }
 
+      if(psummary->m_strDistroBranch.is_empty())
+      {
+
+         psummary->m_strDistroBranch = psummary->m_strDesktopEnvironment;
+
+      }
+
       psummary->m_strSlashedStore=psummary->m_strDistro + "/" + psummary->m_strDistroBranch + "/" + psummary->m_strDistroRelease;
 
       psummary->m_strUnderscoreOperatingSystem = psummary->m_strSlashedStore;

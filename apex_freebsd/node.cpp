@@ -187,7 +187,20 @@ namespace apex_freebsd
                   AdjustTokenPrivileges(hToken, false, &tkp, 0, (PTOKEN_PRIVILEGES) nullptr, 0);
                   return retval;*/
 
-            throw not_implemented();
+            if(bIfPowerOff)
+            {
+
+               command_system("sudo shutdown -p now");
+
+            }
+            else
+            {
+
+               command_system("sudo shutdown -h now");
+
+            }
+
+            //throw not_implemented();
             //return false;
 
         }
@@ -253,7 +266,8 @@ namespace apex_freebsd
                   return false;
 
                */
-            throw not_implemented();
+            command_system("sudo reboot");
+            //throw not_implemented();
             //return false;
         }
 
