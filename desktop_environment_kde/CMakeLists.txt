@@ -34,13 +34,16 @@ list(APPEND library_source
 list(APPEND library_references
    acme
    acme_posix
+   acme_darwin
    acme_freebsd
    apex
    apex_posix
+   apex_darwin
    apex_freebsd
    aqua
    aura
    aura_posix
+   aura_darwin
    aura_freebsd
    windowing_xcb
    node_kde
@@ -49,32 +52,32 @@ list(APPEND library_references
 
 #set_source_files_properties(q_node_impl.cpp PROPERTIES SKIP_PRECOMPILE_HEADERS ON)
 
-add_library(desktop_environment_kde SHARED ${library_source} )
+add_library(${PROJECT_NAME} SHARED ${library_source} )
 
-target_precompile_headers(desktop_environment_kde PRIVATE framework.h)
+target_precompile_headers(${PROJECT_NAME} PRIVATE framework.h)
 
-set_target_properties(desktop_environment_kde PROPERTIES LINKER_LANGUAGE CXX)
+set_target_properties(${PROJECT_NAME} PROPERTIES LINKER_LANGUAGE CXX)
 
 
 if (MSVC)
-   target_compile_options(desktop_environment_kde PRIVATE "/MD$<$<CONFIG:Debug>:d>")
-   target_link_options(desktop_environment_kde PRIVATE "/DEFAULTLIB:msvcrt$<$<CONFIG:Debug>:d>")
-   target_link_options(desktop_environment_kde PRIVATE "/SUBSYSTEM:WINDOWS")
-   target_link_libraries(desktop_environment_kde PRIVATE ${library_references})
+   target_compile_options(${PROJECT_NAME} PRIVATE "/MD$<$<CONFIG:Debug>:d>")
+   target_link_options(${PROJECT_NAME} PRIVATE "/DEFAULTLIB:msvcrt$<$<CONFIG:Debug>:d>")
+   target_link_options(${PROJECT_NAME} PRIVATE "/SUBSYSTEM:WINDOWS")
+   target_link_libraries(${PROJECT_NAME} PRIVATE ${library_references})
 elseif(FREEBSD OR FREEBSD)
    pkg_check_modules(PKGCONFIG Qt5X11Extras Qt5Core Qt5UiTools)
-   target_compile_options(desktop_environment_kde PRIVATE -fpermissive)
-      target_compile_options(desktop_environment_kde PRIVATE ${PKGCONFIG_CFLAGS})
-   target_link_options(desktop_environment_kde PRIVATE ${PKGCONFIG_LDFLAGS})
+   target_compile_options(${PROJECT_NAME} PRIVATE -fpermissive)
+      target_compile_options(${PROJECT_NAME} PRIVATE ${PKGCONFIG_CFLAGS})
+   target_link_options(${PROJECT_NAME} PRIVATE ${PKGCONFIG_LDFLAGS})
    if(KDE_DESKTOP)
-      target_include_directories(desktop_environment_kde PRIVATE KF5::Notifications)
+      target_include_directories(${PROJECT_NAME} PRIVATE KF5::Notifications)
    endif()
    #target_link_options(desktop_environment_kde PRIVATE -Wl,-rpath=$ORIGIN)
-   target_link_libraries(desktop_environment_kde PRIVATE ${library_references} ${PKGCONFIG_LIBRARIES})
+   target_link_libraries(${PROJECT_NAME} PRIVATE ${library_references} ${PKGCONFIG_LIBRARIES})
    if(KDE_DESKTOP)
-      target_link_libraries(desktop_environment_kde PRIVATE KF5::Notifications)
+      target_link_libraries(${PROJECT_NAME} PRIVATE KF5::Notifications)
    endif()
-   target_link_options(desktop_environment_kde PRIVATE -Wl,-z,defs)
+   target_link_options(${PROJECT_NAME} PRIVATE -Wl,-z,defs)
 endif ()
 
 list(APPEND library_include_directories ${CMAKE_CURRENT_SOURCE_DIR})
@@ -85,9 +88,9 @@ list(APPEND library_include_directories ${CMAKE_CURRENT_SOURCE_DIR}/../../operat
 
 
 target_include_directories(${PROJECT_NAME} PRIVATE ${library_include_directories})
-target_include_directories(static_${PROJECT_NAME} PRIVATE ${library_include_directories})
+#target_include_directories(static_${PROJECT_NAME} PRIVATE ${library_include_directories})
 
-target_compile_definitions(desktop_environment_kde PRIVATE _MUSIC_MIDI_ALSA_LIBRARY)
+target_compile_definitions(${PROJECT_NAME} PRIVATE _MUSIC_MIDI_ALSA_LIBRARY)
 
 
 

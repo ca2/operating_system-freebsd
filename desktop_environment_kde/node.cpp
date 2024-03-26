@@ -2,7 +2,7 @@
 // Created by camilo on 19/01/2021. --<33ThomasBS!!
 //
 #include "framework.h"
-
+#include "node.h"
 
 
 //void x11_kick_idle();
@@ -170,20 +170,20 @@ namespace desktop_environment_kde
 //   }
 
 
-   ::e_status node::system_main()
+   void node::system_main()
    {
 
-      auto estatus = ::node_kde::node::system_main();
+       ::node_kde::node::system_main();
 
-      if(!estatus)
-      {
-
-         return estatus;
-
-      }
-
-      return estatus;
-
+//      if(!estatus)
+//      {
+//
+//         return estatus;
+//
+//      }
+//
+//      return estatus;
+//
 //      auto psystem = m_psystem->m_papexsystem;
 //
 //      if (psystem->m_bGtkApp)
@@ -286,19 +286,30 @@ namespace desktop_environment_kde
    }
 
 
-   ::e_status node::initialize(::object *pobject)
+   void node::reboot()
    {
 
-      auto estatus = ::node_kde::node::initialize(pobject);
+      ::node_kde::node::reboot();
 
-      if(!estatus)
-      {
+   }
 
-         return estatus;
 
-      }
 
-      return estatus;
+
+
+   void node::initialize(::particle *pobject)
+   {
+
+      ::node_kde::node::initialize(pobject);
+
+//      if(!estatus)
+//      {
+//
+//         return estatus;
+//
+//      }
+//
+//      return estatus;
 
    }
 

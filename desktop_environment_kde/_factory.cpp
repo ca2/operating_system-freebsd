@@ -1,4 +1,5 @@
 #include "framework.h"
+#include "node.h"
 
 
 __FACTORY_EXPORT void aura_freebsd_factory(::factory::factory * pfactory);

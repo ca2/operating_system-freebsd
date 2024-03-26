@@ -9,7 +9,8 @@
 //#include <QDebug>
 //#include <QTimer>
 //#include <QWidget>
-#include "node_impl.h"
+#include "aura_freebsd/node.h"
+#include "node_kde/node.h"
 
 
 namespace desktop_environment_kde
@@ -17,7 +18,7 @@ namespace desktop_environment_kde
 
 
    class CLASS_DECL_ACME node :
-      virtual public ::aura::freebsd::node,
+      virtual public ::aura_freebsd::node,
       virtual public ::node_kde::node
    {
    public:
@@ -35,9 +36,11 @@ namespace desktop_environment_kde
 
       virtual int node_init_check(int * pi, char *** ppz) override;
 
-      virtual ::e_status system_main() override;
+      void system_main() override;
 
-      virtual ::e_status initialize(::object * pobject) override;
+      void initialize(::particle * pobject) override;
+
+      void reboot() override;
 
       //virtual void os_calc_user_dark_mode() override;
 

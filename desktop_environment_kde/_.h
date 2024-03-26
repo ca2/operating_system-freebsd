@@ -2,7 +2,7 @@
 
 
 #include "aura_freebsd/_.h"
-#include "platform-posix/node_kde/_.h"
+#include "operating_system-posix/node_kde/_.h"
 
 
 #if defined(_DESKTOP_ENVIRONMENT_KDE_LIBRARY)
