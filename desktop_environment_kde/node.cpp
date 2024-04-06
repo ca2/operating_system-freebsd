@@ -77,7 +77,7 @@ namespace desktop_environment_kde
 
       m_pNodeDesktopEnvironmentKDE = this;
 
-      m_qpalette = QApplication::palette();
+      //m_qpalette = QApplication::palette();
 
       //m_pGtkSettingsDefault = nullptr;
       //m_pnodeimpl = nullptr;
@@ -110,9 +110,15 @@ namespace desktop_environment_kde
    int node::node_init_check(int *pi, char ***ppz)
    {
 
-      auto iResult = ::node_kde::node::node_init_check(pi, ppz);
+#if defined(HAS_KDE6)
 
+      auto iResult = ::node_kde6::node::node_init_check(pi, ppz);
 
+#elif defined(HAS_KDE5)
+
+      auto iResult = ::node_kde5::node::node_init_check(pi, ppz);
+
+#endif
 
 //      m_pnodeimpl = new_node_impl(*pi, *ppz);
 //
