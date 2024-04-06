@@ -179,7 +179,15 @@ namespace desktop_environment_kde
    void node::system_main()
    {
 
-       ::node_kde::node::system_main();
+#if defined(HAS_KDE6)
+
+      ::node_kde6::node::system_main();
+
+#elif defined(HAS_KDE5)
+
+      ::node_kde5::node::system_main();
+
+#endif
 
 //      if(!estatus)
 //      {
@@ -295,7 +303,15 @@ namespace desktop_environment_kde
    void node::reboot()
    {
 
-      ::node_kde::node::reboot();
+#if defined(HAS_KDE6)
+
+      ::node_kde6::node::reboot();
+
+#elif defined(HAS_KDE5)
+
+      ::node_kde5::node::reboot();
+
+#endif
 
    }
 
@@ -303,10 +319,18 @@ namespace desktop_environment_kde
 
 
 
-   void node::initialize(::particle *pobject)
+   void node::initialize(::particle *pparticle)
    {
 
-      ::node_kde::node::initialize(pobject);
+#if defined(HAS_KDE6)
+
+      ::node_kde6::node::initialize(pparticle);
+
+#elif defined(HAS_KDE5)
+
+      ::node_kde5::node::initialize(pparticle);
+
+#endif
 
 //      if(!estatus)
 //      {
