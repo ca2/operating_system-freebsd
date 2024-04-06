@@ -4,7 +4,11 @@
 #pragma once
 
 
-#include "node_gnome/appindicator.h"
+#if defined(HAS_GTK4)
+#include "node_gtk4/appindicator.h"
+#elif defined(HAS_GTK3)
+#include "node_gtk3/appindicator.h"
+#endif
 
 
 namespace desktop_environment_gnome
@@ -12,7 +16,11 @@ namespace desktop_environment_gnome
 
 
    class appindicator :
-      virtual public ::node_gnome::appindicator
+#if defined(HAS_GTK4)
+      virtual public ::node_gtk4::appindicator
+#elif defined(HAS_GTK3)
+      virtual public ::node_gtk3::appindicator
+#endif
    {
    public:
 
