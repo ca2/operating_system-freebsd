@@ -48,6 +48,7 @@ list(APPEND library_references
    aura_darwin
    aura_freebsd
    windowing_x11
+        node_gdk
    node_gnome
    )
 

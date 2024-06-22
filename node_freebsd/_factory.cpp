@@ -2,13 +2,22 @@
 #include "acme/platform/system.h"
 
 
-::user::enum_desktop get_edesktop();
+//::user::enum_desktop get_edesktop();
+
+
+namespace nano
+{
+   namespace user
+   {
+      ::user::enum_desktop get_edesktop();
+   }//namespace user
+}// namespace nano
 
 
 __FACTORY_EXPORT void node_freebsd_factory(::factory::factory * pfactory)
 {
 
-   auto edesktop = get_edesktop();
+   auto edesktop = ::nano::user::get_edesktop();
 
    ::e_status estatus = ::success_none;
 
