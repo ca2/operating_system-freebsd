@@ -12,6 +12,7 @@ default_apex_platform1=operating-system-freebsd/apex_freebsd
 default_apex_platform2=operating-system-posix/apex_posix
 default_aura_platform1=operating-system-freebsd/aura_freebsd
 default_aura_platform2=operating-system-posix/aura_posix
+default_nano_idn=app/nano_idn_libidn
 third/libcrypto=none
 third/libssl=none
 third/zlib=none
