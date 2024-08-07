@@ -12,6 +12,8 @@ message(STATUS "CMAKE_SYSTEM_NAME is ${CMAKE_SYSTEM_NAME}")
 set(USE_PKGCONFIG TRUE)
 set(NO_PRECOMPILED_HEADER TRUE)
 
+set(LAUNCH_STORE_SYSTEM "freebsd")
+
 #set(GLOBAL_EXTRA_COMPILER_FLAGS -fnon-call-exceptions -nostdinc -nostdinc++ -I/usr/include/c++/v1 -I/usr/include -I/usr/local/include)
 #set(GLOBAL_EXTRA_LINKER_FLAGS -nodefaultlibs -lc++ -lcxxrt -lthr -lm -lc -lgcc_s)
 #set(GLOBAL_EXTRA_LINKER_FLAGS -L/usr/lib)
