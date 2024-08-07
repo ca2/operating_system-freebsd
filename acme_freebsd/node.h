@@ -68,6 +68,8 @@ namespace acme_freebsd
 
       ::pointer <::operating_system::summary > operating_system_summary() override;
 
+      ::string default_component_implementation(const ::scoped_string & scopedstrComponentName) override;
+
 
    };
 

@@ -852,6 +852,78 @@ namespace acme_freebsd
    }
 
 
+   ::string node::default_component_implementation(const ::scoped_string & scopedstrComponentName)
+   {
+
+#if defined(CUBE)
+
+      return "command_line";
+
+#else
+
+      if(scopedstrComponentName == "nano_archive")
+      {
+
+         return "libarchive";
+
+      }
+      else if(scopedstrComponentName == "nano_http")
+      {
+
+#ifdef FREEBSD
+
+         return "libcurl";
+
+#elif defined(WINDOWS_DESKTOP)
+
+         return "wininet";
+
+#endif
+
+      }
+      else if(scopedstrComponentName == "nano_user")
+      {
+
+#ifdef FREEBSD
+
+//         auto ewindowing = system()->m_ewindowing;
+//
+//         if(ewindowing == e_windowing_wayland)
+//         {
+//            return "wayland";
+//         }
+//         else if(ewindowing == e_windowing_xcb)
+//         {
+//            return "xcb";
+//         }
+//         else
+//         {
+
+            return "x11";
+
+//         }
+
+#elif defined(WINDOWS_DESKTOP)
+
+         return "win32";
+
+#endif
+
+      }
+      else if(scopedstrComponentName == "nano_idn")
+      {
+
+         return "libidn";
+
+      }
+
+      return {};
+
+#endif
+
+   }
+
+
 } // namespace acme_freebsd
 
 
