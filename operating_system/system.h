@@ -71,6 +71,7 @@ using platform_char = char;
 #define DEBUG_BREAK __builtin_debugtrap()
 
 #include <concepts>
+#include <new>
 
 
 #define MAX_PATH 321

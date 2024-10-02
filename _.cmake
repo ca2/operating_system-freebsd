@@ -27,6 +27,7 @@ endif()
 
 set(CURL_NANO_HTTP TRUE)
 set(CONFIGURATION_NAME ${CMAKE_BUILD_TYPE})
+set(__BSD__ TRUE)
 
 
 if (${CMAKE_SYSTEM_NAME} STREQUAL "FreeBSD")
@@ -35,6 +36,9 @@ if (${CMAKE_SYSTEM_NAME} STREQUAL "FreeBSD")
     set(OPERATING_SYSTEM "freebsd")
     set(PLATFORM_NAME "freebsd")
     set(HAS_SYSTEM_UNAC FALSE)
+    set(default_acme acme_freebsd)
+    set(default_apex apex_freebsd)
+
 
 
 elseif (${CMAKE_SYSTEM_NAME} STREQUAL "OpenBSD")
@@ -73,16 +77,14 @@ if ($ENV{XDG_CURRENT_DESKTOP} STREQUAL "KDE")
     set(KDE_DESKTOP TRUE)
     message(STATUS "System is KDE")
     set(DESKTOP_ENVIRONMENT_NAME "kde")
-elseif ($ENV{XDG_CURRENT_DESKTOP} STREQUAL "ubuntu:GNOME")
-    set(GNOME_DESKTOP TRUE)
-    message(STATUS "System is GNOME")
-    set(DESKTOP_ENVIRONMENT_NAME "gnome")
 elseif ($ENV{XDG_CURRENT_DESKTOP} STREQUAL "GNOME")
     set(GNOME_DESKTOP TRUE)
+    set(GTK_BASED_DESKTOP TRUE)
     message(STATUS "System is GNOME")
     set(DESKTOP_ENVIRONMENT_NAME "gnome")
 elseif ($ENV{XDG_CURRENT_DESKTOP} STREQUAL "LXDE")
     set(LXDE_DESKTOP TRUE)
+    set(GTK_BASED_DESKTOP TRUE)
     message(STATUS "System is LXDE")
     set(DESKTOP_ENVIRONMENT_NAME "lxde")
 endif ()
@@ -95,9 +97,10 @@ set(OPERATING_SYSTEM $ENV{__OPERATING_SYSTEM})
 set(OPERATING_SYSTEM_RELEASE $ENV{__OPERATING_SYSTEM_RELEASE})
 
 
-include(${WORKSPACE_FOLDER}/operating_system/operating_system-posix/_desktop.cmake)
+#include(${WORKSPACE_FOLDER}/operating_system/operating_system-posix/_desktop.cmake)
 
-#if(${GNOME_DESKTOP})
+
+
 #    execute_process(COMMAND gnome-shell --version OUTPUT_VARIABLE GNOME_SHELL_VERSION_RAW OUTPUT_STRIP_TRAILING_WHITESPACE)
 #    message(STATUS "GNOME_SHELL_VERSION_RAW is ${GNOME_SHELL_VERSION_RAW}")
 #    string(TOLOWER ${GNOME_SHELL_VERSION_RAW} GNOME_RELEASE)
@@ -327,6 +330,10 @@ if (KDE_DESKTOP)
     #        endif()
 endif ()
 
+if(${GNOME_DESKTOP})
+include(${WORKSPACE_FOLDER}/operating_system/operating_system-posix/_gtk_based_desktop.cmake)
+endif()
+
 set(default_draw2d "draw2d_cairo")
 set(default_imaging "imaging_freeimage")
 set(default_write_text "write_text_pango")
@@ -388,11 +395,11 @@ if (GNOME_DESKTOP)
     message(STATUS "Adding GNOME/X11 dependency.")
 
     list(APPEND app_common_dependencies
-            desktop_environment_gnome)
+            desktop_environment_gtk_based)
 
 
     list(APPEND static_app_common_dependencies
-            static_desktop_environment_gnome
+            static_desktop_environment_gtk_based
             static_node_gnome
             static_node_gtk
             static_node_linux

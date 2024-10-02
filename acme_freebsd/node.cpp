@@ -881,35 +881,6 @@ namespace acme_freebsd
 #endif
 
       }
-      else if(scopedstrComponentName == "nano_user")
-      {
-
-#ifdef FREEBSD
-
-//         auto ewindowing = system()->m_ewindowing;
-//
-//         if(ewindowing == e_windowing_wayland)
-//         {
-//            return "wayland";
-//         }
-//         else if(ewindowing == e_windowing_xcb)
-//         {
-//            return "xcb";
-//         }
-//         else
-//         {
-
-            return "x11";
-
-//         }
-
-#elif defined(WINDOWS_DESKTOP)
-
-         return "win32";
-
-#endif
-
-      }
       else if(scopedstrComponentName == "nano_idn")
       {
 
@@ -917,9 +888,9 @@ namespace acme_freebsd
 
       }
 
-      return {};
-
 #endif
+
+      return ::acme_darwin::node::default_component_implementation(scopedstrComponentName);
 
    }
 

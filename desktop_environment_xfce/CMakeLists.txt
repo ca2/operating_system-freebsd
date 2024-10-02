@@ -1,6 +1,7 @@
 cmake_minimum_required(VERSION 3.17)
 project(desktop_environment_xfce CXX)
 
+message(STATUS "Project: ${PROJECT_NAME}")
 
 list(APPEND library_source
    _.cpp

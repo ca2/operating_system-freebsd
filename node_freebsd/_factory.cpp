@@ -21,7 +21,7 @@ __FACTORY_EXPORT void node_freebsd_factory(::factory::factory * pfactory)
 
    ::e_status estatus = ::success_none;
 
-   if (edesktop & ::user::e_desktop_kde)
+   if (edesktop == ::user::e_desktop_kde)
    {
 
       auto & pfactoryKde = ::platform::get()->factory("desktop_environment", "kde");
@@ -29,15 +29,15 @@ __FACTORY_EXPORT void node_freebsd_factory(::factory::factory * pfactory)
       pfactoryKde->merge_to_global_factory();
 
    }
-   else if (edesktop & ::user::e_desktop_gnome)
+   else if (edesktop == ::user::e_desktop_gnome)
    {
 
-      auto & pfactoryGnome = ::platform::get()->factory("desktop_environment", "gnome");
+      auto & pfactoryGtkBased = ::platform::get()->factory("desktop_environment", "gtk_based");
 
-      pfactoryGnome->merge_to_global_factory();
+      pfactoryGtkBased->merge_to_global_factory();
 
    }
-   else if (edesktop & ::user::e_desktop_xfce)
+   else if (edesktop == ::user::e_desktop_xfce)
    {
 
       auto & pfactoryXfce = ::platform::get()->factory("desktop_environment", "xfce");
@@ -48,9 +48,9 @@ __FACTORY_EXPORT void node_freebsd_factory(::factory::factory * pfactory)
    else
    {
 
-      auto & pfactoryGnome = ::platform::get()->factory("desktop_environment", "gnome");
+      auto & pfactoryGtkBased = ::platform::get()->factory("desktop_environment", "gtk_based");
 
-      if (!pfactoryGnome)
+      if (!pfactoryGtkBased)
       {
 
          auto & pfactoryKde = ::platform::get()->factory("desktop_environment", "kde");
@@ -85,7 +85,7 @@ __FACTORY_EXPORT void node_freebsd_factory(::factory::factory * pfactory)
       else
       {
 
-         pfactoryGnome->merge_to_global_factory();
+         pfactoryGtkBased->merge_to_global_factory();
 
       }
 
