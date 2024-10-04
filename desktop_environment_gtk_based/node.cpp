@@ -4,7 +4,7 @@
 #include "framework.h"
 #include "node.h"
 #include "gnome_shared.h"
-#include "appindicator.h"
+//#include "appindicator.h"
 //#include "gdk.h"
 #include "windowing_x11/windowing_x11.h"
 
@@ -12,7 +12,7 @@
 void gdk_branch(const ::procedure & procedure);
 
 
-namespace desktop_environment_gnome
+namespace desktop_environment_gtk_based
 {
 
 
@@ -22,11 +22,11 @@ namespace desktop_environment_gnome
    node::node()
    {
 
-      m_pNodeDesktopEnvironmentGnome = this;
+      //m_pNodeDesktopEnvironmentGnome = this;
 
       //defer_initialize_x11();
 
-      m_pGtkSettingsDefault = nullptr;
+      //m_pGtkSettingsDefault = nullptr;
 
    }
 
@@ -34,12 +34,12 @@ namespace desktop_environment_gnome
    node::~node()
    {
 
-      if(m_pGtkSettingsDefault)
-      {
-
-         g_object_unref(m_pGtkSettingsDefault);
-
-      }
+//      if(m_pGtkSettingsDefault)
+//      {
+//
+//         g_object_unref(m_pGtkSettingsDefault);
+//
+//      }
 
    }
 
@@ -206,7 +206,7 @@ namespace desktop_environment_gnome
 
       //estatus =
 
-      ::node_gnome::node::initialize(pparticle);
+      ::node_gtk_based::node::initialize(pparticle);
 
 //      if(!estatus)
 //      {
@@ -707,7 +707,7 @@ namespace desktop_environment_gnome
 //   }
 
 
-} // namespace desktop_environment_gnome
+} // namespace desktop_environment_gtk_based
 
 
 

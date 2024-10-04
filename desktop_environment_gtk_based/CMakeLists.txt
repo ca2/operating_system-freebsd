@@ -50,9 +50,10 @@ list(APPEND library_references
    aura_posix
    aura_darwin
    aura_freebsd
-   windowing_x11
-        node_gdk
-   node_gnome
+   #windowing_x11
+        #node_gdk
+   node_freebsd
+   node_gtk_based
    )
 
 if(${HAS_GTK4})

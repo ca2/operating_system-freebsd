@@ -185,6 +185,7 @@ set(FILE_SYSTEM_INOTIFY TRUE)
 set(POSIX_SPAWN TRUE)
 set(POSIX_LIST_SERIAL_PORTS TRUE)
 set(WITH_X11 TRUE)
+set(HAS_X11 TRUE)
 set(WITH_XCB TRUE)
 set(WITH_XI TRUE)
 set(USE_OPENSSL TRUE)
@@ -468,7 +469,7 @@ add_compile_definitions(UNICODE)
 add_compile_definitions(_UNICODE)
 
 
-#list(APPEND app_common_dependencies _console_application_build_helper)
+list(APPEND app_common_dependencies ${default_node})
 
 
 #set(LIBRARY_OUTPUT_PATH ${CMAKE_CURRENT_SOURCE_DIR}/time-${OPERATING_SYSTEM_NAME}/x64/basis)
