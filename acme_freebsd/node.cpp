@@ -4,7 +4,7 @@
 #include "acme/operating_system/summary.h"
 
 
-::user::enum_desktop _get_edesktop();
+//::user::enum_desktop _get_edesktop();
 
 
 namespace acme_freebsd
