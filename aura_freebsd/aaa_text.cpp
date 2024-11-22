@@ -177,7 +177,7 @@
 
          Gdiplus::RectF rectangle_f32((Gdiplus::REAL) rectParam.left, (Gdiplus::REAL) rectParam.top, (Gdiplus::REAL) (width(rectParam) * dFontWidth), (Gdiplus::REAL) (height(rectParam)));
 
-         strsize iSize = text.m_wstr.get_length();
+         character_count iSize = text.m_wstr.get_length();
 
          if (ppath)
          {
@@ -238,7 +238,7 @@
 
          status = pgraphics->SetTransform(pmNew);
 
-         strsize iSize = text.m_wstr.get_length();
+         character_count iSize = text.m_wstr.get_length();
 
          status = pgraphics->DrawString(text.m_wstr, (INT)iSize, pfont, rectangle_f32, &format, pbrush);
 
@@ -278,7 +278,7 @@
 
          //Gdiplus::Brush * pbrush = gdiplus_brush();
 
-         //strsize iSize = text.m_wstr.get_length();
+         //character_count iSize = text.m_wstr.get_length();
 
          //status = ppath->AddString(text.m_wstr, (INT)iSize, f, nStyle, emSize, rectangle_f32, &format);
 

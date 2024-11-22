@@ -524,7 +524,7 @@ namespace freebsd
    //   LPWORD pCharType)
 
    //{
-   //   strsize iCount = cchSrc;
+   //   character_count iCount = cchSrc;
    //   if(iCount < 0)
    //      iCount = ::str::international::UnicodeToMultiByteCount(uCodePage, pSrcStr);
 

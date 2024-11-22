@@ -1,6 +1,6 @@
 #include "framework.h"
 #include "node.h"
-#include "acme/filesystem/filesystem/acme_file.h"
+#include "acme/filesystem/filesystem/file_system.h"
 #include "acme/operating_system/summary.h"
 
 
@@ -750,10 +750,10 @@ namespace acme_freebsd
       //}
 
       // freedesktop.org and systemd
-      if (acmefile()->exists("/etc/os-release"))
+      if (file_system()->exists("/etc/os-release"))
       {
 
-         auto set = acmefile()->parse_standard_configuration("/etc/os-release");
+         auto set = file_system()->parse_standard_configuration("/etc/os-release");
 
          psummary->m_strDistro = set["ID"];
          psummary->m_strDistroBranch = set["VARIANT_ID"];
@@ -761,7 +761,7 @@ namespace acme_freebsd
          psummary->m_strDistroRelease = set["VERSION_ID"];
          psummary->m_strDistroFamily = set["ID_LIKE"];
 
-         strsize iDot = psummary->m_strDistroRelease.find_index('.');
+         character_count iDot = psummary->m_strDistroRelease.find_index('.');
 
          if(iDot > 0)
          {

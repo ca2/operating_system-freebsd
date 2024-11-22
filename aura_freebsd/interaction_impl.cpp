@@ -2631,7 +2631,7 @@ namespace aura_freebsd
 //   }
 
 
-//   strsize interaction_impl::GetWindowText(char * pszString, strsize nMaxCount)
+//   character_count interaction_impl::GetWindowText(char * pszString, character_count nMaxCount)
 
 //   {
 //
@@ -2643,7 +2643,7 @@ namespace aura_freebsd
 //   }
 
 //
-//   strsize interaction_impl::GetWindowTextLength()
+//   character_count interaction_impl::GetWindowTextLength()
 //   {
 //
 //      throw not_implemented();

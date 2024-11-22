@@ -14,6 +14,15 @@ set(NO_PRECOMPILED_HEADER TRUE)
 
 set(LAUNCH_STORE_SYSTEM "freebsd")
 
+
+execute_process(COMMAND uname -m OUTPUT_VARIABLE __SYSTEM_ARCHITECTURE)
+string(STRIP ${__SYSTEM_ARCHITECTURE} __SYSTEM_ARCHITECTURE)
+
+
+message(STATUS "__SYSTEM_ARCHITECTURE is ${__SYSTEM_ARCHITECTURE}")
+
+
+
 #set(GLOBAL_EXTRA_COMPILER_FLAGS -fnon-call-exceptions -nostdinc -nostdinc++ -I/usr/include/c++/v1 -I/usr/include -I/usr/local/include)
 #set(GLOBAL_EXTRA_LINKER_FLAGS -nodefaultlibs -lc++ -lcxxrt -lthr -lm -lc -lgcc_s)
 #set(GLOBAL_EXTRA_LINKER_FLAGS -L/usr/lib)
@@ -38,7 +47,7 @@ if (${CMAKE_SYSTEM_NAME} STREQUAL "FreeBSD")
     set(HAS_SYSTEM_UNAC FALSE)
     set(default_acme acme_freebsd)
     set(default_apex apex_freebsd)
-
+    set(OPERATING_SYSTEM_TOOL_FOLDER "tool-freebsd")
 
 
 elseif (${CMAKE_SYSTEM_NAME} STREQUAL "OpenBSD")

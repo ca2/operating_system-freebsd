@@ -1,21 +1,21 @@
 #pragma once
 
 
-#include "acme_posix/dir_context.h"
+#include "acme_posix/directory_context.h"
 
 
 namespace acme_freebsd
 {
 
 
-   class CLASS_DECL_ACME_FREEBSD dir_context :
-      virtual public ::acme_posix::dir_context
+   class CLASS_DECL_ACME_FREEBSD directory_context :
+      virtual public ::acme_posix::directory_context
    {
    public:
 
 
-      dir_context();
-      ~dir_context() override;
+      directory_context();
+      ~directory_context() override;
 
 
       void initialize(::particle * pparticle) override;

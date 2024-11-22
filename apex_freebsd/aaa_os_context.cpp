@@ -1119,7 +1119,7 @@ namespace apex_freebsd
       if(str.case_insensitive_begins_eat("\""))
       {
 
-         strsize iFind = str.find_index("\"");
+         character_count iFind = str.find_index("\"");
 
          if(iFind < 0)
          {
@@ -1134,7 +1134,7 @@ namespace apex_freebsd
       else if(str.case_insensitive_begins_eat("\'"))
       {
 
-         strsize iFind = str.find_index("\'");
+         character_count iFind = str.find_index("\'");
 
          if(iFind < 0)
          {
@@ -1149,7 +1149,7 @@ namespace apex_freebsd
       else
       {
 
-         strsize iFind = str.find_index(" ");
+         character_count iFind = str.find_index(" ");
 
          if(iFind > 0)
          {

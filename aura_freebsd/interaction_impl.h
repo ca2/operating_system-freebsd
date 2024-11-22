@@ -191,10 +191,10 @@ namespace aura_freebsd
 //      // oswindow Text Functions
 //      void set_window_text(const ::string & strString) override;
 //
-//      //strsize GetWindowText(char * pszStringBuf, strsize nMaxCount);
+//      //character_count GetWindowText(char * pszStringBuf, character_count nMaxCount);
 //
 //      void get_window_text(string & str) override;
-      //strsize GetWindowTextLength();
+      //character_count GetWindowTextLength();
       void SetFont(::write_text::font* pFont, bool bRedraw = true);
       ::write_text::font* GetFont();
 

@@ -1,6 +1,6 @@
 #include "framework.h"
 #include "file_context.h"
-#include "acme/filesystem/filesystem/acme_directory.h"
+#include "acme/filesystem/filesystem/directory_system.h"
 
 
 namespace acme_freebsd
@@ -49,7 +49,7 @@ namespace acme_freebsd
 
       ::file::path pathJson;
 
-      pathJson = acmedirectory()->home() / ".dropbox/info.json";
+      pathJson = directory_system()->home() / ".dropbox/info.json";
 
       return pathJson;
 
