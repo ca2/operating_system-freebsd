@@ -33,7 +33,7 @@ namespace freebsd
    //}
 
 
-   //bool CLASS_DECL_APEX_FREEBSD shell_get_special_folder_path(HWND hwnd, ::file::path& str, i32 csidl, bool fCreate)
+   //bool CLASS_DECL_APEX_FREEBSD shell_get_special_folder_path(HWND hwnd, ::file::path& str, int csidl, bool fCreate)
    //{
 
    //   return ::SHGetSpecialFolderPathW(hwnd, wtostring(str, MAX_PATH * 8), csidl, fCreate) != false;
@@ -41,7 +41,7 @@ namespace freebsd
    //}
 
 
-   //::file::path CLASS_DECL_APEX_FREEBSD shell_get_special_folder_path(i32 csidl, bool fCreate, ::windowing::window* pwindow)
+   //::file::path CLASS_DECL_APEX_FREEBSD shell_get_special_folder_path(int csidl, bool fCreate, ::windowing::window* pwindow)
    //{
 
    //   ::file::path path;
@@ -60,7 +60,7 @@ namespace freebsd
 
 
 
-   //::u32 get_current_directory(string& str)
+   //unsigned int get_current_directory(string& str)
    //{
 
    //   return ::GetCurrentDirectoryW(MAX_PATH * 8, wtostring(str, MAX_PATH * 8));
@@ -68,7 +68,7 @@ namespace freebsd
    //}
 
 
-   //::u32 get_temp_path(string& str)
+   //unsigned int get_temp_path(string& str)
    //{
 
    //   return ::GetTempPathW(MAX_PATH * 8, wtostring(str, MAX_PATH * 8));
@@ -76,12 +76,12 @@ namespace freebsd
    //}
 
 
-   //::i32 reg_query_value(HKEY hkey, const char* pszSubKey, string& str)
+   //::int reg_query_value(HKEY hkey, const char* pszSubKey, string& str)
    //{
 
    //   DWORD dwType = 0;
    //   DWORD dwSize = 0;
-   //   ::i32 lResult = RegQueryValueExW(hkey, wstring(pszSubKey), nullptr, &dwType, nullptr, &dwSize);
+   //   ::int lResult = RegQueryValueExW(hkey, wstring(pszSubKey), nullptr, &dwType, nullptr, &dwSize);
 
    //   if (lResult != ERROR_SUCCESS)
    //      return lResult;
@@ -110,7 +110,7 @@ namespace freebsd
    //}
 
 
-   //HICON extract_icon(HINSTANCE hInst, const char* pszExeFileName, ::u32 nIconIndex)
+   //HICON extract_icon(HINSTANCE hInst, const char* pszExeFileName, unsigned int nIconIndex)
 
    //{
 

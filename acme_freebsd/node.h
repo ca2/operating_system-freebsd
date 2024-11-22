@@ -57,7 +57,7 @@ namespace acme_freebsd
       //virtual ::e_status datetime_to_filetime(filetime_t * pFileTime, const ::datetime::time& time) override;
 
 
-      //virtual ::e_status last_error_to_status(::u32 dwLastError);
+      //virtual ::e_status last_error_to_status(unsigned int dwLastError);
 
 
       string audio_get_default_implementation_name() override;

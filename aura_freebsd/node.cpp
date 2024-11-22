@@ -83,7 +83,7 @@ namespace aura_freebsd
 //
 //            key.open(HKEY_CURRENT_USER, "Software\\Microsoft\\Windows\\CurrentVersion\\Themes\\Personalize");
 //
-//            ::u32 dw;
+//            unsigned int dw;
 //
 //            auto estatus = key._get("AppsUseLightTheme", dw);
 //
@@ -124,7 +124,7 @@ namespace aura_freebsd
 //
 //            key.open(HKEY_CURRENT_USER, "Software\\Microsoft\\Windows\\CurrentVersion\\Themes\\Personalize");
 //
-//            ::u32 dw;
+//            unsigned int dw;
 //
 //            auto estatus = key._get("SystemUseLightTheme", dw);
 //
@@ -181,7 +181,7 @@ namespace aura_freebsd
 //      }
 //
 //
-//      void node::set_console_colors(::u32 dwScreenColors, ::u32 dwPopupColors, ::u32 dwWindowAlpha)
+//      void node::set_console_colors(unsigned int dwScreenColors, unsigned int dwPopupColors, unsigned int dwWindowAlpha)
 //      {
 //
 //         ::windows::registry::key key(HKEY_CURRENT_USER, "Console", true);
@@ -199,7 +199,7 @@ namespace aura_freebsd
 //
 //         ::windows::registry::key key(HKEY_CURRENT_USER, "Software\\Microsoft\\Windows\\CurrentVersion\\Themes\\Personalize", true);
 //
-//         ::u32 dwSystemUseLightTheme;
+//         unsigned int dwSystemUseLightTheme;
 //         if (bSet)
 //         {
 //            dwSystemUseLightTheme = 0;
@@ -220,7 +220,7 @@ namespace aura_freebsd
 //
 //         ::windows::registry::key key(HKEY_CURRENT_USER, "Software\\Microsoft\\Windows\\CurrentVersion\\Themes\\Personalize", true);
 //
-//         ::u32 dwAppsUseLightTheme;
+//         unsigned int dwAppsUseLightTheme;
 //         if (bSet)
 //         {
 //            dwAppsUseLightTheme = 0;
@@ -250,7 +250,7 @@ namespace aura_freebsd
 //
 //            DYNAMIC_TIME_ZONE_INFORMATION i = {};
 //
-//            ::u32 dw = GetDynamicTimeZoneInformation(&i);
+//            unsigned int dw = GetDynamicTimeZoneInformation(&i);
 //
 //            if (dw == TIME_ZONE_ID_STANDARD)
 //            {

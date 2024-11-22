@@ -5,7 +5,7 @@
 
 
 //#ifdef FREEBSD
-//u32 Win32FromHResult(HRESULT value);
+//unsigned int Win32FromHResult(HRESULT value);
 //#endif
 //
 //
@@ -38,7 +38,7 @@ namespace apex_freebsd
    }
 
 
-   void service_handler::control_start(u32 u)
+   void service_handler::control_start(unsigned int u)
    {
 
       //queue_user_work_item();
@@ -144,13 +144,13 @@ namespace apex_freebsd
    }
 
 
-   void service_handler::control_stop(u32 u)
+   void service_handler::control_stop(unsigned int u)
    {
 
       s_pservicehandler->stop_service();
       //s_pservicehandler->m_ = e_service_status_stopping;
 
-      //s_pservicehandler->m_stopped.wait(millis((u32)m_dwStopTimeout));
+      //s_pservicehandler->m_stopped.wait(millis((unsigned int)m_dwStopTimeout));
 
    }
 
@@ -256,7 +256,7 @@ namespace apex_freebsd
 //   }
 
 
-//   void service_handler::_main_server(::u32 argumentCount, PWSTR * arguments)
+//   void service_handler::_main_server(unsigned int argumentCount, PWSTR * arguments)
 //   {
 //
 //      if (1 != argumentCount || 0 == arguments || 0 == arguments[0])
@@ -313,7 +313,7 @@ namespace apex_freebsd
 //   //                      and notifies the service control manager of the machine.
 //   //
 //   //*****************************************************************************
-//   void service_handler::update_state(u32 state, HRESULT errorCode)
+//   void service_handler::update_state(unsigned int state, HRESULT errorCode)
 //   {
 //
 //
@@ -375,7 +375,7 @@ namespace apex_freebsd
 //#ifdef FREEBSD
 //
 //
-//u32 Win32FromHResult(HRESULT value)
+//unsigned int Win32FromHResult(HRESULT value)
 //{
 //
 //   ASSERT(FACILITY_WIN32 == HRESULT_FACILITY(value));

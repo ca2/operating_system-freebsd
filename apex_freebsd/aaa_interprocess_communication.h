@@ -13,7 +13,7 @@ namespace apex_freebsd
 
 #ifdef _UWP
 
-      //i32              m_iSerial;
+      //int              m_iSerial;
 
 #elif defined(WINDOWS_DESKTOP)
 

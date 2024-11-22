@@ -450,9 +450,9 @@ namespace draw2d_gdiplus
 
          }
 
-         i32 scanDst = pimageDst->scan_size();
+         int scanDst = pimageDst->scan_size();
 
-         i32 scanSrc = pimageSrc->scan_size();
+         int scanSrc = pimageSrc->scan_size();
 
          u8 * pdst = &((u8 *)pimageDst->colorref())[scanDst * rectDst.top + rectDst.left * sizeof(COLORREF)];
 
@@ -494,7 +494,7 @@ namespace draw2d_gdiplus
    }*/
 
 
-   ::e_status image::SetIconMask(::draw2d::icon * picon, i32 cx, i32 cy)
+   ::e_status image::SetIconMask(::draw2d::icon * picon, int cx, int cy)
    {
 
       if (cx <= 0 || cy <= 0)
@@ -597,7 +597,7 @@ namespace draw2d_gdiplus
       u8 * r2 = (u8 *)pimage2->colorref();
       u8 * srcM = (u8 *)pimageM->colorref();
       u8 * dest = (u8 *)colorref();
-      i32 iSize = cx*cy;
+      int iSize = cx*cy;
 
       byte b;
       byte bMax;

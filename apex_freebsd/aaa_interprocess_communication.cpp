@@ -155,7 +155,7 @@ namespace apex_freebsd
       }
 
 
-      void interprocess_communication_tx::send(i32 message, void * p, i32 iLen, const duration & durationTimeout)
+      void interprocess_communication_tx::send(int message, void * p, int iLen, const duration & durationTimeout)
       {
 
          if(message == 1024)
@@ -186,9 +186,9 @@ namespace apex_freebsd
          // return false;
 
          /* The length is essentially the size_i32 of the structure minus sizeof(mtype) */
-         /*         i32 length = sizeof(data_struct) - sizeof(long);
+         /*         int length = sizeof(data_struct) - sizeof(long);
 
-                  i32 result;
+                  int result;
 
                   ::memcpy_dup(data.data, strMessage, data.size_i32);
 
@@ -277,7 +277,7 @@ namespace apex_freebsd
       void interprocess_communication_rx::destroy()
       {
 
-         i32 iRetry = 23;
+         int iRetry = 23;
 
          while(m_bRunning && iRetry > 0)
          {
@@ -342,7 +342,7 @@ namespace apex_freebsd
 //      }
 //
 //
-//      void interprocess_communication_rx::receiver::on_ipc_receive(interprocess_communication_rx * prx,i32 message,void * pdata,memsize len)
+//      void interprocess_communication_rx::receiver::on_ipc_receive(interprocess_communication_rx * prx,int message,void * pdata,memsize len)
 //      {
 //
 //      }
@@ -371,7 +371,7 @@ namespace apex_freebsd
 //      }
 //
 //
-//      void * interprocess_communication_rx::on_interprocess_receive(::interprocess_communication::rx * prx,i32 message,void * pdata,memsize len)
+//      void * interprocess_communication_rx::on_interprocess_receive(::interprocess_communication::rx * prx,int message,void * pdata,memsize len)
 //      {
 //
 //         if(m_preceiver != nullptr)
@@ -437,7 +437,7 @@ namespace apex_freebsd
 
             ssize_t  result;
 
-            i32 length;
+            int length;
 
             data_struct * pdata = (data_struct *) m.get_data();
 

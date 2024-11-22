@@ -1,6 +1,6 @@
 #include "framework.h"
-#include "acme/filesystem/filesystem/acme_directory.h"
-#include "acme/filesystem/filesystem/acme_path.h"
+#include "acme/filesystem/filesystem/directory_system.h"
+#include "acme/filesystem/filesystem/path_system.h"
 #include "node.h"
 
 
@@ -9,8 +9,8 @@ bool __node_node_pre_init();
 bool __node_node_pos_init();
 
 #include "acme/exception/not_implemented.h"
-#include "acme/filesystem/filesystem/acme_directory.h"
-#include "acme/filesystem/filesystem/acme_path.h"
+#include "acme/filesystem/filesystem/directory_system.h"
+#include "acme/filesystem/filesystem/path_system.h"
 #include "acme/filesystem/filesystem/link.h"
 #include "apex/platform/node.h"
 #include "apex/filesystem/file/set.h"
@@ -18,7 +18,7 @@ bool __node_node_pos_init();
 #define __BSD_VISIBLE 1
 #include <unistd.h>
 
-i32 daemonize_process(const char * _cmd_line, i32 * pprocessId);
+int daemonize_process(const char * _cmd_line, int * pprocessId);
 
 #undef USERNAME_LENGTH // mysql one
 
@@ -255,7 +255,7 @@ namespace apex_freebsd
             //      if (!ExitWindowsEx(EWX_REBOOT | EWX_FORCE,
             //      SHTDN_REASON_MAJOR_SOFTWARE | SHTDN_REASON_MINOR_INSTALLATION))
             //      {
-            //      ::u32 dwLastError = ::get_last_error();
+            //      unsigned int dwLastError = ::get_last_error();
             //      return false;
             //      }
                   //reset the previlages
@@ -279,13 +279,13 @@ namespace apex_freebsd
 
             //return;
 
-            /*      ::u32 dwPid;
+            /*      unsigned int dwPid;
                   while(get_pid_by_title(strName, dwPid))
                   {
                      HANDLE hProcess = OpenProcess( PROCESS_QUERY_INFORMATION |
                         PROCESS_VM_READ,
                         false, dwPid );
-                     TerminateProcess(hProcess, (::u32) -1);
+                     TerminateProcess(hProcess, (unsigned int) -1);
                      Clos_contexteHandle(hProcess);
                      ::EnumWindows((WNDENUMPROC)
                      CKillProcessHelper::TerminateAppEnum,
@@ -306,12 +306,12 @@ namespace apex_freebsd
         }
 
 
-//   bool node::path_pid(::u32 & dwPid, const ::string & strName)
+//   bool node::path_pid(unsigned int & dwPid, const ::string & strName)
 //   {
 //
 //      u32_array dwa;
 //      get_all_processes(dwa);
-//      for(i32 i = 0; i < dwa.get_count(); i++)
+//      for(int i = 0; i < dwa.get_count(); i++)
 //      {
 //         if(get_process_path(dwa[i]).compare_ci(strName) == 0)
 //         {
@@ -323,14 +323,14 @@ namespace apex_freebsd
 //   }
 //
 //
-//   bool node::title_pid(::u32 & dwPid,  const ::string & strName)
+//   bool node::title_pid(unsigned int & dwPid,  const ::string & strName)
 //   {
 //
 //      u32_array dwa;
 //
 //      get_all_processes(dwa);
 //
-//      for(i32 i = 0; i < dwa.get_count(); i++)
+//      for(int i = 0; i < dwa.get_count(); i++)
 //      {
 //
 //         if(get_process_path(dwa[i]).title().compare_ci(strName) == 0)
@@ -349,7 +349,7 @@ namespace apex_freebsd
 //   }
 //
 //
-//   ::file::path node::get_process_path(::u32 dwPid)
+//   ::file::path node::get_process_path(unsigned int dwPid)
 //   {
 //
 //      throw not_implemented();
@@ -368,18 +368,18 @@ namespace apex_freebsd
 //
 //      /*
 //            dwa.set_size(0);
-//            ::u32 cbNeeded = 0;
+//            unsigned int cbNeeded = 0;
 //            while(cbNeeded == natural(dwa.get_count()))
 //            {
 //               dwa.set_size(dwa.get_count() + 1024);
 //               if(!EnumProcesses(
 //                  dwa.get_data(),
-//                  (::u32) (dwa.get_count() * sizeof(::u32)),
+//                  (unsigned int) (dwa.get_count() * sizeof(unsigned int)),
 //                  &cbNeeded))
 //               {
 //                  return;
 //               }
-//               dwa.set_size(cbNeeded / sizeof(::u32));
+//               dwa.set_size(cbNeeded / sizeof(unsigned int));
 //            }*/
 //   }
 //
@@ -389,7 +389,7 @@ namespace apex_freebsd
 ////      return "";
 ////      /*
 ////      string strPath;
-////      ::u32 dwSize = 1;
+////      unsigned int dwSize = 1;
 ////      while(natural(strPath.get_length() + 1) == dwSize)
 ////      {
 ////         dwSize = ::GetModuleFileName(
@@ -952,7 +952,7 @@ namespace apex_freebsd
         }
 
 
-        void node::raise_exception( ::u32 dwExceptionCode, ::u32 dwExceptionFlags)
+        void node::raise_exception( unsigned int dwExceptionCode, unsigned int dwExceptionFlags)
         {
 
             throw not_implemented();
@@ -1050,7 +1050,7 @@ namespace apex_freebsd
 
                     ::file::path pathTarget;
 
-                    auto pfilelink = acmepath()->resolve_link(pathTarget, ::file::e_link_target);
+                    auto pfilelink = path_system()->resolve_link(pathTarget, ::file::e_link_target);
 
                     path = pfilelink->m_pathTarget;
 
@@ -1093,7 +1093,7 @@ namespace apex_freebsd
 
             string strTarget;
 
-            strTarget = get_context()->m_papexcontext->defer_process_path(path);
+            strTarget = application()->defer_process_path(path);
 
             if(freebsd_can_exec(strTarget))
             {
@@ -1104,7 +1104,7 @@ namespace apex_freebsd
 
                 //::system("cd /; setsid \"" + strTarget + "\" </dev/null &>/dev/null");
 
-                //i32 daemonize_process(const char * _cmd_line, i32 * pprocessId)
+                //int daemonize_process(const char * _cmd_line, int * pprocessId)
 
                 // 2018-01-29 call_async("/bin/bash", "-c \"" + strTarget + "\"", strFolder, SW_SHOWDEFAULT, false);
 

@@ -203,7 +203,7 @@ extern "C" void _BPT();
 
 //typedef unsigned char   u_char;
 //typedef unsigned short  u_short;
-//typedef ::u32    u_int;
+//typedef unsigned int    u_int;
 //typedef unsigned long   u_long;
 
 
@@ -233,7 +233,7 @@ typedef wd32char        widechar;
 #endif
 
 
-//#define ::u32     ::u32
+//#define unsigned int     unsigned int
 //
 //#define byte      ::u328_t
 

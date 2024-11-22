@@ -80,13 +80,13 @@ namespace acme_freebsd
 //
 //   {
 //
-//      i32 iNew = dup(m_iFile);
+//      int iNew = dup(m_iFile);
 //
 //      if(iNew == INVALID_FILE)
 //         return nullptr;
 //
 //      auto pFile  = __new(file(get_application(), iNew));
-//      pFile->m_iFile = (::u32)iNew;
+//      pFile->m_iFile = (unsigned int)iNew;
 //      ASSERT(pFile->m_iFile != INVALID_FILE);
 //      return pFile;
 //
@@ -128,7 +128,7 @@ namespace acme_freebsd
 //
 //      // ::collection::map read/write mode
 //      ASSERT((::file::e_open_read|::file::e_open_write|::file::e_open_read_write) == 3);
-//      ::u32 dwFlags =  0;
+//      unsigned int dwFlags =  0;
 //      switch (eopen & ::file::e_open_read_write)
 //      {
 //      case ::file::e_open_read:
@@ -146,7 +146,7 @@ namespace acme_freebsd
 //      }
 //
 //      // ::collection::map share mode
-//      ::u32 dwShareMode = 0;
+//      unsigned int dwShareMode = 0;
 //      switch (eopen & ::file::e_open_share_mask)    // ::collection::map compatibility mode to exclusive
 //      {
 //      default:
@@ -177,7 +177,7 @@ namespace acme_freebsd
 //         dwFlags |= O_TRUNC;
 //      }
 //
-//      ::u32 dwPermission = 0;
+//      unsigned int dwPermission = 0;
 //
 //      dwPermission |= S_IRUSR | S_IWUSR | S_IXUSR;
 //      dwPermission |= S_IRGRP | S_IWGRP | S_IXGRP;
@@ -279,11 +279,11 @@ namespace acme_freebsd
 //      while(nCount > 0)
 //      {
 //         readNow = (size_t) minimum(0x7fffffff, nCount);
-//         i32 iRead = ::read(m_iFile, &((u8 *)pdata)[pos], readNow);
+//         int iRead = ::read(m_iFile, &((u8 *)pdata)[pos], readNow);
 //
 //         if(iRead < 0)
 //         {
-//            i32 iError = errno;
+//            int iError = errno;
 //            if(iError == EAGAIN)
 //            {
 //
@@ -330,7 +330,7 @@ namespace acme_freebsd
 //
 //         auto pdataToWrite = ((const u8 *)pdata) + pos;
 //
-//         i32 iWrite = ::write(m_iFile, pdataToWrite, bytesToWrite);
+//         int iWrite = ::write(m_iFile, pdataToWrite, bytesToWrite);
 //
 //         if(iWrite < 0)
 //         {
@@ -370,10 +370,10 @@ namespace acme_freebsd
 //      ASSERT(eseek == ::e_seek_set || eseek == ::e_seek_from_end || eseek == ::e_seek_current);
 //      ASSERT(::e_seek_set == SEEK_SET && ::e_seek_from_end == SEEK_END && ::e_seek_current == SEEK_CUR);
 //
-//      ::i32 lLoOffset = offset & 0xffffffff;
-//      //::i32 lHiOffset = (lOff >> 32) & 0xffffffff;
+//      ::int lLoOffset = offset & 0xffffffff;
+//      //::int lHiOffset = (lOff >> 32) & 0xffffffff;
 //
-//      filesize posNew = ::lseek(m_iFile, lLoOffset, (::u32)eseek);
+//      filesize posNew = ::lseek(m_iFile, lLoOffset, (unsigned int)eseek);
 ////      posNew |= ((filesize) lHiOffset) << 32;
 //      if(posNew  == (filesize)-1)
 //      {
@@ -394,8 +394,8 @@ namespace acme_freebsd
 //
 //      ASSERT(m_iFile != INVALID_FILE);
 //
-//      ::i32 lLoOffset = 0;
-////      ::i32 lHiOffset = 0;
+//      ::int lLoOffset = 0;
+////      ::int lHiOffset = 0;
 //
 //      filesize pos = ::lseek(m_iFile, lLoOffset, SEEK_CUR);
 //      //    pos |= ((filesize)lHiOffset) << 32;
@@ -545,7 +545,7 @@ namespace acme_freebsd
 //
 //
 //   // file does not support direct buffering (CMemFile does)
-//   u64 file::GetBufferPtr(::u32 /*nCommand*/, u64 /*nCount*/, void ** /*ppBufStart*/, void ** /*ppBufMax*/)
+//   u64 file::GetBufferPtr(unsigned int /*nCommand*/, u64 /*nCount*/, void ** /*ppBufStart*/, void ** /*ppBufMax*/)
 //   {
 //
 //      //ASSERT(nCommand == bufferCheck);
@@ -570,7 +570,7 @@ namespace acme_freebsd
 //
 //      ::file::file::dump(dumpcontext);
 //
-//      dumpcontext << "with handle " << (::u32)m_iFile;
+//      dumpcontext << "with handle " << (unsigned int)m_iFile;
 //      dumpcontext << " and name \"" << m_path << "\"";
 //      dumpcontext << "\n";
 //
@@ -749,7 +749,7 @@ namespace acme_freebsd
 //
 //
 //   char realname[_POSIX_PATH_MAX * 4];
-//   i32 rc = 0;
+//   int rc = 0;
 //
 //   if(realpath(pszSource, realname) == 0)
 //      return false;

@@ -27,7 +27,7 @@ void __copy(::color::color & color, const GdkRGBA & rgba)
 }
 
 
-void __gtk_style_context_get_color(GtkStyleContext *context, GtkStateFlags state, const char * pszProperty, ::u32 & u32)
+void __gtk_style_context_get_color(GtkStyleContext *context, GtkStateFlags state, const char * pszProperty, unsigned int & unsigned int)
 {
 
    GdkRGBA * prgba = nullptr;
@@ -40,7 +40,7 @@ void __gtk_style_context_get_color(GtkStyleContext *context, GtkStateFlags state
 
    gdk_rgba_free (prgba);
 
-   u32 = color.u32;
+   unsigned int = color.unsigned int;
 
 }
 
@@ -512,13 +512,13 @@ namespace desktop_environment_gnome
             pstylecontext,
             GTK_STATE_FLAG_NORMAL,
             GTK_STYLE_PROPERTY_BACKGROUND_COLOR,
-            pthemecolors->m_colorBack.u32);
+            pthemecolors->m_colorBack.unsigned int);
 
          __gtk_style_context_get_color(
             pstylecontext,
             GTK_STATE_FLAG_NORMAL,
             GTK_STYLE_PROPERTY_COLOR,
-            pthemecolors->m_colorFore.u32);
+            pthemecolors->m_colorFore.unsigned int);
 
          gtk_widget_destroy(pdialog);
 
@@ -536,7 +536,7 @@ namespace desktop_environment_gnome
             pstylecontext,
             GTK_STATE_FLAG_NORMAL,
             GTK_STYLE_PROPERTY_BACKGROUND_COLOR,
-            pthemecolors->m_colorFace.u32);
+            pthemecolors->m_colorFace.unsigned int);
 
          double dAlpha = pthemecolors->m_colorFace.get_a_rate();
 
@@ -551,7 +551,7 @@ namespace desktop_environment_gnome
             pstylecontext,
             GTK_STATE_FLAG_PRELIGHT,
             GTK_STYLE_PROPERTY_BACKGROUND_COLOR,
-            pthemecolors->m_colorFaceHover.u32);
+            pthemecolors->m_colorFaceHover.unsigned int);
 
          dAlpha = pthemecolors->m_colorFaceHover.get_a_rate();
 
@@ -566,7 +566,7 @@ namespace desktop_environment_gnome
             pstylecontext,
             GTK_STATE_FLAG_ACTIVE,
             GTK_STYLE_PROPERTY_BACKGROUND_COLOR,
-            pthemecolors->m_colorFacePress.u32);
+            pthemecolors->m_colorFacePress.unsigned int);
 
          dAlpha = pthemecolors->m_colorFacePress.get_a_rate();
 
@@ -581,19 +581,19 @@ namespace desktop_environment_gnome
             pstylecontext,
             GTK_STATE_FLAG_NORMAL,
             GTK_STYLE_PROPERTY_COLOR,
-            pthemecolors->m_colorButton.u32);
+            pthemecolors->m_colorButton.unsigned int);
 
          __gtk_style_context_get_color(
             pstylecontext,
             GTK_STATE_FLAG_PRELIGHT,
             GTK_STYLE_PROPERTY_COLOR,
-            pthemecolors->m_colorButtonHover.u32);
+            pthemecolors->m_colorButtonHover.unsigned int);
 
          __gtk_style_context_get_color(
             pstylecontext,
             GTK_STATE_FLAG_NORMAL,
             GTK_STYLE_PROPERTY_BORDER_COLOR,
-            pthemecolors->m_colorBorder.u32);
+            pthemecolors->m_colorBorder.unsigned int);
 
 
 //         pthemecolors->m_colorBorderHover4 = pthemecolors->m_colorBorderHover;
@@ -617,7 +617,7 @@ namespace desktop_environment_gnome
             pstylecontext,
             GTK_STATE_FLAG_SELECTED,
             GTK_STYLE_PROPERTY_BACKGROUND_COLOR,
-            pthemecolors->m_colorBorderHover.u32);
+            pthemecolors->m_colorBorderHover.unsigned int);
 
          pthemecolors->m_colorBorderPress = pthemecolors->m_colorBorderHover;
 
@@ -637,7 +637,7 @@ namespace desktop_environment_gnome
             pstylecontext,
             GTK_STATE_FLAG_SELECTED,
             GTK_STYLE_PROPERTY_COLOR,
-            pthemecolors->m_colorButtonPress.u32);
+            pthemecolors->m_colorButtonPress.unsigned int);
 
          gtk_widget_destroy(pwidget);
 

@@ -33,10 +33,10 @@ namespace apex_freebsd
       //virtual ::file::path get_module_path(HMODULE hmodule) override;
 
 
-      //virtual bool path_pid(::u32 & dwPid, const ::string & strName) override;
-      //virtual bool title_pid(::u32 & dwPid, const ::string & strName) override;
+      //virtual bool path_pid(unsigned int & dwPid, const ::string & strName) override;
+      //virtual bool title_pid(unsigned int & dwPid, const ::string & strName) override;
       //virtual void get_all_processes(u32_array & dwa) override;
-      //virtual ::file::path get_process_path(::u32 dwPid) override;
+      //virtual ::file::path get_process_path(unsigned int dwPid) override;
       //virtual int get_pid() override;
 
       virtual ::payload connection_settings_get_auto_detect() override;
@@ -68,7 +68,7 @@ namespace apex_freebsd
 
       void stop_service(const ::string & strServiceName) override;
 
-      void raise_exception( ::u32 dwExceptionCode, ::u32 dwExceptionFlags);
+      void raise_exception( unsigned int dwExceptionCode, unsigned int dwExceptionFlags);
 
       virtual bool is_remote_session() override;
 

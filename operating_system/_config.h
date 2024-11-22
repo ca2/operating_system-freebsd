@@ -58,7 +58,7 @@
 
 
 
-#define INFINITE_TIMEOUT ((::u32)0xffffffff)
+#define INFINITE_TIMEOUT ((unsigned int)0xffffffff)
 
 
 #ifdef cplus

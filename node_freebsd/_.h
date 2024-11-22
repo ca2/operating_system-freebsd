@@ -17,8 +17,8 @@
 #include "_const.h"
 
 
-CLASS_DECL_NODE_FREEBSD ::user::enum_desktop get_edesktop();
-CLASS_DECL_NODE_FREEBSD ::user::enum_desktop calculate_edesktop();
+//CLASS_DECL_NODE_FREEBSD ::user::enum_desktop get_edesktop();
+//CLASS_DECL_NODE_FREEBSD ::user::enum_desktop calculate_edesktop();
 
 
 

@@ -51,7 +51,7 @@ IMPLEMENT_FACTORY(apex_freebsd)
    //pfactory->add_factory_item < ::apex_freebsd::file_context, ::file_context >();
    pfactory->add_factory_item < ::apex_freebsd::service_handler, ::service_handler >();
 
-   pfactory->add_factory_item < ::apex_freebsd::node, ::acme::node >();
+   pfactory->add_factory_item < ::apex_freebsd::node, ::platform::node >();
 
    //add_factory_item < ::freebsd::copydesk, ::user::cop
    // 
