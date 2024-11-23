@@ -59,7 +59,7 @@ namespace operating_ambient_gtk_based
    void node::initialize(::particle * pparticle)
    {
 
-      ::aura_linux::node::initialize(pparticle);
+      ::aura_freebsd::node::initialize(pparticle);
 
       ::node_gtk_based::node::initialize(pparticle);
 

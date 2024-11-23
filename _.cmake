@@ -406,11 +406,11 @@ if (GNOME_DESKTOP)
     message(STATUS "Adding GNOME/X11 dependency.")
 
     list(APPEND app_common_dependencies
-            desktop_environment_gtk_based)
+            operating_ambient_gtk_based)
 
 
     list(APPEND static_app_common_dependencies
-            static_desktop_environment_gtk_based
+            static_operating_ambient_gtk_based
             static_node_gnome
             static_node_gtk
             static_node_linux

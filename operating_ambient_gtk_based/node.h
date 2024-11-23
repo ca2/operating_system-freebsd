@@ -8,7 +8,7 @@
 #pragma once
 
 
-#include "aura_linux/node.h"
+#include "aura_freebsd/node.h"
 #include "node_gtk_based/node.h"
 
 
@@ -17,7 +17,7 @@ namespace operating_ambient_gtk_based
 
 
    class CLASS_DECL_DESKTOP_ENVIRONMENT_GTK_BASED node :
-      virtual public ::aura_linux::node,
+      virtual public ::aura_freebsd::node,
       virtual public ::node_gtk_based::node
    {
    public:

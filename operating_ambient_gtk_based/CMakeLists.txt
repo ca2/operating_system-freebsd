@@ -17,18 +17,22 @@ list(APPEND library_source
 list(APPEND library_references
    acme
    acme_posix
-   acme_linux
+   acme_darwin
+   acme_freebsd
    apex
    apex_posix
-   apex_linux
+   apex_darwin
+   apex_freebsd
    aqua
    aura
    aura_posix
-   aura_linux
+   aura_darwin
+   aura_freebsd
    #windowing_x11
     #    node_gdk
    node_gtk_based
    )
+
 
 if(${HAS_GTK4})
    list(APPEND library_references node_gtk4)
@@ -57,7 +61,7 @@ if (MSVC)
    target_link_options(${PROJECT_NAME} PRIVATE "/DEFAULTLIB:msvcrt$<$<CONFIG:Debug>:d>")
    target_link_options(${PROJECT_NAME} PRIVATE "/SUBSYSTEM:WINDOWS")
    target_link_libraries(${PROJECT_NAME} PRIVATE ${library_references})
-elseif (LINUX)
+elseif (${LINUX} OR ${__BSD__})
 
 
    if(${HAS_GTK4})
@@ -86,11 +90,14 @@ elseif (LINUX)
 endif ()
 
 
+add_dependencies(${PROJECT_NAME} ${default_nano_graphics})
 
 
 list(APPEND library_include_directories ${CMAKE_CURRENT_SOURCE_DIR})
 list(APPEND library_include_directories ${CMAKE_CURRENT_SOURCE_DIR}/..)
 list(APPEND library_include_directories ${CMAKE_CURRENT_SOURCE_DIR}/../..)
+list(APPEND library_include_directories ${CMAKE_CURRENT_SOURCE_DIR}/../../operating_system-darwin)
+list(APPEND library_include_directories ${CMAKE_CURRENT_SOURCE_DIR}/../../operating_system-posix)
 
 
 target_include_directories(${PROJECT_NAME} PRIVATE ${library_include_directories})
