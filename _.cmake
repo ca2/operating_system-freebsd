@@ -13,10 +13,16 @@ set(USE_PKGCONFIG TRUE)
 set(NO_PRECOMPILED_HEADER TRUE)
 
 set(LAUNCH_STORE_SYSTEM "freebsd")
+set(TOOL_RELEASE_NAME "freebsd")
+set(MAIN_STORE_SLASHED_OPERATING_SYSTEM "freebsd")
+
 
 
 execute_process(COMMAND uname -m OUTPUT_VARIABLE __SYSTEM_ARCHITECTURE)
 string(STRIP ${__SYSTEM_ARCHITECTURE} __SYSTEM_ARCHITECTURE)
+
+execute_process(COMMAND uname -r OUTPUT_VARIABLE __SYSTEM_RELEASE)
+set(OPERATING_SYSTEM_RELEASE ${__SYSTEM_RELEASE})
 
 
 message(STATUS "__SYSTEM_ARCHITECTURE is ${__SYSTEM_ARCHITECTURE}")
@@ -102,8 +108,8 @@ message(STATUS "DESKTOP_ENVIRONMENT_NAME is ${DESKTOP_ENVIRONMENT_NAME}")
 
 set(UNDERSCORE_OPERATING_SYSTEM $ENV{__SYSTEM_UNDERSCORE_OPERATING_SYSTEM})
 set(SLASHED_OPERATING_SYSTEM $ENV{__SYSTEM_SLASHED_OPERATING_SYSTEM})
-set(OPERATING_SYSTEM $ENV{__OPERATING_SYSTEM})
-set(OPERATING_SYSTEM_RELEASE $ENV{__OPERATING_SYSTEM_RELEASE})
+#set(OPERATING_SYSTEM $ENV{__OPERATING_SYSTEM})
+#set(OPERATING_SYSTEM_RELEASE $ENV{__OPERATING_SYSTEM_RELEASE})
 
 
 #include(${WORKSPACE_FOLDER}/operating_system/operating_system-posix/_desktop.cmake)
@@ -187,8 +193,6 @@ endif ()
 set(CMAKE_SKIP_BUILD_RPATH FALSE)
 set(CMAKE_BUILD_WITH_INSTALL_RPATH TRUE)
 set(CMAKE_INSTALL_RPATH $ORIGIN)
-#set_target_properties(${PROJECT_NAME} PROPERTIES CMAKE_INSTALL_RPATH_USE_LINK_PATH TRUE)
-
 set(OPERATING_SYSTEM_POSIX TRUE)
 set(FILE_SYSTEM_INOTIFY TRUE)
 set(POSIX_SPAWN TRUE)
@@ -415,6 +419,13 @@ if (GNOME_DESKTOP)
             static_node_gtk
             static_node_linux
             static_windowing_x11)
+
+
+    list(APPEND static_acme_libraries
+        static_acme
+        static_acme_posix
+        static_acme_darwin
+        static_acme_freebsd)
 
     set(default_windowing "windowing_x11")
 
