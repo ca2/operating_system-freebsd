@@ -1,18 +1,18 @@
 #pragma once
 
 
-#include "aura_freebsd/_.h"
-#include "node_gtk_based/_.h"
+#include "node_freebsd/_.h"
+#include "node_gtk4/_.h"
 
 
-#if defined(_operating_ambient_gtk_based_project)
-   #define CLASS_DECL_DESKTOP_ENVIRONMENT_GTK_BASED  CLASS_DECL_EXPORT
+#if defined(_operating_ambient_gtk4_project)
+   #define CLASS_DECL_OPERATING_AMBIENT_GTK4  CLASS_DECL_EXPORT
 #else
-   #define CLASS_DECL_DESKTOP_ENVIRONMENT_GTK_BASED  CLASS_DECL_IMPORT
+   #define CLASS_DECL_OPERATING_AMBIENT_GTK4  CLASS_DECL_EXPORT
 #endif
 
 
-namespace operating_ambient_gtk_based
+namespace operating_ambient_gtk4
 {
 
 

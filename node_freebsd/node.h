@@ -8,30 +8,27 @@
 #pragma once
 
 
-namespace aura
+#include "aura_freebsd/node.h"
+
+namespace node_freebsd
 {
 
 
-   namespace freebsd
-   {
-
-
-      class CLASS_DECL_AURA_FREEBSD node :
-         virtual public ::apex::freebsd::node,
-         virtual public ::aura::posix::node
+      class CLASS_DECL_NODE_FREEBSD node :
+         virtual public ::aura_freebsd::node
       {
       public:
 
 
          node();
 
-         virtual ~node();
+         ~node() override;
 
 
-         virtual e_status initialize(::object* pobject) override;
+         void initialize(::particle* pparticle) override;
 
 
-         string get_user_name();
+         //string get_user_name();
 
 
          //virtual bool _os_calc_app_dark_mode() override;
@@ -50,7 +47,7 @@ namespace aura
 
          //virtual ::e_status get_system_time(system_time_t * psystemtime) override;
 
-         virtual ::e_status open_folder(::file::path & pathFolder) override;
+         //void open_folder(const ::file::path & pathFolder) override;
 
          //virtual ::e_status register_dll(const ::file::path & pathDll) override;
 
@@ -60,10 +57,8 @@ namespace aura
       };
 
 
-   } // namespace freebsd
 
-
-} // namespace aura
+} // namespace node_freebsd
 
 
 

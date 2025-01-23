@@ -1,12 +1,10 @@
 #pragma once
 
 
-#include "aura/_.h"
-#include "apex_freebsd/_.h"
-#include "operating_system-posix/aura_posix/_.h"
+#include "aura_freebsd/_.h"
 
 
-#if defined(_NODE_FREEBSD_LIBRARY)
+#if defined(_node_freebsd_project)
 #define CLASS_DECL_NODE_FREEBSD  CLASS_DECL_EXPORT
 #else
 #define CLASS_DECL_NODE_FREEBSD  CLASS_DECL_IMPORT

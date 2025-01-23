@@ -6,6 +6,8 @@ list(APPEND library_source
     _.cpp
     _.h
     _factory.cpp
+    node.cpp
+    node.h
     )
 
 
@@ -14,8 +16,16 @@ add_library(${PROJECT_NAME} SHARED ${library_source})
 
 list(APPEND library_references
    acme
+   acme_posix
+   acme_darwin
    acme_freebsd
+   apex
+   apex_posix
+   apex_darwin
+   apex_freebsd
+   aura
    aura_posix
+   aura_darwin
    aura_freebsd
    )
 
@@ -49,9 +59,14 @@ elseif(${FREEBSD})
 endif()
 
 
-target_include_directories(${PROJECT_NAME} PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/../..)
-target_include_directories(${PROJECT_NAME} PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/..)
-target_include_directories(${PROJECT_NAME} PRIVATE ${CMAKE_CURRENT_SOURCE_DIR})
+list(APPEND library_include_directories ${CMAKE_CURRENT_SOURCE_DIR}/../..)
+list(APPEND library_include_directories ${CMAKE_CURRENT_SOURCE_DIR}/..)
+list(APPEND library_include_directories ${CMAKE_CURRENT_SOURCE_DIR})
+list(APPEND library_include_directories ${CMAKE_CURRENT_SOURCE_DIR}/../../operating_system-darwin)
+list(APPEND library_include_directories ${CMAKE_CURRENT_SOURCE_DIR}/../../operating_system-posix)
+
+
+target_include_directories(${PROJECT_NAME} PRIVATE ${library_include_directories})
 
 
 target_compile_definitions(${PROJECT_NAME} PRIVATE _${PROJECT_NAME}_project)

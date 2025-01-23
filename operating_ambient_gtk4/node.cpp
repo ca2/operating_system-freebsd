@@ -15,7 +15,7 @@
 void gdk_branch(const ::procedure & procedure);
 //CLASS_DECL_ACME void set_main_user_itask(itask_t itask);
 
-namespace operating_ambient_gtk_based
+namespace operating_ambient_gtk4
 {
 
 
@@ -25,7 +25,7 @@ namespace operating_ambient_gtk_based
    node::node()
    {
 
-      m_pNodeDesktopEnvironmentGtkBased = this;
+      //m_pNodeDesktopEnvironmentGtkBased = this;
 
 //      defer_initialize_x11();
 
@@ -59,9 +59,9 @@ namespace operating_ambient_gtk_based
    void node::initialize(::particle * pparticle)
    {
 
-      ::aura_freebsd::node::initialize(pparticle);
+      ::node_freebsd::node::initialize(pparticle);
 
-      ::node_gtk_based::node::initialize(pparticle);
+      ::node_gtk4::node::initialize(pparticle);
 
    }
 
@@ -348,7 +348,7 @@ namespace operating_ambient_gtk_based
 //   }
 
 
-} // namespace operating_ambient_gtk_based
+} // namespace operating_ambient_gtk4
 
 
 

@@ -31,7 +31,7 @@ namespace apex_freebsd
       void initialize(::particle * pparticle) override;
 
 
-      string get_user_name() override;
+      //string get_user_name() override;
 
       void process_init();
 

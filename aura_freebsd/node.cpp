@@ -25,20 +25,20 @@ namespace aura_freebsd
    }
 
 
-   string node::get_user_name()
-   {
+//    string node::get_user_name()
+//    {
 
-//         WCHAR wsz[1024];
-//
-//         DWORD dwSize = sizeof(wsz) / sizeof(WCHAR);
-//
-//         ::GetUserNameW(wsz, &dwSize);
-//
-//         return string(wsz);
+// //         WCHAR wsz[1024];
+// //
+// //         DWORD dwSize = sizeof(wsz) / sizeof(WCHAR);
+// //
+// //         ::GetUserNameW(wsz, &dwSize);
+// //
+// //         return string(wsz);
 
-      return "";
+//       return "";
 
-   }
+//    }
 
 
    void node::initialize(::particle * pparticle)

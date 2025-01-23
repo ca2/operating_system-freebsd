@@ -28,7 +28,7 @@ namespace aura_freebsd
       ~node() override;
 
 
-      string get_user_name() override;
+//      string get_user_name() override;
 
 
       void initialize(::particle * pparticle) override;
