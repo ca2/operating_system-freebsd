@@ -112,10 +112,6 @@ set(SLASHED_OPERATING_SYSTEM $ENV{__SYSTEM_SLASHED_OPERATING_SYSTEM})
 #set(OPERATING_SYSTEM_RELEASE $ENV{__OPERATING_SYSTEM_RELEASE})
 
 
-#include(${WORKSPACE_FOLDER}/operating_system/operating_system-posix/_desktop.cmake)
-
-
-
 #    execute_process(COMMAND gnome-shell --version OUTPUT_VARIABLE GNOME_SHELL_VERSION_RAW OUTPUT_STRIP_TRAILING_WHITESPACE)
 #    message(STATUS "GNOME_SHELL_VERSION_RAW is ${GNOME_SHELL_VERSION_RAW}")
 #    string(TOLOWER ${GNOME_SHELL_VERSION_RAW} GNOME_RELEASE)
@@ -344,7 +340,7 @@ if (KDE_DESKTOP)
     #        endif()
 endif ()
 
-if(${GNOME_DESKTOP})
+if(${GTK_BASED_DESKTOP})
 include(${WORKSPACE_FOLDER}/operating_system/operating_system-posix/_gtk_based_desktop.cmake)
 endif()
 
@@ -403,35 +399,92 @@ if (XFCE_DESKTOP)
 
 endif ()
 
+list(APPEND default_acme
+    acme
+    acme_posix
+    acme_darwin
+    acme_freebsd)
 
-if (GNOME_DESKTOP)
+if (${GTK_BASED_DESKTOP})
 
 
     message(STATUS "Adding GNOME/X11 dependency.")
 
-    list(APPEND app_common_dependencies
-            operating_ambient_gtk_based)
 
 
     list(APPEND static_app_common_dependencies
-            static_operating_ambient_gtk_based
+            static_operating_ambient_gtk4
             static_node_gnome
             static_node_gtk
             static_node_linux
             static_windowing_x11)
 
 
-    list(APPEND static_acme_libraries
-        static_acme
-        static_acme_posix
-        static_acme_darwin
-        static_acme_freebsd)
+    list(APPEND default_acme
+        default_acme_windowing
+        )
+
+    list(APPEND acme_libraries
+        acme
+        acme_posix
+        acme_darwin
+        acme_freebsd
+        )
+
+    list(APPEND apex_libraries
+        acme_libraries
+        apex
+        apex_posix
+        apex_darwin
+        apex_freebsd
+        }
+
+    list(APPEND app_common_dependencies
+        apex_libraries
+        aqua
+        aura
+        aura_posix
+        aura_darwin
+        aura_freebsd
+        node_freebsd
+        )
+
+    if(${HAS_GTK4})
+    
+    list(APPEND default_acme_windowing
+        acme_windowing_gtk4
+        nano_graphics_cairo
+        )
+
+
+    list(APPEND apex_libraries
+        acme_windowing_gtk4
+        nano_graphics_cairo
+        innate_ui_gtk4
+        )
+
+    list(APPEND app_common_dependencies
+        aura_libraries
+        acme_windowing_gtk4
+        nano_graphics_cairo
+        innate_ui_gtk4
+        windowing_gtk4
+        node_gtk4
+        operating_ambient_gtk4
+        )
+
+    endif()
+
+    list(APPEND acme_windowing_kde5)
 
     set(default_windowing "windowing_x11")
 
     add_compile_definitions(DESKTOP_ENVIRONMENT_GNOME)
 
 endif ()
+
+
+
 
 
 if (KDE_DESKTOP)
