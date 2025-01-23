@@ -399,92 +399,93 @@ if (XFCE_DESKTOP)
 
 endif ()
 
-list(APPEND default_acme
+
+list(APPEND acme_libraries
     acme
     acme_posix
     acme_darwin
     acme_freebsd)
 
+
+list(APPEND apex_libraries
+    ${acme_libraries}
+    apex
+    apex_posix
+    apex_darwin
+    apex_freebsd
+    )
+
+list(APPEND aura_libraries
+    ${apex_libraries}
+    aura
+    aura_posix
+    aura_darwin
+    aura_freebsd
+    node_freebsd
+    )
+
+set(default_nano_graphics nano_graphics_cairo)
+
+
 if (${GTK_BASED_DESKTOP})
 
-
     message(STATUS "Adding GNOME/X11 dependency.")
-
-
 
     list(APPEND static_app_common_dependencies
             static_operating_ambient_gtk4
             static_node_gnome
             static_node_gtk
-            static_node_linux
-            static_windowing_x11)
+            static_node_linux)
 
-
-    list(APPEND default_acme
-        default_acme_windowing
-        )
-
-    list(APPEND acme_libraries
-        acme
-        acme_posix
-        acme_darwin
-        acme_freebsd
-        )
-
-    list(APPEND apex_libraries
-        acme_libraries
-        apex
-        apex_posix
-        apex_darwin
-        apex_freebsd
-        }
-
-    list(APPEND app_common_dependencies
-        apex_libraries
-        aqua
-        aura
-        aura_posix
-        aura_darwin
-        aura_freebsd
-        node_freebsd
-        )
+    set(default_common_windowing common_gtk)
 
     if(${HAS_GTK4})
     
-    list(APPEND default_acme_windowing
-        acme_windowing_gtk4
-        nano_graphics_cairo
-        )
+        set(default_acme_windowing acme_windowing_gtk4)
 
+        set(default_innate_ui innate_ui_gtk4)
 
-    list(APPEND apex_libraries
-        acme_windowing_gtk4
-        nano_graphics_cairo
-        innate_ui_gtk4
-        )
+        set(default_windowing_common windowing_posix)
 
-    list(APPEND app_common_dependencies
-        aura_libraries
-        acme_windowing_gtk4
-        nano_graphics_cairo
-        innate_ui_gtk4
-        windowing_gtk4
-        node_gtk4
-        operating_ambient_gtk4
-        )
+        set(default_windowing windowing_gtk4)
+
+        set(default_operating_ambient operating_ambient_gtk4)
+
+        set(default_node node_gtk4)
 
     endif()
-
-    list(APPEND acme_windowing_kde5)
-
-    set(default_windowing "windowing_x11")
 
     add_compile_definitions(DESKTOP_ENVIRONMENT_GNOME)
 
 endif ()
 
 
+list(APPEND acme_windowing_libraries
+    ${default_nano_graphics}
+    ${default_acme_windowing}
+    )
+    
 
+list(APPEND innate_ui_libraries
+    ${acme_windowing_libraries}
+    ${default_innate_ui}
+    )
+
+
+list(APPEND operating_ambient_libraries
+    ${innate_ui_libraries}
+    ${default_common_windowing}
+    ${default_windowing_common}
+    ${default_windowing}
+    ${default_node}
+    ${default_operating_ambient}
+    )
+
+
+list(APPEND app_common_dependencies
+    ${aura_libraries}
+    ${operating_ambient_libraries}
+    )
 
 
 if (KDE_DESKTOP)
@@ -542,8 +543,6 @@ set(LIBCXX_TARGETING_MSVC OFF)
 add_compile_definitions(UNICODE)
 add_compile_definitions(_UNICODE)
 
-
-list(APPEND app_common_dependencies ${default_node})
 
 
 #set(LIBRARY_OUTPUT_PATH ${CMAKE_CURRENT_SOURCE_DIR}/time-${OPERATING_SYSTEM_NAME}/x64/basis)

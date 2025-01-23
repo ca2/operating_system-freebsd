@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.16)
-project(operating_ambient_gtk_based CXX)
+project(operating_ambient_gtk4 CXX)
 
 
 list(APPEND library_source
@@ -28,9 +28,8 @@ list(APPEND library_references
    aura_posix
    aura_darwin
    aura_freebsd
-   #windowing_x11
-    #    node_gdk
-   node_gtk_based
+   node_freebsd
+   node_gtk4
    )
 
 
