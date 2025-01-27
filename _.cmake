@@ -28,7 +28,6 @@ set(OPERATING_SYSTEM_RELEASE ${__SYSTEM_RELEASE})
 message(STATUS "__SYSTEM_ARCHITECTURE is ${__SYSTEM_ARCHITECTURE}")
 
 
-
 #set(GLOBAL_EXTRA_COMPILER_FLAGS -fnon-call-exceptions -nostdinc -nostdinc++ -I/usr/include/c++/v1 -I/usr/include -I/usr/local/include)
 #set(GLOBAL_EXTRA_LINKER_FLAGS -nodefaultlibs -lc++ -lcxxrt -lthr -lm -lc -lgcc_s)
 #set(GLOBAL_EXTRA_LINKER_FLAGS -L/usr/lib)
@@ -92,6 +91,7 @@ if ($ENV{XDG_CURRENT_DESKTOP} STREQUAL "KDE")
     set(KDE_DESKTOP TRUE)
     message(STATUS "System is KDE")
     set(DESKTOP_ENVIRONMENT_NAME "kde")
+    include("operating_system/operating_system-posix/_kde_desktop.cmake")
 elseif ($ENV{XDG_CURRENT_DESKTOP} STREQUAL "GNOME")
     set(GNOME_DESKTOP TRUE)
     set(GTK_BASED_DESKTOP TRUE)
@@ -193,9 +193,9 @@ set(OPERATING_SYSTEM_POSIX TRUE)
 set(FILE_SYSTEM_INOTIFY TRUE)
 set(POSIX_SPAWN TRUE)
 set(POSIX_LIST_SERIAL_PORTS TRUE)
-set(WITH_X11 TRUE)
-set(HAS_X11 TRUE)
-set(WITH_XCB TRUE)
+set(WITH_X11 FALSE) # FALSE, it means X11 is not explicitly handled (maybe only indirectly by some toolkit api/implementation)
+set(HAS_X11 FALSE) # FALSE, it means X11 is not explicitly handled (maybe only indirectly by some toolkit api/implementation)
+set(WITH_XCB FALSE) # FALSE, it means XCB is not explicitly handled (maybe only indirectly by some toolkit api/implementation)
 set(WITH_XI TRUE)
 set(USE_OPENSSL TRUE)
 set(PTHREAD TRUE)
@@ -254,14 +254,14 @@ else ()
 
 endif ()
 
-message(STATUS "DISTRO_RELEASE is ${DISTRO_RELEASE}")
+message(STATUS "OPERATING_SYSTEM_RELEASE is ${OPERATING_SYSTEM_RELEASE}")
 
 set(MIDI FALSE)
 set(ALSA_MIDI FALSE)
 set(INTERPROCESS_COMMUNICATION_SYSTEM_5 TRUE)
 
-add_compile_definitions(WITH_X11)
-add_compile_definitions(WITH_SN)
+#add_compile_definitions(WITH_X11)
+#add_compile_definitions(WITH_SN)
 add_compile_definitions(WITH_XI)
 link_libraries(pthread)
 include(FindPkgConfig)
@@ -273,7 +273,7 @@ if (EXISTS $ENV{HOME}/__config/xfce.txt)
 
 endif ()
 
-if (KDE_DESKTOP)
+if (${KDE_DESKTOP})
 
     set(WITH_XCB TRUE)
     add_compile_definitions(WITH_XCB=1)
@@ -457,6 +457,24 @@ if (${GTK_BASED_DESKTOP})
 
     add_compile_definitions(DESKTOP_ENVIRONMENT_GNOME)
 
+elseif(${KDE_DESKTOP})
+
+    if(${HAS_KDE5})
+
+        set(default_acme_windowing acme_windowing_kde5)
+
+        set(default_innate_ui innate_ui_kde5)
+
+        set(default_windowing_common windowing_posix)
+
+        set(default_windowing windowing_kde5)
+
+        set(default_operating_ambient operating_ambient_kde5)
+
+        set(default_node node_kde5)
+
+    endif()
+
 endif ()
 
 
@@ -488,36 +506,36 @@ list(APPEND app_common_dependencies
     )
 
 
-if (KDE_DESKTOP)
-
-    list(APPEND app_common_dependencies
-            desktop_environment_kde)
-
-#    list(APPEND static_app_common_dependencies
-#            static_desktop_environment_kde
-#            static_node_kde
-#            static_windowing_xcb
-#            KF5::Notifications
-#            KF5::ConfigWidgets
-#            KF5::IconThemes
-#            KF5::KIOCore
-#            KF5::KIOFileWidgets
-#            KF5::KIOWidgets
-#            KF5::KIONTLM
-#            PW::KWorkspace
-#            )
-
-    set(default_windowing "windowing_xcb")
-
-    add_compile_definitions(DESKTOP_ENVIRONMENT_KDE)
-
-    add_compile_definitions(default_windowing=windowing_xcb)
-
-endif ()
+#if (KDE_DESKTOP)
+#
+#    list(APPEND app_common_dependencies
+#            desktop_environment_kde)
+#
+##    list(APPEND static_app_common_dependencies
+##            static_desktop_environment_kde
+##            static_node_kde
+##            static_windowing_xcb
+##            KF5::Notifications
+##            KF5::ConfigWidgets
+##            KF5::IconThemes
+##            KF5::KIOCore
+##            KF5::KIOFileWidgets
+##            KF5::KIOWidgets
+##            KF5::KIONTLM
+##            PW::KWorkspace
+##            )
+#
+#    set(default_windowing "windowing_xcb")
+#
+#    add_compile_definitions(DESKTOP_ENVIRONMENT_KDE)
+#
+#    add_compile_definitions(default_windowing=windowing_xcb)
+#
+#endif ()
 
 
 #set(static_acme_extra_pkgconfig cairo xcb x11 xkbcommon xcb-render xcb-aux x11-xcb)
-#set(static_aura_posix_pkgconfig libstartup-notification-1.0)
+#set(static_aura_posix_pkgconfig libstartupxx-notification-1.0)
 #
 #set(static_acme_pkgconfig freetype2 libidn ${static_acme_extra_pkgconfig} ncurses dbus-glib-1)
 #set(static_apex_pkgconfig libcrypto libssl libarchive)
