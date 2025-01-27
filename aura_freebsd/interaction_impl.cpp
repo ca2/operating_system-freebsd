@@ -3236,7 +3236,7 @@
 // //      return estatus;
 // ////
 // ////
-// ////      oswindow w = ::set_focus(get_handle());
+// ////      oswindow w = ::set_keyboard_focus(get_handle());
 // ////
 // ////      if(w  == nullptr)
 // ////      {

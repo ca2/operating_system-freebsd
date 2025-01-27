@@ -227,7 +227,7 @@
 //       //virtual bool get_client_rect(RECTANGLE_I64 * prectangle);
 //
 //
-//       //virtual bool has_focus() override;
+//       //virtual bool has_keyboard_focus() override;
 //       //virtual bool is_active() override;
 //
 //       //virtual ::point_i32 client_screen_top_left() override;
