@@ -42,6 +42,10 @@ namespace operating_ambient_gtk4
 //      bool launch_on_node(::topic * ptopic) override;
 //
 
+
+      void launch_app_by_app_id(const ::scoped_string & scopedstrAppId, bool bSingleExecutableVersion) override;
+
+
    };
 
 

@@ -148,6 +148,8 @@ if (${tolower_cmake_build_type} STREQUAL "debug")
 
     add_compile_definitions(DEBUG)
 
+    add_compile_options(-g -O0)
+
     message(STATUS "DEBUG compile definition set!!")
 
 elseif (${tolower_cmake_build_type} STREQUAL "relwithdebinfo")

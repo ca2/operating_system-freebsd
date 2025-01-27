@@ -1,1 +1,2 @@
-operating_system-posix/node_gtk_based
+operating_system-freebsd/node_freebsd
+operating_system-posix/node_gtk4
