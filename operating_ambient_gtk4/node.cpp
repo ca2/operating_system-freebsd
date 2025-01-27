@@ -4,7 +4,9 @@
 #include "framework.h"
 #include "node.h"
 #include "acme/constant/id.h"
+#include "acme/filesystem/filesystem/directory_system.h"
 #include "acme/platform/system.h"
+#include "acme/prototype/datetime/datetime.h"
 #include "apex/platform/system.h"
 #include "aura/platform/session.h"
 #include "aura/user/user/user.h"
@@ -346,6 +348,145 @@ namespace operating_ambient_gtk4
 //      return bOk;
 //
 //   }
+
+
+   void node::launch_app_by_app_id(const ::scoped_string & scopedstrAppId, bool bSingleExecutableVersion)
+   {
+      
+      ::file::path path = get_executable_path_by_app_id(scopedstrAppId, bSingleExecutableVersion);
+
+      ::file::path pathFolder = path.folder();
+
+      string strName = path.name();
+
+      ::string strCommand;
+
+      directory_system()->change_current(pathFolder);
+
+      ::file::path pathLogFolder;
+
+      pathLogFolder = directory_system()->home() / "application" / scopedstrAppId / "log";
+
+      directory_system()->create(pathLogFolder);
+
+      ::string strLogFileName;
+
+      strLogFileName = datetime()->date_time_text_for_file_with_no_spaces();
+
+      strLogFileName += ".txt";
+
+      ::file::path pathLog;
+
+      pathLog = pathLogFolder / strLogFileName;
+      
+      directory_system()->create(pathLog.folder());
+
+      strCommand = "/bin/sh -c \"nohup ./\\\"" + strName + "\\\" > \\\"" + pathLog +"\\\"\"";
+
+      information() << "node::launch_app_by_app_id : " << strCommand;
+
+      auto inlinelog = std_inline_log();
+
+      inlinelog.set_timeout(10_minutes);
+
+      int iExitCode = this->command_system(strCommand, inlinelog);
+
+      if(iExitCode != 0)
+      {
+
+         throw ::exception(error_failed);
+
+      }
+
+/*    
+    ::string strDbusName;
+    
+    strDbusName = scopedstrAppId;
+    
+    strDbusName.find_replace("/", "." );
+    
+    ::string strObjectName;
+    
+    strObjectName = strDbusName;
+    
+    strObjectName.find_replace(".", "/");
+    
+    strObjectName = "/" + strObjectName;
+    
+    const char *object_path = strObjectName;
+    
+    informationf("Dbus name: %s", strDbusName.c_str());
+    
+    informationf("Object path: %s", strObjectName.c_str());
+
+
+   dbus_activate_application(strDbusName, strObjectName);
+      
+  */    
+/*
+    // Wait for the subprocess to finish (blocking call)
+    gboolean success = g_subprocess_wait(subprocess, nullptr, &error);
+
+    if (!success) {
+        std::cerr << "Subprocess failed: " << (error ? error->message : "Unknown error") << std::endl;
+        if (error) {
+            g_error_free(error);
+        }
+        
+        throw ::exception(error_failed);
+    } else {
+        // Get exit status
+        int exit_status = g_subprocess_get_exit_status(subprocess);
+        //std::cout << "Application exited with status: " << exit_status << std::endl;
+    }
+*/
+
+
+    // Cleanup
+//    g_object_unref(subprocess);
+
+    ///;;return 0;
+//}
+//      information() << "node::launch_app_by_app_id : " << scopedstrAppId;
+//
+//      auto pathDesktopFile = get_desktop_file_path_by_app_id(scopedstrAppId);
+//
+//      if(!file_system()->exists(pathDesktopFile))
+//      {
+//
+//         information() << "Desktop file (\"" << pathDesktopFile << "\") doesn't exist. Going to try to launch with executable path.";
+
+         //::aura_posix::node::launch_app_by_app_id(scopedstrAppId, bSingleExecutableVersion);
+
+//         return;
+//
+//      }
+//
+//      ::string strAppId = scopedstrAppId;
+//
+//      strAppId.find_replace("/", ".");
+//
+//      ::string strCommand = "sh -c \"nohup gtk-launch " + strAppId + " &\"";
+//
+//      int iExitCode = node()->command_system(strCommand, 10_minutes);
+//
+//      if(iExitCode == 0)
+//      {
+//
+//         information() << "Successfully launched \"" << scopedstrAppId << "\"";
+//
+//         return;
+//
+//      }
+//
+//      warning() << "Failed to launch application \"" + scopedstrAppId + "\" using gtk-launch";
+//
+//      information() << "Going to try to launch with executable path.";
+//
+//      ::aura_posix::node::launch_app_by_app_id(scopedstrAppId);
+
+   }
+
 
 
 } // namespace operating_ambient_gtk4
