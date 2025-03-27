@@ -25,7 +25,7 @@ namespace acme_freebsd
       void init_context() override;
 
 
-      ::file::path dropbox_info_network_payload() override;
+      //::file::path dropbox_info_network_payload() override;
 
 
    };

@@ -343,7 +343,7 @@ if (${KDE_DESKTOP})
 endif ()
 
 if(${GTK_BASED_DESKTOP})
-include(${WORKSPACE_FOLDER}/operating_system/operating_system-posix/_gtk_based_desktop.cmake)
+include(${WORKSPACE_FOLDER}/operating_system/operating_system-posix/_gtk_desktop.cmake)
 endif()
 
 set(default_draw2d "draw2d_cairo")
@@ -439,7 +439,7 @@ if (${GTK_BASED_DESKTOP})
             static_node_gtk
             static_node_linux)
 
-    set(default_common_windowing common_gtk)
+    set(default_common_windowing acme_windowing_g)
 
     if(${HAS_GTK4})
     
