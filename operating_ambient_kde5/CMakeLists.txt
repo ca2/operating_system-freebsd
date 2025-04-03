@@ -33,9 +33,13 @@ list(APPEND library_references
 
 
 if(${HAS_KDE6})
-   list(APPEND library_references node_kde6)
+   list(APPEND library_references
+           node_q
+           node_kde6)
 elseif(${HAS_KDE5})
-   list(APPEND library_references node_kde5)
+   list(APPEND library_references
+           node_q
+           node_kde5)
 endif()
 
 
