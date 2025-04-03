@@ -87,6 +87,9 @@ endif ()
 set(DONT_USE_PKG_CONFIG FALSE)
 
 
+if(${DESKTOP_AMBIENT})
+
+
 if ($ENV{XDG_CURRENT_DESKTOP} STREQUAL "KDE")
     set(KDE_DESKTOP TRUE)
     message(STATUS "System is KDE")
@@ -105,6 +108,8 @@ elseif ($ENV{XDG_CURRENT_DESKTOP} STREQUAL "LXDE")
 endif ()
 
 message(STATUS "DESKTOP_ENVIRONMENT_NAME is ${DESKTOP_ENVIRONMENT_NAME}")
+
+endif()
 
 set(UNDERSCORE_OPERATING_SYSTEM $ENV{__SYSTEM_UNDERSCORE_OPERATING_SYSTEM})
 set(SLASHED_OPERATING_SYSTEM $ENV{__SYSTEM_SLASHED_OPERATING_SYSTEM})
@@ -268,6 +273,9 @@ add_compile_definitions(WITH_XI)
 link_libraries(pthread)
 include(FindPkgConfig)
 
+
+if(${DESKTOP_AMBIENT})
+
 if (EXISTS $ENV{HOME}/__config/xfce.txt)
 
     set(LINUX_XFCE TRUE)
@@ -357,35 +365,17 @@ if(${GTK_BASED_DESKTOP})
 include(${WORKSPACE_FOLDER}/operating_system/operating_system-posix/_gtk_desktop.cmake)
 endif()
 
-set(default_draw2d "draw2d_cairo")
-set(default_imaging "imaging_freeimage")
-set(default_write_text "write_text_pango")
-set(default_audio "audio_alsa")
-set(default_music_midi "music_midi_alsa")
-set(default_node "node_freebsd")
-set(default_audio_mixer "audio_mixer_alsa")
-set(default_gpu "gpu_opengl")
-set(default_input "input_xinput")
-set(default_networking "networking_bsd")
-set(default_nano_graphics "nano_graphics_cairo")
-#add_compile_definitions(default_draw2d=draw2d_cairo)
-#add_compile_definitions(default_imaging=imaging_freeimage)
-#add_compile_definitions(default_write_text=write_text_pango)
-#add_compile_definitions(default_audio=audio_alsa)
-#add_compile_definitions(default_music_midi=music_midi_alsa)
-#add_compile_definitions(default_node=node_linux)
-
 
 if (LXDE_DESKTOP)
 
     list(APPEND app_common_dependencies
             desktop_environment_gnome)
 
-#    list(APPEND static_app_common_dependencies
-#            static_desktop_environment_gnome
-#            static_node_gnome
-#            static_node_gtk
-#            static_windowing_x11)
+    #    list(APPEND static_app_common_dependencies
+    #            static_desktop_environment_gnome
+    #            static_node_gnome
+    #            static_node_gtk
+    #            static_windowing_x11)
 
     set(default_windowing "windowing_x11")
 
@@ -411,6 +401,27 @@ if (XFCE_DESKTOP)
     add_compile_definitions(default_windowing=windowing_x11)
 
 endif ()
+
+endif()
+
+set(default_draw2d "draw2d_cairo")
+set(default_imaging "imaging_freeimage")
+set(default_write_text "write_text_pango")
+set(default_audio "audio_alsa")
+set(default_music_midi "music_midi_alsa")
+set(default_node "node_freebsd")
+set(default_audio_mixer "audio_mixer_alsa")
+set(default_gpu "gpu_opengl")
+set(default_input "input_xinput")
+set(default_networking "networking_bsd")
+set(default_nano_graphics "nano_graphics_cairo")
+#add_compile_definitions(default_draw2d=draw2d_cairo)
+#add_compile_definitions(default_imaging=imaging_freeimage)
+#add_compile_definitions(default_write_text=write_text_pango)
+#add_compile_definitions(default_audio=audio_alsa)
+#add_compile_definitions(default_music_midi=music_midi_alsa)
+#add_compile_definitions(default_node=node_linux)
+
 
 
 list(APPEND acme_libraries
@@ -439,6 +450,7 @@ list(APPEND aura_libraries
 
 set(default_nano_graphics nano_graphics_cairo)
 
+if (${DESKTOP_AMBIENT})
 
 if (${GTK_BASED_DESKTOP})
 
@@ -566,7 +578,7 @@ list(APPEND app_common_dependencies
 #    set(static_desktop_environment_pkgconfig ${static_desktop_environment_gnome_pkgconfig})
 #endif()
 #
-
+endif()
 
 set(LIBCXX_TARGETING_MSVC OFF)
 
