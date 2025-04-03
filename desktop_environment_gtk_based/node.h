@@ -77,7 +77,7 @@ namespace desktop_environment_gtk_based
 
       //virtual void node_post_quit() override;
 
-      //void handle(::topic * psubject, ::context * pcontext) override;
+      //void handle(::topic * psubject, ::handler_context * pcontext) override;
 
       //virtual void _on_change_os_user_theme(string strTheme);
 

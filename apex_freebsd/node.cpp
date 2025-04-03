@@ -1,6 +1,7 @@
 #include "framework.h"
 #include "acme/filesystem/filesystem/directory_system.h"
 #include "acme/filesystem/filesystem/path_system.h"
+#include "acme/platform/application.h"
 #include "node.h"
 
 

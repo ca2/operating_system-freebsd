@@ -303,7 +303,7 @@ namespace operating_ambient_gtk4
 //   }
 
 
-//   void node::handle(::topic * ptopic, ::context * pcontext)
+//   void node::handle(::topic * ptopic, ::handler_context * pcontext)
 //   {
 //
 ////      if(ptopic->m_atom == ::id_operating_system_user_theme_change)
