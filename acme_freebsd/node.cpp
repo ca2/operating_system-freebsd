@@ -6,7 +6,9 @@
 
 
 //::user::enum_desktop _get_edesktop();
-
+long long * freebsd_list_processes(int & c);
+int get_executable_path(long long llPid, char *path, size_t path_len);
+char ** list_loaded_modules(int & c, long long llPid);
 
 namespace acme_freebsd
 {
@@ -897,6 +899,51 @@ namespace acme_freebsd
 
       return ::acme_darwin::node::default_component_implementation(scopedstrComponentName);
 
+   }
+
+
+   ::process_identifier_array node::processes_identifiers() {
+       ::process_identifier_array processidentifierarray;
+
+       int count = 0;
+
+       auto pll = freebsd_list_processes(count);
+
+       if(pll) {
+           processidentifierarray.set_size(count);
+
+           for(int i = 0; i < count; i++)
+           {
+
+               processidentifierarray[i] = pll[i];
+           }
+            free(pll);
+       }
+
+       return ::transfer(processidentifierarray);
+   }
+
+   ::file::path_array node::process_identifier_modules_paths(process_identifier processidentifier) {
+
+       int c = 0;
+       auto pp= list_loaded_modules(c, processidentifier);
+       ::file::path_array patha;
+       if(pp)
+       {
+
+           patha.set_size(c);
+           for(int i = 0; i < c; i++)
+           {
+
+               auto p=pp[i];
+
+               patha[i] = p;
+
+           }
+           free(pp);
+
+       }
+return ::transfer(patha);
    }
 
 

@@ -26,12 +26,18 @@ list(APPEND library_source
    framework.h
    node.cpp
    node.h
+   processes_identifiers.cpp
    )
 
 
-add_library(${PROJECT_NAME} SHARED ${library_source} )
+add_library(${PROJECT_NAME} SHARED ${library_source} processes_identifiers.cpp
+        get_executable_path.cpp
+        list_loaded_modules.cpp)
 add_library(static_${PROJECT_NAME} STATIC ${library_source} )
 
+set_source_files_properties(processes_identifiers.cpp PROPERTIES SKIP_PRECOMPILE_HEADERS ON)
+set_source_files_properties(get_executable_path.cpp PROPERTIES SKIP_PRECOMPILE_HEADERS ON)
+set_source_files_properties(list_loaded_modules.cpp PROPERTIES SKIP_PRECOMPILE_HEADERS ON)
 
 list(APPEND library_references
    acme_darwin)
@@ -82,7 +88,7 @@ elseif(${FREEBSD})
 
     target_compile_options(${PROJECT_NAME} PRIVATE ${${PROJECT_NAME}_PKGCONFIG_CFLAGS} ${GLOBAL_EXTRA_COMPILER_FLAGS})
     target_compile_options(static_${PROJECT_NAME} PRIVATE ${${PROJECT_NAME}_PKGCONFIG_CFLAGS} ${GLOBAL_EXTRA_COMPILER_FLAGS})
-    target_link_libraries(${PROJECT_NAME} PRIVATE ${library_references} ${${PROJECT_NAME}_KGCONFIG_LIBRARIES})
+    target_link_libraries(${PROJECT_NAME} PRIVATE kvm procstat ${library_references} ${${PROJECT_NAME}_KGCONFIG_LIBRARIES})
     target_link_libraries(static_${PROJECT_NAME} PRIVATE ${static_library_references} ${${PROJECT_NAME}_PKGCONFIG_LIBRARIES})
     target_link_options(${PROJECT_NAME} PRIVATE ${PKGCONFIG_LDFLAGS} ${GLOBAL_EXTRA_LINKER_FLAGS} -Wl${GLOBAL_EXTRA_LINK_FLAGS},-z,defs)
 
