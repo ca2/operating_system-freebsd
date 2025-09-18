@@ -196,7 +196,7 @@ namespace acme_freebsd
 
 
 
-   ::file::path directory_system::inplace_install(string strAppId, string strPlatform, string strConfiguration)
+   ::file::path directory_system::inplace_install(const ::scoped_string & scopedstrAppId, const ::scoped_string & scopedstrPlatform, const ::scoped_string & scopedstrConfiguration)
    {
 
    #ifdef FREEBSD_DESKTOP
@@ -253,7 +253,7 @@ namespace acme_freebsd
    }
 
 
-   ::file::path directory_system::inplace_matter_install(string strAppId, string strPlatform, string strConfiguration)
+   ::file::path directory_system::inplace_matter_install(const ::scoped_string & scopedstrAppId, const ::scoped_string & scopedstrPlatform, const ::scoped_string & scopedstrConfiguration)
    {
 
    #ifdef FREEBSD_DESKTOP
@@ -346,10 +346,10 @@ namespace acme_freebsd
 
    }
 
-   ::file::path directory_system::stage(string strAppId, string strPlatform, string strConfiguration)
+   ::file::path directory_system::stage(const ::scoped_string & scopedstrAppId, const ::scoped_string & scopedstrPlatform, const ::scoped_string & scopedstrConfiguration)
    {
 
-      return inplace_install(strAppId, strPlatform, strConfiguration) / "time" / strPlatform / strConfiguration;
+      return inplace_install(scopedstrAppId, scopedstrPlatform, scopedstrConfiguration) / "time" / scopedstrPlatform / scopedstrConfiguration;
 
    }
 
@@ -362,10 +362,10 @@ namespace acme_freebsd
    }
 
 
-   void directory_system::set_path_install_folder(const ::string & strPath)
+   void directory_system::set_path_install_folder(const ::scoped_string & scopedstrPath)
    {
 
-      m_pathInstallFolder = strPath;
+      m_pathInstallFolder = scopedstrPath;
 
    }
 
@@ -493,19 +493,19 @@ namespace acme_freebsd
    //}
 
 
-   ::file::path directory_system::pathfind(const string& pszEnv, const string& pszTopic, const string& pszMode)
+   ::file::path directory_system::pathfind(const ::scoped_string & scopedstrEnv, const ::scoped_string & scopedstrTopic, const ::scoped_string & scopedstrMode)
    {
 
       ::file::path_array stra;
 
-      stra.add_tokens(pszEnv, ":", false);
+      stra.add_tokens(scopedstrEnv, ":", false);
 
       string strCandidate;
 
       for (::collection::index i = 0; i < stra.get_count(); i++)
       {
 
-         strCandidate = stra[i] / pszTopic;
+         strCandidate = stra[i] / scopedstrTopic;
 
          //if (m_pcontext->m_papexcontext->file().exists(strCandidate))
          if (file_exists(strCandidate))

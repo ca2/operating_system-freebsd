@@ -573,7 +573,7 @@ namespace acme_freebsd
 // enzymes: Liveedu.tv, Twitch.tv and Mixer.com streamers and viewers
 // Mummi and bilbo!!
 // create call to :
-   void node::install_crash_dump_reporting(const string & strModuleNameWithTheExeExtension)
+   void node::install_crash_dump_reporting(const ::scoped_string & scopedstrModuleNameWithTheExeExtension)
    {
 
 //      ::freebsd::registry::key k;
@@ -725,7 +725,7 @@ namespace acme_freebsd
    }
 
 
-   void node::shell_open(const ::file::path & path, const ::string & strParams, const ::file::path & pathFolder)
+   void node::shell_open(const ::file::path & path, const ::scoped_string & scopedstrParams, const ::file::path & pathFolder)
    {
 
       string str(path);
@@ -743,7 +743,7 @@ namespace acme_freebsd
    ::pointer <::operating_system::summary > node::operating_system_summary()
    {
 
-      auto psummary = __create_new < ::operating_system::summary >();
+      auto psummary = øcreate_new < ::operating_system::summary >();
 
 
       //::particle::initialize(pparticle);
@@ -756,7 +756,12 @@ namespace acme_freebsd
       if (file_system()->exists("/etc/os-release"))
       {
 
-         auto set = file_system()->parse_standard_configuration("/etc/os-release");
+
+        auto str = file_system()->as_string("/etc/os_release");
+
+         ::property_set set;
+
+        set.parse_standard_configuration(str);
 
          psummary->m_strSystem = set["ID"];
          psummary->m_strSystemBranch = set["VARIANT_ID"];
@@ -923,7 +928,7 @@ namespace acme_freebsd
        return ::transfer(processidentifierarray);
    }
 
-   ::file::path_array node::process_identifier_modules_paths(process_identifier processidentifier) {
+   ::file::path_array_base node::process_identifier_modules_paths(process_identifier processidentifier) {
 
        int c = 0;
        auto pp= list_loaded_modules(c, processidentifier);

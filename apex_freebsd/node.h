@@ -79,12 +79,12 @@ namespace apex_freebsd
 
 
 //         bool is_application_installed(const ::file::path & pathExe, string strAppId, string & strBuild,
-//                                               const ::string & strPlatform, const ::string & strConfiguration,
-//                                               const ::string & strLocale, const ::string & strSchema) override;
+//                                               const ::scoped_string & scopedstrPlatform, const ::scoped_string & scopedstrConfiguration,
+//                                               const ::scoped_string & scopedstrLocale, const ::scoped_string & scopedstrSchema) override;
 //
-//         bool set_application_installed(const ::file::path & pathExe, string strAppId, const ::string & strBuild,
-//                                                const ::string & strPlatform, const ::string & strConfiguration,
-//                                                const ::string & strLocale, const ::string & strSchema) override;
+//         bool set_application_installed(const ::file::path & pathExe, string strAppId, const ::scoped_string & scopedstrBuild,
+//                                                const ::scoped_string & scopedstrPlatform, const ::scoped_string & scopedstrConfiguration,
+//                                                const ::scoped_string & scopedstrLocale, const ::scoped_string & scopedstrSchema) override;
 //
 //         ::e_status set_last_run_application_path(const string & strAppId) override;
 
@@ -110,7 +110,7 @@ namespace apex_freebsd
         void reboot() override;
         void shutdown(bool bPowerOff) override;
 
-        void terminate_processes_by_title(const ::string & strName) override;
+        void terminate_processes_by_title(const ::scoped_string & scopedstrName) override;
 
 
         virtual bool freebsd_can_exec(const char *file);
@@ -119,8 +119,8 @@ namespace apex_freebsd
         //virtual ::file::path get_module_path(HMODULE hmodule) override;
 
 
-        //virtual bool path_pid(unsigned int & dwPid, const ::string & strName) override;
-        //virtual bool title_pid(unsigned int & dwPid, const ::string & strName) override;
+        //virtual bool path_pid(unsigned int & dwPid, const ::scoped_string & scopedstrName) override;
+        //virtual bool title_pid(unsigned int & dwPid, const ::scoped_string & scopedstrName) override;
         //virtual void get_all_processes(u32_array & dwa) override;
         //virtual ::file::path get_process_path(unsigned int dwPid) override;
         //virtual int get_pid() override;
@@ -129,30 +129,30 @@ namespace apex_freebsd
         virtual ::payload connection_settings_get_auto_config_url() override;
 
 
-        void local_machine_set_run(const ::string & strKey, const ::file::path & pathExecutable, const ::string& strArguments, bool bSet) override;
-        void local_machine_set_run_once(const ::string & strKey, const ::file::path & pathExecutable, const ::string& strArguments, bool bSet) override;
-        void current_user_set_run(const ::string & strKey, const ::file::path & pathExecutable, const ::string& strArguments, bool bSet) override;
-        void current_user_set_run_once(const ::string & strKey, const ::file::path & pathExecutable, const ::string& strArguments, bool bSet) override;
+        void local_machine_set_run(const ::scoped_string & scopedstrKey, const ::file::path & pathExecutable, const ::scoped_string & scopedstrArguments, bool bSet) override;
+        void local_machine_set_run_once(const ::scoped_string & scopedstrKey, const ::file::path & pathExecutable, const ::scoped_string & scopedstrArguments, bool bSet) override;
+        void current_user_set_run(const ::scoped_string & scopedstrKey, const ::file::path & pathExecutable, const ::scoped_string & scopedstrArguments, bool bSet) override;
+        void current_user_set_run_once(const ::scoped_string & scopedstrKey, const ::file::path & pathExecutable, const ::scoped_string & scopedstrArguments, bool bSet) override;
         void defer_register_ca2_plugin_for_mozilla() override;
 
-        void file_extension_get_open_with_list_keys(string_array & straKey, const ::string & strExtension) override;
-        void file_extension_get_open_with_list_commands(string_array & straCommand, const ::string & strExtension) override;
+        void file_extension_get_open_with_list_keys(string_array_base & straKey, const ::scoped_string & scopedstrExtension) override;
+        void file_extension_get_open_with_list_commands(string_array_base & straCommand, const ::scoped_string & scopedstrExtension) override;
 
-        void file_association_set_default_icon(const ::string & strExtension, const ::string & strExtensionNamingClass, const ::string & strIconPath) override;
-        void file_association_set_shell_open_command(const ::string & strExtension, const ::string & strExtensionNamingClass, const ::string & strCommand, const ::string & strParam) override;
-        void file_association_get_shell_open_command(const ::string & strExtension, string & strExtensionNamingClass, string & strCommand, string & strParam) override;
+        void file_association_set_default_icon(const ::scoped_string & scopedstrExtension, const ::scoped_string & scopedstrExtensionNamingClass, const ::file::path & pathIconPath) override;
+        void file_association_set_shell_open_command(const ::scoped_string & scopedstrExtension, const ::scoped_string & scopedstrExtensionNamingClass, const ::file::path & pathExecutable, const ::scoped_string & scopedstrParam) override;
+        void file_association_get_shell_open_command(const ::scoped_string & scopedstrExtension, string & strExtensionNamingClass, string & strCommand, string & strParam) override;
 
 
         //virtual bool open_in_ie(const char * pcsz);
 
 
-        void enable_service(const ::string & strServiceName, const ::string & strDisplayName, const ::string & strCommand, const ::string & strUser = "", const ::string & strPass = "") override;
+        void enable_service(const ::scoped_string & scopedstrServiceName, const ::scoped_string & scopedstrDisplayName, const ::scoped_string & scopedstrCommand, const ::scoped_string & scopedstrUser = "", const ::scoped_string & scopedstrPass = "") override;
 
-        void disable_service(const ::string & strServiceName) override;
+        void disable_service(const ::scoped_string & scopedstrServiceName) override;
 
-        void start_service(const ::string & strServiceName) override;
+        void start_service(const ::scoped_string & scopedstrServiceName) override;
 
-        void stop_service(const ::string & strServiceName) override;
+        void stop_service(const ::scoped_string & scopedstrServiceName) override;
 
         void raise_exception( unsigned int dwExceptionCode, unsigned int dwExceptionFlags);
 
@@ -165,7 +165,7 @@ namespace apex_freebsd
 
         virtual void get_default_browser(string & strId, ::file::path & path, string & strParam) override;
 
-        virtual void file_open(const ::file::path & path, const ::string & strParams = "", const ::file::path & pathFolder = "") override;
+        virtual void file_open(const ::file::path & path, const ::scoped_string & scopedstrParams = "", const ::file::path & pathFolder = "") override;
 
         //virtual void list_process(::file::path_array & patha, u32_array & iaPid) override;
 

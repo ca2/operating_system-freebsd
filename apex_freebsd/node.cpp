@@ -273,7 +273,7 @@ namespace apex_freebsd
         }
 
 
-        void node::terminate_processes_by_title(const ::string & strName)
+        void node::terminate_processes_by_title(const ::scoped_string & scopedstrName)
         {
 
             throw not_implemented();
@@ -307,7 +307,7 @@ namespace apex_freebsd
         }
 
 
-//   bool node::path_pid(unsigned int & dwPid, const ::string & strName)
+//   bool node::path_pid(unsigned int & dwPid, const ::scoped_string & scopedstrName)
 //   {
 //
 //      u32_array dwa;
@@ -324,7 +324,7 @@ namespace apex_freebsd
 //   }
 //
 //
-//   bool node::title_pid(unsigned int & dwPid,  const ::string & strName)
+//   bool node::title_pid(unsigned int & dwPid,  const ::scoped_string & scopedstrName)
 //   {
 //
 //      u32_array dwa;
@@ -444,7 +444,7 @@ namespace apex_freebsd
         }
 
 
-        void node::local_machine_set_run(const ::string & strKey, const ::file::path & pathExecutable, const ::string& strArguments, bool bSet)
+        void node::local_machine_set_run(const ::scoped_string & scopedstrKey, const ::file::path & pathExecutable, const ::scoped_string & scopedstrArguments, bool bSet)
         {
 
 
@@ -464,7 +464,7 @@ namespace apex_freebsd
         }
 
 
-        void node::local_machine_set_run_once(const ::string & strKey, const ::file::path & pathExecutable, const ::string& strArguments, bool bSet)
+        void node::local_machine_set_run_once(const ::scoped_string & scopedstrKey, const ::file::path & pathExecutable, const ::scoped_string & scopedstrArguments, bool bSet)
         {
 
 
@@ -481,7 +481,7 @@ namespace apex_freebsd
         }
 
 
-        void node::current_user_set_run(const ::string & strKey, const ::file::path & pathExecutable, const ::string& strArguments, bool bSet)
+        void node::current_user_set_run(const ::scoped_string & scopedstrKey, const ::file::path & pathExecutable, const ::scoped_string & scopedstrArguments, bool bSet)
         {
 
             throw not_implemented();
@@ -499,7 +499,7 @@ namespace apex_freebsd
         }
 
 
-        void node::current_user_set_run_once(const ::string & strKey, const ::file::path & pathExecutable, const ::string& strArguments, bool bSet)
+        void node::current_user_set_run_once(const ::scoped_string & scopedstrKey, const ::file::path & pathExecutable, const ::scoped_string & scopedstrArguments, bool bSet)
         {
 
             throw not_implemented();
@@ -557,7 +557,7 @@ namespace apex_freebsd
         }
 
 
-        void node::file_extension_get_open_with_list_keys(string_array & straKey, const ::string & strExtension)
+        void node::file_extension_get_open_with_list_keys(string_array_base & straKey, const ::scoped_string & scopedstrExtension)
         {
 
             throw not_implemented();
@@ -583,14 +583,14 @@ namespace apex_freebsd
         }
 
 
-        void node::file_extension_get_open_with_list_commands(string_array & straCommand, const ::string & strExtension)
+        void node::file_extension_get_open_with_list_commands(string_array_base & straCommand, const ::scoped_string & scopedstrExtension)
         {
 
             string_array straKey;
 
             //if(!
             //
-            file_extension_get_open_with_list_keys(straKey, strExtension);
+            file_extension_get_open_with_list_keys(straKey, scopedstrExtension);
 //      {
 //
 //         //return false;
@@ -604,7 +604,7 @@ namespace apex_freebsd
         }
 
 
-        void node::file_association_set_default_icon(const ::string & strExtension, const ::string & strExtensionNamingClass, const ::string & strIconPath)
+        void node::file_association_set_default_icon(const ::scoped_string & scopedstrExtension, const ::scoped_string & scopedstrExtensionNamingClass, const ::file::path & pathIcon)
         {
 
             throw not_implemented();
@@ -622,7 +622,7 @@ namespace apex_freebsd
         }
 
 
-        void node::file_association_set_shell_open_command(const ::string & strExtension, const ::string & strExtensionNamingClass,  const ::string & strCommand, const ::string & strParam)
+        void node::file_association_set_shell_open_command(const ::scoped_string & scopedstrExtension, const ::scoped_string & scopedstrExtensionNamingClass,  const ::file::path & pathExecutable, const ::scoped_string & scopedstrParam)
         {
 
             //return false;
@@ -659,7 +659,7 @@ namespace apex_freebsd
         }
 
 
-        void node::file_association_get_shell_open_command(const ::string & strExtension, string & strExtensionNamingClass, string & strCommand, string & strParam)
+        void node::file_association_get_shell_open_command(const ::scoped_string & scopedstrExtension, string & strExtensionNamingClass, string & strCommand, string & strParam)
         {
 
             throw not_implemented();
@@ -682,7 +682,7 @@ namespace apex_freebsd
                   if(keyLink.QueryValue(nullptr, strFormat))
                   {
 
-                     const ::string & str = strFormat;
+                     const ::scoped_string & scopedstr = strFormat;
 
                      try
                      {
@@ -757,7 +757,7 @@ namespace apex_freebsd
 //   }
 
 
-        void node::enable_service(const ::string & strServiceName, const ::string & strDisplayName, const ::string & strCommand, const ::string & strUser, const ::string & strPass)
+        void node::enable_service(const ::scoped_string & scopedstrServiceName, const ::scoped_string & scopedstrDisplayName, const ::scoped_string & scopedstrCommand, const ::scoped_string & scopedstrUser, const ::scoped_string & scopedstrPass)
         {
 
             throw not_implemented();
@@ -812,7 +812,7 @@ namespace apex_freebsd
         }
 
 
-        void node::disable_service(const ::string & strServiceName)
+        void node::disable_service(const ::scoped_string & scopedstrServiceName)
         {
 
             throw not_implemented();
@@ -857,7 +857,7 @@ namespace apex_freebsd
         }
 
 
-        void node::start_service(const ::string & strServiceName)
+        void node::start_service(const ::scoped_string & scopedstrServiceName)
         {
 
             throw not_implemented();
@@ -902,7 +902,7 @@ namespace apex_freebsd
         }
 
 
-        void node::stop_service(const ::string & strServiceName)
+        void node::stop_service(const ::scoped_string & scopedstrServiceName)
         {
 
             throw not_implemented();
@@ -1089,7 +1089,7 @@ namespace apex_freebsd
         }
 
 
-        void node::file_open(const ::file::path & path, const ::string & strParams, const ::file::path & pathFolder)
+        void node::file_open(const ::file::path & path, const ::scoped_string & scopedstrParams, const ::file::path & pathFolder)
         {
 
             string strTarget;
@@ -1109,7 +1109,7 @@ namespace apex_freebsd
 
                 // 2018-01-29 call_async("/bin/bash", "-c \"" + strTarget + "\"", strFolder, SW_SHOWDEFAULT, false);
 
-                this->call_async(strTarget, strParams, pathFolder, e_display_default, false);
+                this->call_async(strTarget, scopedstrParams, pathFolder, e_display_default, false);
 
 //         char * pszCommandLine = strdup(strTarget + " " + strParams);
 

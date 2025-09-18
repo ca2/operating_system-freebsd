@@ -45,7 +45,7 @@ namespace acme_freebsd
    }
 
 
-   ::file::listing& directory_context::root_ones(::file::listing& listing)
+   ::file::listing_base& directory_context::root_ones(::file::listing_base& listing)
    {
 
       ::file::path path;
