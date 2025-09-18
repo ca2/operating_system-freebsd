@@ -356,6 +356,77 @@ if (${KDE_DESKTOP})
         #            set(knotifications_cflags -I/usr/include/KF5/KNotifications)
         #        endif()
 
+    elseif (${HAS_KDE6})
+
+        set(HAS_Q6 TRUE)
+        set(WITH_XCB TRUE)
+        add_compile_definitions(WITH_XCB=1)
+
+        set(QT_MIN_VERSION "6.0.0")
+        set(KF5_MIN_VERSION "6.0.0")
+
+        # apt install extra-cmake-modules
+        # dnf install extra-cmake-modules
+        find_package(ECM 1.0.0 REQUIRED NO_MODULE)
+        set(CMAKE_MODULE_PATH ${ECM_MODULE_PATH} ${ECM_KDE_MODULE_DIR} ${CMAKE_CURRENT_SOURCE_DIR}/cmake)
+
+
+        message(STATUS "ECM_MODULE_PATH = ${ECM_MODULE_PATH}")
+        message(STATUS "ECM_KDE_MODULE_DIR = ${ECM_KDE_MODULE_DIR}")
+        # apt install libkf5notifications-dev
+        # dnf install kf5-knotifications-devel
+
+        #include(KDEInstallDirs)
+        #include(KDECMakeSettings)
+        #include(KDECompilerSettings NO_POLICY_SCOPE)
+        #    find_package(KF5 ${KF5_MIN_VERSION} REQUIRED COMPONENTS
+        # CoreAddons      # KAboutData
+        #          I18n            # KLocalizedString
+        #         WidgetsAddons   # KMessageBox
+        #      Notifications
+        #     )
+        #include(FeatureSummary)
+
+        # Find Qt modules
+        #find_package(Qt5 ${QT_MIN_VERSION} CONFIG REQUIRED COMPONENTS
+        #  Core    # QCommandLineParser, QStringLiteral
+        #  Widgets # QApplication
+        #  )
+        find_package(KF6 ${KF5_MIN_VERSION} REQUIRED COMPONENTS
+                # CoreAddons      # KAboutData
+                #          I18n            # KLocalizedString
+                #         WidgetsAddons   # KMessageBox
+                CoreAddons
+                Notifications
+                ConfigWidgets
+                KIO
+                IconThemes
+                )
+
+        find_package(LibKWorkspace CONFIG REQUIRED)
+
+        find_package(Qt6 ${QT_MIN_VERSION} REQUIRED COMPONENTS
+                Core
+                DBus
+                UiTools
+                #X11Extras
+                Widgets
+                )
+
+        # Find KDE modules
+
+        #feature_summary(WHAT ALL INCLUDE_QUIET_PACKAGES FATAL_ON_MISSING_REQUIRED_PACKAGES)
+        #        find_package(KDE5 REQUIRED)
+        message(STATUS "Adding KDE/xcb dependency.")
+        #        file (STRINGS $ENV{HOME}/__config/knotifications/cflags.txt knotifications_cflags)
+        #        file (STRINGS $ENV{HOME}/__config/knotifications/libs.txt knotifications_libs)
+        #        if(knotifications_cflags STREQUAL "")
+        #            set(knotifications_cflags -I/usr/include/KF5/KNotifications)
+        #        endif()
+        #        if(knotifications_libs STREQUAL "")
+        #            set(knotifications_cflags -I/usr/include/KF5/KNotifications)
+        #        endif()
+
     endif()
 
 endif ()

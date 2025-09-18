@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.16)
-project(operating_ambient_kde5 CXX)
+project(operating_ambient_kde6 CXX)
 
 
 list(APPEND library_source
@@ -46,27 +46,27 @@ endif()
 
 
 list(APPEND this_system_libraries
-        KF5::ConfigWidgets
-        KF5::IconThemes
-        KF5::KIOCore
-        KF5::KIOGui
-        KF5::KIOWidgets
-        KF5::Notifications
+        KF6::ConfigWidgets
+        KF6::IconThemes
+        KF6::KIOCore
+        KF6::KIOGui
+        KF6::KIOWidgets
+        KF6::Notifications
         PW::KWorkspace
-        Qt5::Core
-        Qt5::Widgets
-        Qt5::X11Extras
-        Qt5::GuiPrivate
+        Qt6::Core
+        Qt6::Widgets
+        #Qt6::X11Extras
+        Qt6::GuiPrivate
 )
 
 if (${FREEBSD} OR ${DEBIAN})
     list(APPEND this_system_libraries
-            KF5Package
+            KF6Package
     )
 else ()
     list(APPEND this_system_libraries
-            KF5::Plasma
-            KF5::PlasmaQuick
+            KF6::Plasma
+            KF6::PlasmaQuick
     )
 endif ()
 
