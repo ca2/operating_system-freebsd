@@ -15,7 +15,7 @@
 //void gdk_branch(const ::procedure & procedure);
 //CLASS_DECL_ACME void set_main_user_itask(itask_t itask);
 
-namespace operating_ambient_kde5
+namespace operating_ambient_kde6
 {
 
 
@@ -61,7 +61,7 @@ namespace operating_ambient_kde5
 
       ::node_freebsd::node::initialize(pparticle);
 
-      ::node_kde5::node::initialize(pparticle);
+      ::node_kde6::node::initialize(pparticle);
 
    }
 
@@ -351,12 +351,12 @@ namespace operating_ambient_kde5
    void node::reboot()
    {
 
-      node_kde5::node::reboot();
+      node_kde6::node::reboot();
 
    }
 
 
-} // namespace operating_ambient_kde5
+} // namespace operating_ambient_kde6
 
 
 

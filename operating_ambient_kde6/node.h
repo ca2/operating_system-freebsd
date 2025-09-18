@@ -9,16 +9,16 @@
 
 
 #include "node_freebsd/node.h"
-#include "node_kde5/node.h"
+#include "node_kde6/node.h"
 
 
-namespace operating_ambient_kde5
+namespace operating_ambient_kde6
 {
 
 
-   class CLASS_DECL_OPERATING_AMBIENT_KDE5 node :
+   class CLASS_DECL_OPERATING_AMBIENT_KDE6 node :
       virtual public ::node_freebsd::node,
-      virtual public ::node_kde5::node
+      virtual public ::node_kde6::node
    {
    public:
 
@@ -48,7 +48,7 @@ namespace operating_ambient_kde5
    };
 
 
-} // namespace operating_ambient_kde5
+} // namespace operating_ambient_kde6
 
 
 

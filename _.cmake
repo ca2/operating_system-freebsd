@@ -330,6 +330,7 @@ if (${KDE_DESKTOP})
                 ConfigWidgets
                 KIO
                 IconThemes
+                StatusNotifierItem
                 )
 
         find_package(LibKWorkspace CONFIG REQUIRED)
@@ -392,15 +393,17 @@ if (${KDE_DESKTOP})
         #  Core    # QCommandLineParser, QStringLiteral
         #  Widgets # QApplication
         #  )
-        find_package(KF6 ${KF5_MIN_VERSION} REQUIRED COMPONENTS
+        find_package(KF6 ${KF6_MIN_VERSION} REQUIRED COMPONENTS
                 # CoreAddons      # KAboutData
                 #          I18n            # KLocalizedString
                 #         WidgetsAddons   # KMessageBox
-                CoreAddons
-                Notifications
-                ConfigWidgets
-                KIO
-                IconThemes
+          CoreAddons
+            Notifications
+            ConfigWidgets
+            Config
+            KIO
+            IconThemes
+            StatusNotifierItem
                 )
 
         find_package(LibKWorkspace CONFIG REQUIRED)
@@ -411,6 +414,7 @@ if (${KDE_DESKTOP})
                 UiTools
                 #X11Extras
                 Widgets
+                Gui
                 )
 
         # Find KDE modules
@@ -568,6 +572,20 @@ elseif(${KDE_DESKTOP})
         set(default_operating_ambient operating_ambient_kde5)
 
         set(default_node node_kde5)
+    elseif(${HAS_KDE6})
+
+        set(default_acme_windowing acme_windowing_kde6)
+
+        set(default_innate_ui innate_ui_kde6)
+
+        set(default_windowing_common windowing_posix)
+
+        set(default_windowing windowing_kde6)
+
+        set(default_operating_ambient operating_ambient_kde6)
+
+        set(default_node node_kde6)
+
 
     endif()
 
