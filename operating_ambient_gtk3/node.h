@@ -8,11 +8,11 @@
 #pragma once
 
 
-namespace desktop_environment_xfce
+namespace operating_ambient_gkt3
 {
 
 
-   class CLASS_DECL_DESKTOP_ENVIRONMENT_XFCE node :
+   class CLASS_DECL_OPERATING_AMBIENT_GTK3 node :
       virtual public ::aura::freebsd::node,
       virtual public ::node_xfce::node
    {
@@ -87,7 +87,7 @@ namespace desktop_environment_xfce
    };
 
 
-} // namespace desktop_environment_xfce
+} // namespace operating_ambient_gkt3
 
 
 

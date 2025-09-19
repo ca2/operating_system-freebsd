@@ -100,6 +100,11 @@ elseif ($ENV{XDG_CURRENT_DESKTOP} STREQUAL "GNOME")
     set(GTK_BASED_DESKTOP TRUE)
     message(STATUS "System is GNOME")
     set(DESKTOP_ENVIRONMENT_NAME "gnome")
+elseif ($ENV{XDG_CURRENT_DESKTOP} STREQUAL "XFCE")
+    set(XFCE_DESKTOP TRUE)
+    set(GTK_BASED_DESKTOP TRUE)
+    message(STATUS "System is XFCE")
+    set(DESKTOP_ENVIRONMENT_NAME "xfce")
 elseif ($ENV{XDG_CURRENT_DESKTOP} STREQUAL "LXDE")
     set(LXDE_DESKTOP TRUE)
     set(GTK_BASED_DESKTOP TRUE)
@@ -464,16 +469,20 @@ endif ()
 if (XFCE_DESKTOP)
 
     list(APPEND app_common_dependencies
-            desktop_environment_xfce)
+            operating_ambient_gtk3)
 
     list(APPEND static_app_common_dependencies
-            static_desktop_environment_xfce)
+            static_operating_ambient_gtk3)
 
-    set(default_windowing "windowing_x11")
+    set(default_windowing "windowing_gtk3")
 
-    add_compile_definitions(DESKTOP_ENVIRONMENT_XFCE)
 
-    add_compile_definitions(default_windowing=windowing_x11)
+    set(WITH_X11 TRUE)
+
+   add_compile_definitions(WITH_X11)
+    add_compile_definitions(OPERATING_AMBIENT_GTK3)
+
+    add_compile_definitions(default_windowing=windowing_gtk3)
 
 endif ()
 

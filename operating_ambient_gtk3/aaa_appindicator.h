@@ -4,7 +4,7 @@
 #pragma once
 
 
-namespace desktop_environment_xfce
+namespace operating_ambient_gkt3
 {
 
 
@@ -25,7 +25,7 @@ namespace desktop_environment_xfce
    };
 
 
-} // namespace desktop_environment_xfce
+} // namespace operating_ambient_gkt3
 
 
 
