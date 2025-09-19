@@ -2,7 +2,7 @@
 
 
 #include "aura_freebsd/_.h"
-#include "node_xfce/_.h"
+#include "node_gtk3/_.h"
 
 
 #if defined(_OPERATING_AMBIENT_GTK3_LIBRARY)
