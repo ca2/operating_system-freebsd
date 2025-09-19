@@ -83,7 +83,10 @@ namespace acme_freebsd
 //            if (::failed(estatus))
 //            {
 //
-//               return false;
+//               return false;            auto strUnameR = node()->get_posix_shell_command_output("uname -r");
+
+            //printf_out("uname -r : %s\n\n", strUnameR.c_str());
+
 //
 //            }
 //
@@ -757,11 +760,15 @@ namespace acme_freebsd
       {
 
 
-        auto str = file_system()->as_string("/etc/os_release");
+        auto str = file_system()->as_string("/etc/os-release");
 
          ::property_set set;
 
         set.parse_standard_configuration(str);
+
+        //string strNetworkPayload =set.get_network_payload();
+
+
 
          psummary->m_strSystem = set["ID"];
          psummary->m_strSystemBranch = set["VARIANT_ID"];
@@ -783,6 +790,21 @@ namespace acme_freebsd
          psummary->m_strAmbient.make_lower();
          psummary->m_strSystemRelease.make_lower();
          psummary->m_strSystemFamily.make_lower();
+
+      }
+      else
+      {
+  
+			auto strUnameR = get_posix_shell_command_output("uname -r");
+
+			printf_out("uname -r : %s\n\n", strUnameR.c_str());
+			
+			::string strSystemRelease = strUnameR.get_word("-");
+
+			printf_out("System Release : %s\n\n", strSystemRelease.c_str());
+			
+		psummary->m_strSystemRelease	 = strSystemRelease;
+         psummary->m_strSystemRelease.make_lower();
 
       }
 
@@ -826,6 +848,12 @@ namespace acme_freebsd
          //# echo "lower case xdg_current_desktop contains lxde"
 
          psummary->m_strAmbient = "lxde";
+
+      }
+      else if (strLowerCaseCurrentDesktop.equals("xfce"))
+      {
+
+         psummary->m_strAmbient = "xfce";
 
       }
 

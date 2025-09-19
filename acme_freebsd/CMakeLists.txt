@@ -26,6 +26,7 @@ list(APPEND library_source
    framework.h
    node.cpp
    node.h
+   list_loaded_modules.cpp
    processes_identifiers.cpp
    )
 
