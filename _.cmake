@@ -42,6 +42,8 @@ endif()
 set(CURL_NANO_HTTP TRUE)
 set(CONFIGURATION_NAME ${CMAKE_BUILD_TYPE})
 set(__BSD__ TRUE)
+set(HAS_SYSTEM_JPEG TRUE)
+add_compile_definitions(HAS_SYSTEM_JPEG)
 
 
 if (${CMAKE_SYSTEM_NAME} STREQUAL "FreeBSD")
