@@ -1,20 +1,21 @@
 #include "framework.h"
+#include "node.h"
 
 
-__FACTORY_EXPORT aura_freebsd_factory(::factory::factory * pfactory);
+__FACTORY_EXPORT void aura_freebsd_factory(::factory::factory * pfactory);
 
 
-__FACTORY_EXPORT node_xfce_factory(::factory::factory * pfactory);
+__FACTORY_EXPORT void node_gtk3_factory(::factory::factory * pfactory);
 
 
-__FACTORY_EXPORT operating_ambient_gkt3_factory(::factory::factory * pfactory)
+__FACTORY_EXPORT void operating_ambient_gtk3_factory(::factory::factory * pfactory)
 {
 
    aura_freebsd_factory(pfactory);
 
-   node_xfce_factory(pfactory);
+   node_gtk3_factory(pfactory);
 
-   pfactory->add_factory_item < ::operating_ambient_gkt3::node, ::acme::node > ();
+   pfactory->add_factory_item < ::operating_ambient_gtk3::node, ::platform::node > ();
 
 
 }

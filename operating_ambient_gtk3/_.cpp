@@ -16,7 +16,7 @@ bool g_bInitGtk = false;
 
       g_bInitGtk = true;
 
-      if (!gtk_init_check(process_get_pargc(), process_get_pargv()))
+      if (!gtk_init_check(&::system()->m_argc, &::system()->m_args))
       {
 
          g_estatusInitGtk = ::error_failed;
