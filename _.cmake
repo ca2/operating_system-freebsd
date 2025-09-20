@@ -91,13 +91,14 @@ set(DONT_USE_PKG_CONFIG FALSE)
 
 if(${DESKTOP_AMBIENT})
 
+string(FIND "$ENV{XDG_CURRENT_DESKTOP}" "GNOME" GNOME_FIND_RESULT)
 
 if ($ENV{XDG_CURRENT_DESKTOP} STREQUAL "KDE")
     set(KDE_DESKTOP TRUE)
     message(STATUS "System is KDE")
     set(DESKTOP_ENVIRONMENT_NAME "kde")
     include("operating_system/operating_system-posix/_kde_desktop.cmake")
-elseif ($ENV{XDG_CURRENT_DESKTOP} STREQUAL "GNOME")
+elseif (${GNOME_FIND_RESULT} GREATER_EQUAL 0)
     set(GNOME_DESKTOP TRUE)
     set(GTK_BASED_DESKTOP TRUE)
     message(STATUS "System is GNOME")
