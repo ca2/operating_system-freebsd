@@ -4,9 +4,9 @@
 #pragma once
 
 
-#include "aura_freebsd/_aura_freebsd.h"
-#include "node_xfce/_node_xfce.h"
-#include "aura/user/_user.h"
+//#include "aura_freebsd/_aura_freebsd.h"
+//#include "node_gtk3/_node_gtk3.h"
+//#include "aura/user/_user.h"
 
 
 #include <gtk/gtk.h>

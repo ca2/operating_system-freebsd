@@ -812,7 +812,7 @@ namespace acme_freebsd
       auto strLowerCaseCurrentDesktop = this->get_environment_variable("XDG_CURRENT_DESKTOP").lowered();
 
       //# echo "lower case xdg_current_desktop is $__SYSTEM_LOWER_CASE_CURRENT_DESKTOP"
-      if (strLowerCaseCurrentDesktop.equals("gnome"))
+      if (strLowerCaseCurrentDesktop.contains("gnome"))
       {
          //      if contains
          //      $__SYSTEM_LOWER_CASE_CURRENT_DESKTOP
@@ -824,7 +824,7 @@ namespace acme_freebsd
          psummary->m_strAmbient = "gnome";
 
       }
-      else if (strLowerCaseCurrentDesktop.equals("kde"))
+      else if (strLowerCaseCurrentDesktop.contains("kde"))
       {
          //      elif
          //      contains
@@ -837,7 +837,7 @@ namespace acme_freebsd
          psummary->m_strAmbient = "kde";
 
       }
-      else if (strLowerCaseCurrentDesktop.equals("lxde"))
+      else if (strLowerCaseCurrentDesktop.contains("lxde"))
       {
          //      elif
          //      contains
@@ -850,7 +850,7 @@ namespace acme_freebsd
          psummary->m_strAmbient = "lxde";
 
       }
-      else if (strLowerCaseCurrentDesktop.equals("xfce"))
+      else if (strLowerCaseCurrentDesktop.contains("xfce"))
       {
 
          psummary->m_strAmbient = "xfce";
