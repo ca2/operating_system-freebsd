@@ -38,5 +38,5 @@ port/imaging/port_rawlite=none
 port/imaging/port_tiff4=none
 port/imaging/port_webp=none
 port/graphics3d/assimp=none
-port/base/idn=none
+port/idn=none
 app-core/app_core_desk_deskband=none
