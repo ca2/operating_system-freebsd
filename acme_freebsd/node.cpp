@@ -864,7 +864,7 @@ namespace acme_freebsd
 
       }
 
-      psummary->m_strSystemAmbientRelease=psummary->m_strSystem + "/" + psummary->m_strSystemBranch + "/" + psummary->m_strSystemRelease;
+      psummary->m_strSystemAmbientReleaseArchitecture=psummary->m_strSystem + "/" + psummary->m_strSystemBranch + "/" + psummary->m_strSystemRelease;
 
       psummary->m_strPathPrefix = ::string(directory_system()->home() / "bin") + ":"
       + ::string(directory_system()->home() / "code/operating_system/tool/bin");
