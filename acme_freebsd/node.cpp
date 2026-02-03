@@ -2,6 +2,7 @@
 #include "node.h"
 #include "acme/filesystem/filesystem/directory_system.h"
 #include "acme/filesystem/filesystem/file_system.h"
+#include "acme/operating_system/cpu_features.h"
 #include "acme/operating_system/summary.h"
 
 
@@ -748,27 +749,26 @@ namespace acme_freebsd
 
       auto psummary = øcreate_new < ::operating_system::summary >();
 
-
       //::particle::initialize(pparticle);
 
       ::string strOs;
+
       ::string strVer;
+
       //}
 
       // freedesktop.org and systemd
+
       if (file_system()->exists("/etc/os-release"))
       {
 
-
-        auto str = file_system()->as_string("/etc/os-release");
+         auto str = file_system()->as_string("/etc/os-release");
 
          ::property_set set;
 
-        set.parse_standard_configuration(str);
+         set.parse_standard_configuration(str);
 
-        //string strNetworkPayload =set.get_network_payload();
-
-
+         //string strNetworkPayload =set.get_network_payload();
 
          psummary->m_strSystem = set["ID"];
          psummary->m_strSystemBranch = set["VARIANT_ID"];
@@ -803,11 +803,13 @@ namespace acme_freebsd
 
 			printf_out("System Release : %s\n\n", strSystemRelease.c_str());
 			
-		psummary->m_strSystemRelease	 = strSystemRelease;
+		   psummary->m_strSystemRelease = strSystemRelease;
+
          psummary->m_strSystemRelease.make_lower();
 
       }
 
+      auto strArchitecture = ::operating_system::machine_architecture();
 
       auto strLowerCaseCurrentDesktop = this->get_environment_variable("XDG_CURRENT_DESKTOP").lowered();
 
@@ -864,11 +866,11 @@ namespace acme_freebsd
 
       }
 
-      psummary->m_strSystemAmbientReleaseArchitecture=psummary->m_strSystem + "/" + psummary->m_strSystemBranch + "/" + psummary->m_strSystemRelease;
+      psummary->m_strSystemArchitecture = strArchitecture;
 
-      psummary->m_strPathPrefix = ::string(directory_system()->home() / "bin") + ":"
-      + ::string(directory_system()->home() / "code/operating_system/tool/bin");
+      psummary->m_strSystemAmbientReleaseArchitecture=psummary->m_strSystem + "/" + psummary->m_strSystemBranch + "/" + psummary->m_strSystemRelease / psummary->m_strSystemArchitecture;
 
+      psummary->m_strPathPrefix = ::string(directory_system()->home() / "bin") + ":" + ::string(directory_system()->home() / "code/operating_system/tool/bin");
 
       //psummary->m_strUnderscoreOperatingSystem = psummary->m_strSlashedStore;
 
