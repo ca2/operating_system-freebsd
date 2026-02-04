@@ -5,4 +5,4 @@
 
 
 
-#define AVIO_FILE_WRITE_TYPE uint8_t
+#define AVIO_FILE_WRITE_TYPE const uint8_t
