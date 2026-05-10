@@ -747,7 +747,7 @@ namespace acme_freebsd
    ::pointer <::operating_system::summary > node::operating_system_summary()
    {
 
-      auto psummary = øcreate_new < ::operating_system::summary >();
+      auto psummary = create_newø < ::operating_system::summary >();
 
       //::particle::initialize(pparticle);
 
