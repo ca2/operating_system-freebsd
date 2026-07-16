@@ -556,7 +556,9 @@ if (${GTK_BASED_DESKTOP})
     set(default_common_windowing acme_windowing_g)
 
     if(${HAS_GTK4})
-    
+
+        set(default_accessibility accessibility_gtk4)
+
         set(default_acme_windowing acme_windowing_gtk4)
 
         set(default_innate_ui innate_ui_gtk4)
