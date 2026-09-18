@@ -592,6 +592,8 @@ elseif(${KDE_DESKTOP})
         set(default_node node_kde5)
     elseif(${HAS_KDE6})
 
+       set(default_accessibility accessibility_kde6)
+
         set(default_acme_windowing acme_windowing_kde6)
 
         set(default_innate_ui innate_ui_kde6)
